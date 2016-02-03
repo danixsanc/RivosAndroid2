@@ -33,11 +33,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Nav_Ayuda.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Nav_Ayuda.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Ayuda/Nav_Ayuda.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22704507">
+            <state vertical-scroll-proportion="0.0">
               <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="112" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Detalles_Solicitud.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Solicitar/Detalles_Solicitud.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="85" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Pending_History_Details.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Proceso/Pending_History_Details.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.48247078">
+              <caret line="61" column="53" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -3230,12 +3250,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/app/TerminosCondiciones.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/app/Main.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/pending_history_details.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Proceso/Pending_History_Details.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Favoritos/Agregar_Taxista_Favorito.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Favoritos/TaxistaFavorito.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Favoritos/LugarFavorito.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Historial/Nav_Historial.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Proceso/Nav_Proceso.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Proceso/Pending_History_Details.java" />
       </list>
     </option>
   </component>
@@ -3681,14 +3701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Solicitar/Detalles_Solicitud.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6527546">
-          <caret line="86" column="110" selection-start-line="86" selection-start-column="110" selection-end-line="86" selection-end-column="110" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/detalles_solicitud.xml">
       <provider editor-type-id="android-designer">
         <state />
@@ -4094,14 +4106,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Proceso/Pending_History_Details.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="65" column="52" selection-start-line="65" selection-start-column="52" selection-end-line="65" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Proceso/Nav_Proceso.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -4134,8 +4138,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Ayuda/Nav_Ayuda.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22704507">
+        <state vertical-scroll-proportion="0.0">
           <caret line="59" column="8" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="112" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Solicitar/Detalles_Solicitud.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="76" column="8" selection-start-line="76" selection-start-column="8" selection-end-line="85" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yozzibeens/rivostaxi/actividades/Proceso/Pending_History_Details.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.48247078">
+          <caret line="61" column="53" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
           <folding />
         </state>
       </provider>

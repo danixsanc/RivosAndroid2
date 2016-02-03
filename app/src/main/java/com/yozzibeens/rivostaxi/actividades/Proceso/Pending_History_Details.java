@@ -59,9 +59,11 @@ public class Pending_History_Details extends AppCompatActivity {
         Fecha = (TextView) findViewById(R.id.Fecha);
         Fecha.setTypeface(RobotoCondensed_Regular);
         txtNombre = (TextView) findViewById(R.id.txtNombreTaxista);
+        txtNombre.setTypeface(RobotoCondensed_Regular);
         txtTaxista = (TextView) findViewById(R.id.txtTaxista);
         txtTaxista.setTypeface(RobotoCondensed_Regular);
         txtPrecio = (TextView) findViewById(R.id.txtPrecio);
+        txtPrecio.setTypeface(RobotoCondensed_Regular);
         Precio = (TextView) findViewById(R.id.Precio);
         Precio.setTypeface(RobotoCondensed_Regular);
         //statusImg = (ImageView) findViewById(R.id.status);
