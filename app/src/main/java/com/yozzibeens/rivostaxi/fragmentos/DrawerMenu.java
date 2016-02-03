@@ -53,17 +53,17 @@ public class DrawerMenu extends Fragment {
     String nombre;
     TextView txt_solicitar,txt_proceso,txt_favoritos,txt_historial,txt_perfil,txt_ayuda,txt_CerrarSesion;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         //----Tipo de fuentes---------------------------------------------------------------------------------
-        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
 
+       /* Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
         txtNombre = (TextView) getActivity().findViewById(R.id.txtNombre);
-        txtNombre.setTypeface(RobotoCondensed_Regular);
+
         txtCorreo = (TextView) getActivity().findViewById(R.id.txtCorreo);
-        txtCorreo.setTypeface(RobotoCondensed_Regular);
         txt_solicitar  = (TextView) getActivity().findViewById(R.id.txt_solicitar);
         txt_solicitar.setTypeface(RobotoCondensed_Regular);
         txt_proceso = (TextView) getActivity().findViewById(R.id.txt_proceso);
@@ -77,7 +77,7 @@ public class DrawerMenu extends Fragment {
         txt_ayuda = (TextView) getActivity().findViewById(R.id.txt_ayuda);
         txt_ayuda.setTypeface(RobotoCondensed_Regular);
         txt_CerrarSesion = (TextView) getActivity().findViewById(R.id.txt_CerrarSesion);
-        txt_CerrarSesion.setTypeface(RobotoCondensed_Regular);
+        txt_CerrarSesion.setTypeface(RobotoCondensed_Regular);*/
         //-----------------------------------------------------------------------------------------------------
     }
 
@@ -145,7 +145,7 @@ public class DrawerMenu extends Fragment {
         final Preferencias preferencias = new Preferencias(getActivity().getApplicationContext());
 
         boolean check = preferencias.getSesion();
-
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
         if (!check)
         {
             String Client_Id = preferencias.getClient_Id();
@@ -155,9 +155,11 @@ public class DrawerMenu extends Fragment {
             correo = client.getEmail();
             nombre = client.getName();
             txtCorreo = (TextView) view.findViewById(R.id.txtCorreo);
-            txtNombre = (TextView) view.findViewById(R.id.txtNombre);
 
+            txtNombre = (TextView) view.findViewById(R.id.txtNombre);
+            txtNombre.setTypeface(RobotoCondensed_Regular);
             txtCorreo.setText(correo);
+            txtCorreo.setTypeface(RobotoCondensed_Regular);
             txtNombre.setText(nombre);
 
         }
