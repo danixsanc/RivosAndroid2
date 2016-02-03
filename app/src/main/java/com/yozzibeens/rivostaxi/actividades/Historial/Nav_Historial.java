@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
@@ -66,7 +67,10 @@ public class Nav_Historial extends AppCompatActivity {
         String Client_Id = preferencias.getClient_Id();
         int val;
 
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
+
         txt_no_data_detected = (TextView) findViewById(R.id.txt_no_data_detected2);
+        txt_no_data_detected.setTypeface(RobotoCondensed_Regular);
 
 
 
@@ -133,13 +137,16 @@ public class Nav_Historial extends AppCompatActivity {
             UserHolder holder = null;
 
             if (row == null) {
+                Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
 
                 LayoutInflater inflater = getLayoutInflater();
                 row = inflater.inflate(layoutResourceId, parent, false);
                 holder = new UserHolder();
                 holder.textName = (TextView) row.findViewById(R.id.textView1);
+                holder.textName.setTypeface(RobotoCondensed_Regular);
                 holder.btnOptions = (ImageButton) row.findViewById(R.id.btnOptions);
                 holder.txtIdHistorial = (TextView) row.findViewById(R.id.txtIdHistorial);
+                holder.txtIdHistorial.setTypeface(RobotoCondensed_Regular);
                 //holder.btnDelete = (ImageButton) row.findViewById(R.id.button2);
                 row.setTag(holder);
 

@@ -3,6 +3,7 @@ package com.yozzibeens.rivostaxi.actividades.Proceso;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -66,8 +67,11 @@ public class Nav_Proceso extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
 
         txt_no_data_detected = (TextView) findViewById(R.id.txt_no_data_detected);
+        txt_no_data_detected.setTypeface(RobotoCondensed_Regular);
+
 
 
         Preferencias preferencias = new Preferencias(getApplicationContext());
@@ -151,11 +155,13 @@ public class Nav_Proceso extends AppCompatActivity {
             UserHolder holder = null;
 
             if (row == null) {
+                Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
                 //LayoutInflater inflater = ((Activity) context).getLayoutInflater();
                 LayoutInflater inflater = getLayoutInflater();
                 row = inflater.inflate(layoutResourceId, parent, false);
                 holder = new UserHolder();
                 holder.textName = (TextView) row.findViewById(R.id.textView1);
+                holder.textName.setTypeface(RobotoCondensed_Regular);
                 //holder.btnEdit = (ImageButton) row.findViewById(R.id.button1);
 
 

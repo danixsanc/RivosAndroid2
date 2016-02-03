@@ -1,10 +1,12 @@
 package com.yozzibeens.rivostaxi.actividades.Solicitar;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import com.google.android.gms.maps.model.LatLng;
 import com.yozzibeens.rivostaxi.R;
@@ -25,12 +27,14 @@ public class Compra_Final extends AppCompatActivity {
     private static String KEY_SUCCESS = "Success";
 
 
-    TextView NombreTaxista;
-    TextView Fecha;
-    TextView Referencia;
-    TextView Distancia;
+    TextView NombreTaxista,txt_taxista;
+    TextView Fecha,txt_fecha;
+    TextView Referencia,txt_referencia;
+    TextView Distancia,txt_distancia;
     TextView Tiempo;
     TextView Costo;
+    TextView txt_llegaPorTiEn,txt_aproximadamente,txt_aproximadamente2,txt_costo_delViaje;
+    Button btn_perfil_cabbie;
 
     double latautc_inicio;
     double lngautc_inicio;
@@ -62,13 +66,40 @@ public class Compra_Final extends AppCompatActivity {
         Preferencias preferencias = new Preferencias(getApplicationContext());
         String Client_Id = preferencias.getClient_Id();
 
-        NombreTaxista = (TextView) findViewById(R.id.NombreTaxista);
-        Fecha = (TextView) findViewById(R.id.Fecha);
-        Referencia = (TextView) findViewById(R.id.Referencia);
-        Distancia = (TextView) findViewById(R.id.Distancia);
-        Tiempo = (TextView) findViewById(R.id.Tiempo);
-        Costo = (TextView) findViewById(R.id.Costo);
+       //------Tipo de fuente---------------------------------------------------------------------------------
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
 
+        NombreTaxista = (TextView) findViewById(R.id.NombreTaxista);
+        NombreTaxista.setTypeface(RobotoCondensed_Regular);
+        Fecha = (TextView) findViewById(R.id.Fecha);
+        Fecha.setTypeface(RobotoCondensed_Regular);
+        txt_fecha = (TextView) findViewById(R.id.txt_fecha);
+        txt_fecha.setTypeface(RobotoCondensed_Regular);
+        Referencia = (TextView) findViewById(R.id.Referencia);
+        Referencia.setTypeface(RobotoCondensed_Regular);
+        txt_referencia = (TextView) findViewById(R.id.txt_referencia);
+        txt_referencia.setTypeface(RobotoCondensed_Regular);
+        Distancia = (TextView) findViewById(R.id.Distancia);
+        Distancia.setTypeface(RobotoCondensed_Regular);
+        txt_distancia = (TextView) findViewById(R.id.txt_distancia);
+        txt_distancia.setTypeface(RobotoCondensed_Regular);
+        txt_taxista = (TextView) findViewById(R.id.txt_taxista);
+        txt_taxista.setTypeface(RobotoCondensed_Regular);
+        txt_aproximadamente = (TextView) findViewById(R.id.txt_aproximadamente);
+        txt_aproximadamente.setTypeface(RobotoCondensed_Regular);
+        txt_llegaPorTiEn = (TextView) findViewById(R.id.txt_llegaPorTiEn);
+        txt_llegaPorTiEn.setTypeface(RobotoCondensed_Regular);
+        Tiempo = (TextView) findViewById(R.id.Tiempo);
+        Tiempo.setTypeface(RobotoCondensed_Regular);
+        txt_aproximadamente2 = (TextView) findViewById(R.id.txt_aproximadamente2);
+        txt_aproximadamente2.setTypeface(RobotoCondensed_Regular);
+        txt_costo_delViaje = (TextView) findViewById(R.id.txt_costo_delViaje);
+        txt_costo_delViaje.setTypeface(RobotoCondensed_Regular);
+        Costo = (TextView) findViewById(R.id.Costo);
+        Costo.setTypeface(RobotoCondensed_Regular);
+        btn_perfil_cabbie = (Button) findViewById(R.id.btn_perfil_cabbie);
+        btn_perfil_cabbie.setTypeface(RobotoCondensed_Regular);
+        //--------------------------------------------------------------------------------------------------
 
 
 

@@ -52,7 +52,7 @@
                 android:textColor="#ffffff"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:text="sdfsdfsdf"/>
+                android:text="Nombre de usuario"/>
 
             <TextView
                 android:id="@+id/txtCorreo"
@@ -62,7 +62,7 @@
                 android:textColor="#ffffff"
                 android:layout_marginBottom="5dp"
                 android:textSize="14dp"
-                android:text="dsfsdfsdf" />
+                android:text="Correo" />
 
         </LinearLayout>
 
@@ -98,6 +98,7 @@
                 android:layout_marginLeft="16dp"/>
 
             <TextView
+                android:id="@+id/txt_solicitar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -135,7 +136,8 @@
                 android:layout_marginLeft="20dp"
                 android:text="En Proceso"
                 android:textColor="#909090"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:id="@+id/txt_proceso" />
 
         </LinearLayout>
 
@@ -201,7 +203,8 @@
                 android:layout_marginLeft="20dp"
                 android:text="Favoritos"
                 android:textColor="#909090"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:id="@+id/txt_favoritos" />
 
         </LinearLayout>
 
@@ -233,7 +236,8 @@
                 android:layout_marginLeft="20dp"
                 android:text="Historial"
                 android:textColor="#909090"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:id="@+id/txt_historial" />
 
         </LinearLayout>
 
@@ -265,7 +269,8 @@
                 android:layout_marginLeft="20dp"
                 android:text="Perfil"
                 android:textColor="#909090"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:id="@+id/txt_perfil" />
 
         </LinearLayout>
 
@@ -297,7 +302,8 @@
                 android:layout_marginLeft="20dp"
                 android:text="Ayuda"
                 android:textColor="#909090"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:id="@+id/txt_ayuda" />
 
         </LinearLayout>
 
@@ -329,7 +335,8 @@
                 android:layout_marginLeft="20dp"
                 android:text="Cerrar Sesion"
                 android:textColor="#909090"
-                android:textSize="14sp"/>
+                android:textSize="14sp"
+                android:id="@+id/txt_CerrarSesion" />
 
         </LinearLayout>
 
