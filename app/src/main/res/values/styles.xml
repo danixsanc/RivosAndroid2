@@ -12,12 +12,21 @@
         <item name="android:textColor">#fff</item>
     </style>
 
+
+
+
+    <style name="Spinner" parent="Base.Widget.AppCompat.Spinner">
+        <item name="android:textColorPrimary">#000</item>
+    </style>
+
+
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="android:textColorPrimary">#000000</item>
     </style>
 
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
