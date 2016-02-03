@@ -31,12 +31,12 @@ import java.util.Locale;
 
 public class Historial_Detalle extends AppCompatActivity {
 
-    TextView txtcode;
-    TextView txtdate;
+    TextView txtcode,txt_code;
+    TextView txtdate,txt_fecha;
     TextView txtplace_in;
     TextView txtplace_fn;
-    TextView txtcab_name;
-    TextView txttime;
+    TextView txtcab_name,txtTaxista;
+    TextView txttime,txt_hora;
     ImageButton back_button;
     String code;
     String date;
@@ -84,15 +84,22 @@ public class Historial_Detalle extends AppCompatActivity {
         String fecha = fechasBD.ObtenerFecha(date);
         String hora = fechasBD.ObtenerHora(date);
 
-
+        txt_code = (TextView) findViewById(R.id.txt_code);
+        txt_code.setTypeface(RobotoCondensed_Regular);
 
         txtcode = (TextView) findViewById(R.id.code);
         txtcode.setText(code);
         txtcode.setTypeface(RobotoCondensed_Regular);
 
+        txt_fecha = (TextView) findViewById(R.id.txt_fecha);
+        txt_fecha.setTypeface(RobotoCondensed_Regular);
+
         txtdate = (TextView) findViewById(R.id.date);
         txtdate.setText(fecha);
         txtdate.setTypeface(RobotoCondensed_Regular);
+
+        txt_hora = (TextView) findViewById(R.id.txt_hora);
+        txt_hora.setTypeface(RobotoCondensed_Regular);
 
         txttime = (TextView) findViewById(R.id.time);
         txttime.setText(hora);
@@ -106,6 +113,9 @@ public class Historial_Detalle extends AppCompatActivity {
         txtplace_fn = (TextView) findViewById(R.id.place_fn);
         txtplace_fn.setText(lat_fn);
         txtplace_fn.setTypeface(RobotoCondensed_Regular);
+
+        txtTaxista = (TextView) findViewById(R.id.txtTaxista);
+        txtTaxista.setTypeface(RobotoCondensed_Regular);
 
         txtcab_name = (TextView) findViewById(R.id.cabbie);
         txtcab_name.setText(cab_name);

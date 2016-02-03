@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
@@ -50,10 +51,34 @@ public class DrawerMenu extends Fragment {
     View rootview;
     String correo;
     String nombre;
+    TextView txt_solicitar,txt_proceso,txt_favoritos,txt_historial,txt_perfil,txt_ayuda,txt_CerrarSesion;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //----Tipo de fuentes---------------------------------------------------------------------------------
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
+
+        txtNombre = (TextView) getActivity().findViewById(R.id.txtNombre);
+        txtNombre.setTypeface(RobotoCondensed_Regular);
+        txtCorreo = (TextView) getActivity().findViewById(R.id.txtCorreo);
+        txtCorreo.setTypeface(RobotoCondensed_Regular);
+        txt_solicitar  = (TextView) getActivity().findViewById(R.id.txt_solicitar);
+        txt_solicitar.setTypeface(RobotoCondensed_Regular);
+        txt_proceso = (TextView) getActivity().findViewById(R.id.txt_proceso);
+        txt_proceso.setTypeface(RobotoCondensed_Regular);
+        txt_favoritos = (TextView) getActivity().findViewById(R.id.txt_favoritos);
+        txt_favoritos.setTypeface(RobotoCondensed_Regular);
+        txt_historial = (TextView) getActivity().findViewById(R.id.txt_historial);
+        txt_historial.setTypeface(RobotoCondensed_Regular);
+        txt_perfil = (TextView) getActivity().findViewById(R.id.txt_perfil);
+        txt_perfil.setTypeface(RobotoCondensed_Regular);
+        txt_ayuda = (TextView) getActivity().findViewById(R.id.txt_ayuda);
+        txt_ayuda.setTypeface(RobotoCondensed_Regular);
+        txt_CerrarSesion = (TextView) getActivity().findViewById(R.id.txt_CerrarSesion);
+        txt_CerrarSesion.setTypeface(RobotoCondensed_Regular);
+        //-----------------------------------------------------------------------------------------------------
     }
 
 

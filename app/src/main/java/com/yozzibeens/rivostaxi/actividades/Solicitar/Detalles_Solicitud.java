@@ -4,6 +4,7 @@ package com.yozzibeens.rivostaxi.actividades.Solicitar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -70,12 +71,21 @@ public class Detalles_Solicitud extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        txt_Inicio = (TextView) findViewById(R.id.txtInicio);
-        txt_Destino = (TextView) findViewById(R.id.txtDestino);
-        price = (TextView) findViewById(R.id.price);
-        cabbie_id = (TextView) findViewById(R.id.cabbie_id);
+        //----Tipo de Fuente-----------------------------------------------------------------------------------
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
 
+        cabbie_id = (TextView) findViewById(R.id.cabbie_id);
+        cabbie_id.setTypeface(RobotoCondensed_Regular);
+        txt_Inicio = (TextView) findViewById(R.id.txtInicio);
+        txt_Inicio.setTypeface(RobotoCondensed_Regular);
+        txt_Destino = (TextView) findViewById(R.id.txtDestino);
+        txt_Destino.setTypeface(RobotoCondensed_Regular);
+        price = (TextView) findViewById(R.id.price);
+        price.setTypeface(RobotoCondensed_Regular);
         buyItBtn = (Button) findViewById(R.id.buyItBtn);
+        buyItBtn.setTypeface(RobotoCondensed_Regular);
+        //----------------------------------------------------------------------------------------------------
+
         buyItBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent i = new Intent(Detalles_Solicitud.this , Form.class);

@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
@@ -47,7 +48,10 @@ public class TaxistaFavorito  extends Fragment{
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
+
         txt_no_data_detected = (TextView) rootview.findViewById(R.id.txt_no_data_detected);
+        txt_no_data_detected.setTypeface(RobotoCondensed_Regular);
 
 
         favoritecabbieList = (ListView) rootview.findViewById(R.id.list_favorite_cabbie);
@@ -131,10 +135,12 @@ public class TaxistaFavorito  extends Fragment{
             UserHolder holder = null;
 
             if (row == null) {
+                Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
                 LayoutInflater inflater = ((Activity) context).getLayoutInflater();
                 row = inflater.inflate(layoutResourceId, parent, false);
                 holder = new UserHolder();
                 holder.textName = (TextView) row.findViewById(R.id.textView1);
+                holder.textName.setTypeface(RobotoCondensed_Regular);
                 holder.txtId = (TextView) row.findViewById(R.id.txtIdCabbie);
                 //holder.btnEdit = (ImageButton) row.findViewById(R.id.button1);
                 holder.btnOptions = (ImageButton) row.findViewById(R.id.btnOptions);

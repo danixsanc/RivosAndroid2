@@ -1,9 +1,11 @@
 package com.yozzibeens.rivostaxi.app;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.yozzibeens.rivostaxi.R;
 
@@ -11,6 +13,7 @@ import com.yozzibeens.rivostaxi.R;
 public class PreguntasFrecuentes extends AppCompatActivity {
 
 
+    TextView textView2;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +22,10 @@ public class PreguntasFrecuentes extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
+
+        textView2 = (TextView) findViewById(R.id.textView2);
     }
 
     @Override

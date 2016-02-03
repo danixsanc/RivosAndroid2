@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -46,7 +47,10 @@ public class LugarFavorito extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootview = inflater.inflate(R.layout.favorite_place, container, false);
 
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
+
         txt_no_data_detected = (TextView) rootview.findViewById(R.id.txt_no_data_detected);
+        txt_no_data_detected.setTypeface(RobotoCondensed_Regular);
 
 
         favoriteplaceList = (ListView) rootview.findViewById(R.id.list_favorite_place);
@@ -138,11 +142,14 @@ public class LugarFavorito extends Fragment {
             UserHolder holder = null;
 
             if (row == null) {
+                Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
                 LayoutInflater inflater = ((Activity) context).getLayoutInflater();
                 row = inflater.inflate(layoutResourceId, parent, false);
                 holder = new UserHolder();
                 holder.textName = (TextView) row.findViewById(R.id.textView1);
+                holder.textName.setTypeface(RobotoCondensed_Regular);
                 holder.txtIdPlace = (TextView) row.findViewById(R.id.txtIdPlace);
+                holder.txtIdPlace.setTypeface(RobotoCondensed_Regular);
                 holder.btnOptions = (ImageButton) row.findViewById(R.id.btnOptions);
                 row.setTag(holder);
                 final UserHolder finalHolder = holder;

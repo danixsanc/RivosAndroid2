@@ -1,6 +1,7 @@
 package com.yozzibeens.rivostaxi.actividades.Proceso;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,10 +25,10 @@ import org.json.JSONObject;
 public class Pending_History_Details extends AppCompatActivity {
 
     String request_id;
-    TextView txtFecha;
-    TextView txtId;
-    TextView txtNombre;
-    TextView txtPrecio;
+    TextView txtFecha,Fecha;
+    TextView txtId,txtReferencia;
+    TextView txtNombre,txtTaxista;
+    TextView txtPrecio,Precio;
     ImageButton back_button;
     //ImageView statusImg;
     private static String KEY_SUCCESS = "Success";
@@ -48,10 +49,21 @@ public class Pending_History_Details extends AppCompatActivity {
             request_id = bundle.getString("Request_Id");
         }
 
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
+
         txtId = (TextView) findViewById(R.id.txtid);
+        txtId.setTypeface(RobotoCondensed_Regular);
+        txtReferencia = (TextView) findViewById(R.id.txtReferencia);
+        txtReferencia.setTypeface(RobotoCondensed_Regular);
         txtFecha = (TextView) findViewById(R.id.txtFecha);
+        Fecha = (TextView) findViewById(R.id.Fecha);
+        Fecha.setTypeface(RobotoCondensed_Regular);
         txtNombre = (TextView) findViewById(R.id.txtNombreTaxista);
+        txtTaxista = (TextView) findViewById(R.id.txtTaxista);
+        txtTaxista.setTypeface(RobotoCondensed_Regular);
         txtPrecio = (TextView) findViewById(R.id.txtPrecio);
+        Precio = (TextView) findViewById(R.id.Precio);
+        Precio.setTypeface(RobotoCondensed_Regular);
         //statusImg = (ImageView) findViewById(R.id.status);
 
 

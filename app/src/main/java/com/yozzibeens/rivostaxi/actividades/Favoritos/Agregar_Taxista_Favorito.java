@@ -30,6 +30,7 @@ import com.yozzibeens.rivostaxi.utilerias.Servicio;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 /**
@@ -225,11 +226,13 @@ public class Agregar_Taxista_Favorito extends AppCompatActivity {
             UserHolder holder = null;
 
             if (row == null) {
+                Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
                 //LayoutInflater inflater = ((Activity) context).getLayoutInflater();
                 LayoutInflater inflater = getLayoutInflater();
                 row = inflater.inflate(layoutResourceId, parent, false);
                 holder = new UserHolder();
                 holder.textName = (TextView) row.findViewById(R.id.textView1);
+                holder.textName.setTypeface(RobotoCondensed_Regular);
                 holder.btnEdit = (ImageButton) row.findViewById(R.id.button1);
 
 

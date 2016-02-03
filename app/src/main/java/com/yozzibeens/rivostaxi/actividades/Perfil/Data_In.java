@@ -35,9 +35,7 @@ import org.json.JSONObject;
 public class Data_In extends AppCompatActivity {
 
     TextView txt_ingresar_codigo;
-    TextView txt_h1;
-    TextView txt_h2;
-    TextView txt_correo;
+    TextView txt_h1, txt_h2, txt_correo;
     Button btn_send_code;
     EditText codigo;
     ImageButton back_button;

@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -141,6 +142,8 @@ public class Main extends AppCompatActivity implements GoogleMap.OnMapClickListe
 
                 // txt_address = (TextView) findViewById(R.id.txt_address);
 
+            Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
+
                 mGoogleApiClient = new GoogleApiClient.Builder(Main.this)
                         .addApi(Places.GEO_DATA_API)
                         .enableAutoManage(this, GOOGLE_API_CLIENT_ID, this)
@@ -148,17 +151,25 @@ public class Main extends AppCompatActivity implements GoogleMap.OnMapClickListe
                         .build();
                 mAutocomplete_final = (AutoCompleteTextView) findViewById(R.id.mAutocomplete_destino);
                 mAutocomplete_final.setThreshold(3);
+                mAutocomplete_final.setTypeface(RobotoCondensed_Regular);
                 mNameTextView_final = (TextView) findViewById(R.id.name_final);
+                mNameTextView_final.setTypeface(RobotoCondensed_Regular);
                 mAddressTextView_final = (TextView) findViewById(R.id.address_final);
+                mAddressTextView_final.setTypeface(RobotoCondensed_Regular);
                 mIdTextView_final = (TextView) findViewById(R.id.place_id_final);
+                mIdTextView_final.setTypeface(RobotoCondensed_Regular);
                 mPhoneTextView_final = (TextView) findViewById(R.id.phone_final);
+                mPhoneTextView_final.setTypeface(RobotoCondensed_Regular);
                 mWebTextView_final = (TextView) findViewById(R.id.web_final);
+                mWebTextView_final.setTypeface(RobotoCondensed_Regular);
                 mAttTextView_final = (TextView) findViewById(R.id.att_final);
+                mAttTextView_final.setTypeface(RobotoCondensed_Regular);
                 mAutocomplete_final.setOnItemClickListener(mAutocompleteClickListener_final);
                 mPlaceArrayAdapter = new PlaceArrayAdapter(this, android.R.layout.simple_list_item_1, latLngBounds, null);
                 mAutocomplete_final.setAdapter(mPlaceArrayAdapter);
 
                 clear_text = (Button) findViewById(R.id.clear_text);
+                clear_text.setTypeface(RobotoCondensed_Regular);
 
                 mapa = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
                 mapa.setMapType(GoogleMap.MAP_TYPE_NORMAL);
