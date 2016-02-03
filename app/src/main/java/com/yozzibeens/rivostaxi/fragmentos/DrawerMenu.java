@@ -1,0 +1,262 @@
+package com.yozzibeens.rivostaxi.fragmentos;
+
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.facebook.login.LoginManager;
+import com.yozzibeens.rivostaxi.R;
+import com.yozzibeens.rivostaxi.actividades.Ayuda.Nav_Ayuda;
+import com.yozzibeens.rivostaxi.actividades.Favoritos.Nav_Favoritos;
+import com.yozzibeens.rivostaxi.actividades.Historial.Nav_Historial;
+import com.yozzibeens.rivostaxi.actividades.Perfil.Nav_Perfil;
+import com.yozzibeens.rivostaxi.actividades.Proceso.Nav_Proceso;
+import com.yozzibeens.rivostaxi.actividades.Reservaciones.Nav_Reservaciones;
+import com.yozzibeens.rivostaxi.app.Main;
+import com.yozzibeens.rivostaxi.controlador.ClientController;
+import com.yozzibeens.rivostaxi.controlador.Favorite_CabbieController;
+import com.yozzibeens.rivostaxi.controlador.Favorite_PlaceController;
+import com.yozzibeens.rivostaxi.controlador.HistorialController;
+import com.yozzibeens.rivostaxi.modelo.Client;
+import com.yozzibeens.rivostaxi.utilerias.Preferencias;
+
+public class DrawerMenu extends Fragment {
+
+    private ActionBarDrawerToggle mDrawerToggle;
+    private DrawerLayout mDrawerLayout;
+    private View mContainer;
+    public boolean menuOpen;
+    private Context context;
+
+    TextView txtCorreo;
+    TextView txtNombre;
+    LinearLayout CerrarSesion;
+    View rootview;
+    String correo;
+    String nombre;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+
+    public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar, final ActionBar actionBar, Context prContext) {
+        mContainer = getActivity().findViewById(fragmentId);
+        mDrawerLayout = drawerLayout;
+        context = prContext;
+        mDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                Log.d("VIVZ", "onDrawerOpened");
+                getActivity().supportInvalidateOptionsMenu();
+                menuOpen = true;
+            }
+
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                Log.d("VIVZ", "onDrawerClosed");
+                setHasOptionsMenu(true);
+                getActivity().supportInvalidateOptionsMenu();
+                menuOpen = false;
+            }
+
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+                //toolbar_wizzard.setAlpha(1 - slideOffset / 2);
+            }
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.post(new Runnable() {
+            @Override
+            public void run() {
+                mDrawerToggle.syncState();
+            }
+        });
+
+    }
+
+    public void cerrarDrawer(){
+        mDrawerLayout.closeDrawers();
+    }
+
+    public DrawerMenu() {
+        // Required empty public constructor
+    }
+
+    public void invalidarMenu(android.view.Menu menu, int idMenu){
+        boolean drawerOpen = mDrawerLayout.isDrawerOpen(mContainer);
+        menu.findItem(idMenu).setVisible(!drawerOpen);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view  = inflater.inflate(R.layout.drawer_menu, container, false);
+
+
+        final Preferencias preferencias = new Preferencias(getActivity().getApplicationContext());
+
+        boolean check = preferencias.getSesion();
+
+        if (!check)
+        {
+            String Client_Id = preferencias.getClient_Id();
+            ClientController clientController = new ClientController(getActivity().getApplicationContext());
+            Client client;
+            client = clientController.obtenerClientPorClientId(Client_Id);
+            correo = client.getEmail();
+            nombre = client.getName();
+            txtCorreo = (TextView) view.findViewById(R.id.txtCorreo);
+            txtNombre = (TextView) view.findViewById(R.id.txtNombre);
+
+            txtCorreo.setText(correo);
+            txtNombre.setText(nombre);
+
+        }
+
+
+        CerrarSesion = (LinearLayout) view.findViewById(R.id.CerrarSesion);
+        CerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                AlertDialog.Builder dialog1 = new AlertDialog.Builder(getActivity(), R.style.AppCompatAlertDialogStyle);
+                dialog1.setMessage("¿Cerrar Sesion?");
+                dialog1.setCancelable(false);
+                dialog1.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        preferencias.setSesion(true);
+                        ClientController clientController = new ClientController(getActivity().getApplicationContext());
+                        clientController.eliminarTodo();
+                        Intent intent = new Intent(getActivity(), Main.class);
+                        startActivity(intent);
+
+                        HistorialController historialController = new HistorialController(getActivity().getApplicationContext());
+                        Favorite_CabbieController favorite_cabbieController = new Favorite_CabbieController(getActivity().getApplicationContext());
+                        Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getActivity().getApplicationContext());
+
+                        historialController.eliminarTodo();
+                        favorite_cabbieController.eliminarTodo();
+                        favorite_placeController.eliminarTodo();
+                        LoginManager.getInstance().logOut();
+                        getActivity().finish();
+                    }
+                });
+                dialog1.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                dialog1.show();
+
+
+
+
+            }
+        });
+
+
+        LinearLayout solicitar;
+        solicitar = (LinearLayout) view.findViewById(R.id.nav_solicitar);
+        solicitar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDrawerLayout.closeDrawers();
+            }
+        });
+
+        LinearLayout proceso;
+        proceso = (LinearLayout) view.findViewById(R.id.nav_onProcess);
+        proceso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Nav_Proceso.class));
+            }
+        });
+
+        /*LinearLayout reservaciones;
+        reservaciones = (LinearLayout) view.findViewById(R.id.nav_reservaciones);
+        reservaciones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Nav_Reservaciones.class));
+            }
+        });*/
+
+        LinearLayout favoritos;
+        favoritos = (LinearLayout) view.findViewById(R.id.nav_favoritos);
+        favoritos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Nav_Favoritos.class));
+            }
+        });
+
+        LinearLayout perfil;
+        perfil = (LinearLayout) view.findViewById(R.id.nav_perfil);
+        perfil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Nav_Perfil.class));
+            }
+        });
+
+        LinearLayout historial;
+        historial = (LinearLayout) view.findViewById(R.id.nav_historial);
+        historial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Nav_Historial.class));
+            }
+        });
+
+        LinearLayout ayuda;
+        ayuda = (LinearLayout) view.findViewById(R.id.nav_ayuda);
+        ayuda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Nav_Ayuda.class));
+            }
+        });
+
+
+
+
+
+
+
+
+
+        return view;
+    }
+
+
+}

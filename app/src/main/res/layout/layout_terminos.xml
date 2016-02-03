@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff4e4e4e"
+            android:layout_margin="10dp"
+            android:textSize="20dp"
+            android:text="Términos, Condiciones y Aviso de Privacidad"
+            android:id="@+id/textView3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff4e4e4e"
+            android:layout_margin="10dp"
+            android:textSize="15dp"
+            android:text="PARA LOS PASAJEROS."
+            android:id="@+id/textView4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff4e4e4e"
+            android:layout_margin="10dp"
+            android:textSize="12dp"
+            android:text="Estos son los  “Términos y Condiciones” aplicables para el uso de los servicios ofrecidos por Rivos, ya sea por medio del sitio web o de la aplicación móvil (app). El usuario afirma y certifica que acepta todos los términos establecidos por Rivos para entrar y requerir servicios. Si usted no está de acuerdo con los términos y condiciones del uso del sistema y las políticas de privacidad de Rivos, no instale la aplicación, y no realice ningún uso de ella ni de la página web.
+    \n\n
+    1. TÉRMINOS:\n
+    (1) “Pasajero(s)” significa cualquier usuario que se registra como pasajero en la página web o en la aplicación;\n
+    (2) “Viaje(s)” significa los servicios de transporte de personas proveídos por los taxistas a los pasajeros.\n
+    (3) “Usuarios”: Taxistas y Pasajeros
+    \n\n
+    2. ¿Qué es Rivos?
+    Rivos consiste en un servicio especializado con el propósito de optimizar los servicios de taxi, sin crear alguna relación laboral con el taxi, lo cual significa que Rivos debe ser considerado sólo como un proveedor de servicios programados. Rivos permite, totalmente sin recargo, que el PASAJERO se registre y con un clic pidiendo el servicio de taxis de una manera más eficiente que los métodos actuales. El cliente pagara directamente al taxista el costo de la tarifa vigente del servicio según sea el costo. El taxista de Rivos, firmara un contrato con sus respectivos términos y condiciones, dándonos sus datos para dar el servicio, quedando pendiente la evaluación por parte de Rivos y la entrega de la documentación necesaria para registrarse y participar en el proyecto. La aplicación estará disponible momentáneamente solo para plataformas Android, con versión actualizada 4.0 o superior.
+    \n\n
+
+    3. REGISTRO Y USO DEL SOFTWARE\n
+    a) Cuando se registra, el usuario acepta proveer información exacta, completa y actualizada que se requiera para completar los requisitos, sin tener Rivos la obligación de supervisar o controlar la información.
+    \nb) Solo las personas que tienen la capacidad legal están autorizados a participar en el proyecto. Las personas que no cuenten con esta capacidad, entre ellos los menores de edad, deben ser asistidas por sus representantes legales o dándose el caso por sus padres o tutor.
+    \nc) Rivos se reserva el derecho de usar cualquier acción legal disponible para identificar a los usuarios, así como requerir, en cualquier momento, documentación extra que se considere necesaria para verificar la información personal del usuario.
+    \nd) Rivos no se responsabiliza por cualquier daño como resultado de la pérdida o mal uso de la clave por parte de terceros. El usuario es el único responsable por ello.
+    \ne) No se puede transferir por ningún motivo, el registro del usuario a terceras personas.
+    \n\n
+    4. LIMITACIONES DE LA RESPONSABILIDAD\n
+    - Relación Taxistas-Pasajeros:\n
+    a) Rivos no provee servicio de taxi, el servicio que brinda es de ser intermediario con el fin de optimizar el servicio de taxis. Asimismo, al aceptar el servicio del TAXISTA, el PASAJERO reconoce que Rivos no tiene una relación directa con el TAXISTA, solo facilita el contacto entre el taxista y el pasajero. El usuario deberá tener el conocimiento y aceptar que Rivos no se responsabiliza por ningún acto cometido por cualquier usuario, ya sea por robo, discusiones y otros incluyendo el fin del compromiso a causa de algún acto, discusión, y otros incluyendo el registro de manera correcta asumido obligatoriamente por el usuario y pérdidas sin incluir las que son fuera de impuestos. El usuario tiene el conocimiento y aprueba que al registrarse y aceptar las políticas del servicio, debe cumplir y correr con los riesgos que este conlleva. Rivos recomienda que toda transacción sea realizada de buena fe.
+    \n- Disponibilidad e inconsistencia en el sistema:
+    \nb) Rivos no garantiza que la aplicación esté siempre disponible sin interrupciones y que siempre esté libre de errores, por lo tanto no se responsabiliza por el daño causado a los usuarios.
+    \nc) Usted acepta que Rivos tampoco se responsabiliza por cualquier daño causado a tu computadora como resultado de usar la página web.
+    \nd) Rivos no se responsabiliza por cualquier error y/o inconsistencia de información con otros sistemas independientes, como el GPS, el radar y similares.
+    \n- Compensación por daños:
+    \ne) Los usuarios se comprometen a indemnizar a Rivos y sus representantes de cualquier reclamo, demandas, pérdidas, responsabilidades, daños y costos, incluyendo los honorarios de los abogados y los costos judiciales que se incurran por cualquier daño.
+    \n\n
+    5. OBLIGACIONES, RESPONSABILIDADES Y RIEGOS DE PASAJEROS.\n
+    a) El PASAJERO certifica que está usando el servicio por su propia voluntad y reconoce y acepta las responsabilidades y riesgos por usar la aplicación
+    \n- Aprobación y cancelación de servicios:
+    \nb) El PASAJERO puede cancelar la operación por cualquier motivo. Ambos reconocen (Pasajero y taxista) que Rivos no se responsabiliza por las demoras, cancelaciones de la operación y errores de comunicación entre el pasajero y el operador del call center, ni por cualquier retraso o incumplimiento en la entrega de servicios al conductor.
+    \n- La información y riesgos del servicio:
+    \nc)El PASAJERO reconoce y declara que es consciente de todos los riesgos que implica el uso de la aplicación móvil y la contratación de servicios, comprometiéndose a tomar cuidado como es de esperar de alguien que elige un taxi para transportarse.
+    \nd) El PASAJERO reconoce y acepta que Rivos no realiza ninguna selección de los TAXISTAS, simplemente el registro de ellos en su página web para participar no avala su idoneidad, la salud física o mental para prestar los Servicios. El pasajero reconoce que los datos proporcionados por el taxista, tales como: (1) el modelo del vehículo, (2) la placa del vehículo, (3) el nombre completo, (4) foto de perfil, entre otros, fueron proporcionados por el propio conductor . Mediante la aceptación de los Servicios, el pasajero reconoce que Rivos no tiene ninguna participación en la relación contractual entre el conductor y el pasajero.
+    \n\n
+    6. EVALUACIÓN DE LOS USUARIOS\n
+    a) Es la elección del pasajero de evaluar a los TAXISTAS que los transportan, asignando puntos y comentando sobre el servicio. Dicha evaluación será de uso exclusivo de Rivos con la finalidad de brindar un mejor servicio al PASAJERO. Rivos se reserva el derecho de usar las evaluaciones para mejorar el servicio, sea para uso interno o externo.
+    \n\n
+    7. POLÍTICA DE PRIVACIDAD
+    “SERVICIOS DE TAXI EN LINEA S. de R.L. de C.V. en lo sucesivo identificada en este Aviso como “Rivos”, con domicilio en Diagonal Patriotismo #12, Col. Hipódromo Condesa, Delegación Cuauhtémoc, C.P. 28500, México, D.F., en atención a la Ley Federal de Protección de Datos Personales en Posesión de Particulares (la “Ley”), pone a su disposición su aviso de privacidad.”
+    Le hacemos notar que contamos con un departamento de protección de datos personales el cual puedes ubicar directamente en nuestras oficinas ubicadas en el domicilio antes señalado y que también puede contactar en la siguiente cuenta de correo electrónico: contacto@rivosservices.com
+    Sus datos personales son muy importantes para nosotros y serán tratados con base en los principios de licitud, consentimiento, información, calidad, finalidad, lealtad, proporcionalidad y responsabilidad en términos de la legislación aplicable y se utilizarán con las finalidades en la lista a continuación.
+    \na) Finalidades del tratamiento
+    \nLos datos personales que recolectemos de usted, los utilizaremos para las siguientes finalidades que son necesarias para el servicio que nos solicita:
+    \n•	          Para la prestación de nuestros servicios consistentes en que pueda pedir un taxi desde cualquier lugar de la ciudad.
+    \n•	          Para actividades administrativas: dar seguimiento y asistencia a las solicitudes de servicio
+    \n•	          Contactarlo en caso de que el sistema detecte algún retraso en la prestación del servicio
+    \nDe manera adicional, utilizaremos su información personal para las siguientes finalidades que no son necesarias para la prestación del servicio solicitado, pero que nos permiten brindarle una mejor atención:
+    \n•	          Atender dudas y sugerencias así como dar seguimiento a las mismas
+    \n•	          Para verificar la calidad del servicio
+    \n•	          Con fines estadísticos
+    \n•	          Con fines de mercadotecnia, publicidad o prospección comercial y para comunicación, promoción de servicios y para llevar a cabo promociones y entrega de premios
+    \nEn caso de que no desee que sus datos personales sean tratados para estos fines adicionales, desde este momento usted nos lo puede comunicar mediante correo electrónico enviado a nuestro departamento de protección de datos personales a la cuenta contacto@rivosservices.com.  La negativa para el uso de sus Datos Personales para estas finalidades adicionales no será motivo para que le neguemos el servicio que presta Rivos.
+    \nb) Datos personales que utilizamos
+    \nPara llevar a cabo las finalidades descritas en el presente Aviso de Privacidad, utilizaremos los siguientes datos personales:
+    \nDatos de contacto, consistentes en nombre(s), apellido(s), teléfono celular, correo electrónico y dirección de localización.
+    \nLe informamos que Rivos no recaba datos financieros o patrimoniales, ni sensibles.
+    \nc) Transferencias y remisiones
+    \nLe comunicamos que Rivos comparte tus datos personales con:
+    \n•	          Su sociedad controladora, sus subsidiarias y sus afiliadas, todas las cuales pertenecen al mismo grupo corporativo que Rivos,
+    \n•	          Con autoridades competentes en caso de que éstas los soliciten en cumplimiento de la legislación aplicable, y
+    \n•	          Personas encargadas de tratar sus datos por cuenta de Rivos para poder cumplir con las finalidades listadas en este Aviso de Privacidad.
+    \nLe hacemos notar que nos hemos asegurado de obtener garantías de parte de los receptores y encargados de sus datos personales, a fin de que éstos sean salvaguardados en términos de la Ley y su Reglamento, y les hemos comunicado el contenido de este Aviso de Privacidad a fin de que se respeten sus términos.
+    \nd) Confidencialidad y medidas de seguridad
+    \nLa confidencialidad y protección de sus datos personales es una prioridad para Rivos, por lo que hemos establecido y mantenemos de forma efectiva medidas de seguridad administrativas, técnicas y físicas, para evitar su daño, pérdida, alteración, destrucción, uso, acceso o divulgación indebida.
+    \ne) Derechos arco
+    \nUsted, como titular, tiene derecho a (1) acceder a sus Datos Personales en posesión de Rivos y conocer los detalles del tratamiento de los mismos, (2) rectificarlos en caso de estar desactualizados, ser inexactos o estar incompletos, (3) cancelarlos cuando considere que no están siendo utilizados conforme a los principios, deberes y obligaciones aplicables, u (4) oponerse al tratamiento de los mismo para fines específicos.  Esto derechos se conocen como los “Derechos ARCO”.
+    \nf) Ejercicio de derechos arco
+    \nUsted puede ejercer sus Derechos ARCO por correo electrónico que es: contacto@rivosservices.com, acompañada de la siguiente información y documentación:
+    \n•           Datos de identificación y/o de su representante legal.  En el caso del representante legal se deberá acompañar del documento con el que se acredite su personalidad.  Los documentos podrán ser escaneados y adjuntados al correo electrónico para verificar su veracidad.
+    \n•	          La descripción de manera clara y precisa de los datos personales respecto de los cuales se busca ejercer Derechos ARCO, así como el derecho o derechos que se desea ejercer, lo cual podrá hacerse en el texto del correo electrónico o en un documento adjunto escaneado y debidamente firmado al final del mismo y rubricado al calce de cada una de las hojas.
+    \n•	          En el caso de solicitud de rectificación de datos personales, indicar las modificaciones a realizarse y adjuntar la documentación que sustente tal petición.
+    \n•	          Señalar expresamente el deseo de recibir la contestación de Rivos a su petición a través de correo electrónico, indicando la dirección de correo electrónico que corresponda.
+    \n•	          Adjuntar copia de su identificación oficial vigente y/o de su representante legal.  Los documentos podrán ser escaneados y adjuntados al correo electrónico para verificar su veracidad.
+    \nUna vez que la solicitud para ejercer Derechos ARCO se encuentre a disposición de Rivos, se emitirá la respectiva contestación en un plazo no mayor a 20 días a partir de su recepción.  Si la solicitud de ejercicio de Derechos ARCO es acerca del ejercicio del derecho de acceso, pondremos a disposición la información o datos personales a través de copias simples y/o documentos electrónicos.
+    \ng) Revocación del consentimiento al tratamiento de sus datos personales
+    \nUsted, como titular de los Datos Personales, puede revocar su consentimiento para el tratamiento de sus datos personales conforme al procedimiento previsto en la sección anterior “Ejercicio de Derechos ARCO”, en el entendido que una vez que su solicitud de revocación se encuentre a disposición de Rivos, emitiremos nuestra contestación en un plazo no mayor a 10 días.
+    \nh) Opciones para limitar el uso o divulgación de sus datos personales
+    \nUsted, como titular de sus Datos Personales, también pueden limitar el uso o divulgación de los mismos, mediante: (1) su inscripción en el Registro Público para Evitar Publicidad, que está a cargo de la Procuraduría Federal del Consumidor, con la finalidad de que sus datos personales no sean utilizados para recibir publicidad o promociones de empresas de bienes o servicios y/o (2) mediante correo electrónico enviado a nuestro departamento de protección de datos personales a la dirección electrónica: contacto@rivosservices.com
+    \ni) Uso de cookies, web beacons y otras tecnologías similares
+    \nSe hace de su conocimiento que Rivos no utiliza mecanismos remotos o locales de comunicación electrónica, óptica u otra tecnología que nos permitan recabar datos personales de manera automática.
+    \nj) Cambios al aviso de privacidad
+    \nEn cualquier tiempo, Rivos podrá hacer modificaciones, cambios y/o actualización al presente Aviso que sean necesarias para atender: (1) las disposiciones legales aplicables, (2) nuestras propias necesidades por los servicios que ofrecemos, (3) nuestras prácticas de privacidad, (4) cambios en nuestro modelo de negocios, u (5) otras causas. Tales modificaciones, cambios y/o actualizaciones se le darán a conocer mediante nuestro App para iOS y Android dónde haremos constar la fecha de la última actualización del mismo.
+    \nk) Consentimiento
+    \nAl proporcionarnos sus datos personales, expresamente reconoce y acepta el presente Aviso de Privacidad, por lo que dicho consentimiento nos otorga la facultad para que procedamos al tratamiento de sus datos personales de la forma en que se señala en el presente Aviso y con estricto apego al mismo, la Ley, su Reglamento y demás legislación aplicable.
+    \n\n
+    8. SANCIONES
+    \na) Rivos podrá notificar, suspender o cancelar, temporal o permanentemente, la cuenta de cualquier usuario en cualquier momento, y tomar acciones legales si: (1) viola cualquiera de las representaciones, garantías y obligaciones contenidas en estas Condiciones de Uso o cualquier política o regla adyacente a la misma, (2) las prácticas engañosas o fraudulentas, o (3) Rivos concluye que las actividades y actitudes han causado o pueden causar daño a los demás o al equipo de Rivos. El usuario no tendrá derecho a ninguna indemnización o compensación por la cancelación o suspensión de su cuenta en el sistema.
+    \n\n
+    9. LICENCIA
+    \na) Rivos brinda al Usuario una licencia limitada, personal, no exclusiva, intransferible, no comercial y totalmente revocable para utilizar el Sitio Web en el móvil o el ordenador, en conformidad y por acuerdo de los términos contenidos en este documento. Rivos se reserva todos los derechos sobre el Sitio Web no expresamente concedidos aquí.
+    \nb) Rivos no se hace responsable de ningún daño sufrido por el usuario que realiza una copia, transferencia, distribución o uso de cualquier contenido del Sitio Web protegido, violando los derechos de los demás.
+    \n\n
+    10. CONDICIONES GENERALES
+    \na) Los términos de uso no generan ninguna sociedad, franquicia o relación laboral entre el USUARIO y Rivos.
+    \nb) Los términos pueden cambiar por Rivos en cualquier momento. Los cambios serán obligatorios automáticamente en la fecha de publicación de la nueva versión en la aplicación.
+    \nc) Las presentes Condiciones de Uso se regirán e interpretarán de conformidad con la legislación de cada país y cualquier disputa que surja de este descargo no puede ser resuelto por las partes, puesto que será sometida a la jurisdicción de la ciudad cada determinado.
+    \nd) Al registrarse como pasajero en el sistema y aceptar los términos, haciendo clic en la opción “Acepto los términos de uso”, el Usuario declara automáticamente y se compromete a cumplir con estos términos y todas las demás políticas y normas disponibles en el sistema.
+
+    "
+            android:id="@+id/textView2" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

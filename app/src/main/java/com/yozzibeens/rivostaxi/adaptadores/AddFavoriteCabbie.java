@@ -1,0 +1,23 @@
+package com.yozzibeens.rivostaxi.adaptadores;
+
+/**
+ * Created by danixsanc on 27/12/2015.
+ */
+public class AddFavoriteCabbie {
+    String add_favorite_cabbie;
+
+    public String getAdd_Favorite_Cabbie() {
+        return add_favorite_cabbie;
+    }
+
+    public void setAdd_Favorite_Cabbie(String add_favorite_cabbie) {
+        this.add_favorite_cabbie = add_favorite_cabbie;
+    }
+
+
+    public AddFavoriteCabbie(String add_favorite_cabbie) {
+        super();
+        this.add_favorite_cabbie = add_favorite_cabbie;
+    }
+
+}

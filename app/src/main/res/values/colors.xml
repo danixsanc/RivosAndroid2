@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#2f3794</color>
+    <color name="colorPrimaryDark">#121748</color>
+    <color name="colorAccent">#03A9F4</color>
+    <color name="colorWhite">#fff</color>
+
+    <color name="black_semitransparent_10">#10000000</color>
+    <color name="white_semitransparent_10">#10ffffff</color>
+    <color name="page_blue">#ff216298</color>
+    <color name="page_red">#969696</color>
+    <color name="page_green">#03A9F4</color>
+
+    <color name="tabsScrollColor">#acc9e2</color>
+</resources>

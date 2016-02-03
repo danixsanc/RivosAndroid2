@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <include layout="@layout/toolbar" />
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp">
+
+        <TableRow>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:background="@color/transparent"
+                android:tint="@color/colorPrimary"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_local_taxi_black_24dp"
+                android:id="@+id/select_place_favorite2" />
+
+            <TextView
+                android:id="@+id/cabbie_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="ID"
+                android:textColor="#a0000000"
+                android:textSize="18dp" />
+        </TableRow>
+    </TableLayout>
+
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp">
+
+        <TableRow>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:background="@color/transparent"
+                android:tint="@color/colorPrimary"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_location_on_black_24dp"
+                android:id="@+id/select_place_favorite1" />
+
+            <TextView
+                android:id="@+id/txtInicio"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="#535353"
+                android:hint="Inicio"
+                android:paddingRight="30dp"
+                android:textColorHint="#535353"
+                android:text="Inicio"/>
+
+
+            <!--AutoCompleteTextView
+                android:id="@+id/mAutocomplete_inicio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"
+                android:textColor="#535353"
+                android:popupBackground="#535353"
+                android:layout_centerHorizontal="true"
+                android:textColorHint="#535353"
+                android:hint="Inicio"/-->
+        </TableRow>
+    </TableLayout>
+
+
+    <!--TextView
+        android:id="@+id/header_inicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/autoCompleteTextView"
+        android:text="Selected Place:"
+        android:visibility="gone"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/name_inicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/header"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/address_inicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="gone"
+        android:layout_below="@+id/name"/>
+
+    <TextView
+        android:id="@+id/place_id_inicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/address"/>
+
+    <TextView
+        android:id="@+id/phone_inicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/place_id"
+        android:visibility="gone"
+        android:autoLink="phone"/>
+
+    <TextView
+        android:id="@+id/web_inicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/phone"
+        android:visibility="gone"
+        android:autoLink="web"/>
+
+    <TextView
+        android:id="@+id/att_inicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:autoLink="web"/>
+
+    <ImageView
+        android:id="@+id/poweredBy_inicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:src="@drawable/powered_by_google_light"
+        /-->
+
+    <!--AutoCompleteTextView
+        android:id="@+id/mAutocomplete_final"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:popupBackground="#fff"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:textColorHint="#a0000000"
+        android:hint="Destino"/-->
+
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp">
+
+        <TableRow>
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:background="@color/transparent"
+                android:layout_height="wrap_content"
+                android:tint="@color/colorPrimary"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_location_on_black_24dp"
+                android:id="@+id/select_place_favorite" />
+
+            <TextView
+                android:id="@+id/txtDestino"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textColor="#535353"
+                android:paddingRight="30dp"
+                android:hint="Destino"
+                android:textColorHint="#535353"
+                android:text="Caporal 1155 Culiacansdfsdf Rosalsdfsdfes Sinaloa Mexico asdasdasdasdasdasdasdasdasdasdasd"/>
+
+            <!--AutoCompleteTextView
+                android:id="@+id/mAutocomplete_final"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:layout_weight=".1"
+                android:popupBackground="#535353"
+                android:textColor="#535353"
+                android:textColorHint="#535353"
+                android:hint="Destino"/-->
+        </TableRow>
+    </TableLayout>
+
+    <!--TextView
+        android:id="@+id/header_final"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/autoCompleteTextView"
+        android:layout_marginTop="20dp"
+        android:text="Selected Place:"
+        android:visibility="gone"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/name_final"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/header"
+        android:visibility="gone"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/address_final"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="gone"
+        android:layout_below="@+id/name"/>
+
+    <TextView
+        android:id="@+id/place_id_final"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/address"/>
+
+    <TextView
+        android:id="@+id/phone_final"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/place_id"
+        android:visibility="gone"
+        android:autoLink="phone"/>
+
+    <TextView
+        android:id="@+id/web_final"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/phone"
+        android:visibility="gone"
+        android:autoLink="web"/>
+
+    <TextView
+        android:id="@+id/att_final"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:visibility="gone"
+        android:autoLink="web"/-->
+
+    <ImageView
+        android:id="@+id/poweredBy_final"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/att"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:visibility="gone"
+        android:src="@drawable/powered_by_google_light"/>
+
+
+
+
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="$ 00.00"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:layout_margin="30dp"
+        android:textColor="#000"/>
+
+
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        app:mrl_rippleOverlay="true"
+        app:mrl_rippleColor="#9b9b9b"
+        app:mrl_rippleAlpha="0.2"
+        app:mrl_rippleDelayClick="false"
+        app:mrl_rippleHover="true">
+        <Button
+            android:id="@+id/buyItBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:background="@drawable/rb_iniciar_sesion"
+            android:textColor="#ffffff"
+            android:text="Pagar"/>
+    </com.balysv.materialripple.MaterialRippleLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,69 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="#efefef"
+        android:elevation="1dp"
+        android:gravity="center_vertical"
+        android:textAppearance="?android:attr/textAppearanceLarge">
+
+        <TableRow>
+
+            <ImageView
+                android:id="@+id/list_row_image"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_location_on_black_24dp"/>
+
+            <TextView
+                android:id="@+id/txtIdPlace"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:gravity="center_vertical"
+                android:text="User Name\nasd"
+                android:textColor="@color/colorPrimary"
+                android:layout_weight=".1"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/ripple3"
+                android:layout_width="match_parent"
+                android:layout_marginRight="10dp"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleRoundedCorners="30dp"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/btnOptions"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:tint="#535353"
+                    android:background="@drawable/rb_search"
+                    android:src="@drawable/ic_more_vert_black_24dp"/>
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+        </TableRow>
+    </TableLayout>
+
+
+
+
+</RelativeLayout>

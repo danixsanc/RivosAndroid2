@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <include layout="@layout/toolbar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginRight="30dp"
+        android:textSize="16dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="#000000"
+        android:text="Se ha enviado un codigo de verificacion al correo:"
+        android:id="@+id/txt_h1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="17dp"
+        android:textStyle="bold"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="#000000"
+        android:text=""
+        android:id="@+id/txt_correo" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textSize="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:textColor="#000000"
+        android:text="Ingresa el codigo en el siguiente campo para poder acceder a modificar tus datos."
+        android:id="@+id/txt_h2" />
+
+
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Codigo"
+        android:textSize="14dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/rounded_edittext_up"
+        android:id="@+id/edt_codigo"
+        android:inputType="number"
+        app:met_floatingLabel="highlight"
+        app:met_minCharacters="5"
+        app:met_maxCharacters="5"
+        app:met_textColorHint="#8C96FF"
+        app:met_baseColor="#2f3794"
+        app:met_primaryColor="#8C96FF"
+        app:met_errorColor="#8C96FF"/>
+
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:mrl_rippleOverlay="true"
+        app:mrl_rippleColor="#9b9b9b"
+        app:mrl_rippleAlpha="0.2"
+        app:mrl_rippleDelayClick="false"
+        app:mrl_rippleHover="true">
+        <Button
+            android:id="@+id/btn_send_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textAllCaps="false"
+            android:background="@drawable/rb_iniciar_sesion"
+            android:textColor="#ffffff"
+            android:text="Aceptar"/>
+    </com.balysv.materialripple.MaterialRippleLayout>
+
+
+</LinearLayout>

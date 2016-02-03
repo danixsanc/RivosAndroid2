@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <include layout="@layout/toolbar" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14dp"
+        android:drawablePadding="10dp"
+        android:drawableLeft="@drawable/ic_location_on_black_24dp"
+        android:popupBackground="#535353"
+        android:textColor="#535353"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="#a0000000"
+        android:hint="Enter Place Here"/>
+
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/place_id"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:autoLink="phone"/>
+
+    <TextView
+        android:id="@+id/web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:autoLink="web"/>
+
+    <TextView
+        android:id="@+id/att"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:autoLink="web"/>
+
+    <ImageView
+        android:id="@+id/poweredBy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/att"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:visibility="gone"
+        android:src="@drawable/powered_by_google_light"/>
+
+
+
+
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/place_name"
+        android:drawablePadding="10dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginBottom="10dp"
+        android:drawableLeft="@drawable/ic_location_on_black_24dp"
+        android:hint="Nombre del sitio"
+        android:textSize="14dp"
+        android:textColorHint="#a0000000"
+        android:textColor="#000"/>
+
+
+
+
+<RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+
+
+
+
+
+    <fragment
+        android:id="@+id/mapa1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        class="com.google.android.gms.maps.SupportMapFragment"/>
+    <ImageView
+        android:id="@+id/img_Marker_center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:paddingBottom="25dp"
+        android:src="@drawable/ic_map_marker_grey600_36dp"/>
+
+    <Button
+        android:id="@+id/btn_save_favorite_place"
+        android:layout_width="wrap_content"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:text="Guardar"
+        android:textStyle="normal"
+        android:textAllCaps="false"
+        android:visibility="gone"
+        android:drawablePadding="7dp"
+        android:textSize="18dp"
+        android:textColor="#fff"
+        android:drawableRight="@drawable/ic_add_white_24dp"
+        android:background="@color/transparent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="1dp"/>
+
+
+
+
+
+    <FrameLayout
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_add_favorite_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:src="@drawable/ic_done_white_24dp"
+            app:borderWidth="0dp"
+            app:elevation="6dp"
+            android:layout_marginBottom="@dimen/fab_margin"
+            app:backgroundTint="#2f3794"
+            android:layout_marginRight="@dimen/fab_margin"/>
+    </FrameLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

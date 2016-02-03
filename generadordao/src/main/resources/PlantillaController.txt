@@ -1,0 +1,136 @@
+package nombrePaqueteControlador;
+
+import android.content.Context;
+import android.util.Log;
+
+import nombrePaquete.Plantilla;
+import nombrePaquete.PlantillaDao;
+import nombrePaquete.DaoSession;
+import nombrePaquete.PlantillaDB;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by savidsalazar
+ */
+public class PlantillaController {
+
+    private static final String TAG = "Plantilla";
+
+    private Context context;
+
+    public PlantillaController(Context prContext){
+        this.context = prContext;
+    }
+
+    public boolean guardarPlantilla(Plantilla prPlantilla){
+        try {
+            DaoSession oPlantillaDB = PlantillaDB.getInstance().openDatabase(context);
+            PlantillaDao oPlantillaDao = oPlantillaDB.getPlantillaDao();
+            oPlantillaDao.insert(prPlantilla);
+            return true;
+        }
+        catch (Exception error){
+            Log.e(TAG, error.getMessage());
+            return false;
+        }
+        finally {
+            PlantillaDB.getInstance().closeDatabase();
+        }
+    }
+    
+    public boolean guardarOActualizarPlantilla(Plantilla prPlantilla){
+        try {
+            DaoSession oPlantillaDB = PlantillaDB.getInstance().openDatabase(context);
+            PlantillaDao oPlantillaDao = oPlantillaDB.getPlantillaDao();
+            oPlantillaDao.insertOrReplace(prPlantilla);
+            return true;
+        }
+        catch (Exception error){
+            Log.e(TAG, error.getMessage());
+            return false;
+        }
+        finally {
+            PlantillaDB.getInstance().closeDatabase();
+        }
+    }
+
+    public boolean guardarOActualizarPlantilla(ArrayList<Plantilla> prPlantillas){
+        try {
+            DaoSession oPlantillaDB = PlantillaDB.getInstance().openDatabase(context);
+            PlantillaDao oPlantillaDao = oPlantillaDB.getPlantillaDao();
+            oPlantillaDao.insertOrReplaceInTx(prPlantillas);
+            return true;
+        }
+        catch (Exception error){
+            Log.e(TAG, error.getMessage());
+            return false;
+        }
+        finally {
+            PlantillaDB.getInstance().closeDatabase();
+        }
+    }
+
+    public boolean eliminarPlantilla(Plantilla prPlantilla){
+        try {
+            DaoSession oPlantillaDB = PlantillaDB.getInstance().openDatabase(context);
+            PlantillaDao oPlantillaDao = oPlantillaDB.getPlantillaDao();
+            oPlantillaDao.delete(prPlantilla);
+            return true;
+        }
+        catch (Exception error){
+            Log.e(TAG, error.getMessage());
+            return false;
+        }
+        finally {
+            PlantillaDB.getInstance().closeDatabase();
+        }
+    }
+
+    public boolean eliminarTodo(){
+        try {
+            DaoSession oPlantillaDB = PlantillaDB.getInstance().openDatabase(context);
+            PlantillaDao oPlantillaDao = oPlantillaDB.getPlantillaDao();
+            oPlantillaDao.deleteAll();
+            return true;
+        }
+        catch (Exception error){
+            Log.e(TAG, error.getMessage());
+            return false;
+        }
+        finally {
+            PlantillaDB.getInstance().closeDatabase();
+        }
+    }
+
+    public List<Plantilla> obtenerPlantilla(){
+        try {
+            DaoSession oPlantillaDB = PlantillaDB.getInstance().openDatabase(context);
+            PlantillaDao oPlantillaDao = oPlantillaDB.getPlantillaDao();
+            return oPlantillaDao.loadAll();
+        }
+        catch (Exception error){
+            Log.e(TAG, error.getMessage());
+            return null;
+        }
+        finally {
+           PlantillaDB.getInstance().closeDatabase();
+        }
+    }
+
+    public Plantilla obtenerPlantilla(Long prKey){
+        try {
+            DaoSession oPlantillaDB = PlantillaDB.getInstance().openDatabase(context);
+            PlantillaDao oPlantillaDao = oPlantillaDB.getPlantillaDao();
+            return oPlantillaDao.load(prKey);
+        }
+        catch (Exception error){
+            Log.e(TAG, error.getMessage());
+            return null;
+        }
+        finally {
+            PlantillaDB.getInstance().closeDatabase();
+        }
+    }
+}

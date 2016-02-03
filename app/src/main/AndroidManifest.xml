@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yozzibeens.rivostaxi">
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.example.mapdemo.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="com.packagename.permission.MAPS_RECEIVE"  android:protectionLevel="signature"/>
+    <uses-permission android:name="com.YozziBeens.danisanc.rivostaxitaxiversion.permission.C2D_MESSAGE" />
+    <permission android:name="com.packagename.permission.MAPS_RECEIVE" android:protectionLevel="signature" />
+    <permission android:name="com.YozziBeens.danisanc.rivostaxitaxiversion.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+        <!--meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyBeCYnH9D76FoZtpKuJ8P2CadaPnE2VZpo"/-->
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBeCYnH9D76FoZtpKuJ8P2CadaPnE2VZpo"/>
+
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <activity
+            android:name=".app.Splash"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/app_name" />
+
+        <provider android:authorities="com.facebook.app.FacebookContentProvider1234"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true" />
+
+
+        <activity
+            android:label="Solicitar"
+            android:name=".app.Main"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Tutorial"
+            android:name=".tutorial.TutorialActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Login"
+            android:name=".app.Login"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Registro"
+            android:name=".app.Registro"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Terminos y Condiciones"
+            android:name=".app.TerminosCondiciones"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Ayuda"
+            android:name=".actividades.Ayuda.Nav_Ayuda"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Perfil"
+            android:name=".actividades.Perfil.Nav_Perfil"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Historial"
+            android:name=".actividades.Historial.Nav_Historial"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Favoritos"
+            android:name=".actividades.Favoritos.Nav_Favoritos"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Reservaciones"
+            android:name=".actividades.Reservaciones.Nav_Reservaciones"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Preguntas Frecuentes"
+            android:name=".app.PreguntasFrecuentes"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Ingresar Codigo"
+            android:name=".actividades.Perfil.Data_In"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Modificar Datos"
+            android:name=".actividades.Perfil.DataInActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Detalle Historial"
+            android:name=".actividades.Historial.Historial_Detalle"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Agregar Taxista"
+            android:name=".actividades.Favoritos.Agregar_Taxista_Favorito"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Agregar Lugar"
+            android:name=".actividades.Favoritos.Agregar_Lugar_Favorito"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Detalles Solicitud"
+            android:name=".actividades.Solicitar.Detalles_Solicitud"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Detalle Final"
+            android:name=".actividades.Solicitar.Compra_Final"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="En Proceso"
+            android:name=".actividades.Proceso.Nav_Proceso"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Detalle Solicitud"
+            android:name=".actividades.Proceso.Pending_History_Details"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Acerca De"
+            android:name=".app.AcercaDe"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Acerca De"
+            android:name=".actividades.Solicitar.Form"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+
+        <receiver
+            android:name=".gcm.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="com.YozziBeens.danisanc.rivostaxitaxiversion" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".gcm.GCMNotificationIntentService" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar" />
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity"
+        android:weightSum="1">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Correo"
+            android:textSize="16dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginTop="30dp"
+            android:background="#2f3794"
+            android:id="@+id/edtxt_email"
+            android:inputType="textEmailAddress"
+            app:met_clearButton="true"
+            app:met_floatingLabel="highlight"
+            app:met_textColorHint="#8C96FF"
+            app:met_baseColor="#2f3794"
+            app:met_primaryColor="#8C96FF"
+            app:met_errorColor="#ffffff"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Contraseña"
+            android:textSize="16dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="#2f3794"
+            android:id="@+id/edtxt_password"
+            android:inputType="textPassword"
+            app:met_clearButton="true"
+            app:met_floatingLabel="highlight"
+            app:met_textColorHint="#8C96FF"
+            app:met_baseColor="#2f3794"
+            app:met_primaryColor="#8C96FF"
+            app:met_errorColor="#ffffff"/>
+
+        <Button
+            android:id="@+id/btn_forgot_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#2f3794"
+            android:textSize="16dp"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:autoLink="web"
+            android:textAllCaps="false"
+            android:onClick="resetpass"
+            android:text="Olvidaste tu contraseña?" />
+
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+            app:mrl_rippleOverlay="true"
+            app:mrl_rippleColor="#9b9b9b"
+            app:mrl_rippleAlpha="0.2"
+            app:mrl_rippleDelayClick="false"
+            app:mrl_rippleHover="true">
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                android:background="@drawable/rb_iniciar_sesion"
+                android:textColor="#ffffff"
+                android:textAllCaps="false"
+                android:text="Iniciar" />
+        </com.balysv.materialripple.MaterialRippleLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INICIAR SESION CON REDES SOCIALES"
+            android:textSize="12dp"
+            android:textColor="#a0a0a0"
+            android:id="@+id/txt_login_networks"
+            android:layout_gravity="center_horizontal" />
+
+
+
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="20dp"
+            android:textColor="#ffffff"
+            app:mrl_rippleOverlay="true"
+            app:mrl_rippleColor="#388ac7"
+            app:mrl_rippleAlpha="0.2"
+            app:mrl_rippleDelayClick="false"
+            app:mrl_rippleHover="true">
+            <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:paddingTop="14dp"
+            android:paddingLeft="15dp"
+            android:paddingBottom="14dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        </com.balysv.materialripple.MaterialRippleLayout>
+
+        <Button
+            android:id="@+id/txt_go_to_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#2f3794"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:textSize="14dp"
+            android:textAllCaps="false"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:text="¿No tienes cuenta? Registrate aqui" />
+<!--
+        <Button
+            android:id="@+id/salir"
+            android:inputType="none"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salir" />
+
+        <TextView
+            android:id="@+id/mostrar"
+            android:inputType="none"
+            android:textColor="#000000"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hola Facebook" />
+-->
+    </LinearLayout>
+</ScrollView>
+
+
+</LinearLayout>
+
