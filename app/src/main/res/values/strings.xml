@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">RivosTaxi</string>
     <string name="action_settings">Acerca De</string>
+    <string name="spinner_title">Selecciona el mes</string>
 
     <string name="drawer_open">Menu opened</string>
     <string name="drawer_close">Menu closed</string>

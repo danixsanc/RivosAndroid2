@@ -12,9 +12,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.conekta.conektasdk.Card;
 import com.conekta.conektasdk.Conekta;
@@ -28,10 +32,13 @@ import com.yozzibeens.rivostaxi.utilerias.Servicio;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by danixsanc on 30/01/2016.
  */
-public class Form extends AppCompatActivity {
+public class Form extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
 
     private static String KEY_SUCCESS = "Success";
@@ -68,13 +75,31 @@ public class Form extends AppCompatActivity {
             price_Id = bundle.getInt("price_Id");
         }
 
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinnerMonth);
+        spinner.setOnItemSelectedListener(this);
+        List<String> categories = new ArrayList<String>();
+        categories.add("01");
+        categories.add("02");
+        categories.add("03");
+        categories.add("04");
+        categories.add("05");
+        categories.add("06");
+        categories.add("07");
+        categories.add("08");
+        categories.add("09");
+        categories.add("10");
+        categories.add("11");
+        categories.add("12");
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(dataAdapter);
+
         btnTokenize = (Button) findViewById(R.id.btnTokenize);
         outputView = (TextView) findViewById(R.id.outputView);
         uuidDevice = (TextView) findViewById(R.id.uuidDevice);
         numberText = (EditText) findViewById(R.id.numberText);
         nameText = (EditText) findViewById(R.id.nameText);
-        monthText = (EditText) findViewById(R.id.monthText);
-        yearText = (EditText) findViewById(R.id.yearText);
         cvcText = (EditText) findViewById(R.id.cvcText);
 
         btnTokenize.setOnClickListener(new View.OnClickListener() {
@@ -151,6 +176,18 @@ public class Form extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
+
+        // Showing selected spinner item
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
     }
 
     public boolean isOnline () {
