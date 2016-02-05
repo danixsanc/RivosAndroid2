@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.app.PreguntasFrecuentes;
@@ -44,6 +45,7 @@ public class Nav_Ayuda extends AppCompatActivity {
     String asunto;
     String mensaje;
     Servicio userFunctions = new Servicio();
+    TextView Txt_Contact_Us;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,9 @@ public class Nav_Ayuda extends AppCompatActivity {
 
         btnAsistenciaTelefonica = (Button) findViewById(R.id.btnAsistenciaTelefonica);
         btnAsistenciaTelefonica.setTypeface(RobotoCondensed_Regular);
+
+        Txt_Contact_Us = (TextView) findViewById(R.id.Txt_Contact_Us);
+        Txt_Contact_Us.setTypeface(RobotoCondensed_Regular);
 
         btnPreguntasFrecuentes = (Button) findViewById(R.id.btnPreguntasFrecuentes);
         btnPreguntasFrecuentes.setTypeface(RobotoCondensed_Regular);
