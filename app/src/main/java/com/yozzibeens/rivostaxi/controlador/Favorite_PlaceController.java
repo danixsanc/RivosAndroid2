@@ -1,14 +1,12 @@
-package com.yozzibeens.rivostaxi.controlador;
+package com.YozziBeens.rivostaxi.controlador;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.yozzibeens.rivostaxi.modelo.Favorite_Cabbie;
-import com.yozzibeens.rivostaxi.modelo.Favorite_CabbieDao;
-import com.yozzibeens.rivostaxi.modelo.Favorite_Place;
-import com.yozzibeens.rivostaxi.modelo.Favorite_PlaceDao;
-import com.yozzibeens.rivostaxi.modelo.DaoSession;
-import com.yozzibeens.rivostaxi.modelo.RivosDB;
+import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
+import com.YozziBeens.rivostaxi.modelo.Favorite_PlaceDao;
+import com.YozziBeens.rivostaxi.modelo.DaoSession;
+import com.YozziBeens.rivostaxi.modelo.RivosDB;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,33 +1,19 @@
-package com.yozzibeens.rivostaxi.actividades.Historial;
+package com.YozziBeens.rivostaxi.actividades.Historial;
 
-import android.app.Activity;
 import android.graphics.Typeface;
-import android.location.Address;
-import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.controlador.HistorialController;
-import com.yozzibeens.rivostaxi.modelo.Historial;
-import com.yozzibeens.rivostaxi.utilerias.FechasBD;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Locale;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.controlador.HistorialController;
+import com.YozziBeens.rivostaxi.modelo.Historial;
+import com.YozziBeens.rivostaxi.utilerias.FechasBD;
 
 public class Historial_Detalle extends AppCompatActivity {
 

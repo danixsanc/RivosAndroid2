@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.actividades.Favoritos;
+package com.YozziBeens.rivostaxi.actividades.Favoritos;
 
 import android.Manifest;
 import android.app.Activity;
@@ -47,12 +47,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.adaptadores.PlaceArrayAdapter;
-import com.yozzibeens.rivostaxi.controlador.Favorite_PlaceController;
-import com.yozzibeens.rivostaxi.modelo.Favorite_Place;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.adaptadores.PlaceArrayAdapter;
+import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
+import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
 
 import org.json.JSONException;
 import org.json.JSONObject;

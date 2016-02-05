@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.adaptadores;
+package com.YozziBeens.rivostaxi.adaptadores;
 
 
 import android.R;

@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.gcm;
+package com.YozziBeens.rivostaxi.gcm;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -13,7 +13,7 @@ import android.util.Log;
 
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.yozzibeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.R;
 
 
 public class GCMNotificationIntentService extends IntentService {

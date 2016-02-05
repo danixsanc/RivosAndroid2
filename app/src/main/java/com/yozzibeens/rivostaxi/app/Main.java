@@ -1,8 +1,7 @@
-package com.yozzibeens.rivostaxi.app;
+package com.YozziBeens.rivostaxi.app;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,7 +19,6 @@ import android.os.StrictMode;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -42,7 +40,6 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -50,18 +47,16 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.actividades.Solicitar.Detalles_Solicitud;
-import com.yozzibeens.rivostaxi.adaptadores.PlaceArrayAdapter;
-import com.yozzibeens.rivostaxi.controlador.Favorite_PlaceController;
-import com.yozzibeens.rivostaxi.fragmentos.DrawerMenu;
-import com.yozzibeens.rivostaxi.modelo.Favorite_Place;
-import com.yozzibeens.rivostaxi.modelo.RivosDB;
-import com.yozzibeens.rivostaxi.tutorial.TutorialActivity;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.actividades.Solicitar.Detalles_Solicitud;
+import com.YozziBeens.rivostaxi.adaptadores.PlaceArrayAdapter;
+import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
+import com.YozziBeens.rivostaxi.fragmentos.DrawerMenu;
+import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
+import com.YozziBeens.rivostaxi.tutorial.TutorialActivity;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -136,6 +131,7 @@ public class Main extends AppCompatActivity implements GoogleMap.OnMapClickListe
                 Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
                 setSupportActionBar(toolbar);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
                 mDrawerMenu = (DrawerMenu) getSupportFragmentManager().findFragmentById(R.id.left_drawer);
                 mDrawerMenu.setUp(R.id.left_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar, getSupportActionBar(), this);

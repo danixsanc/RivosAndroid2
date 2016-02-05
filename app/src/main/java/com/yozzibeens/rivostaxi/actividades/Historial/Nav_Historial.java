@@ -1,6 +1,5 @@
-package com.yozzibeens.rivostaxi.actividades.Historial;
+package com.YozziBeens.rivostaxi.actividades.Historial;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,17 +18,13 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.adaptadores.AdaptadorHistorial;
-import com.yozzibeens.rivostaxi.controlador.HistorialController;
-import com.yozzibeens.rivostaxi.modelo.Client;
-import com.yozzibeens.rivostaxi.modelo.Historial;
-import com.yozzibeens.rivostaxi.utilerias.FechasBD;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.adaptadores.AdaptadorHistorial;
+import com.YozziBeens.rivostaxi.controlador.HistorialController;
+import com.YozziBeens.rivostaxi.modelo.Historial;
+import com.YozziBeens.rivostaxi.utilerias.FechasBD;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
 
 import java.util.ArrayList;
 import java.util.List;

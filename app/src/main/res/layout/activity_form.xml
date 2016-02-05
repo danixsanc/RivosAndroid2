@@ -19,6 +19,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/numberText"
         android:textColor="#000"
+        android:inputType="number"
+        android:maxLength="16"
+        android:layout_marginBottom="10dp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/textView"
         android:layout_alignParentRight="true"
@@ -28,6 +31,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -65,6 +69,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/cvcText"
                     android:hint="CVC"
+                    android:maxLength="3"
+                    android:inputType="number"
                     android:layout_weight="2"
                     android:textColor="#000" />
             </LinearLayout>
@@ -85,6 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Pagar"
+        android:layout_marginTop="30dp"
         android:textColor="#000"
         android:id="@+id/btnTokenize"
         android:layout_marginBottom="50dp"
@@ -98,6 +105,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="OUTPUT"
+        android:visibility="gone"
         android:textColor="#000"
         android:id="@+id/outputView"
         android:layout_below="@+id/nameText"
@@ -109,6 +117,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="OUTPUT"
+        android:visibility="gone"
         android:textColor="#000"
         android:id="@+id/uuidDevice"
         android:layout_below="@+id/outputView"

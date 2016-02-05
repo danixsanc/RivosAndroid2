@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.tutorial;
+package com.YozziBeens.rivostaxi.tutorial;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,10 +10,10 @@ import android.util.DisplayMetrics;
 import android.view.View;
 
 
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.tutorial.view.SmoothFrameLayout;
-import com.yozzibeens.rivostaxi.tutorial.view.ViewPagerCustomDuration;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.tutorial.view.SmoothFrameLayout;
+import com.YozziBeens.rivostaxi.tutorial.view.ViewPagerCustomDuration;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import butterknife.ButterKnife;
@@ -89,7 +89,7 @@ public class TutorialActivity extends ActionBarActivity {
             public void transformPage(View view, float position) {
                 if (position > -1 && position < 1) {
                     view.findViewById(R.id.image_icon).setTranslationX(position * ratioIcon);
-                    view.findViewById(R.id.image_large).setTranslationX(position * ratioIconLarge);
+                    //view.findViewById(R.id.image_large).setTranslationX(position * ratioIconLarge);
                 }
             }
         });

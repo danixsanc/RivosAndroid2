@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.actividades.Solicitar;
+package com.YozziBeens.rivostaxi.actividades.Solicitar;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,8 +8,8 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,16 +18,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.controlador.ClientController;
+import com.YozziBeens.rivostaxi.modelo.Client;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
 import com.conekta.conektasdk.Card;
 import com.conekta.conektasdk.Conekta;
 import com.conekta.conektasdk.Token;
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.controlador.ClientController;
-import com.yozzibeens.rivostaxi.modelo.Client;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -51,6 +50,7 @@ public class Form extends AppCompatActivity implements AdapterView.OnItemSelecte
     private EditText cvcText;
     private EditText nameText;
     private Activity activity = this;
+    String month, year;
     int price, price_Id;
     double latautc_inicio, lngautc_inicio, latautc_final, lngautc_final;
     String direccion;
@@ -62,6 +62,10 @@ public class Form extends AppCompatActivity implements AdapterView.OnItemSelecte
         setContentView(R.layout.activity_form);
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -75,6 +79,17 @@ public class Form extends AppCompatActivity implements AdapterView.OnItemSelecte
             price_Id = bundle.getInt("price_Id");
         }
 
+        Spinner spinner2 = (Spinner) findViewById(R.id.spinnerYear);
+        spinner2.setOnItemSelectedListener(this);
+        List<String> categories2 = new ArrayList<String>();
+        categories2.add("16");
+        categories2.add("17");
+        categories2.add("18");
+        categories2.add("19");
+        categories2.add("20");
+        ArrayAdapter<String> dataAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories2);
+        dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner2.setAdapter(dataAdapter2);
 
         Spinner spinner = (Spinner) findViewById(R.id.spinnerMonth);
         spinner.setOnItemSelectedListener(this);
@@ -111,7 +126,21 @@ public class Form extends AppCompatActivity implements AdapterView.OnItemSelecte
                     Conekta.setPublicKey("key_H9xwdHFLt9Vy9vYMh1DP3zw");
                     Conekta.setApiVersion("0.3.0");
                     Conekta.collectDevice(activity);
-                    Card card = new Card(nameText.getText().toString(), numberText.getText().toString(), cvcText.getText().toString(), monthText.getText().toString(), yearText.getText().toString());
+
+
+                    String name = nameText.getText().toString();
+                    String number = numberText.getText().toString();
+                    String cvc = cvcText.getText().toString();
+
+
+
+
+                    /*String month = monthText.getText().toString();
+                    String year = yearText.getText().toString();*/
+
+
+
+                    Card card = new Card(name, number, cvc, month, year);
                     Token token = new Token(activity);
 
                     //Listen when token is returned
@@ -180,11 +209,19 @@ public class Form extends AppCompatActivity implements AdapterView.OnItemSelecte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // On selecting a spinner item
-        String item = parent.getItemAtPosition(position).toString();
+        //String item = parent.getItemAtPosition(position).toString();
 
+        Spinner spinner = (Spinner) parent;
+        if(spinner.getId() == R.id.spinnerMonth)
+        {
+            month = spinner.getSelectedItem().toString();
+        }
+        else if(spinner.getId() == R.id.spinnerYear)
+        {
+            year = spinner.getSelectedItem().toString();
+        }
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+       /* Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();*/
     }
     public void onNothingSelected(AdapterView<?> arg0) {
         // TODO Auto-generated method stub
@@ -198,6 +235,17 @@ public class Form extends AppCompatActivity implements AdapterView.OnItemSelecte
             return true;
         }
         return false;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

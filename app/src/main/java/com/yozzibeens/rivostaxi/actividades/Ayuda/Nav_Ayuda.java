@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.actividades.Ayuda;
+package com.YozziBeens.rivostaxi.actividades.Ayuda;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -24,10 +24,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.app.PreguntasFrecuentes;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.app.PreguntasFrecuentes;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
 
 
 /**

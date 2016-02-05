@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.fragmentos;
+package com.YozziBeens.rivostaxi.fragmentos;
 
 
 import android.app.AlertDialog;
@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -17,25 +16,23 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.login.LoginManager;
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.actividades.Ayuda.Nav_Ayuda;
-import com.yozzibeens.rivostaxi.actividades.Favoritos.Nav_Favoritos;
-import com.yozzibeens.rivostaxi.actividades.Historial.Nav_Historial;
-import com.yozzibeens.rivostaxi.actividades.Perfil.Nav_Perfil;
-import com.yozzibeens.rivostaxi.actividades.Proceso.Nav_Proceso;
-import com.yozzibeens.rivostaxi.actividades.Reservaciones.Nav_Reservaciones;
-import com.yozzibeens.rivostaxi.app.Main;
-import com.yozzibeens.rivostaxi.controlador.ClientController;
-import com.yozzibeens.rivostaxi.controlador.Favorite_CabbieController;
-import com.yozzibeens.rivostaxi.controlador.Favorite_PlaceController;
-import com.yozzibeens.rivostaxi.controlador.HistorialController;
-import com.yozzibeens.rivostaxi.modelo.Client;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.actividades.Ayuda.Nav_Ayuda;
+import com.YozziBeens.rivostaxi.actividades.Favoritos.Nav_Favoritos;
+import com.YozziBeens.rivostaxi.actividades.Historial.Nav_Historial;
+import com.YozziBeens.rivostaxi.actividades.Perfil.Nav_Perfil;
+import com.YozziBeens.rivostaxi.actividades.Proceso.Nav_Proceso;
+import com.YozziBeens.rivostaxi.app.Main;
+import com.YozziBeens.rivostaxi.controlador.ClientController;
+import com.YozziBeens.rivostaxi.controlador.Favorite_CabbieController;
+import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
+import com.YozziBeens.rivostaxi.controlador.HistorialController;
+import com.YozziBeens.rivostaxi.modelo.Client;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
 
 public class DrawerMenu extends Fragment {
 

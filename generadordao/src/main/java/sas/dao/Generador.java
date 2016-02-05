@@ -8,7 +8,7 @@ public class Generador {
 
     public static void main(String args[]) throws Exception {
 
-        String packageName = "com.yozzibeens.rivostaxi";
+        String packageName = "com.YozziBeens.rivostaxi";
         String dbName = "Rivos";
 
         PlantillaGenerador oPlantillaGenerador = new PlantillaGenerador(dbName, packageName, args[0]);

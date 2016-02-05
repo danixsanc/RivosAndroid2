@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.adaptadores;
+package com.YozziBeens.rivostaxi.adaptadores;
 
 import android.content.Context;
 import android.util.Log;

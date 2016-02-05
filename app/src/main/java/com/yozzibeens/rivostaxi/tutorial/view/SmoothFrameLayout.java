@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.tutorial.view;
+package com.YozziBeens.rivostaxi.tutorial.view;
 
 import android.content.Context;
 import android.graphics.Canvas;

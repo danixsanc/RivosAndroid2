@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.actividades.Proceso;
+package com.YozziBeens.rivostaxi.actividades.Proceso;
 
 
 import android.content.Context;
@@ -19,12 +19,11 @@ import android.widget.TextView;
 
 import com.facebook.CallbackManager;
 import com.rengwuxian.materialedittext.MaterialEditText;
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.actividades.Historial.Historial_Detalle;
-import com.yozzibeens.rivostaxi.adaptadores.PendingHistory;
-import com.yozzibeens.rivostaxi.utilerias.FechasBD;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.adaptadores.PendingHistory;
+import com.YozziBeens.rivostaxi.utilerias.FechasBD;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
 
 import org.json.JSONException;
 import org.json.JSONObject;

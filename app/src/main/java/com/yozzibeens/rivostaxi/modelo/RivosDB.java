@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.modelo;
+package com.YozziBeens.rivostaxi.modelo;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

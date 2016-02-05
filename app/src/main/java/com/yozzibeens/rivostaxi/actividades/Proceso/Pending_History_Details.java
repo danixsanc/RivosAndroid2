@@ -1,20 +1,17 @@
-package com.yozzibeens.rivostaxi.actividades.Proceso;
+package com.YozziBeens.rivostaxi.actividades.Proceso;
 
-import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.utilerias.FechasBD;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.utilerias.FechasBD;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
 
 import org.json.JSONException;
 import org.json.JSONObject;

@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.app;
+package com.YozziBeens.rivostaxi.app;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,22 +8,20 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.controlador.Favorite_CabbieController;
-import com.yozzibeens.rivostaxi.controlador.Favorite_PlaceController;
-import com.yozzibeens.rivostaxi.controlador.HistorialController;
-import com.yozzibeens.rivostaxi.gcm.Config;
-import com.yozzibeens.rivostaxi.modelo.Favorite_Cabbie;
-import com.yozzibeens.rivostaxi.modelo.Favorite_Place;
-import com.yozzibeens.rivostaxi.modelo.Historial;
-import com.yozzibeens.rivostaxi.modelo.RivosDB;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.controlador.Favorite_CabbieController;
+import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
+import com.YozziBeens.rivostaxi.controlador.HistorialController;
+import com.YozziBeens.rivostaxi.gcm.Config;
+import com.YozziBeens.rivostaxi.modelo.Favorite_Cabbie;
+import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
+import com.YozziBeens.rivostaxi.modelo.Historial;
+import com.YozziBeens.rivostaxi.modelo.RivosDB;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
 
 import org.json.JSONException;
 import org.json.JSONObject;

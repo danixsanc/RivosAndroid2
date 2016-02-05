@@ -7,10 +7,6 @@
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
     android:minHeight="?attr/actionBarSize"
-    android:titleTextColor="#fff"
-    android:subtitleTextColor="#fff"
-    local:subtitleTextColor="#fff"
-    local:titleTextColor="#fff"
     local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     local:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     local:titleTextAppearance="@style/ToolbarTitle">

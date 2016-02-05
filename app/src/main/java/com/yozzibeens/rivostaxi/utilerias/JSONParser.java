@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.utilerias;
+package com.YozziBeens.rivostaxi.utilerias;
 
 import org.json.JSONException;
 import org.json.JSONObject;

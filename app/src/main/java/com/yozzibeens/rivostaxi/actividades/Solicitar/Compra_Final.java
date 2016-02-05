@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.actividades.Solicitar;
+package com.YozziBeens.rivostaxi.actividades.Solicitar;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import com.google.android.gms.maps.model.LatLng;
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;

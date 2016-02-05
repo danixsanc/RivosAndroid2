@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi;
+package com.YozziBeens.rivostaxi;
 
 import org.junit.Test;
 
