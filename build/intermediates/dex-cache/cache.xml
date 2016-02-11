@@ -1,3 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
 
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a0ce76dfaccbfbd6c551ed2174280aaabe60fe47">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-drive-7.3.0_3d683c6a76d6c89aa07fb7a3a43038addde652f7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="0708ef60917bf94913fe9ef972a655b99462dca7">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-safetynet-7.3.0_82e6f2bbc7c5ab5cbf09ec88484a6a923ea55198.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="f2f7ec211ce4d244ee97a57523eeb4526dc3cf8a">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-7.3.0_bf2034e135d66a141636c3221c56eed19c21ccfa.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e5b9f5b0aa8dee788beb63d23832cb29ce771343">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-cast-7.3.0_e52d4cb4127610319a5f0573b6ff5f7e50d66de9.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5e412e954a24c5310a459c09870e4e2081aceb03">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.android.support-cardview-v7-23.1.1_04dbd0f0c4d6944c343e6e428edb8ab6011304bf.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-applinks\1.3.0\bc535105332645408ef5f1380215cc954b842178\bolts-applinks-1.3.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="bc535105332645408ef5f1380215cc954b842178">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\bolts-applinks-1.3.0_bd0bb4a501476aec9d20aa57c84285412f9828f5.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e5bf453b070c1e39297986144960e45afa0fdfad">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wearable-7.3.0_857d44fd205d9bc1954b65a8994b4b8ce47c78f3.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.balysv\material-ripple\1.0.2\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="c733e9d1b065d940a08f2fca0ff920dfc08d94cc">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.balysv-material-ripple-1.0.2_756f97feeab08c6e5f40e17f5484ecb580853846.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e35fae1b377c23aa5fd2d309a190c2d0f73d54ec">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appindexing-7.3.0_f1c9c8cd3004c816229cfe38cbab99af5aba05bf.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.rengwuxian.materialedittext\library\2.1.4\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="288913b440a3c61c30aa171095453a605432277a">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.rengwuxian.materialedittext-library-2.1.4_6a8172107be48bb8860111397166f89ca4da96fe.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.android.support-multidex-1.0.1_26c17e9dafece141b6937ff119896c623d057813.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="b48d5c51a9a9e329005106b4667f54948de4d4d8">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-identity-7.3.0_c1c9f33fe6ac9d295a6fd0a1ccdc019b3dd298ab.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6046e5cdaf799120b7c56a5a061d80e8854c4d34">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-wallet-7.3.0_c66a6a86ad57e973e55b8daf0dabbe3db064c6a0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="fe3e0c6de7cceed888b277487238b6af9a1cc299">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-maps-7.3.0_bc073140c4d3a6965397c3d87661261762d261ce.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.1.1_34e0108e2f9fc544a5cb726d62df1c630b73fe5d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.1.1\support-annotations-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\support-annotations-23.1.1_5a222ad927465b3ae8545ed68e7143150402b9d7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\fr.baloomba\viewpagerindicator\2.4.2\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="1c0f42853ca7567a621142dc9b533b6428b37d73">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\fr.baloomba-viewpagerindicator-2.4.2_5334e0c808439fd35fe78056f875cba7d93fe04c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.3.0\8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c\bolts-tasks-1.3.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8a62fd16fcc1c06f284fc98e6cbded2a5af1dd4c">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.3.0_4662929418240c816773cdf3617ada90e2fd1a5b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="565a01f90f1529f73362707c4c185d0623a68782">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-panorama-7.3.0_ace3bef164d90d1ccb149291f169be2bf0b93d31.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.facebook.android\facebook-android-sdk\4.9.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5c9b831cf63629b8b3873959e52515340484a880">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.facebook.android-facebook-android-sdk-4.9.0_312787a7d7a510fb38d22eee109fee1f2520c61b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.maps.android\android-maps-utils\0.3.4\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="cf251baf39f5c5138224b67b4106eb6331abbd13">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.maps.android-android-maps-utils-0.3.4_45f09056b18274b2e7296e95fd6fbd9f0de6432d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="9c9dea9e85aceb09d95df5e6f7bc8a43fc286068">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-analytics-7.3.0_3be1e30ff0e1a5e15e25d918ea07efb1916ffb15.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\.gradle\caches\modules-2\files-2.1\de.greenrobot\greendao\1.3.7\dda08161d004c4df96938da6909f1c2b96cd33c8\greendao-1.3.7.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="dda08161d004c4df96938da6909f1c2b96cd33c8">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\greendao-1.3.7_25b15297d45aea1ed3c380fddc8fc38cbab1dfd6.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.1.1_e63391afcc7b0d67e807170dca9da2f9e5aa6195.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\6.1.0\63735f48b82bcd24cdd33821342428252eb1ca5a\butterknife-6.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\butterknife-6.1.0_eee6a3b3ef3e970bd5876aac93306cce26b5251d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\.gradle\caches\modules-2\files-2.1\com.nineoldandroids\library\2.4.0\e9b63380f3a242dbdbf103a2355ad7e43bad17cb\library-2.4.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\library-2.4.0_3b7f22800b24482a1bb4c7b2e113d52d23506ac7.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3988694bf9d8186ff97ad5cdfa4ed88b5010fe08">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-ads-7.3.0_3ac10c4e774c07222d7451367a1838cf5037f8dd.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="5ea948d825957be6c4358c48422bee60eef2d487">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-nearby-7.3.0_35e05ba55ab32bd742a9782200462f96e4fe9c23.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="59652857a825fff0de62166fca1bc9553cc01abb">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-plus-7.3.0_826326e8801d8097ab31ad1394faf60440c5940e.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.1.1_f46e09eb6db430f7d88d919b3db0a3dee061d390.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="b2c07cdb814fe988ad05f7b4d767a841514a5991">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-location-7.3.0_3849bcdaec5bcbc7c908e05037170d5f6081b205.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="7215ac1f2fca947b9415a6ee2a1bf991364aab24">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-gcm-7.3.0_58fee0768604a60668e3199e93be5249d8c8f00c.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="0180d031a7b54dabb93b4af3869468b55dc938bd">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-appstate-7.3.0_3f2b3dd6295d8963cdf6a896f3b1a1f816683446.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.1.1\jars\libs\internal_impl-23.1.1.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\internal_impl-23.1.1_d16c166e2132ffe77620828a02795f2648474dd2.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="3b4ff5c39dace8f3b4ab4cab8191785547a0815f">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-games-7.3.0_893cb253501eca9a31148a9de39fed755aa3f319.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.android.support\design\23.1.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.1.1_c969f3f6c23ad9ab0c177aad2e073690080f1996.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\RivosAndroid2\conektasdk\unspecified\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="b5d74783ce1f6b1f89f86e3d27923158e3e46fe8">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\RivosAndroid2-conektasdk-unspecified_a1c7082957d1a4243410b056bcd195f6a98d2ce0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.3.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="4f4fe3c23776540625f3c2844152a7510fddf9f1">
+        <dex dex="C:\Users\Antonio\Documents\GitHub\RivosAndroid2\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-fitness-7.3.0_5b5f1f256972b19863e6e3b70f6a80face015484.jar" />
+    </item>
+
+</items>
