@@ -1,11 +1,11 @@
-<com.yozzibeens.rivostaxi.tutorial.view.SmoothFrameLayout
+<com.YozziBeens.rivostaxi.tutorial.view.SmoothFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.yozzibeens.rivostaxi.tutorial.view.ViewPagerCustomDuration
+    <com.YozziBeens.rivostaxi.tutorial.view.ViewPagerCustomDuration
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -58,4 +58,4 @@
             android:scaleType="center"
             android:src="@drawable/ic_navigate_next_white_24dp" />
     </FrameLayout>
-</com.yozzibeens.rivostaxi.tutorial.view.SmoothFrameLayout>
+</com.YozziBeens.rivostaxi.tutorial.view.SmoothFrameLayout>

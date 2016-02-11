@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.utilerias;
+package com.YozziBeens.rivostaxi.utilerias;
 
 /**
  * Created by danixsanc on 24/01/2016.

@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.actividades.Favoritos;
+package com.YozziBeens.rivostaxi.actividades.Favoritos;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,24 +13,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.facebook.CallbackManager;
-import com.rengwuxian.materialedittext.MaterialEditText;
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.adaptadores.AddFavoriteCabbie;
-import com.yozzibeens.rivostaxi.controlador.Favorite_CabbieController;
-import com.yozzibeens.rivostaxi.modelo.Favorite_Cabbie;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.adaptadores.AddFavoriteCabbie;
+import com.YozziBeens.rivostaxi.controlador.Favorite_CabbieController;
+import com.YozziBeens.rivostaxi.modelo.Favorite_Cabbie;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.math.RoundingMode;
 import java.util.ArrayList;
 
 /**

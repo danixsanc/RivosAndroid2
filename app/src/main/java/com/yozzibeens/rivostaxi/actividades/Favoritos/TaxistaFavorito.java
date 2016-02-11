@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.actividades.Favoritos;
+package com.YozziBeens.rivostaxi.actividades.Favoritos;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,7 +9,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,14 +18,12 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.adaptadores.AdaptadorTaxistaFavorito;
-import com.yozzibeens.rivostaxi.controlador.Favorite_CabbieController;
-import com.yozzibeens.rivostaxi.modelo.Favorite_Cabbie;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
-
-import org.json.JSONObject;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.adaptadores.AdaptadorTaxistaFavorito;
+import com.YozziBeens.rivostaxi.controlador.Favorite_CabbieController;
+import com.YozziBeens.rivostaxi.modelo.Favorite_Cabbie;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
 
 import java.util.ArrayList;
 import java.util.List;

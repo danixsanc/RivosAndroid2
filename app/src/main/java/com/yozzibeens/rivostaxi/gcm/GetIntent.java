@@ -1,14 +1,14 @@
-package com.yozzibeens.rivostaxi.gcm;
+package com.YozziBeens.rivostaxi.gcm;
 
 import android.os.Bundle;
 
-import com.yozzibeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.R;
 
 
 /**
  * Created by aneh on 8/16/2014.
  */
-public class GetIntent extends com.yozzibeens.rivostaxi.app.Main {
+public class GetIntent extends com.YozziBeens.rivostaxi.app.Main {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.gcm;
+package com.YozziBeens.rivostaxi.gcm;
 
 import android.content.Context;
 import android.util.Log;

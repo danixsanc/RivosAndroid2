@@ -1,6 +1,5 @@
-package com.yozzibeens.rivostaxi.app;
+package com.YozziBeens.rivostaxi.app;
 
-import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.yozzibeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.R;
 
 public class TerminosCondiciones extends AppCompatActivity
 {

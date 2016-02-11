@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.actividades.Favoritos;
+package com.YozziBeens.rivostaxi.actividades.Favoritos;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.adaptadores.SlidingTabLayout;
-import com.yozzibeens.rivostaxi.adaptadores.ViewPagerAdpaterFavorite;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.adaptadores.SlidingTabLayout;
+import com.YozziBeens.rivostaxi.adaptadores.ViewPagerAdpaterFavorite;
 
 
 /**

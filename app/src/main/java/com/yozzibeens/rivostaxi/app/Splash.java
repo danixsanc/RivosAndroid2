@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.app;
+package com.YozziBeens.rivostaxi.app;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,33 +8,43 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
+import com.YozziBeens.rivostaxi.controlador.ClientController;
+import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
+import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
+import com.YozziBeens.rivostaxi.modelo.Client;
+import com.YozziBeens.rivostaxi.respuesta.RespuestaCadena;
 import com.facebook.FacebookSdk;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.controlador.Favorite_CabbieController;
-import com.yozzibeens.rivostaxi.controlador.Favorite_PlaceController;
-import com.yozzibeens.rivostaxi.controlador.HistorialController;
-import com.yozzibeens.rivostaxi.gcm.Config;
-import com.yozzibeens.rivostaxi.modelo.Favorite_Cabbie;
-import com.yozzibeens.rivostaxi.modelo.Favorite_Place;
-import com.yozzibeens.rivostaxi.modelo.Historial;
-import com.yozzibeens.rivostaxi.modelo.RivosDB;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.controlador.Favorite_CabbieController;
+import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
+import com.YozziBeens.rivostaxi.controlador.HistorialController;
+import com.YozziBeens.rivostaxi.gcm.Config;
+import com.YozziBeens.rivostaxi.modelo.Favorite_Cabbie;
+import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
+import com.YozziBeens.rivostaxi.modelo.Historial;
+import com.YozziBeens.rivostaxi.modelo.RivosDB;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 
 /**
  * Created by danixsanc on 16/01/2016.
  */
 public class Splash extends Activity {
+
+    ServicioAsyncService servicioAsyncService;
+    private RespuestaCadena respuestaCadena;
+    private ClientController clientController;
+    private Gson gson;
 
     String regId;
     Context context;
@@ -49,11 +59,15 @@ public class Splash extends Activity {
 
         RivosDB.initializeInstance();
         FacebookSdk.sdkInitialize(this);
+        this.gson = new Gson();
 
         Thread timerThread = new Thread(){
             public void run(){
                 try{
                     sleep(1000);
+
+
+
 
                     Preferencias preferencias = new Preferencias(getApplicationContext());
                     String Client_Id = preferencias.getClient_Id();
@@ -151,7 +165,7 @@ public class Splash extends Activity {
 
 
                     regId = registerGCM();
-                    Log.d("Registro", "GCM RegId: " + regId);
+                    Log.d("RegistroSolicitud", "GCM RegId: " + regId);
                     servicio.Register_GcmId(regId, Client_Id);
 
 
@@ -176,6 +190,7 @@ public class Splash extends Activity {
     }
 
 
+
     //gcm
 
     public String registerGCM() {
@@ -187,7 +202,7 @@ public class Splash extends Activity {
 
             registerInBackground();
 
-            Log.d("Registro",
+            Log.d("RegistroSolicitud",
                     "registerGCM - successfully registered with GCM server - regId: "
                             + regId);
         } else {
@@ -218,15 +233,15 @@ public class Splash extends Activity {
                         gcm = GoogleCloudMessaging.getInstance(context);
                     }
                     regId = gcm.register(Config.GOOGLE_PROJECT_ID);
-                    Log.d("Registro", "registerInBackground - regId: "
+                    Log.d("RegistroSolicitud", "registerInBackground - regId: "
                             + regId);
                     msg = "Device registered, registration ID=" + regId;
 
                 } catch (IOException ex) {
                     msg = "Error :" + ex.getMessage();
-                    Log.d("Registro", "Error: " + msg);
+                    Log.d("RegistroSolicitud", "Error: " + msg);
                 }
-                Log.d("Registro", "AsyncTask completed: " + msg);
+                Log.d("RegistroSolicitud", "AsyncTask completed: " + msg);
                 return msg;
             }
 

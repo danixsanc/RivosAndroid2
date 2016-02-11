@@ -1,6 +1,5 @@
-package com.yozzibeens.rivostaxi.app;
+package com.YozziBeens.rivostaxi.app;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -13,7 +12,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.StrictMode;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -21,7 +19,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -32,18 +29,17 @@ import com.facebook.GraphResponse;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.yozzibeens.rivostaxi.app.Main;
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.controlador.ClientController;
-import com.yozzibeens.rivostaxi.controlador.Favorite_CabbieController;
-import com.yozzibeens.rivostaxi.controlador.Favorite_PlaceController;
-import com.yozzibeens.rivostaxi.controlador.HistorialController;
-import com.yozzibeens.rivostaxi.modelo.Client;
-import com.yozzibeens.rivostaxi.modelo.Favorite_Cabbie;
-import com.yozzibeens.rivostaxi.modelo.Favorite_Place;
-import com.yozzibeens.rivostaxi.modelo.Historial;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.controlador.ClientController;
+import com.YozziBeens.rivostaxi.controlador.Favorite_CabbieController;
+import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
+import com.YozziBeens.rivostaxi.controlador.HistorialController;
+import com.YozziBeens.rivostaxi.modelo.Client;
+import com.YozziBeens.rivostaxi.modelo.Favorite_Cabbie;
+import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
+import com.YozziBeens.rivostaxi.modelo.Historial;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -83,16 +79,20 @@ public class Login extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy =
+                    new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.layout_login);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
+
 
         thisContext = this;
         callbackManager = CallbackManager.Factory.create();
@@ -474,7 +474,7 @@ public class Login extends AppCompatActivity {
                                                             public void onClick(DialogInterface dialog, int which) {
 
                                                                 LoginManager.getInstance().logOut();
-                                                                Intent i = new Intent(getApplicationContext(), Registro.class);
+                                                                Intent i = new Intent(getApplicationContext(), RegistroSolicitud.class);
                                                                 startActivity(i);
                                                                 finish();
                                                                 Log.e("info", "OK");
@@ -547,11 +547,9 @@ public class Login extends AppCompatActivity {
                         String password = edtxt_password.getText().toString();
 
                         Servicio servicio = new Servicio();
+                        final JSONObject json = servicio.loginUser(email, password);
                         try
-
                         {
-                            JSONObject json = servicio.loginUser(email, password);
-
                             if (json.getString(KEY_SUCCESS) != null) {
                                 String res = json.getString(KEY_SUCCESS);
                                 if (Integer.parseInt(res) == 1) {
@@ -676,8 +674,6 @@ public class Login extends AppCompatActivity {
                                 }
                             }
                         } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
                             e.printStackTrace();
                         }
 

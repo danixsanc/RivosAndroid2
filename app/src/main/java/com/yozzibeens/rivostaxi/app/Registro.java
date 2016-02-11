@@ -1,6 +1,5 @@
-package com.yozzibeens.rivostaxi.app;
+package com.YozziBeens.rivostaxi.app;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -11,7 +10,6 @@ import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -20,15 +18,17 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.controlador.ClientController;
-import com.yozzibeens.rivostaxi.modelo.Client;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.controlador.ClientController;
+import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
+import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
+import com.YozziBeens.rivostaxi.respuesta.RegisterResult;
+import com.YozziBeens.rivostaxi.servicios.Servicio;
+import com.YozziBeens.rivostaxi.solicitud.RegistroSolicitud;
+import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.HashMap;
 
 
 public class Registro extends AppCompatActivity
@@ -37,16 +37,21 @@ public class Registro extends AppCompatActivity
 
     TextView txtregistro;
     CheckBox check_terminos;
-
+    private RegisterResult registerResult;
     Button btnTerminos;
     MaterialEditText inputFullName;
     MaterialEditText inputPhone;
     MaterialEditText inputEmail;
     MaterialEditText inputPassword;
     MaterialEditText inputPasswordRepeat;
+    private ProgressDialog progressdialog;
 
     Button btnLinkToLogin;
     Button btnRegister;
+
+    ServicioAsyncService servicioAsyncService;
+    private Gson gson;
+    private ClientController clientController;
 
     private static String KEY_SUCCESS = "Success";
     private static String KEY_ERROR = "Error";
@@ -61,7 +66,8 @@ public class Registro extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_registro);
-
+        this.gson = new Gson();
+        clientController = new ClientController(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -114,7 +120,7 @@ public class Registro extends AppCompatActivity
             }
         });
 
-        btnRegister.setOnClickListener(new View.OnClickListener()
+        /*btnRegister.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View view)
             {
@@ -258,6 +264,28 @@ public class Registro extends AppCompatActivity
                     }
                 }, 3000);
             }
+        });*/
+
+        btnRegister.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View view)
+            {
+
+                String name = inputFullName.getText().toString();
+                String phone = inputPhone.getText().toString();
+                String email = inputEmail.getText().toString();
+                String password = inputPassword.getText().toString();
+                String passwordrepeat = inputPasswordRepeat.getText().toString();
+                if (checkdata(name, phone, email, password, passwordrepeat))
+                {
+                    RegistroSolicitud oUsuario = new RegistroSolicitud();
+                    oUsuario.setName(name);
+                    oUsuario.setEmail(email);
+                    oUsuario.setPhone(phone);
+                    oUsuario.setPassword(password);
+                    Register(gson.toJson(oUsuario));
+                }
+            }
         });
 
 
@@ -274,6 +302,59 @@ public class Registro extends AppCompatActivity
     }
 
 
+    private void Register(String rawJson) {
+        servicioAsyncService = new ServicioAsyncService(this, Servicio.RegisterWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+                progressdialog = new ProgressDialog(Registro.this);
+                progressdialog.setMessage("Registrando, espere");
+                progressdialog.setCancelable(true);
+                progressdialog.setCanceledOnTouchOutside(false);
+                progressdialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        progressdialog.dismiss();
+                    }
+                });
+                progressdialog.show();
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        registerResult = gson.fromJson(result.get("Resultado").toString(), RegisterResult.class);
+                        if ((!registerResult.isError()) && registerResult.getData() != null) {
+                            clientController.eliminarTodo();
+                            clientController.guardarOActualizarClient(registerResult.getData());
+                        }
+                    }
+                } catch (Exception error) {
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+            }
+        });
+        servicioAsyncService.execute();
+    }
+
+
+
 
     public boolean exiteConexionInternet()
     {
@@ -285,6 +366,8 @@ public class Registro extends AppCompatActivity
         }
         return false;
     }
+
+
 
     private boolean checkdata(String name, String phone, String email, String password, String passwordrepeat){
         int cont = 0;

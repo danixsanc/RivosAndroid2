@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.tutorial;
+package com.YozziBeens.rivostaxi.tutorial;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.yozzibeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.R;
 
 public class TutorialFragment extends Fragment {
 
@@ -60,12 +60,12 @@ public class TutorialFragment extends Fragment {
             case 0:
                 tvDescription.setText(Html.fromHtml(getString(R.string.page_one)));
                 ivIcon.setImageDrawable(getResources().getDrawable(R.drawable.logo));
-                ivIconLarge.setImageDrawable(getResources().getDrawable(R.drawable.cel2));
+                ivIconLarge.setImageDrawable(getResources().getDrawable(R.drawable.cel));
                 break;
             case 1:
                 tvDescription.setText(Html.fromHtml(getString(R.string.page_two)));
                 ivIcon.setImageDrawable(getResources().getDrawable(R.drawable.logo));
-                ivIconLarge.setImageDrawable(getResources().getDrawable(R.drawable.cel3));
+                ivIconLarge.setImageDrawable(getResources().getDrawable(R.drawable.cel2));
                 break;
             default:
                 tvDescription.setText(Html.fromHtml(getString(R.string.page_three)));

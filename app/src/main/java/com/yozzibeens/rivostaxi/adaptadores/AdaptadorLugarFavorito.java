@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.adaptadores;
+package com.YozziBeens.rivostaxi.adaptadores;
 
 /**
  * Created by danixsanc on 27/12/2015.

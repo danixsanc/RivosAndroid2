@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.utilerias;
+package com.YozziBeens.rivostaxi.utilerias;
 
 import android.content.Context;
 import android.util.Log;
@@ -19,20 +19,23 @@ public class Servicio {
     private static String processPayURL = "http://appm.rivosservices.com/conekta/proces_pay.php";
 
     private static String get_close_cabbie = "GetCloseCabbie";
-    private static String get_if_is_airport = "GetIfIsAirpot";
+    private static String get_if_is_airport = "GetIfIsAirport";
     private static String register_gcmId = "Register_GcmId";
     private static String process_pay = "Process_Pay";
     private static String login_tag = "Login";
     private static String registerfbphone_tag = "registerfbphone";
     private static String loginf_tag = "Login_Fb";
     private static String delete_history_client = "Delete_History_Client";
+    private static String verify_destination = "VerifyDestination";
     private static String get_card = "Get_Card";
     private static String set_card = "Set_Card";
     private static String get_favorite_cabbie = "Get_Favorite_Cabbie";
     private static String set_favorite_cabbie = "Set_Favorite_Cabbie";
     private static String set_favorite_place = "Set_Favorite_Place";
     private static String update_favorite_place = "Update_Favorite_Place";
-    private static String get_price_of_travel = "GetPriceOfTravel";
+    private static String get_price_airport_to_colony= "GetPriceAirportToColony";
+    private static String get_price_colony_to_airport= "GetPriceColonyToAirport";
+    private static String get_price_colony_to_colony= "GetPriceColonyToColony";
     private static String delete_favorite_cabbie = "Delete_Favorite_Cabbie";
     private static String delete_favorite_place = "Delete_Favorite_Place";
     private static String delete_card = "Delete_Card";
@@ -55,6 +58,7 @@ public class Servicio {
     private static String set_client_history_pending = "Set_Client_History_Pending";
     private static String get_client_history_pending = "Get_Client_History_Pending";
     private static String get_request_for_id = "Get_Request_For_Id";
+
 
     public Servicio()
     {
@@ -309,15 +313,8 @@ public class Servicio {
         return null;
     }
 
-    public JSONObject loginUser(String email, String password) throws IOException, JSONException {
-        /*
-        List<NameValuePair> params = new ArrayList<NameValuePair>();
-        params.add(new BasicNameValuePair("tag", login_tag));
-        params.add(new BasicNameValuePair("email", email));
-        params.add(new BasicNameValuePair("password", password));
-        JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
-        return json;
-*/
+    public JSONObject loginUser(String email, String password){
+
         try {
             HashMap<String, String> params = new HashMap<>();
             params.put("Tag", login_tag);
@@ -494,6 +491,32 @@ public class Servicio {
             params.put("Tag", delete_history_client);
             params.put("Client_Id", Client_Id);
             params.put("Request_Id", Request_Id);
+
+            Log.d("request", "starting");
+            JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
+
+            if (json != null)
+            {
+                Log.d("JSON result", json.toString());
+                return json;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
+
+
+    public JSONObject VerifyDestination (String Latitude_Fn, String Longitude_Fn)
+    {
+        try {
+            HashMap<String, String> params = new HashMap<>();
+            params.put("Tag", verify_destination);
+            params.put("Latitude", Latitude_Fn);
+            params.put("Longitude", Longitude_Fn);
 
             Log.d("request", "starting");
             JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
@@ -770,11 +793,58 @@ public class Servicio {
         return null;
     }
 
-    public JSONObject getPriceOfTravel(double Latitude, double Longitude)
+    public JSONObject getPriceAirportToColony(double Latitude, double Longitude)
     {
         try {
             HashMap<String, String> params = new HashMap<>();
-            params.put("Tag", get_price_of_travel);
+            params.put("Tag", get_price_airport_to_colony);
+            params.put("Latitude", String.valueOf(Latitude));
+            params.put("Longitude", String.valueOf(Longitude));
+
+            Log.d("request", "starting");
+            JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
+
+            if (json != null)
+            {
+                Log.d("JSON result", json.toString());
+                return json;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public JSONObject getPriceColonyToColony(double Distance)
+    {
+        try {
+            HashMap<String, String> params = new HashMap<>();
+            params.put("Tag", get_price_colony_to_colony);
+            params.put("Distance", String.valueOf(Distance));
+
+            Log.d("request", "starting");
+            JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
+
+            if (json != null)
+            {
+                Log.d("JSON result", json.toString());
+                return json;
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public JSONObject getPriceColonyToAirport(double Latitude, double Longitude)
+    {
+        try {
+            HashMap<String, String> params = new HashMap<>();
+            params.put("Tag", get_price_colony_to_airport);
             params.put("Latitude", String.valueOf(Latitude));
             params.put("Longitude", String.valueOf(Longitude));
 

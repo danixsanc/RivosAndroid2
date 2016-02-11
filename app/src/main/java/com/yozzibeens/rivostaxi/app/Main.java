@@ -1,8 +1,7 @@
-package com.yozzibeens.rivostaxi.app;
+package com.YozziBeens.rivostaxi.app;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,7 +19,6 @@ import android.os.StrictMode;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -42,7 +40,6 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.PlaceBuffer;
 import com.google.android.gms.location.places.Places;
-import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -50,18 +47,17 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.actividades.Solicitar.Detalles_Solicitud;
-import com.yozzibeens.rivostaxi.adaptadores.PlaceArrayAdapter;
-import com.yozzibeens.rivostaxi.controlador.Favorite_PlaceController;
-import com.yozzibeens.rivostaxi.fragmentos.DrawerMenu;
-import com.yozzibeens.rivostaxi.modelo.Favorite_Place;
-import com.yozzibeens.rivostaxi.modelo.RivosDB;
-import com.yozzibeens.rivostaxi.tutorial.TutorialActivity;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.actividades.Solicitar.Detalles_Solicitud;
+import com.YozziBeens.rivostaxi.adaptadores.PlaceArrayAdapter;
+import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
+import com.YozziBeens.rivostaxi.fragmentos.DrawerMenu;
+import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
+import com.YozziBeens.rivostaxi.tutorial.TutorialActivity;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
+import com.google.maps.android.SphericalUtil;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -137,6 +133,7 @@ public class Main extends AppCompatActivity implements GoogleMap.OnMapClickListe
                 setSupportActionBar(toolbar);
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
                 mDrawerMenu = (DrawerMenu) getSupportFragmentManager().findFragmentById(R.id.left_drawer);
                 mDrawerMenu.setUp(R.id.left_drawer, (DrawerLayout) findViewById(R.id.drawer_layout), toolbar, getSupportActionBar(), this);
 
@@ -198,8 +195,8 @@ public class Main extends AppCompatActivity implements GoogleMap.OnMapClickListe
 
 
                if(location!=null){
-                    latitude = 24.766669;//location.getLatitude();
-                    longitude = -107.469606;//location.getLongitude();
+                    latitude = location.getLatitude();
+                    longitude = location.getLongitude();
 
                    if ((latitude == 0) && (longitude == 0))
                    {
@@ -303,19 +300,135 @@ public class Main extends AppCompatActivity implements GoogleMap.OnMapClickListe
                         builder.setItems(items, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int item) {
-                                //Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
 
-                                //double latitude2 = Double.valueOf(lat[item]);
-                                //double longitude2 = Double.valueOf(lon[item]);
-                                //mAutocomplete_final.setText(titulo2[item]);
 
-                                Intent intent = new Intent(Main.this, Detalles_Solicitud.class);
+                                if (exiteConexionInternet()) {
+                                    try {
+                                        Servicio servicio = new Servicio();
+                                        final JSONObject json2 = servicio.GetIfIsAriport(latitude, longitude);
+                                        //final JSONObject json = userFunctions.getUser(Client_Id);
+                                        if (json2.getString(KEY_SUCCESS) != null) {
+                                            String res = json2.getString(KEY_SUCCESS);
+                                            if (Integer.parseInt(res) == 1)
+                                            {
+                                                int pricef = 0;
+                                                int price_id = 0;
+                                                final JSONObject json = servicio.getPriceAirportToColony(latitudeIcon, longitudeIcon);
+                                                try {
+                                                    if (json.getString(KEY_SUCCESS) != null) {
+                                                        String res4 = json.getString(KEY_SUCCESS);
+                                                        if (Integer.parseInt(res4) == 1) {
+                                                            pricef = Integer.valueOf(json.getString("Price"));
+                                                            price_id = Integer.valueOf(json.getString("Price_Id"));
+                                                        }
+                                                    }
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+                                                Intent intent = new Intent(Main.this, Detalles_Solicitud.class);
+                                                intent.putExtra("direccion", titulo2[item]);
+                                                intent.putExtra("Lat", latitude);
+                                                intent.putExtra("Long", longitude);
+                                                intent.putExtra("Lat_icon", Double.valueOf(lat[item]));
+                                                intent.putExtra("Long_icon", Double.valueOf(lon[item]));
+                                                intent.putExtra("Price", pricef);
+                                                intent.putExtra("price_Id", price_id);
+                                                startActivity(intent);
+                                            }
+                                            else if (Integer.parseInt(res) == 2){
+
+                                                final JSONObject json3 = servicio.VerifyDestination(String.valueOf(latitudeIcon), String.valueOf(longitudeIcon));
+                                                if (json3.getString(KEY_SUCCESS) != null) {
+                                                    String res2 = json3.getString(KEY_SUCCESS);
+                                                    if (Integer.parseInt(res2) == 1) {
+
+                                                        int pricef = 0;
+                                                        int price_id = 0;
+                                                        final JSONObject json = servicio.getPriceColonyToAirport(latitude, longitude);
+                                                        try {
+                                                            if (json.getString(KEY_SUCCESS) != null) {
+                                                                String res4 = json.getString(KEY_SUCCESS);
+                                                                if (Integer.parseInt(res4) == 1) {
+                                                                    pricef = Integer.valueOf(json.getString("Price_D"));
+                                                                    price_id = Integer.valueOf(json.getString("Price_Id"));
+                                                                }
+                                                            }
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                        Intent intent = new Intent(Main.this, Detalles_Solicitud.class);
+                                                        intent.putExtra("direccion", titulo2[item]);
+                                                        intent.putExtra("Lat", latitude);
+                                                        intent.putExtra("Long", longitude);
+                                                        intent.putExtra("Lat_icon", Double.valueOf(lat[item]));
+                                                        intent.putExtra("Long_icon", Double.valueOf(lon[item]));
+                                                        intent.putExtra("Price", pricef);
+                                                        intent.putExtra("price_Id", price_id);
+                                                        startActivity(intent);
+
+                                                    }
+                                                    else if (Integer.parseInt(res2) == 2)
+                                                    {
+                                                        int pricef = 0;
+                                                        int price_id = 0;
+
+                                                        LatLng l1 = new LatLng(latitude, longitude);
+                                                        LatLng l2 = new LatLng(Double.valueOf(lat[item]), Double.valueOf(lon[item]));
+
+                                                        double distance = SphericalUtil.computeDistanceBetween(l1, l2);
+                                                        double distancef = (formatNumber(distance));
+
+
+
+                                                        final JSONObject json = servicio.getPriceColonyToColony(distancef);
+                                                        try {
+                                                            if (json.getString(KEY_SUCCESS) != null) {
+                                                                String res4 = json.getString(KEY_SUCCESS);
+                                                                if (Integer.parseInt(res4) == 1) {
+                                                                    pricef = Integer.valueOf(json.getString("Price"));
+                                                                    price_id = Integer.valueOf("1");
+                                                                }
+                                                            }
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
+                                                        Intent intent = new Intent(Main.this, Detalles_Solicitud.class);
+                                                        intent.putExtra("direccion", titulo2[item]);
+                                                        intent.putExtra("Lat", latitude);
+                                                        intent.putExtra("Long", longitude);
+                                                        intent.putExtra("Lat_icon", Double.valueOf(lat[item]));
+                                                        intent.putExtra("Long_icon", Double.valueOf(lon[item]));
+                                                        intent.putExtra("Price", pricef);
+                                                        intent.putExtra("price_Id", 1);
+                                                        startActivity(intent);
+                                                    }
+                                                }
+
+                                            }
+                                        }
+
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                } else {
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(Main.this, R.style.MyAlertDialogStyle);
+                                    builder.setTitle("Ups..");
+                                    builder.setMessage("Parece que no esta conectado a Internet. Porfavor revise su conexion e intentelo de nuevo.");
+                                    builder.setPositiveButton("OK", null);
+                                    //builder.setNegativeButton("Cancel", null);
+                                    builder.show();
+                                }
+
+
+                                /*Intent intent = new Intent(Main.this, Detalles_Solicitud.class);
                                 intent.putExtra("direccion", titulo2[item]);
                                 intent.putExtra("Lat", latitude);
                                 intent.putExtra("Long", longitude);
                                 intent.putExtra("Lat_icon", Double.valueOf(lat[item]));
                                 intent.putExtra("Long_icon", Double.valueOf(lon[item]));
-                                startActivity(intent);
+                                startActivity(intent);*/
 
                             }
 
@@ -355,7 +468,7 @@ public class Main extends AppCompatActivity implements GoogleMap.OnMapClickListe
                             {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(Main.this, R.style.MyAlertDialogStyle);
                                 builder.setTitle("Ups..");
-                                builder.setMessage("No puedes seleccionar tu ubicacion actual como destino");
+                                builder.setMessage("No puedes seleccionar un destino tan corto");
                                 builder.setPositiveButton("OK", null);
                                 builder.show();
                             }
@@ -373,23 +486,100 @@ public class Main extends AppCompatActivity implements GoogleMap.OnMapClickListe
                                                 //final JSONObject json = userFunctions.getUser(Client_Id);
                                                 if (json2.getString(KEY_SUCCESS) != null) {
                                                     String res = json2.getString(KEY_SUCCESS);
-                                                    if (Integer.parseInt(res) == 1) {
-
+                                                    if (Integer.parseInt(res) == 1)
+                                                    {
+                                                        int pricef = 0;
+                                                        int price_id = 0;
+                                                        final JSONObject json = servicio.getPriceAirportToColony(latitudeIcon, longitudeIcon);
+                                                        try {
+                                                            if (json.getString(KEY_SUCCESS) != null) {
+                                                                String res4 = json.getString(KEY_SUCCESS);
+                                                                if (Integer.parseInt(res4) == 1) {
+                                                                    pricef = Integer.valueOf(json.getString("Price"));
+                                                                    price_id = Integer.valueOf(json.getString("Price_Id"));
+                                                                }
+                                                            }
+                                                        } catch (JSONException e) {
+                                                            e.printStackTrace();
+                                                        }
                                                         Intent intent = new Intent(Main.this, Detalles_Solicitud.class);
                                                         intent.putExtra("direccion", direccion);
                                                         intent.putExtra("Lat", latitude);
                                                         intent.putExtra("Long", longitude);
                                                         intent.putExtra("Lat_icon", latitudeIcon);
                                                         intent.putExtra("Long_icon", longitudeIcon);
+                                                        intent.putExtra("Price", pricef);
+                                                        intent.putExtra("price_Id", price_id);
                                                         startActivity(intent);
-                                                    } else {
+                                                    }
+                                                    else if (Integer.parseInt(res) == 2){
 
-                                                        AlertDialog.Builder builder = new AlertDialog.Builder(Main.this, R.style.MyAlertDialogStyle);
-                                                        builder.setTitle("Ups..");
-                                                        builder.setMessage("No se detecto que se encuentre en un aeropuerto.");
-                                                        builder.setPositiveButton("OK", null);
-                                                        //builder.setNegativeButton("Cancel", null);
-                                                        builder.show();
+                                                        final JSONObject json3 = servicio.VerifyDestination(String.valueOf(latitudeIcon), String.valueOf(longitudeIcon));
+                                                        if (json3.getString(KEY_SUCCESS) != null) {
+                                                            String res2 = json3.getString(KEY_SUCCESS);
+                                                            if (Integer.parseInt(res2) == 1) {
+
+                                                                int pricef = 0;
+                                                                int price_id = 0;
+                                                                final JSONObject json = servicio.getPriceColonyToAirport(latitude, longitude);
+                                                                try {
+                                                                    if (json.getString(KEY_SUCCESS) != null) {
+                                                                        String res4 = json.getString(KEY_SUCCESS);
+                                                                        if (Integer.parseInt(res4) == 1) {
+                                                                            pricef = Integer.valueOf(json.getString("Price_D"));
+                                                                            price_id = Integer.valueOf(json.getString("Price_Id"));
+                                                                        }
+                                                                    }
+                                                                } catch (JSONException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                Intent intent = new Intent(Main.this, Detalles_Solicitud.class);
+                                                                intent.putExtra("direccion", direccion);
+                                                                intent.putExtra("Lat", latitude);
+                                                                intent.putExtra("Long", longitude);
+                                                                intent.putExtra("Lat_icon", latitudeIcon);
+                                                                intent.putExtra("Long_icon", longitudeIcon);
+                                                                intent.putExtra("Price", pricef);
+                                                                intent.putExtra("price_Id", price_id);
+                                                                startActivity(intent);
+
+                                                            }
+                                                            else if (Integer.parseInt(res2) == 2)
+                                                            {
+                                                                int pricef = 0;
+                                                                int price_id = 0;
+
+                                                                LatLng l1 = new LatLng(latitude, longitude);
+                                                                LatLng l2 = new LatLng(latitudeIcon, longitudeIcon);
+
+                                                                double distance = SphericalUtil.computeDistanceBetween(l1, l2);
+                                                                double distancef = (formatNumber(distance));
+
+
+
+                                                                final JSONObject json = servicio.getPriceColonyToColony(distancef);
+                                                                try {
+                                                                    if (json.getString(KEY_SUCCESS) != null) {
+                                                                        String res4 = json.getString(KEY_SUCCESS);
+                                                                        if (Integer.parseInt(res4) == 1) {
+                                                                            pricef = Integer.valueOf(json.getString("Price"));
+                                                                            price_id = Integer.valueOf("1");
+                                                                        }
+                                                                    }
+                                                                } catch (JSONException e) {
+                                                                    e.printStackTrace();
+                                                                }
+                                                                Intent intent = new Intent(Main.this, Detalles_Solicitud.class);
+                                                                intent.putExtra("direccion", direccion);
+                                                                intent.putExtra("Lat", latitude);
+                                                                intent.putExtra("Long", longitude);
+                                                                intent.putExtra("Lat_icon", latitudeIcon);
+                                                                intent.putExtra("Long_icon", longitudeIcon);
+                                                                intent.putExtra("Price", pricef);
+                                                                intent.putExtra("price_Id", price_id);
+                                                                startActivity(intent);
+                                                            }
+                                                        }
 
                                                     }
                                                 }
@@ -426,6 +616,10 @@ public class Main extends AppCompatActivity implements GoogleMap.OnMapClickListe
 
     }
 
+    private double formatNumber(double distance) {
+        distance /= 1000;
+        return distance;
+    }
 
 
     private AdapterView.OnItemClickListener mAutocompleteClickListener_final = new AdapterView.OnItemClickListener() {

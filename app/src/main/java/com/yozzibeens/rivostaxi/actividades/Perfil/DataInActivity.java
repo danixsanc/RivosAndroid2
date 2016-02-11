@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.actividades.Perfil;
+package com.YozziBeens.rivostaxi.actividades.Perfil;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,11 +18,11 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.rengwuxian.materialedittext.MaterialEditText;
-import com.yozzibeens.rivostaxi.R;
-import com.yozzibeens.rivostaxi.controlador.ClientController;
-import com.yozzibeens.rivostaxi.modelo.Client;
-import com.yozzibeens.rivostaxi.utilerias.Preferencias;
-import com.yozzibeens.rivostaxi.utilerias.Servicio;
+import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.controlador.ClientController;
+import com.YozziBeens.rivostaxi.modelo.Client;
+import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.YozziBeens.rivostaxi.utilerias.Servicio;
 
 import org.json.JSONException;
 import org.json.JSONObject;

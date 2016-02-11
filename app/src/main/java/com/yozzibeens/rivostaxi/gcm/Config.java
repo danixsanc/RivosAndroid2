@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.gcm;
+package com.YozziBeens.rivostaxi.gcm;
 
 /**
  * Created by aneh on 8/14/2014.

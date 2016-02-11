@@ -1,11 +1,11 @@
-package com.yozzibeens.rivostaxi.adaptadores;
+package com.YozziBeens.rivostaxi.adaptadores;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.yozzibeens.rivostaxi.actividades.Favoritos.LugarFavorito;
-import com.yozzibeens.rivostaxi.actividades.Favoritos.TaxistaFavorito;
+import com.YozziBeens.rivostaxi.actividades.Favoritos.LugarFavorito;
+import com.YozziBeens.rivostaxi.actividades.Favoritos.TaxistaFavorito;
 
 
 public class ViewPagerAdpaterFavorite extends FragmentStatePagerAdapter {

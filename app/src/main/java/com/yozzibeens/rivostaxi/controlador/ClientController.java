@@ -1,12 +1,12 @@
-package com.yozzibeens.rivostaxi.controlador;
+package com.YozziBeens.rivostaxi.controlador;
 
 import android.content.Context;
 import android.util.Log;
 
-import com.yozzibeens.rivostaxi.modelo.Client;
-import com.yozzibeens.rivostaxi.modelo.ClientDao;
-import com.yozzibeens.rivostaxi.modelo.DaoSession;
-import com.yozzibeens.rivostaxi.modelo.RivosDB;
+import com.YozziBeens.rivostaxi.modelo.Client;
+import com.YozziBeens.rivostaxi.modelo.ClientDao;
+import com.YozziBeens.rivostaxi.modelo.DaoSession;
+import com.YozziBeens.rivostaxi.modelo.RivosDB;
 
 import java.util.ArrayList;
 import java.util.List;

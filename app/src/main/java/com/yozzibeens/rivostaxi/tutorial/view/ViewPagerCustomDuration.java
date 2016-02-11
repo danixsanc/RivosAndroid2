@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.tutorial.view;
+package com.YozziBeens.rivostaxi.tutorial.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

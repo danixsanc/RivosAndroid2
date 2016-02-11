@@ -5,7 +5,7 @@
 
     <include layout="@layout/toolbar" />
 
-    <com.yozzibeens.rivostaxi.adaptadores.SlidingTabLayout
+    <com.YozziBeens.rivostaxi.adaptadores.SlidingTabLayout
         android:id="@+id/tabs3"
         android:layout_width="match_parent"
         android:layout_height="50dp"

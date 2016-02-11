@@ -1,4 +1,4 @@
-package com.yozzibeens.rivostaxi.adaptadores;
+package com.YozziBeens.rivostaxi.adaptadores;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -15,7 +15,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.yozzibeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.R;
 
 
 public class SlidingTabLayout extends HorizontalScrollView {
