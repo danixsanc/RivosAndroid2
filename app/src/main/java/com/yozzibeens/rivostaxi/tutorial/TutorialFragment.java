@@ -47,7 +47,7 @@ public class TutorialFragment extends Fragment {
         Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
 
         ivIcon = (ImageView) view.findViewById(R.id.image_icon);
-        //ivIconLarge = (ImageView) view.findViewById(R.id.image_large);
+        ivIconLarge = (ImageView) view.findViewById(R.id.image_large);
         tvDescription = (TextView) view.findViewById(R.id.text_description);
         tvDescription.setTypeface(RobotoCondensed_Regular);
         return view;
@@ -60,12 +60,12 @@ public class TutorialFragment extends Fragment {
             case 0:
                 tvDescription.setText(Html.fromHtml(getString(R.string.page_one)));
                 ivIcon.setImageDrawable(getResources().getDrawable(R.drawable.logo));
-                //ivIconLarge.setImageDrawable(getResources().getDrawable(R.drawable.cel));
+                ivIconLarge.setImageDrawable(getResources().getDrawable(R.drawable.cel));
                 break;
             case 1:
                 tvDescription.setText(Html.fromHtml(getString(R.string.page_two)));
                 ivIcon.setImageDrawable(getResources().getDrawable(R.drawable.logo));
-                //ivIconLarge.setImageDrawable(getResources().getDrawable(R.drawable.cel3));
+                ivIconLarge.setImageDrawable(getResources().getDrawable(R.drawable.cel2));
                 break;
             default:
                 tvDescription.setText(Html.fromHtml(getString(R.string.page_three)));

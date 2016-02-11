@@ -1,5 +1,6 @@
 package com.YozziBeens.rivostaxi.actividades.Solicitar;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -8,6 +9,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.YozziBeens.rivostaxi.utilerias.FechasBD;
 import com.google.android.gms.maps.model.LatLng;
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
@@ -35,6 +38,7 @@ public class Compra_Final extends AppCompatActivity {
     TextView Costo;
     TextView txt_llegaPorTiEn,txt_aproximadamente,txt_aproximadamente2,txt_costo_delViaje;
     Button btn_perfil_cabbie;
+    String fecha, referecia;
 
     double latautc_inicio;
     double lngautc_inicio;
@@ -168,8 +172,27 @@ public class Compra_Final extends AppCompatActivity {
         }
 
 
-        servicio.set_Client_History(String.valueOf(latautc_inicio), String.valueOf(lngautc_inicio), String.valueOf(latautc_final),
+        JSONObject json2 = servicio.set_Client_History(String.valueOf(latautc_inicio), String.valueOf(lngautc_inicio), String.valueOf(latautc_final),
                 String.valueOf(lngautc_final), Client_Id, cabbie_id, String.valueOf(price_Id));
+
+        try {
+            if (json2.getString(KEY_SUCCESS) != null) {
+                String res = json.getString(KEY_SUCCESS);
+                if (Integer.parseInt(res) == 1) {
+                    fecha = json2.getString("Date");
+                    referecia = json2.getString("Ref");
+
+                    FechasBD fechasBD = new FechasBD();
+                    String fechaf = fechasBD.ObtenerFecha(fecha);
+                    Fecha.setText(fechaf);
+
+                    Referencia.setText(referecia);
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
 
 

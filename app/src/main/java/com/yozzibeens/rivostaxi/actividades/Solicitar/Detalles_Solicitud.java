@@ -52,6 +52,8 @@ public class Detalles_Solicitud extends AppCompatActivity {
     double latitudeIcono;
     String direccionIcono;
     String direccionf;
+    int price_Id2;
+    int pricef2;
 
     Button buyItBtn;
    private Activity activity = this;
@@ -92,9 +94,8 @@ public class Detalles_Solicitud extends AppCompatActivity {
                 i.putExtra("latautc_final", longitudeIcono);
                 i.putExtra("lngautc_final", latitudeIcono);
                 i.putExtra("direccion", direccionIcono);
-                i.putExtra("price_Id", price_id);
-                i.putExtra("Price", pricef);
-
+                i.putExtra("Price", pricef2);
+                i.putExtra("price_Id", price_Id2);
                 startActivity(i);
                 finish();
             }
@@ -108,6 +109,8 @@ public class Detalles_Solicitud extends AppCompatActivity {
             longitudeIcono = bundle.getDouble("Lat_icon");
             latitudeIcono = bundle.getDouble("Long_icon");
             direccionIcono = bundle.getString("direccion");
+            price_Id2 = bundle.getInt("price_Id");
+            pricef2 = bundle.getInt("Price");
 
             Geocoder geocoder;
             List<Address> addresses = null;
@@ -127,8 +130,9 @@ public class Detalles_Solicitud extends AppCompatActivity {
             txt_Inicio.setText(direccionf);
             txt_Destino.setText(direccionIcono);
 
+            price.setText("$ " + String.valueOf(pricef2)+".00");
 
-            Servicio servicio = new Servicio();
+            /*Servicio servicio = new Servicio();
             final JSONObject json = servicio.getPriceOfTravel(longitudeIcono, latitudeIcono);
 
             try {
@@ -142,7 +146,7 @@ public class Detalles_Solicitud extends AppCompatActivity {
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
     }
 

@@ -79,16 +79,20 @@ public class Login extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (android.os.Build.VERSION.SDK_INT > 9) {
+            StrictMode.ThreadPolicy policy =
+                    new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
+
         FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.layout_login);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (android.os.Build.VERSION.SDK_INT > 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-        }
+
 
         thisContext = this;
         callbackManager = CallbackManager.Factory.create();
@@ -470,7 +474,7 @@ public class Login extends AppCompatActivity {
                                                             public void onClick(DialogInterface dialog, int which) {
 
                                                                 LoginManager.getInstance().logOut();
-                                                                Intent i = new Intent(getApplicationContext(), Registro.class);
+                                                                Intent i = new Intent(getApplicationContext(), RegistroSolicitud.class);
                                                                 startActivity(i);
                                                                 finish();
                                                                 Log.e("info", "OK");
@@ -543,11 +547,9 @@ public class Login extends AppCompatActivity {
                         String password = edtxt_password.getText().toString();
 
                         Servicio servicio = new Servicio();
+                        final JSONObject json = servicio.loginUser(email, password);
                         try
-
                         {
-                            JSONObject json = servicio.loginUser(email, password);
-
                             if (json.getString(KEY_SUCCESS) != null) {
                                 String res = json.getString(KEY_SUCCESS);
                                 if (Integer.parseInt(res) == 1) {
@@ -672,8 +674,6 @@ public class Login extends AppCompatActivity {
                                 }
                             }
                         } catch (JSONException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
                             e.printStackTrace();
                         }
 
