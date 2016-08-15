@@ -5,8 +5,8 @@ package com.YozziBeens.rivostaxi.gcm;
  */
 public interface Config {
     // used to share GCM regId with application server - using php app server
-    static final String APP_SERVER_URL = "http://test.yozzibeens.com/push.php";
+    static final String APP_SERVER_URL = "http://appm.rivosservices.com/push_notifications.php";
     // Google Project Number
-    static final String GOOGLE_PROJECT_ID = "796937516711";
+    static final String GOOGLE_PROJECT_ID = "1001209534751";
     static final String MESSAGE_KEY = "msg";
 }

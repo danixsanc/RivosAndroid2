@@ -2,6 +2,7 @@ package com.YozziBeens.rivostaxi.actividades.Favoritos;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,11 +21,19 @@ import android.widget.TextView;
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.adaptadores.AdaptadorLugarFavorito;
 import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
+import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
+import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
 import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoEliminarLugarFavorito;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoEliminarTaxistaFavorito;
+import com.YozziBeens.rivostaxi.servicios.WebService;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudEliminarLugarFavorito;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
 import com.YozziBeens.rivostaxi.utilerias.Servicio;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -38,8 +47,17 @@ public class LugarFavorito extends Fragment {
     ArrayList<AdaptadorLugarFavorito> favoriteplaceArray = new ArrayList<AdaptadorLugarFavorito>();
     TextView txt_no_data_detected;
 
+    private Gson gson;
+    private ProgressDialog progressdialog;
+    private ResultadoEliminarLugarFavorito resultadoEliminarLugarFavorito;
+
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootview = inflater.inflate(R.layout.favorite_place, container, false);
+
+        this.gson = new Gson();
+
+
 
         Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
 
@@ -79,9 +97,6 @@ public class LugarFavorito extends Fragment {
                 intent.putExtra("Status", "agregar");
                 startActivityForResult(intent, 1521);
 
-                /*Intent intent = new Intent(getActivity(), Agregar_Lugar_Favorito.class);
-                intent.putExtra("Status", "agregar");
-                startActivity(intent);*/
 
             }
         });
@@ -186,8 +201,10 @@ public class LugarFavorito extends Fragment {
                                 Preferencias preferencias = new Preferencias(getActivity().getApplicationContext());
                                 String clienteid = preferencias.getClient_Id();
 
-                                Servicio servicio = new Servicio();
-                                servicio.deleteFavoritePlace(clienteid, placeid);
+                                 SolicitudEliminarLugarFavorito oData = new SolicitudEliminarLugarFavorito();
+                                 oData.setClient_Id(clienteid);
+                                 oData.setPlace_Id(placeid);
+                                 DeleteLugarFavoritoWebService(gson.toJson(oData));
 
                                 Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getActivity().getApplicationContext());
                                 Favorite_Place favorite_place;
@@ -222,5 +239,66 @@ public class LugarFavorito extends Fragment {
             TextView txtIdPlace;
             ImageButton btnOptions;
         }
+    }
+
+
+    private void DeleteLugarFavoritoWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(getActivity(), WebService.DeleteFavoritePlaceWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+                progressdialog = new ProgressDialog(getActivity());
+                progressdialog.setMessage("Eliminando, espere");
+                progressdialog.setCancelable(true);
+                progressdialog.setCanceledOnTouchOutside(false);
+                progressdialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        progressdialog.dismiss();
+                    }
+                });
+                progressdialog.show();
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoEliminarLugarFavorito = gson.fromJson(result.get("Resultado").toString(), ResultadoEliminarLugarFavorito.class);
+                    }
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+                String messageError = resultadoEliminarLugarFavorito.getMessage();
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity(), R.style.AppCompatAlertDialogStyle);
+                dialog.setMessage(messageError);
+                dialog.setCancelable(true);
+                dialog.setNegativeButton("OK", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+            }
+        });
+        servicioAsyncService.execute();
     }
 }

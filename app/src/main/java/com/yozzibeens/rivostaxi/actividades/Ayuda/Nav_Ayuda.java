@@ -4,17 +4,12 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.StrictMode;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,13 +22,18 @@ import android.widget.TextView;
 
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.app.PreguntasFrecuentes;
+import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
+import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoMensajeAyuda;
+import com.YozziBeens.rivostaxi.servicios.WebService;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudMensajeAyuda;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
-import com.YozziBeens.rivostaxi.utilerias.Servicio;
+import com.google.gson.Gson;
+
+import java.util.HashMap;
 
 
-/**
- * Created by danixsanc on 12/01/2016.
- */
+
 public class Nav_Ayuda extends AppCompatActivity {
 
     Button btnAsistenciaTelefonica;
@@ -41,19 +41,17 @@ public class Nav_Ayuda extends AppCompatActivity {
     Button btnEnviarMensaje;
     EditText etxAsunto;
     EditText etxMensaje;
-    ProgressDialog dialog;
-    String asunto;
-    String mensaje;
-    Servicio userFunctions = new Servicio();
     TextView Txt_Contact_Us;
+    private ProgressDialog progressdialog;
+    private ResultadoMensajeAyuda resultadoMensajeAyuda;
+
+    private Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_ayuda);
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        this.gson = new Gson();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -101,76 +99,84 @@ public class Nav_Ayuda extends AppCompatActivity {
         {
             public void onClick(View v)
             {
-                if (existeConexionDeInternet())
+                String asunto = etxAsunto.getText().toString();
+                String mensaje = etxMensaje.getText().toString();
+                if (checkdata(asunto, mensaje))
                 {
-                    dialog = ProgressDialog.show(Nav_Ayuda.this, "Enviando...", "Porfavor Espere", true);
-                    dialog.show();
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-
-                            asunto = etxAsunto.getText().toString();
-                            mensaje = etxMensaje.getText().toString();
-
-                            if ((asunto.length() > 0) && (asunto.length() <= 30) && (mensaje.length() > 0) && (mensaje.length() <= 180)){
-                                Preferencias preferencias = new Preferencias(getApplicationContext());
-                                String Client_id = preferencias.getClient_Id();
-                                userFunctions.send_message(asunto, mensaje, Client_id);
-                                etxAsunto.setText("");
-                                etxMensaje.setText("");
-
-                                AlertDialog.Builder builder = new AlertDialog.Builder(Nav_Ayuda.this, R.style.MyAlertDialogStyle);
-                                builder.setTitle("Mensaje enviado");
-                                builder.setMessage("Tu mensaje ha sido enviado correctamente.");
-                                builder.setPositiveButton("OK", null);
-                                builder.show();
-
-                            }
-                            else if ((asunto.length() < 1) || (mensaje.length() < 1)){
-                                AlertDialog.Builder builder = new AlertDialog.Builder(Nav_Ayuda.this, R.style.MyAlertDialogStyle);
-                                builder.setTitle("Campos en blanco");
-                                builder.setMessage("Parece que has dejado campos en blanco.");
-                                builder.setPositiveButton("OK", null);
-                                builder.show();
-                            }
-                            else {
-
-                                AlertDialog.Builder builder = new AlertDialog.Builder(Nav_Ayuda.this, R.style.MyAlertDialogStyle);
-                                builder.setTitle("Exceso de letras");
-                                builder.setMessage("Parece que has excedido el limite de caracteres.");
-                                builder.setPositiveButton("OK", null);
-                                //builder.setNegativeButton("Cancel", null);
-                                builder.show();
-
-                            }
-                            dialog.dismiss();
-                        }
-                    }, 2000);
-                }
-                else
-                {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext(), R.style.AppCompatAlertDialogStyle);
-                    builder.setTitle("Error de conexion");
-                    builder.setMessage("Parece que no estas conectado a internet, revisa tu conexion e intentalo de nuevo.");
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            Log.e("info", "OK");
-                        }
-                    });
-                    builder.show();
+                    Preferencias preferencias = new Preferencias(getApplicationContext());
+                    String Client_Id = preferencias.getClient_Id();
+                    SolicitudMensajeAyuda oData = new SolicitudMensajeAyuda();
+                    oData.setSubject(asunto);
+                    oData.setMessage(mensaje);
+                    oData.setClient_Id(Client_Id);
+                    SendMessageWebService(gson.toJson(oData));
+                    etxAsunto.setText("");
+                    etxMensaje.setText("");
                 }
             }
         });
 
     }
 
-    public boolean existeConexionDeInternet() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-            return true;
-        }
-        return false;
+
+    private void SendMessageWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.MessageWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+                progressdialog = new ProgressDialog(Nav_Ayuda.this);
+                progressdialog.setMessage("Enviando mensaje, espere");
+                progressdialog.setCancelable(true);
+                progressdialog.setCanceledOnTouchOutside(false);
+                progressdialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        progressdialog.dismiss();
+                    }
+                });
+                progressdialog.show();
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoMensajeAyuda = gson.fromJson(result.get("Resultado").toString(), ResultadoMensajeAyuda.class);
+                    }
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                    progressdialog.dismiss();
+                    String messageError = resultadoMensajeAyuda.getMessage();
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(Nav_Ayuda.this, R.style.AppCompatAlertDialogStyle);
+                    dialog.setMessage(messageError);
+                    dialog.setCancelable(true);
+                    dialog.setNegativeButton("OK", new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            dialog.cancel();
+                        }
+                    });
+                    dialog.show();
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+            }
+        });
+        servicioAsyncService.execute();
     }
 
     public void AsistenciaTelefonica() {
@@ -197,6 +203,52 @@ public class Nav_Ayuda extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private boolean checkdata(String asunto, String mensaje){
+
+        int cont = 0;
+
+        if ((asunto.length()>0) && (mensaje.length()>0))
+        {
+            if (asunto.length() > 30)
+            {
+                cont++;
+            }
+            if (mensaje.length() > 180)
+            {
+                cont++;
+            }
+            if (cont > 0){
+                AlertDialog.Builder dialog = new AlertDialog.Builder(Nav_Ayuda.this, R.style.AppCompatAlertDialogStyle);
+                dialog.setMessage("Hay campos mal escritos.");
+                dialog.setCancelable(true);
+                dialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        else{
+            AlertDialog.Builder dialog = new AlertDialog.Builder(Nav_Ayuda.this, R.style.AppCompatAlertDialogStyle);
+            dialog.setMessage("Hay campos vacios.");
+            dialog.setCancelable(true);
+            dialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            dialog.show();
+
+            return false;
+        }
+
     }
 
 }

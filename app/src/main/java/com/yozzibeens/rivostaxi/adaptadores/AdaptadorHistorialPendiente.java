@@ -17,7 +17,7 @@ public class AdaptadorHistorialPendiente {
     }
 
 
-    public AdaptadorHistorialPendiente(String pending_history) {
+    public AdaptadorHistorialPendiente(String id, String pending_history) {
         super();
         this.pending_history = pending_history;
     }

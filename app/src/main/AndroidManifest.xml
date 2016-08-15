@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -26,8 +27,9 @@
         android:required="true" />
 
     <application
+        android:name="android.support.multidex.MultiDexApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -35,18 +37,10 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version"/>
-        <!--meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyBeCYnH9D76FoZtpKuJ8P2CadaPnE2VZpo"/-->
 
-        <!--meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDQbK-8YsLELbzexDyO_KlbKE23EiPs3Jc"/
-            BUENA-->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBeCYnH9D76FoZtpKuJ8P2CadaPnE2VZpo"/>
-
+            android:value="AIzaSyC9G0Lp9rdudNstzrCw6HNz1vhFi0Axngs"/>
 
 
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
@@ -75,113 +69,171 @@
         <activity
             android:label="Solicitar"
             android:name="com.YozziBeens.rivostaxi.app.Main"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label=""
+            android:name="com.YozziBeens.rivostaxi.app.CargarDirecciones"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label=""
+            android:name="com.YozziBeens.rivostaxi.app.QrCode"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label=""
+            android:name="com.YozziBeens.rivostaxi.app.UbicacionMapa"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Tutorial"
             android:name="com.YozziBeens.rivostaxi.tutorial.TutorialActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
-            android:label="Login"
+            android:label="Iniciar Sesión"
             android:name="com.YozziBeens.rivostaxi.app.Login"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Registro"
             android:name="com.YozziBeens.rivostaxi.app.Registro"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Terminos y Condiciones"
             android:name="com.YozziBeens.rivostaxi.app.TerminosCondiciones"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Ayuda"
             android:name="com.YozziBeens.rivostaxi.actividades.Ayuda.Nav_Ayuda"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Perfil"
             android:name="com.YozziBeens.rivostaxi.actividades.Perfil.Nav_Perfil"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Historial"
             android:name="com.YozziBeens.rivostaxi.actividades.Historial.Nav_Historial"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Favoritos"
             android:name="com.YozziBeens.rivostaxi.actividades.Favoritos.Nav_Favoritos"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Reservaciones"
             android:name="com.YozziBeens.rivostaxi.actividades.Reservaciones.Nav_Reservaciones"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Preguntas Frecuentes"
             android:name="com.YozziBeens.rivostaxi.app.PreguntasFrecuentes"
-            android:windowSoftInputMode="stateHidden"></activity>
-
-        <activity
-            android:label="Ingresar Codigo"
-            android:name="com.YozziBeens.rivostaxi.actividades.Perfil.Data_In"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Modificar Datos"
             android:name="com.YozziBeens.rivostaxi.actividades.Perfil.DataInActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Detalle Historial"
             android:name="com.YozziBeens.rivostaxi.actividades.Historial.Historial_Detalle"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Agregar Taxista"
             android:name="com.YozziBeens.rivostaxi.actividades.Favoritos.Agregar_Taxista_Favorito"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Agregar Lugar"
             android:name="com.YozziBeens.rivostaxi.actividades.Favoritos.Agregar_Lugar_Favorito"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Detalles Solicitud"
             android:name="com.YozziBeens.rivostaxi.actividades.Solicitar.Detalles_Solicitud"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Detalle Final"
             android:name="com.YozziBeens.rivostaxi.actividades.Solicitar.Compra_Final"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="En Proceso"
             android:name="com.YozziBeens.rivostaxi.actividades.Proceso.Nav_Proceso"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Detalle Solicitud"
             android:name="com.YozziBeens.rivostaxi.actividades.Proceso.Pending_History_Details"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
             android:label="Acerca De"
             android:name="com.YozziBeens.rivostaxi.app.AcercaDe"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
         <activity
-            android:label="Acerca De"
+            android:label="Pago"
             android:name="com.YozziBeens.rivostaxi.actividades.Solicitar.Form"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 
+
+        <activity
+            android:label="Pagos"
+            android:name=".actividades.Tarjetas.Nav_Tarjetas"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Detalles Tarjeta"
+            android:name=".actividades.Tarjetas.Card_Details"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Agregar Tarjeta"
+            android:name=".actividades.Tarjetas.Add_Card"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:label="Prueba"
+            android:name=".actividades.Tarjetas.Prueba"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden"></activity>
 
         <receiver
             android:name="com.YozziBeens.rivostaxi.gcm.GcmBroadcastReceiver"
@@ -195,6 +247,9 @@
 
         <service android:name="com.YozziBeens.rivostaxi.gcm.GCMNotificationIntentService" />
 
+        <!--service
+            android:name=".map.GeocodeAddressIntentService"
+            android:exported="false"/-->
     </application>
 
 </manifest>

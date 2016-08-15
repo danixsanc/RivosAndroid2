@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.YozziBeens.rivostaxi.actividades.Tarjetas.Nav_Tarjetas;
 import com.facebook.login.LoginManager;
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.actividades.Ayuda.Nav_Ayuda;
@@ -33,6 +34,7 @@ import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
 import com.YozziBeens.rivostaxi.controlador.HistorialController;
 import com.YozziBeens.rivostaxi.modelo.Client;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
+import com.google.android.gms.maps.model.LatLng;
 
 public class DrawerMenu extends Fragment {
 
@@ -50,6 +52,12 @@ public class DrawerMenu extends Fragment {
     String nombre;
     TextView txt_solicitar,txt_proceso,txt_favoritos,txt_historial,txt_perfil,txt_ayuda,txt_CerrarSesion;
 
+    private LatLng mOrigen;
+
+
+    public void setmOrigen(LatLng mOrigen) {
+        this.mOrigen = mOrigen;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -175,7 +183,7 @@ public class DrawerMenu extends Fragment {
 
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        preferencias.setSesion(true);
+
                         ClientController clientController = new ClientController(getActivity().getApplicationContext());
                         clientController.eliminarTodo();
                         Intent intent = new Intent(getActivity(), Main.class);
@@ -189,6 +197,8 @@ public class DrawerMenu extends Fragment {
                         favorite_cabbieController.eliminarTodo();
                         favorite_placeController.eliminarTodo();
                         LoginManager.getInstance().logOut();
+                        preferencias.setSesion(true);
+                        preferencias.setClient_Id(null);
                         getActivity().finish();
                     }
                 });
@@ -223,6 +233,15 @@ public class DrawerMenu extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), Nav_Proceso.class));
+            }
+        });
+
+        LinearLayout tarjetas;
+        tarjetas = (LinearLayout) view.findViewById(R.id.nav_tarjetas);
+        tarjetas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), Nav_Tarjetas.class));
             }
         });
 

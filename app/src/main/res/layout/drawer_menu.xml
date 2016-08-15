@@ -101,7 +101,7 @@
                 android:id="@+id/txt_solicitar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="30dp"
                 android:text="Solicitar"
                 android:textColor="#909090"
                 android:textSize="14sp"/>
@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:tint="#c1c1c1"/>
+            android:tint="#eaeaea"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/nav_onProcess"
@@ -133,7 +133,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="30dp"
                 android:text="En Proceso"
                 android:textColor="#909090"
                 android:textSize="14sp"
@@ -145,10 +145,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:tint="#c1c1c1"/>
+            android:tint="#eaeaea"/>
 
-        <!--LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/nav_reservaciones"
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/nav_tarjetas"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:gravity="center|left"
@@ -159,17 +159,18 @@
             <ImageView
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/ic_flag_black_24dp"
-                android:tint="#565656"
+                android:src="@drawable/ic_credit_card_black_24dp"
+                android:tint="#909090"
                 android:layout_marginLeft="16dp"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Reservaciones"
-                android:textColor="#565656"
-                android:textSize="18sp"/>
+                android:layout_marginLeft="30dp"
+                android:text="Pagos"
+                android:textColor="#909090"
+                android:textSize="14sp"
+                android:id="@+id/txt_tarjetas" />
 
         </LinearLayout>
 
@@ -177,9 +178,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:tint="#c1c1c1"/-->
+            android:tint="#eaeaea"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/nav_favoritos"
@@ -200,7 +199,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="30dp"
                 android:text="Favoritos"
                 android:textColor="#909090"
                 android:textSize="14sp"
@@ -212,7 +211,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:tint="#c1c1c1"/>
+            android:tint="#eaeaea"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/nav_historial"
@@ -233,7 +232,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="30dp"
                 android:text="Historial"
                 android:textColor="#909090"
                 android:textSize="14sp"
@@ -245,7 +244,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:tint="#c1c1c1"/>
+            android:tint="#eaeaea"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/nav_perfil"
@@ -266,7 +265,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="30dp"
                 android:text="Perfil"
                 android:textColor="#909090"
                 android:textSize="14sp"
@@ -278,7 +277,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:tint="#c1c1c1"/>
+            android:tint="#eaeaea"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/nav_ayuda"
@@ -299,7 +298,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="30dp"
                 android:text="Ayuda"
                 android:textColor="#909090"
                 android:textSize="14sp"
@@ -311,7 +310,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:tint="#c1c1c1"/>
+            android:tint="#eaeaea"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/CerrarSesion"

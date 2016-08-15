@@ -1,6 +1,7 @@
 package com.YozziBeens.rivostaxi.actividades.Historial;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,14 +20,24 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.actividades.Ayuda.Nav_Ayuda;
 import com.YozziBeens.rivostaxi.adaptadores.AdaptadorHistorial;
 import com.YozziBeens.rivostaxi.controlador.HistorialController;
+import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
+import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
 import com.YozziBeens.rivostaxi.modelo.Historial;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoEliminarHistorial;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoMensajeAyuda;
+import com.YozziBeens.rivostaxi.servicios.WebService;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudEliminarHistorial;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudMensajeAyuda;
 import com.YozziBeens.rivostaxi.utilerias.FechasBD;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
 import com.YozziBeens.rivostaxi.utilerias.Servicio;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -44,14 +55,17 @@ public class Nav_Historial extends AppCompatActivity {
 
     int request_id[] = new int[0];
 
+    private Gson gson;
+    private ProgressDialog progressdialog;
+    private ResultadoEliminarHistorial resultadoEliminarHistorial;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nav_historial);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        this.gson = new Gson();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -71,12 +85,16 @@ public class Nav_Historial extends AppCompatActivity {
         HistorialController historialController = new HistorialController(getApplicationContext());
         List<Historial> historialList = historialController.obtenerHistorial();
 
-        for (int i=0; i < historialList.size(); i++)
+        if (historialList != null)
         {
-            String id = historialList.get(i).getRequest_Id();
-            String fecha = historialList.get(i).getDate();
-            historyArray.add(new AdaptadorHistorial(id, fecha));
+            for (int i=0; i < historialList.size(); i++)
+            {
+                String id = historialList.get(i).getRequest_Id();
+                String fecha = historialList.get(i).getDate();
+                historyArray.add(new AdaptadorHistorial(id, fecha));
+            }
         }
+
 
 
 
@@ -182,22 +200,27 @@ public class Nav_Historial extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int seleccion) {
                             if  (options[seleccion] == "Eliminar") {
 
+                                Preferencias preferencias = new Preferencias(getApplicationContext());
+                                String Client_Id = preferencias.getClient_Id();
                                 String request_id = finalHolder1.txtIdHistorial.getText().toString();
+
+                                SolicitudEliminarHistorial oData = new SolicitudEliminarHistorial();
+                                oData.setClient_Id(Client_Id);
+                                oData.setRequest_Id(request_id);
+                                DeleteHistorialWebService(gson.toJson(oData));
+
                                 HistorialController historialController = new HistorialController(getApplicationContext());
                                 Historial historial = historialController.obtenerHistorialPorRequestId(request_id);
 
                                 historialController.eliminarHistorial(historial);
                                 historyArray.remove(position);
                                 historyAdapter.notifyDataSetChanged();
-                                Preferencias preferencias = new Preferencias(getApplicationContext());
-                                String Client_Id = preferencias.getClient_Id();
-                                Servicio servicio = new Servicio();
-                                servicio.Delete_History_Client(request_id, Client_Id);
 
                                 if (historyArray.size() == 0) {
                                     txt_no_data_detected.setVisibility(View.VISIBLE);
                                     historyList.setVisibility(View.GONE);
                                 }
+
                             } else if (options[seleccion] == "Cancelar") {
                                 dialog.dismiss();
                             }
@@ -218,4 +241,63 @@ public class Nav_Historial extends AppCompatActivity {
         }
     }
 
+    private void DeleteHistorialWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.DeleteHistoryClientWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+                progressdialog = new ProgressDialog(Nav_Historial.this);
+                progressdialog.setMessage("Eliminando, espere");
+                progressdialog.setCancelable(true);
+                progressdialog.setCanceledOnTouchOutside(false);
+                progressdialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        progressdialog.dismiss();
+                    }
+                });
+                progressdialog.show();
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoEliminarHistorial = gson.fromJson(result.get("Resultado").toString(), ResultadoEliminarHistorial.class);
+                    }
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+                String messageError = resultadoEliminarHistorial.getMessage();
+                AlertDialog.Builder dialog = new AlertDialog.Builder(Nav_Historial.this, R.style.AppCompatAlertDialogStyle);
+                dialog.setMessage(messageError);
+                dialog.setCancelable(true);
+                dialog.setNegativeButton("OK", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+            }
+        });
+        servicioAsyncService.execute();
+    }
 }

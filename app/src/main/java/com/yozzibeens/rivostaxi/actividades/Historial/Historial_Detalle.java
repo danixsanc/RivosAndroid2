@@ -22,8 +22,8 @@ public class Historial_Detalle extends AppCompatActivity {
     TextView txtplace_in;
     TextView txtplace_fn;
     TextView txtcab_name,txtTaxista;
-    TextView txttime,txt_hora;
-    ImageButton back_button;
+    TextView txttime,txt_hora, precio, PrecioH, InicioH, DestinoH;
+
     String code;
     String date;
     String lat_in;
@@ -31,8 +31,7 @@ public class Historial_Detalle extends AppCompatActivity {
     String lat_fn;
     String lon_fn;
     String cab_name;
-    private static String KEY_SUCCESS = "Success";
-
+    String pricef;
 
 
 
@@ -54,11 +53,12 @@ public class Historial_Detalle extends AppCompatActivity {
         HistorialController historialController = new HistorialController(getApplicationContext());
         Historial historial = historialController.obtenerHistorialPorRequestId(request_id);
 
-        code = historial.getRequest_Id();
+        code = historial.getRef();
         date = historial.getDate();
         lat_in = historial.getInicio();
         lat_fn = historial.getDestino();
-        cab_name = historial.getCabbie();
+        cab_name = historial.getCabbie_Name();
+        pricef = historial.getPrice();
 
 
 
@@ -69,6 +69,11 @@ public class Historial_Detalle extends AppCompatActivity {
         FechasBD fechasBD = new FechasBD();
         String fecha = fechasBD.ObtenerFecha(date);
         String hora = fechasBD.ObtenerHora(date);
+
+        PrecioH = (TextView) findViewById(R.id.PrecioH);
+
+
+        PrecioH.setTypeface(RobotoCondensed_Regular);
 
         txt_code = (TextView) findViewById(R.id.txt_code);
         txt_code.setTypeface(RobotoCondensed_Regular);
@@ -106,6 +111,10 @@ public class Historial_Detalle extends AppCompatActivity {
         txtcab_name = (TextView) findViewById(R.id.cabbie);
         txtcab_name.setText(cab_name);
         txtcab_name.setTypeface(RobotoCondensed_Regular);
+
+        precio = (TextView) findViewById(R.id.Price);
+        precio.setText("$" + historial.getPrice()+".00");
+        precio.setTypeface(RobotoCondensed_Regular);
     }
 
     @Override

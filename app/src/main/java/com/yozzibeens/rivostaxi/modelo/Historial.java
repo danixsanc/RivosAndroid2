@@ -8,10 +8,13 @@ public class Historial {
 
     private Long id;
     private String Request_Id;
+    private String Date;
+    private String Cabbie_Name;
     private String Inicio;
     private String Destino;
-    private String Date;
+    private String Ref;
     private String Cabbie;
+    private String Price;
 
     public Historial() {
     }
@@ -20,13 +23,16 @@ public class Historial {
         this.id = id;
     }
 
-    public Historial(Long id, String Request_Id, String Inicio, String Destino, String Date, String Cabbie) {
+    public Historial(Long id, String Request_Id, String Date, String Cabbie_Name, String Inicio, String Destino, String Ref, String Cabbie, String Price) {
         this.id = id;
         this.Request_Id = Request_Id;
+        this.Date = Date;
+        this.Cabbie_Name = Cabbie_Name;
         this.Inicio = Inicio;
         this.Destino = Destino;
-        this.Date = Date;
+        this.Ref = Ref;
         this.Cabbie = Cabbie;
+        this.Price = Price;
     }
 
     public Long getId() {
@@ -45,6 +51,22 @@ public class Historial {
         this.Request_Id = Request_Id;
     }
 
+    public String getDate() {
+        return Date;
+    }
+
+    public void setDate(String Date) {
+        this.Date = Date;
+    }
+
+    public String getCabbie_Name() {
+        return Cabbie_Name;
+    }
+
+    public void setCabbie_Name(String Cabbie_Name) {
+        this.Cabbie_Name = Cabbie_Name;
+    }
+
     public String getInicio() {
         return Inicio;
     }
@@ -61,12 +83,12 @@ public class Historial {
         this.Destino = Destino;
     }
 
-    public String getDate() {
-        return Date;
+    public String getRef() {
+        return Ref;
     }
 
-    public void setDate(String Date) {
-        this.Date = Date;
+    public void setRef(String Ref) {
+        this.Ref = Ref;
     }
 
     public String getCabbie() {
@@ -75,6 +97,14 @@ public class Historial {
 
     public void setCabbie(String Cabbie) {
         this.Cabbie = Cabbie;
+    }
+
+    public String getPrice() {
+        return Price;
+    }
+
+    public void setPrice(String Price) {
+        this.Price = Price;
     }
 
 }

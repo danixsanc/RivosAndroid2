@@ -9,7 +9,7 @@
 
     <style name="ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">#fff</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
     </style>
 
 
@@ -26,7 +26,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
     </style>
 
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
@@ -41,6 +41,15 @@
         <item name="android:textColorPrimary">#6c6c6c</item>
         <!-- Used for the background -->
         <item name="android:background">#ffffff</item>
+    </style>
+
+    <style name="My2AlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!-- Used for the buttons -->
+        <item name="colorAccent">#6c6c6c</item>
+        <!-- Used for the title and text -->
+        <item name="android:textColorPrimary">#6c6c6c</item>
+        <!-- Used for the background -->
+        <item name="android:background">#00ffffff</item>
     </style>
 
 </resources>

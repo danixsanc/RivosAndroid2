@@ -17,4 +17,10 @@
     <string name="skip">Saltar</string>
     <string name="done">Hecho</string>
 
+    <string name="str_consultando_ubicacion">Consultando ubicación del dispositivo</string>
+    <string name="str_permiso_no_autorizado">Permiso de ubicación denegado</string>
+    <string name="play_services_available">Google Play services is available</string>
+    <string name="latitude_longitude">%1$.8f, %2$.8f</string>
+    <string name="strMiUbicacion">Mi ubicación</string>
+
 </resources>

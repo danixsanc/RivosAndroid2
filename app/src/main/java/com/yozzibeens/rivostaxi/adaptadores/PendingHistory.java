@@ -17,7 +17,7 @@ public class PendingHistory {
     }
 
 
-    public PendingHistory(String pending_history) {
+    public PendingHistory(String id, String pending_history) {
         super();
         this.pending_history = pending_history;
     }

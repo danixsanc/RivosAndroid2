@@ -1,7 +1,9 @@
 package com.YozziBeens.rivostaxi.actividades.Favoritos;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -17,17 +19,39 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import android.app.AlertDialog;
+
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.adaptadores.AddFavoriteCabbie;
+import com.YozziBeens.rivostaxi.adaptadores.PendingHistory;
 import com.YozziBeens.rivostaxi.controlador.Favorite_CabbieController;
+import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
+import com.YozziBeens.rivostaxi.controlador.HistorialPendienteController;
+import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
+import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
 import com.YozziBeens.rivostaxi.modelo.Favorite_Cabbie;
+import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
+import com.YozziBeens.rivostaxi.modelo.HistorialPendiente;
+import com.YozziBeens.rivostaxi.modelosApp.TaxistasQueAtendieron;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoAgregarLugarFavorito;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoAgregarTaxistaFavorito;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoHistorialPendienteCliente;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoTaxistasQueTeAtendieron;
+import com.YozziBeens.rivostaxi.servicios.WebService;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudAgregarTaxistaFavorito;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudHistorialPendienteCliente;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudTaxistasQueTeAtendieron;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
 import com.YozziBeens.rivostaxi.utilerias.Servicio;
+import com.google.gson.Gson;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by danixsanc on 29/10/2015.
@@ -40,6 +64,12 @@ public class Agregar_Taxista_Favorito extends AppCompatActivity {
     private static String KEY_ERROR_MSG = "Error_Msg";
 
     TextView txt_no_data_detected, txt_taxistas;
+
+    private Gson gson;
+    private ProgressDialog progressdialog;
+    private ResultadoTaxistasQueTeAtendieron resultadoTaxistasQueTeAtendieron;
+    private ResultadoAgregarTaxistaFavorito resultadoAgregarTaxistaFavorito;
+    private Favorite_CabbieController favorite_cabbieController;
 
 
     Servicio servicio = new Servicio();
@@ -57,6 +87,8 @@ public class Agregar_Taxista_Favorito extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+        favorite_cabbieController = new Favorite_CabbieController(this);
         //----------TIPO DE FUENTE-----------------------------------------------------------------------------
         Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
 
@@ -66,23 +98,30 @@ public class Agregar_Taxista_Favorito extends AppCompatActivity {
         txt_taxistas.setTypeface(RobotoCondensed_Regular);
 
 
-        addfavoritecabbieList = (ListView) findViewById(R.id.list_cabbie_history);
+        /*addfavoritecabbieList = (ListView) findViewById(R.id.list_cabbie_history);
         addfavoritecabbieAdapter = new AddFavoriteCabbieCustomAdapter(getApplicationContext(), R.layout.row_agregar_taxista_favorito, addfavoritecabbieArray);
         addfavoritecabbieList.setItemsCanFocus(false);
-        addfavoritecabbieList.setAdapter(addfavoritecabbieAdapter);
+        addfavoritecabbieList.setAdapter(addfavoritecabbieAdapter);*/
 
+
+        //Preferencias preferencias = new Preferencias(getApplicationContext());
+        //String Client_Id = preferencias.getClient_Id();
+
+        //cargarDatosCabbiesRequest(Client_Id);
+
+        this.gson = new Gson();
 
         Preferencias preferencias = new Preferencias(getApplicationContext());
         String Client_Id = preferencias.getClient_Id();
 
-        cargarDatosCabbiesRequest(Client_Id);
+        SolicitudTaxistasQueTeAtendieron oData = new SolicitudTaxistasQueTeAtendieron();
+        oData.setClient_Id(Client_Id);
+        TaxistasQueTeAtendieronWebService(gson.toJson(oData));
 
 
 
 
-
-/*
-        thisContext = this;
+        /*thisContext = this;
         callbackManager = CallbackManager.Factory.create();
         Typeface RobotoCondensed_Regular = Typeface.createFromAsset(this.getAssets(), "RobotoCondensed-Regular.ttf");
 
@@ -145,6 +184,88 @@ public class Agregar_Taxista_Favorito extends AppCompatActivity {
         });*/
     }
 
+
+
+    private void TaxistasQueTeAtendieronWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetCabbieHistoryWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+                progressdialog = new ProgressDialog(Agregar_Taxista_Favorito.this);
+                progressdialog.setMessage("Obteniendo Datos, espere");
+                progressdialog.setCancelable(true);
+                progressdialog.setCanceledOnTouchOutside(false);
+                progressdialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        progressdialog.dismiss();
+                    }
+                });
+                progressdialog.show();
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoTaxistasQueTeAtendieron = gson.fromJson(result.get("Resultado").toString(), ResultadoTaxistasQueTeAtendieron.class);
+                        if (!resultadoAgregarTaxistaFavorito.isError())
+                        {
+                            ArrayList<TaxistasQueAtendieron> taxistasQueAtendieron = resultadoTaxistasQueTeAtendieron.getData();
+
+
+                            cabbie_id = new int[taxistasQueAtendieron.size()];
+                            for (int i=0; i < taxistasQueAtendieron.size(); i++)
+                            {
+                                String id = taxistasQueAtendieron.get(i).getCabbie_Id();
+                                String name = taxistasQueAtendieron.get(i).getName();
+
+                                addfavoritecabbieArray.add(new AddFavoriteCabbie(name));
+                                cabbie_id[i] = Integer.valueOf(taxistasQueAtendieron.get(i).getCabbie_Id());
+                            }
+
+
+                            addfavoritecabbieList = (ListView) findViewById(R.id.list_cabbie_history);
+                            addfavoritecabbieAdapter = new AddFavoriteCabbieCustomAdapter(getApplicationContext(), R.layout.row_agregar_taxista_favorito, addfavoritecabbieArray);
+                            addfavoritecabbieList.setItemsCanFocus(false);
+                            addfavoritecabbieList.setAdapter(addfavoritecabbieAdapter);
+
+                            txt_no_data_detected.setVisibility(View.GONE);
+                            addfavoritecabbieList.setVisibility(View.VISIBLE);
+
+                            progressdialog.dismiss();
+                        }
+                        else
+                        {
+                            txt_no_data_detected.setVisibility(View.VISIBLE);
+                            addfavoritecabbieList.setVisibility(View.GONE);
+                        }
+                    }
+                }
+                catch (Exception error) {
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {}
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+            }
+        });
+        servicioAsyncService.execute();
+    }
+
+
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -164,42 +285,6 @@ public class Agregar_Taxista_Favorito extends AppCompatActivity {
         setResult(Activity.RESULT_OK, returnIntent);
         finish();
     }
-
-    public void cargarDatosCabbiesRequest(String Client_Id)
-    {
-
-
-        final JSONObject json = servicio.getCabbieHistory(Client_Id);
-
-        try {
-
-            if (json.getString(KEY_SUCCESS) != null) {
-                String res = json.getString(KEY_SUCCESS);
-                if (Integer.parseInt(res) == 1)
-                {
-                    cabbie_id = new int[Integer.valueOf(json.getInt("num"))];
-                    for (int i = 0; i < cabbie_id.length; i++)
-                    {
-                        JSONObject json_user = json.getJSONObject("Cabbie_Id"+(i+1));
-                        addfavoritecabbieArray.add(new AddFavoriteCabbie("Codigo: "+json_user.getString("Cabbie_Id")
-                                + "\nNombre: " + json_user.getString("Name")));
-
-                        cabbie_id[i] = Integer.parseInt(json_user.getString("Cabbie_Id"));
-                    }
-                }
-                else {
-                    txt_no_data_detected.setVisibility(View.VISIBLE);
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-
-
-
 
 
 
@@ -244,47 +329,20 @@ public class Agregar_Taxista_Favorito extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     // TODO Auto-generated method stub
-                    try {
 
-                        //String Cabbie_Id = add_favorite_cabbie.getText().toString();
+
+                        String Cabbie_Id = String.valueOf(cabbie_id[position]);
 
                         Preferencias preferencias = new Preferencias(getApplicationContext());
                         String Client_Id = preferencias.getClient_Id();
 
-                        JSONObject json = servicio.setFavoriteCabbie(Client_Id, String.valueOf(cabbie_id[position]));
+                        SolicitudAgregarTaxistaFavorito oData = new SolicitudAgregarTaxistaFavorito();
+                        oData.setClient_Id(Client_Id);
+                        oData.setCabbie_Id(Cabbie_Id);
+                        AgregarTaxistaFavoritoWebService(gson.toJson(oData));
 
-                        if (json.getString(KEY_SUCCESS) != null) {
-                            String res = json.getString(KEY_SUCCESS);
-                            if (Integer.parseInt(res) == 1) {
-                                Snackbar.make(v, "Taxista agregado correctamente", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                                Favorite_Cabbie favorite_cabbie = new Favorite_Cabbie(null, json.getString("Cabbie_Id"),
-                                        json.getString("Name"), json.getString("Company"));
-                                Favorite_CabbieController favorite_cabbieController = new Favorite_CabbieController(getApplicationContext());
-                                favorite_cabbieController.guardarFavorite_Cabbie(favorite_cabbie);
-                            }
-                            else if (json.getString(KEY_ERROR) != null){
-                                res = json.getString(KEY_ERROR);
-                                if (Integer.parseInt(res) == 7){
-                                    Snackbar.make(v, "Ese taxista ya esta registrado", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-                                }
-                            }
-                        }
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
                 }
             });
-            /*holder.btnDelete.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-
-                    // TODO Auto-generated method stub
-                    Log.i("Delete Button Clicked", "**********");
-                    Toast.makeText(context, "Delete button Clicked " + position, Toast.LENGTH_LONG).show();
-                }
-            });*/
             return row;
 
         }
@@ -295,6 +353,58 @@ public class Agregar_Taxista_Favorito extends AppCompatActivity {
 
             //ImageButton btnDelete;
         }
+    }
+
+    private void AgregarTaxistaFavoritoWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(Agregar_Taxista_Favorito.this, WebService.SetFavoriteCabbieWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoAgregarTaxistaFavorito = gson.fromJson(result.get("Resultado").toString(), ResultadoAgregarTaxistaFavorito.class);
+                        if ((!resultadoAgregarTaxistaFavorito.isError()) && resultadoAgregarTaxistaFavorito.getData() != null) {
+                            favorite_cabbieController.guardarOActualizarFavorite_Cabbie(resultadoAgregarTaxistaFavorito.getData());
+                        }
+                    }
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+
+                String messageError = resultadoAgregarTaxistaFavorito.getMessage();
+                AlertDialog.Builder dialog = new AlertDialog.Builder(Agregar_Taxista_Favorito.this, R.style.AppCompatAlertDialogStyle);
+                dialog.setMessage(messageError);
+                dialog.setCancelable(true);
+                dialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+
+
+
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+            }
+        });
+        servicioAsyncService.execute();
     }
 
 }

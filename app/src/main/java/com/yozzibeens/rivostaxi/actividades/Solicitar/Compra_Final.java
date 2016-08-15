@@ -1,6 +1,7 @@
 package com.YozziBeens.rivostaxi.actividades.Solicitar;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -8,8 +9,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.YozziBeens.rivostaxi.adaptadores.AddFavoriteCabbie;
+import com.YozziBeens.rivostaxi.app.Main;
+import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
+import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
+import com.YozziBeens.rivostaxi.modelosApp.TaxistasCercanos;
+import com.YozziBeens.rivostaxi.modelosApp.TaxistasQueAtendieron;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoLogin;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoNotificacion;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoTaxistasCercanos;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoToken;
+import com.YozziBeens.rivostaxi.servicios.WebService;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudNotificacion;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudObtenerTaxistasCercanos;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudRegistro;
 import com.YozziBeens.rivostaxi.utilerias.FechasBD;
 import com.google.android.gms.maps.model.LatLng;
 import com.YozziBeens.rivostaxi.R;
@@ -18,17 +35,21 @@ import com.YozziBeens.rivostaxi.utilerias.Servicio;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 
-
+import com.google.gson.Gson;
 import com.google.maps.android.SphericalUtil;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 
 /**
  * Created by danixsanc on 30/12/2015.
  */
 public class Compra_Final extends AppCompatActivity {
-    private static String KEY_SUCCESS = "Success";
-
 
     TextView NombreTaxista,txt_taxista;
     TextView Fecha,txt_fecha;
@@ -51,6 +72,23 @@ public class Compra_Final extends AppCompatActivity {
     double pricef;
     String cabbie_id;
     String direccion;
+    ImageView imgQrCode;
+
+
+    String id_cabbie;
+    String name_cabbie;
+    String gcm_id_cabbie;
+    String latitude_cabbie;
+    String longitude_cabbie;
+
+    ImageView qrCodeImageview;
+    String QRcode;
+    public final static int WIDTH = 500;
+
+    String date;
+    String ref;
+    private Gson gson;
+    private ResultadoNotificacion resultadoNotificacion;
 
     double metros;
     double kilometros;
@@ -59,19 +97,24 @@ public class Compra_Final extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.compra_final);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        this.gson = new Gson();
 
         Preferencias preferencias = new Preferencias(getApplicationContext());
         String Client_Id = preferencias.getClient_Id();
 
        //------Tipo de fuente---------------------------------------------------------------------------------
         Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
+
+
+
+
+
 
         NombreTaxista = (TextView) findViewById(R.id.NombreTaxista);
         NombreTaxista.setTypeface(RobotoCondensed_Regular);
@@ -107,7 +150,7 @@ public class Compra_Final extends AppCompatActivity {
 
 
 
-        Bundle bundle = getIntent().getExtras();
+        Bundle   bundle = getIntent().getExtras();
         if (bundle != null) {
             latautc_inicio = bundle.getDouble("latautc_inicio");
             lngautc_inicio = bundle.getDouble("lngautc_inicio");
@@ -116,43 +159,22 @@ public class Compra_Final extends AppCompatActivity {
             direccion = bundle.getString("direccion");
             price = bundle.getInt("Price");
             price_Id = bundle.getInt("price_Id");
+
+            id_cabbie = bundle.getString("id_cabbie");
+            name_cabbie = bundle.getString("name_cabbie");
+            gcm_id_cabbie = bundle.getString("gcm_id_cabbie");
+            latitude_cabbie = bundle.getString("latitude_cabbie");
+            longitude_cabbie = bundle.getString("longitude_cabbie");
+
+            date = bundle.getString("date");
+            ref = bundle.getString("ref");
         }
 
+        NombreTaxista.setText(name_cabbie);
 
-        Servicio servicio = new Servicio();
-        final JSONObject json = servicio.GetCloseCabbie(latautc_inicio, lngautc_inicio);
-
-        try {
-            if (json.getString(KEY_SUCCESS) != null) {
-                String res = json.getString(KEY_SUCCESS);
-                if (Integer.parseInt(res) == 1)
-                {
-                    JSONObject json_user = json.getJSONObject("Cabbie1");
-                    String reg_id = json_user.getString("gcm_Id");
-                    String nombre = json_user.getString("Name");
-                    servicio.sendNotification(reg_id);
-                    cabbie_id = json_user.getString("Cabbie_Id");
-
-                    latcabbie = Double.valueOf(json_user.getString("Latitude"));
-                    lngcabbie = Double.valueOf(json_user.getString("Longitude"));
-                    NombreTaxista.setText(nombre);
-                }
-                else if (Integer.parseInt(res) == 0)
-                {
-                    //se registra con -1
-                    servicio.set_Client_History_Pending(String.valueOf(latautc_inicio), String.valueOf(lngautc_inicio), String.valueOf(latautc_final),
-                            String.valueOf(lngautc_final), Client_Id, String.valueOf(price_Id));
-                }
-            }
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         LatLng l1 = new LatLng(latautc_inicio, lngautc_inicio);
-        LatLng l2 = new LatLng(latcabbie, lngcabbie);
+        LatLng l2 = new LatLng(Double.valueOf(latitude_cabbie), Double.valueOf(longitude_cabbie));
 
         double distance = SphericalUtil.computeDistanceBetween(l1, l2);
         Distancia.setText(formatNumber(distance));
@@ -172,7 +194,7 @@ public class Compra_Final extends AppCompatActivity {
         }
 
 
-        JSONObject json2 = servicio.set_Client_History(String.valueOf(latautc_inicio), String.valueOf(lngautc_inicio), String.valueOf(latautc_final),
+        /*JSONObject json2 = servicio.set_Client_History(String.valueOf(latautc_inicio), String.valueOf(lngautc_inicio), String.valueOf(latautc_final),
                 String.valueOf(lngautc_final), Client_Id, cabbie_id, String.valueOf(price_Id));
 
         try {
@@ -182,21 +204,119 @@ public class Compra_Final extends AppCompatActivity {
                     fecha = json2.getString("Date");
                     referecia = json2.getString("Ref");
 
-                    FechasBD fechasBD = new FechasBD();
-                    String fechaf = fechasBD.ObtenerFecha(fecha);
-                    Fecha.setText(fechaf);
 
-                    Referencia.setText(referecia);
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
+
+
+        FechasBD fechasBD = new FechasBD();
+        String fechaf = fechasBD.ObtenerFecha(date);
+        Fecha.setText(fechaf);
+
+        Referencia.setText(ref);
+
+
+        qrCodeImageview=(ImageView) findViewById(R.id.imgQrCode);
+        Thread t = new Thread(new Runnable() {
+            public void run() {
+                QRcode=ref;
+
+                try {
+                    synchronized (this) {
+                        wait(1000);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    Bitmap bitmap = null;
+                                    bitmap = encodeAsBitmap(QRcode);
+                                    qrCodeImageview.setImageBitmap(bitmap);
+                                } catch (WriterException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        t.start();
 
 
 
-
+        SolicitudNotificacion oData = new SolicitudNotificacion();
+        oData.setGcm_Id(gcm_id_cabbie);
+        oData.setMessage("Nueva Solicitud");
+        oData.setType("A");
+        NotificacionWebService(gson.toJson(oData));
     }
+
+    private Bitmap encodeAsBitmap(String str) throws WriterException {
+        BitMatrix result;
+        try {
+            result = new MultiFormatWriter().encode(str,
+                    BarcodeFormat.QR_CODE, WIDTH, WIDTH, null);
+        } catch (IllegalArgumentException iae) {
+            // Unsupported format
+            return null;
+        }
+        int w = result.getWidth();
+        int h = result.getHeight();
+        int[] pixels = new int[w * h];
+        for (int y = 0; y < h; y++) {
+            int offset = y * w;
+            for (int x = 0; x < w; x++) {
+                pixels[offset + x] = result.get(x, y) ? getResources().getColor(R.color.colorPrimaryDark):getResources().getColor(R.color.colorWhite);
+            }
+        }
+        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+        bitmap.setPixels(pixels, 0, 500, 0, 0, w, h);
+        return bitmap;
+    }
+
+    private void NotificacionWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.NotificationWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoNotificacion = gson.fromJson(result.get("Resultado").toString(), ResultadoNotificacion.class);
+                        if (resultadoNotificacion.getSuccess() == 1 ) {
+
+                        }
+                    }
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+            }
+        });
+        servicioAsyncService.execute();
+    }
+
 
 
     private String formatNumber(double distance) {

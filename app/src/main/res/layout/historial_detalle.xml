@@ -1,212 +1,310 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#ffffff">
+
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="#ffffff"
     android:layout_height="match_parent">
 
     <include layout="@layout/toolbar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:gravity="center"
-        android:background="#d6d6d6">
-
-
-        <ImageView
-            android:layout_width="170dp"
-            android:layout_height="170dp"
-            android:padding="30dp"
-            android:background="@drawable/back_taxi"
-            android:src="@drawable/ic_watch_later_white_48dp"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="2dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:background="@color/colorPrimary"
+                android:elevation="2dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="#fff"
+                        android:src="@drawable/ic_local_taxi_black_24dp"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="#fff"
+                        android:src="@drawable/ic_more_vert_black_24dp"/>
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="#fff"
+                        android:src="@drawable/ic_location_on_black_24dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:id="@+id/place_in"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:text="Inicio"
+                        android:textSize="13dp"/>
+
+                    <TextView
+                        android:id="@+id/place_fn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:textColor="#fff"
+                        android:text="Destino"
+                        android:textSize="13dp"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/txtTaxista"
-                android:layout_width="wrap_content"
+            android:background="#fafafa"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:elevation="2dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Taxista: "
-                android:textColor="#535353"
-                android:textStyle="bold"
-                android:textSize="18dp"/>
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:src="@drawable/ic_local_taxi_black_24dp"/>
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/cabbie"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#1d1d1d"
-                android:text="Nombre del taxista"
-                android:textSize="18dp"/>
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:textSize="18dp"
+                        android:text="Nombre"
+                        android:id="@+id/cabbie" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:textSize="15dp"
+                        android:text="Taxista"
+                        android:id="@+id/txtTaxista" />
+                </LinearLayout>
+            </LinearLayout>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/txt_fecha"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fecha: "
-                android:textColor="#535353"
-                android:textStyle="bold"
-                android:textSize="18dp"/>
-
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#1d1d1d"
-                android:text="20/02/2016"
-                android:textSize="18dp"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/txt_hora"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hora: "
-                android:textColor="#535353"
-                android:textStyle="bold"
-                android:textSize="18dp"/>
-
-            <TextView
-                android:id="@+id/time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#1d1d1d"
-                android:text="12:45 PM"
-                android:textSize="18dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/txt_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Referencia num: "
-                android:textColor="#535353"
-                android:textStyle="bold"
-                android:textSize="18dp"/>
-
-            <TextView
-                android:id="@+id/code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="#1d1d1d"
-                android:text="3453-2342-34"
-                android:textSize="18dp"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="horizontal">
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
                 android:src="@drawable/ic_linea"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:src="@drawable/ic_attach_money_black_24dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:textSize="18dp"
+                        android:text="Precio"
+                        android:id="@+id/Price" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:textSize="15dp"
+                        android:text="Precio"
+                        android:id="@+id/PrecioH" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/ic_linea"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:src="@drawable/ic_date_range_black_24dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:textSize="18dp"
+                        android:text="Fecha"
+                        android:id="@+id/date" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:textSize="15dp"
+                        android:text="Fecha"
+                        android:id="@+id/txt_fecha" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/ic_linea"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:src="@drawable/ic_access_time_black_24dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:textSize="18dp"
+                        android:text="Hora"
+                        android:id="@+id/time" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:textSize="15dp"
+                        android:text="Hora"
+                        android:id="@+id/txt_hora" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/ic_linea"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20dp">
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:src="@drawable/ic_verified_user_black_24dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:textSize="18dp"
+                        android:text="Referencia"
+                        android:id="@+id/code" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:tint="#696969"
+                        android:textSize="15dp"
+                        android:text="Referencia"
+                        android:id="@+id/txt_code" />
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
 
 
-    </LinearLayout>
+        </LinearLayout>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <TextView
-        android:id="@+id/place_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Inicio:"
-        android:textSize="16dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="30dp"
-        android:textColor="#000"/>
-
-    <TextView
-        android:id="@+id/place_fn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Destino:"
-        android:textSize="16dp"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="30dp"
-        android:textColor="#000"/>
-
-
-</LinearLayout>
     </ScrollView>
+</LinearLayout>

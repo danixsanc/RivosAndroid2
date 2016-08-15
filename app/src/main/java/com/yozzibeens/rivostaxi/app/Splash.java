@@ -1,19 +1,35 @@
 package com.YozziBeens.rivostaxi.app;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.ListView;
 
+import com.YozziBeens.rivostaxi.actividades.Proceso.Nav_Proceso;
+import com.YozziBeens.rivostaxi.adaptadores.PendingHistory;
 import com.YozziBeens.rivostaxi.controlador.ClientController;
+import com.YozziBeens.rivostaxi.controlador.HistorialPendienteController;
 import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
 import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
-import com.YozziBeens.rivostaxi.modelo.Client;
-import com.YozziBeens.rivostaxi.respuesta.RespuestaCadena;
+import com.YozziBeens.rivostaxi.modelo.HistorialPendiente;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoHistorialCliente;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoHistorialPendienteCliente;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoLugaresFavoritos;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoRegistrarGCM;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoTaxistasFavoritos;
+import com.YozziBeens.rivostaxi.servicios.WebService;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudHistorialCliente;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudLugaresFavoritos;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudRegistrarGCM;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudTaxistasFavoritos;
 import com.facebook.FacebookSdk;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.YozziBeens.rivostaxi.R;
@@ -34,6 +50,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 
 /**
@@ -42,7 +59,6 @@ import java.util.HashMap;
 public class Splash extends Activity {
 
     ServicioAsyncService servicioAsyncService;
-    private RespuestaCadena respuestaCadena;
     private ClientController clientController;
     private Gson gson;
 
@@ -52,10 +68,23 @@ public class Splash extends Activity {
     public static final String REG_ID = "regId";
     static final String TAG = "Register Activity";
 
+    private ResultadoHistorialCliente resultadoHistorialCliente;
+    private ResultadoTaxistasFavoritos resultadoTaxistasFavoritos;
+    private ResultadoLugaresFavoritos resultadoLugaresFavoritos;
+    private ResultadoRegistrarGCM resultadoRegistrarGCM;
+
+    private HistorialController historialController;
+    private Favorite_CabbieController favorite_cabbieController;
+    private Favorite_PlaceController favorite_placeController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash);
+
+        historialController = new HistorialController(this);
+        favorite_cabbieController = new Favorite_CabbieController(this);
+        favorite_placeController = new Favorite_PlaceController(this);
 
         RivosDB.initializeInstance();
         FacebookSdk.sdkInitialize(this);
@@ -66,108 +95,34 @@ public class Splash extends Activity {
                 try{
                     sleep(1000);
 
+                    regId = registerGCM();
+                    Log.d("SolicitudRegistro", "GCM RegId: " + regId);
+
 
 
 
                     Preferencias preferencias = new Preferencias(getApplicationContext());
                     String Client_Id = preferencias.getClient_Id();
-                    Servicio servicio = new Servicio();
-                    int val = 0;
-                    final JSONObject json = servicio.getClientHistory(Client_Id);
-                    try {
-                        if (json.getString("Success") != null) {
-                            String res = json.getString("Success");
-                            if (Integer.parseInt(res) == 1)
-                            {
-                                val = json.getInt("num");
 
-                                HistorialController historialController2 = new HistorialController(getApplicationContext());
-                                historialController2.eliminarTodo();
-                                for (int i = 0; i < val; i++)
-                                {
-                                    JSONObject json_user = json.getJSONObject("Request"+(i+1));
-                                    Historial historial = new Historial(null, json_user.getString("Request_Id"), json_user.getString("Latitude_In"),
-                                            json_user.getString("Latitude_Fn"),json_user.getString("Date"),json_user.getString("Name"));
+                    if (!Client_Id.equals(null))
+                    {
+                        SolicitudRegistrarGCM oData0 = new SolicitudRegistrarGCM();
+                        oData0.setClient_Id(Client_Id);
+                        oData0.setGcmId(regId);
+                        RegisterGCMWebService(gson.toJson(oData0));
 
-                                    HistorialController historialController = new HistorialController(getApplicationContext());
-                                    historialController.guardarHistorial(historial);
-                                }
-                            }
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                        SolicitudHistorialCliente oData1 = new SolicitudHistorialCliente();
+                        oData1.setClient_Id(Client_Id);
+                        HistorialClienteWebService(gson.toJson(oData1));
+
+                        SolicitudTaxistasFavoritos oData2 = new SolicitudTaxistasFavoritos();
+                        oData2.setClient_Id(Client_Id);
+                        TaxistasFavoritosWebService(gson.toJson(oData2));
+
+                        SolicitudLugaresFavoritos oData3 = new SolicitudLugaresFavoritos();
+                        oData3.setClient_Id(Client_Id);
+                        LugaresFavoritosWebService(gson.toJson(oData3));
                     }
-
-
-
-
-
-
-                    final JSONObject json2 = servicio.getFavoriteCabbie(Client_Id);
-                    try {
-                        if (json2.getString("Success") != null) {
-                            String res = json2.getString("Success");
-                            if (Integer.parseInt(res) == 1)
-                            {
-
-                                int val2 = json2.getInt("num");
-                                Favorite_CabbieController favorite_cabbieController = new Favorite_CabbieController(getApplicationContext());
-                                favorite_cabbieController.eliminarTodo();
-                                for (int i = 0; i < val2; i++)
-                                {
-
-                                    JSONObject json_user2 = json2.getJSONObject("Cabbie_Id"+(i+1));
-
-                                    Favorite_Cabbie favorite_cabbie = new Favorite_Cabbie(null, json_user2.getString("Cabbie_Id"),
-                                            json_user2.getString("Name"),json_user2.getString("Company"));
-
-                                    favorite_cabbieController = new Favorite_CabbieController(getApplicationContext());
-                                    favorite_cabbieController.guardarFavorite_Cabbie(favorite_cabbie);
-
-                                }
-                            }
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-
-
-
-                    final JSONObject json3 = servicio.getFavoritePlace(Client_Id);
-                    try {
-                        if (json3.getString("Success") != null) {
-                            String res = json3.getString("Success");
-                            if (Integer.parseInt(res) == 1)
-                            {
-
-                                int val3 = json3.getInt("num");
-                                Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getApplicationContext());
-                                favorite_placeController.eliminarTodo();
-                                for (int i = 0; i < val3; i++)
-                                {
-
-                                    JSONObject json_user3 = json3.getJSONObject("Place"+(i+1));
-
-                                    Favorite_Place favorite_place = new Favorite_Place(null, json_user3.getString("Place_Favorite_Id"),
-                                            json_user3.getString("Place_Name"),json_user3.getString("Desc_Place"),
-                                            json_user3.getString("Latitude"), json_user3.getString("Longitude"));
-
-                                    favorite_placeController = new Favorite_PlaceController(getApplicationContext());
-                                    favorite_placeController.guardarFavorite_Place(favorite_place);
-
-                                }
-                            }
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-
-                    regId = registerGCM();
-                    Log.d("RegistroSolicitud", "GCM RegId: " + regId);
-                    servicio.Register_GcmId(regId, Client_Id);
-
 
                 }catch(InterruptedException e){
                     e.printStackTrace();
@@ -189,10 +144,6 @@ public class Splash extends Activity {
         finish();
     }
 
-
-
-    //gcm
-
     public String registerGCM() {
 
         gcm = GoogleCloudMessaging.getInstance(this);
@@ -202,7 +153,7 @@ public class Splash extends Activity {
 
             registerInBackground();
 
-            Log.d("RegistroSolicitud",
+            Log.d("SolicitudRegistro",
                     "registerGCM - successfully registered with GCM server - regId: "
                             + regId);
         } else {
@@ -233,15 +184,15 @@ public class Splash extends Activity {
                         gcm = GoogleCloudMessaging.getInstance(context);
                     }
                     regId = gcm.register(Config.GOOGLE_PROJECT_ID);
-                    Log.d("RegistroSolicitud", "registerInBackground - regId: "
+                    Log.d("SolicitudRegistro", "registerInBackground - regId: "
                             + regId);
                     msg = "Device registered, registration ID=" + regId;
 
                 } catch (IOException ex) {
                     msg = "Error :" + ex.getMessage();
-                    Log.d("RegistroSolicitud", "Error: " + msg);
+                    Log.d("SolicitudRegistro", "Error: " + msg);
                 }
-                Log.d("RegistroSolicitud", "AsyncTask completed: " + msg);
+                Log.d("SolicitudRegistro", "AsyncTask completed: " + msg);
                 return msg;
             }
 
@@ -255,8 +206,6 @@ public class Splash extends Activity {
         }.execute(null, null, null);
     }
 
-
-
     private void saveRegisterId(Context context, String regId) {
         final SharedPreferences prefs = getSharedPreferences(
                 Splash.class.getSimpleName(), Context.MODE_PRIVATE);
@@ -264,6 +213,163 @@ public class Splash extends Activity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(REG_ID, regId);
         editor.commit();
+    }
+
+
+
+
+    private void RegisterGCMWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.RegisterGcmIdWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoRegistrarGCM = gson.fromJson(result.get("Resultado").toString(), ResultadoRegistrarGCM.class);
+                    }
+                } catch (Exception error) {
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+
+            }
+        });
+        servicioAsyncService.execute();
+    }
+
+
+    private void HistorialClienteWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetClientHistoryWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoHistorialCliente = gson.fromJson(result.get("Resultado").toString(), ResultadoHistorialCliente.class);
+                        if ((!resultadoHistorialCliente.isError()) && resultadoHistorialCliente.getData() != null) {
+                            historialController.eliminarTodo();
+                            historialController.guardarOActualizarHistorial(resultadoHistorialCliente.getData());
+                        }
+                    }
+                }
+                catch (Exception error) {
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {}
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+
+            }
+        });
+        servicioAsyncService.execute();
+    }
+
+    private void TaxistasFavoritosWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetFavoriteCabbieWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoTaxistasFavoritos = gson.fromJson(result.get("Resultado").toString(), ResultadoTaxistasFavoritos.class);
+                        if ((!resultadoTaxistasFavoritos.isError()) && resultadoTaxistasFavoritos.getData() != null) {
+                            favorite_cabbieController.eliminarTodo();
+                            favorite_cabbieController.guardarOActualizarFavorite_Cabbie(resultadoTaxistasFavoritos.getData());
+                        }
+                    }
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+            }
+        });
+        servicioAsyncService.execute();
+    }
+
+    private void LugaresFavoritosWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetFavoritePlaceWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoLugaresFavoritos = gson.fromJson(result.get("Resultado").toString(), ResultadoLugaresFavoritos.class);
+                        if ((!resultadoLugaresFavoritos.isError()) && resultadoLugaresFavoritos.getData() != null) {
+                            favorite_placeController.eliminarTodo();
+                            favorite_placeController.guardarOActualizarFavorite_Place(resultadoLugaresFavoritos.getData());
+                        }
+                    }
+                } catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+            }
+        });
+        servicioAsyncService.execute();
     }
 
 }

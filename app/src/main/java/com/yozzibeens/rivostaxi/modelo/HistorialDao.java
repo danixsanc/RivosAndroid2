@@ -25,10 +25,13 @@ public class HistorialDao extends AbstractDao<Historial, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Request_Id = new Property(1, String.class, "Request_Id", false, "REQUEST__ID");
-        public final static Property Inicio = new Property(2, String.class, "Inicio", false, "INICIO");
-        public final static Property Destino = new Property(3, String.class, "Destino", false, "DESTINO");
-        public final static Property Date = new Property(4, String.class, "Date", false, "DATE");
-        public final static Property Cabbie = new Property(5, String.class, "Cabbie", false, "CABBIE");
+        public final static Property Date = new Property(2, String.class, "Date", false, "DATE");
+        public final static Property Cabbie_Name = new Property(3, String.class, "Cabbie_Name", false, "CABBIE__NAME");
+        public final static Property Inicio = new Property(4, String.class, "Inicio", false, "INICIO");
+        public final static Property Destino = new Property(5, String.class, "Destino", false, "DESTINO");
+        public final static Property Ref = new Property(6, String.class, "Ref", false, "REF");
+        public final static Property Cabbie = new Property(7, String.class, "Cabbie", false, "CABBIE");
+        public final static Property Price = new Property(8, String.class, "Price", false, "PRICE");
     };
 
 
@@ -46,10 +49,13 @@ public class HistorialDao extends AbstractDao<Historial, Long> {
         db.execSQL("CREATE TABLE " + constraint + "'HISTORIAL' (" + //
                 "'_id' INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "'REQUEST__ID' TEXT," + // 1: Request_Id
-                "'INICIO' TEXT," + // 2: Inicio
-                "'DESTINO' TEXT," + // 3: Destino
-                "'DATE' TEXT," + // 4: Date
-                "'CABBIE' TEXT);"); // 5: Cabbie
+                "'DATE' TEXT," + // 2: Date
+                "'CABBIE__NAME' TEXT," + // 3: Cabbie_Name
+                "'INICIO' TEXT," + // 4: Inicio
+                "'DESTINO' TEXT," + // 5: Destino
+                "'REF' TEXT," + // 6: Ref
+                "'CABBIE' TEXT," + // 7: Cabbie
+                "'PRICE' TEXT);"); // 8: Price
     }
 
     /** Drops the underlying database table. */
@@ -73,24 +79,39 @@ public class HistorialDao extends AbstractDao<Historial, Long> {
             stmt.bindString(2, Request_Id);
         }
  
+        String Date = entity.getDate();
+        if (Date != null) {
+            stmt.bindString(3, Date);
+        }
+ 
+        String Cabbie_Name = entity.getCabbie_Name();
+        if (Cabbie_Name != null) {
+            stmt.bindString(4, Cabbie_Name);
+        }
+ 
         String Inicio = entity.getInicio();
         if (Inicio != null) {
-            stmt.bindString(3, Inicio);
+            stmt.bindString(5, Inicio);
         }
  
         String Destino = entity.getDestino();
         if (Destino != null) {
-            stmt.bindString(4, Destino);
+            stmt.bindString(6, Destino);
         }
  
-        String Date = entity.getDate();
-        if (Date != null) {
-            stmt.bindString(5, Date);
+        String Ref = entity.getRef();
+        if (Ref != null) {
+            stmt.bindString(7, Ref);
         }
  
         String Cabbie = entity.getCabbie();
         if (Cabbie != null) {
-            stmt.bindString(6, Cabbie);
+            stmt.bindString(8, Cabbie);
+        }
+ 
+        String Price = entity.getPrice();
+        if (Price != null) {
+            stmt.bindString(9, Price);
         }
     }
 
@@ -106,10 +127,13 @@ public class HistorialDao extends AbstractDao<Historial, Long> {
         Historial entity = new Historial( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // Request_Id
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // Inicio
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // Destino
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // Date
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // Cabbie
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // Date
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // Cabbie_Name
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // Inicio
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // Destino
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // Ref
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // Cabbie
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // Price
         );
         return entity;
     }
@@ -119,10 +143,13 @@ public class HistorialDao extends AbstractDao<Historial, Long> {
     public void readEntity(Cursor cursor, Historial entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setRequest_Id(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setInicio(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setDestino(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setDate(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setCabbie(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setDate(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setCabbie_Name(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setInicio(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setDestino(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setRef(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setCabbie(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setPrice(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
      }
     
     /** @inheritdoc */

@@ -1,3 +1,4 @@
+/*
 package com.YozziBeens.rivostaxi.actividades.Perfil;
 
 import android.app.AlertDialog;
@@ -28,9 +29,11 @@ import com.YozziBeens.rivostaxi.utilerias.Servicio;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+*/
 /**
  * Created by danixsanc on 16/01/2016.
- */
+ *//*
+
 public class Data_In extends AppCompatActivity {
 
     TextView txt_ingresar_codigo;
@@ -172,3 +175,4 @@ public class Data_In extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+*/

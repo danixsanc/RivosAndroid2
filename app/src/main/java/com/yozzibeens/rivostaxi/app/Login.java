@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,10 +14,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.YozziBeens.rivostaxi.controlador.Favorite_CabbieController;
+import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
+import com.YozziBeens.rivostaxi.controlador.HistorialController;
+import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
+import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
+import com.YozziBeens.rivostaxi.modelo.Client;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoHistorialCliente;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoLogin;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoLoginFacebook;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoLugaresFavoritos;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoTaxistasFavoritos;
+import com.YozziBeens.rivostaxi.servicios.WebService;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudHistorialCliente;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudLogin;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudLoginFacebook;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudLugaresFavoritos;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudRegistro;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudRegistroFacebook;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudTaxistasFavoritos;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -31,30 +50,22 @@ import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.controlador.ClientController;
-import com.YozziBeens.rivostaxi.controlador.Favorite_CabbieController;
-import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
-import com.YozziBeens.rivostaxi.controlador.HistorialController;
-import com.YozziBeens.rivostaxi.modelo.Client;
-import com.YozziBeens.rivostaxi.modelo.Favorite_Cabbie;
-import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
-import com.YozziBeens.rivostaxi.modelo.Historial;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
-import com.YozziBeens.rivostaxi.utilerias.Servicio;
-
+import com.flaviofaria.kenburnsview.KenBurnsView;
+import com.flaviofaria.kenburnsview.Transition;
+import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 
 
 public class Login extends AppCompatActivity {
 
     Context thisContext;
-    /*LoginButton loginButton;
-    CallbackManager callbackManager;*/
 
     Button btn_login;
     Button btn_forgot_password;
@@ -66,28 +77,52 @@ public class Login extends AppCompatActivity {
     TextView txt_iniciarsesion;
     LoginButton loginButton;
     CallbackManager callbackManager;
+    String FacebookName;
+    String FacebookEmail;
 
-    private static String KEY_SUCCESS = "Success";
-    private static String KEY_ERROR = "Error";
-    private static String KEY_ERROR_MSG = "Error_msg";
-    private static String KEY_CLIENT_ID = "Client_Id";
-    private static String KEY_NAME = "Name";
-    private static String KEY_PHONE = "Phone";
-    private static String KEY_EMAIL = "Email";
-    private static String KEY_CREATED_AT = "Created_At";
+    private ProgressDialog progressdialog;
+    private Gson gson;
+    private ClientController clientController;
+    private HistorialController historialController;
+    private Favorite_CabbieController favorite_cabbieController;
+    private Favorite_PlaceController favorite_placeController;
+    private ResultadoLogin resultadoLogin;
+    private ResultadoLoginFacebook resultadoLoginFacebook;
+    private ResultadoHistorialCliente resultadoHistorialCliente;
+    private ResultadoTaxistasFavoritos resultadoTaxistasFavoritos;
+    private ResultadoLugaresFavoritos resultadoLugaresFavoritos;
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        setContentView(R.layout.layout_login);
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy =
                     new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        setContentView(R.layout.layout_login);
+        this.gson = new Gson();
+        clientController = new ClientController(this);
+        historialController = new HistorialController(this);
+        favorite_cabbieController = new Favorite_CabbieController(this);
+        favorite_placeController = new Favorite_PlaceController(this);
+
+
+        KenBurnsView kbv = (KenBurnsView) findViewById(R.id.image2);
+        kbv.setTransitionListener(new KenBurnsView.TransitionListener() {
+            @Override
+            public void onTransitionStart(Transition transition) {
+            }
+            @Override
+            public void onTransitionEnd(Transition transition) {
+
+            }
+        });
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -97,9 +132,6 @@ public class Login extends AppCompatActivity {
         thisContext = this;
         callbackManager = CallbackManager.Factory.create();
         Typeface RobotoCondensed_Regular = Typeface.createFromAsset(this.getAssets(), "RobotoCondensed-Regular.ttf");
-
-        /*txt_iniciarsesion = (TextView) findViewById(R.id.txt_iniciarsesion);
-        txt_iniciarsesion.setTypeface(RobotoCondensed_Regular);*/
 
         edtxt_email = (MaterialEditText) findViewById(R.id.edtxt_email);
         edtxt_email.setTypeface(RobotoCondensed_Regular);
@@ -124,223 +156,70 @@ public class Login extends AppCompatActivity {
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setTypeface(RobotoCondensed_Regular);
         loginButton.setReadPermissions(Arrays.asList("public_profile, email"));
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>()
-        {
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+
             @Override
-            public void onSuccess(LoginResult loginResult)
-            {
+            public void onSuccess(LoginResult loginResult) {
+
+                progressdialog = new ProgressDialog(Login.this);
+                progressdialog.setMessage("Iniciando, espere");
+                progressdialog.setCancelable(true);
+                progressdialog.setCanceledOnTouchOutside(false);
+                progressdialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        progressdialog.dismiss();
+                    }
+                });
+                progressdialog.show();
+
                 GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
-                @Override
-                public void onCompleted(JSONObject object, final GraphResponse response)
-                {
-                    Log.v("Login", response.toString());
-                    final ProgressDialog dialog = ProgressDialog.show(Login.this, "Iniciando Sesion", "Espere...", true);
-                    dialog.show();
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable()
-                    {
-                        public void run()
-                        {
-                            Servicio servicio = new Servicio();
-                            Log.d("Button", "Login");
-                            try
-                            {
-                                Log.v("Name:", response.getJSONObject().get("name").toString());
+                    @Override
+                    public void onCompleted(JSONObject object, final GraphResponse response) {
+                        Log.v("Login", response.toString());
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            public void run() {
+                                Log.d("Button", "Login");
+                                try {
+                                    Log.v("Name:", response.getJSONObject().get("name").toString());
 
-                                final String email = response.getJSONObject().get("email").toString();
-                                final String name = response.getJSONObject().get("name").toString();
+                                    FacebookEmail = response.getJSONObject().get("email").toString();
+                                    FacebookName = response.getJSONObject().get("name").toString();
+                                    SolicitudLoginFacebook oData = new SolicitudLoginFacebook();
+                                    oData.setEmail(FacebookEmail);
+                                    LoginFacebookWebService(gson.toJson(oData));
 
-                                JSONObject json = servicio.loginUserFB(email);
-                                if (json.getString(KEY_SUCCESS) != null)
-                                {
-                                    String res = json.getString(KEY_SUCCESS);
-                                    if (Integer.parseInt(res) == 1)
-                                    {
-                                        JSONObject json_user = json.getJSONObject("User");
-                                        Client cliente = new Client(null, json_user.getString(KEY_CLIENT_ID),
-                                                json_user.getString(KEY_NAME),
-                                                json_user.getString(KEY_EMAIL),
-                                                json_user.getString(KEY_PHONE));
+                                } catch (JSONException e) {
 
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(Login.this, R.style.AppCompatAlertDialogStyle);
+                                    builder.setTitle("Error");
+                                    builder.setMessage("No se pudo registrar con facebook debido a que no se encontro correo " +
+                                            "valido. Porfavor cree una cuenta con correo valido  para continuar.");
+                                    builder.setPositiveButton("OK",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int which) {
 
-
-                                        ClientController clientController = new ClientController(getApplicationContext());
-                                        clientController.guardarClient(cliente);
-
-                                        Preferencias preferencias = new Preferencias(getApplicationContext());
-                                        preferencias.setClient_Id(cliente.getClient_Id());
-                                        preferencias.setSesion(false);
-
-                                        String Client_Id = preferencias.getClient_Id();
-
-                                        int val = 0;
-                                        final JSONObject json1 = servicio.getClientHistory(Client_Id);
-                                        try {
-                                            if (json1.getString("Success") != null) {
-                                                String res1 = json1.getString("Success");
-                                                if (Integer.parseInt(res1) == 1)
-                                                {
-                                                    val = json1.getInt("num");
-
-                                                    HistorialController historialController2 = new HistorialController(getApplicationContext());
-                                                    historialController2.eliminarTodo();
-                                                    for (int i = 0; i < val; i++)
-                                                    {
-                                                        JSONObject json_user1 = json1.getJSONObject("Request"+(i+1));
-                                                        Historial historial = new Historial(null, json_user1.getString("Request_Id"), json_user1.getString("Latitude_In"),
-                                                                json_user1.getString("Latitude_Fn"),json_user1.getString("Date"),json_user1.getString("Name"));
-
-                                                        HistorialController historialController = new HistorialController(getApplicationContext());
-                                                        historialController.guardarHistorial(historial);
-                                                    }
-                                                }
-                                            }
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-
-
-
-
-
-
-                                        final JSONObject json2 = servicio.getFavoriteCabbie(Client_Id);
-                                        try {
-                                            if (json2.getString("Success") != null) {
-                                                String res3 = json2.getString("Success");
-                                                if (Integer.parseInt(res3) == 1)
-                                                {
-
-                                                    int val2 = json2.getInt("num");
-                                                    Favorite_CabbieController favorite_cabbieController = new Favorite_CabbieController(getApplicationContext());
-                                                    favorite_cabbieController.eliminarTodo();
-                                                    for (int i = 0; i < val2; i++)
-                                                    {
-
-                                                        JSONObject json_user2 = json2.getJSONObject("Cabbie_Id"+(i+1));
-
-                                                        Favorite_Cabbie favorite_cabbie = new Favorite_Cabbie(null, json_user2.getString("Cabbie_Id"),
-                                                                json_user2.getString("Name"),json_user2.getString("Company"));
-
-                                                        favorite_cabbieController = new Favorite_CabbieController(getApplicationContext());
-                                                        favorite_cabbieController.guardarFavorite_Cabbie(favorite_cabbie);
-
-                                                    }
-                                                }
-                                            }
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-
-
-
-
-                                        final JSONObject json3 = servicio.getFavoritePlace(Client_Id);
-                                        try {
-                                            if (json3.getString("Success") != null) {
-                                                String res5 = json3.getString("Success");
-                                                if (Integer.parseInt(res5) == 1)
-                                                {
-
-                                                    int val3 = json3.getInt("num");
-                                                    Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getApplicationContext());
-                                                    favorite_placeController.eliminarTodo();
-                                                    for (int i = 0; i < val3; i++)
-                                                    {
-
-                                                        JSONObject json_user3 = json3.getJSONObject("Place"+(i+1));
-
-                                                        Favorite_Place favorite_place = new Favorite_Place(null, json_user3.getString("Place_Favorite_Id"),
-                                                                json_user3.getString("Place_Name"),json_user3.getString("Desc_Place"),
-                                                                json_user3.getString("Latitude"), json_user3.getString("Longitude"));
-
-                                                        favorite_placeController = new Favorite_PlaceController(getApplicationContext());
-                                                        favorite_placeController.guardarFavorite_Place(favorite_place);
-
-                                                    }
-                                                }
-                                            }
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                        Intent main = new Intent(getApplicationContext(), Main.class);
-                                        main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        startActivity(main);
-                                        finish();
-                                    }
-                                    else
-                                    {
-                                        String password = "123456";
-
-                                        String phone = "";
-                                        JSONObject json2 = servicio.registerUserFb(name, phone, email, password);
-                                        try
-                                        {
-                                            if (json2.getString(KEY_SUCCESS) != null)
-                                            {
-                                                String res2 = json2.getString(KEY_SUCCESS);
-                                                if (Integer.parseInt(res2) == 1)
-                                                {
-                                                    JSONObject json_user = json2.getJSONObject("User");
-                                                    servicio.logoutUser(getApplicationContext());
-                                                    Client cliente = new Client(null, json_user.getString(KEY_CLIENT_ID),
-                                                            json_user.getString(KEY_NAME),
-                                                            json_user.getString(KEY_EMAIL),
-                                                            json_user.getString(KEY_PHONE));
-
-                                                    ClientController clientController = new ClientController(getApplicationContext());
-                                                    clientController.guardarClient(cliente);
-
-                                                    Preferencias preferencias = new Preferencias(getApplicationContext());
-                                                    preferencias.setClient_Id(cliente.getClient_Id());
-                                                    preferencias.setSesion(false);
-
-                                                    Intent main = new Intent(getApplicationContext(), Main.class);
-                                                    main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                    startActivity(main);
+                                                    LoginManager.getInstance().logOut();
+                                                    Intent i = new Intent(getApplicationContext(), Registro.class);
+                                                    startActivity(i);
                                                     finish();
+                                                    Log.e("info", "OK");
                                                 }
-                                            }
-                                        }
-                                        catch (JSONException e)
-                                        {
-                                            e.printStackTrace();
-                                        }
-                                    }
+                                            });
+                                    builder.show();
                                 }
                             }
-                            catch (JSONException e)
-                            {
-
-                                AlertDialog.Builder builder = new AlertDialog.Builder(Login.this, R.style.AppCompatAlertDialogStyle);
-                                builder.setTitle("Error");
-                                builder.setMessage("No se pudo registrar con facebook debido a que no se encontro correo " +
-                                        "valido. Porfavor cree una cuenta con correo valido  para continuar.");
-                                builder.setPositiveButton("OK",
-                                        new DialogInterface.OnClickListener() {
-                                            public void onClick(DialogInterface dialog, int which) {
-
-                                                LoginManager.getInstance().logOut();
-                                                Intent i = new Intent(getApplicationContext(), Registro.class);
-                                                startActivity(i);
-                                                finish();
-                                                Log.e("info", "OK");
-                                            }
-                                        });
-                                builder.show();
-                            }
-                            dialog.dismiss();
-                        }
-                    }, 5000);
-                }
+                        }, 5000);
+                    }
                 });
-                    Bundle parameters = new Bundle();
-                    parameters.putString("fields", "id,name,email");
-                    request.setParameters(parameters);
-                    request.executeAsync();
+                Bundle parameters = new Bundle();
+                parameters.putString("fields", "id,name,email");
+                request.setParameters(parameters);
+                request.executeAsync();
 
             }
+
 
             @Override
             public void onCancel() {
@@ -362,170 +241,6 @@ public class Login extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*loginButton.setReadPermissions(Arrays.asList("public_profile, email"));
-
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                if (exiteConexionInternet()) {
-                    GraphRequest request = GraphRequest.newMeRequest(loginResult.getAccessToken(),
-                            new GraphRequest.GraphJSONObjectCallback() {
-                                @Override
-                                public void onCompleted(JSONObject object, final GraphResponse response) {
-                                    Log.v("Login", response.toString());
-
-                                    final ProgressDialog dialog = ProgressDialog.show(Login.this, "Iniciando Sesion", "Espere...", true);
-                                    dialog.show();
-                                    Handler handler = new Handler();
-                                    handler.postDelayed(new Runnable() {
-                                        public void run() {
-                                            Servicio userFunction = new Servicio();
-                                            Log.d("Button", "Login");
-                                            try {
-                                                Log.v("Name:", response.getJSONObject().get("name").toString());
-
-                                                final String email = response.getJSONObject().get("email").toString();
-                                                final String name = response.getJSONObject().get("name").toString();
-
-                                                JSONObject json = userFunction.loginUserFB(email);
-                                                if (json.getString(KEY_SUCCESS) != null) {
-                                                    String res = json.getString(KEY_SUCCESS);
-                                                    if (Integer.parseInt(res) == 1) {
-
-
-                                                        //DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-                                                        JSONObject json_user = json.getJSONObject("User");
-                                                        userFunction.logoutUser(getApplicationContext());
-
-                                                        Client cliente = new Client(null, json_user.getString(KEY_CLIENT_ID),
-                                                                json_user.getString(KEY_NAME),
-                                                                json_user.getString(KEY_EMAIL),
-                                                                json_user.getString(KEY_PHONE));
-
-                                                        ClientController clientController = new ClientController(getApplicationContext());
-                                                        clientController.guardarClient(cliente);
-
-
-
-                                                        Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                                                        main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                        startActivity(main);
-                                                        finish();
-                                                    } else {
-                                                        String password = "123456";
-
-                                                        String phone = "";
-                                                        JSONObject json2 = userFunction.registerUserFb(name, phone, email, password);
-                                                        try {
-                                                            if (json2.getString(KEY_SUCCESS) != null) {
-                                                                String res2 = json2.getString(KEY_SUCCESS);
-
-                                                                if (Integer.parseInt(res2) == 1) {
-
-                                                                    JSONObject json_user = json2.getJSONObject("User");
-                                                                    userFunction.logoutUser(getApplicationContext());
-
-                                                                    Client cliente = new Client(null, json_user.getString(KEY_CLIENT_ID),
-                                                                            json_user.getString(KEY_NAME),
-                                                                            json_user.getString(KEY_EMAIL),
-                                                                            json_user.getString(KEY_PHONE));
-
-                                                                    ClientController clientController = new ClientController(getApplicationContext());
-                                                                    clientController.guardarClient(cliente);
-
-                                                                    Intent main = new Intent(getApplicationContext(), MainActivity.class);
-                                                                    main.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                                                    startActivity(main);
-                                                                    finish();
-                                                                }
-                                                            }
-
-                                                        } catch (JSONException e) {
-                                                            e.printStackTrace();
-                                                        }
-
-                                                    }
-                                                }
-
-                                            } catch (JSONException e) {
-                                                //e.printStackTrace();
-                                                AlertDialog.Builder builder = new AlertDialog.Builder(
-                                                        Login.this, R.style.AppCompatAlertDialogStyle);
-                                                builder.setTitle("Error");
-                                                builder.setMessage("No se pudo registrar con facebook debido a que no se encontro correo " +
-                                                        "valido. Porfavor cree una cuenta con correo valido  para continuar.");
-                                                builder.setPositiveButton("OK",
-                                                        new DialogInterface.OnClickListener() {
-                                                            public void onClick(DialogInterface dialog, int which) {
-
-                                                                LoginManager.getInstance().logOut();
-                                                                Intent i = new Intent(getApplicationContext(), RegistroSolicitud.class);
-                                                                startActivity(i);
-                                                                finish();
-                                                                Log.e("info", "OK");
-                                                            }
-                                                        });
-                                                builder.show();
-                                            }
-                                            dialog.dismiss();
-                                        }
-                                    }, 5000);  // 3000 milliseconds
-
-
-                                }
-                            });
-                    Bundle parameters = new Bundle();
-                    parameters.putString("fields", "id,name,email");
-                    request.setParameters(parameters);
-                    request.executeAsync();
-                } else {
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(Login.this, R.style.AppCompatAlertDialogStyle);
-                    dialog.setMessage("En estos momentos no se pueden modificar los datos, porfavor intentelo de nuevo mas tarde.");
-                    dialog.setCancelable(true);
-                    dialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    dialog.show();
-                }
-            }
-
-            @Override
-            public void onCancel() {
-                Toast.makeText(thisContext, "Cancel!", Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(Login.this, R.style.AppCompatAlertDialogStyle);
-                builder.setTitle("Error de conexion");
-                builder.setMessage("Error al inciar con facebook." + exception);
-                builder.setPositiveButton("OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Log.e("info", "OK");
-                            }
-                        });
-                builder.show();
-            }
-        });
-*/
         btn_go_to_register.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), Registro.class);
@@ -537,163 +252,370 @@ public class Login extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
-                final ProgressDialog dialog = ProgressDialog.show(Login.this, "Iniciando", "Espere...", true);
-                dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                dialog.show();
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        String email = edtxt_email.getText().toString();
-                        String password = edtxt_password.getText().toString();
-
-                        Servicio servicio = new Servicio();
-                        final JSONObject json = servicio.loginUser(email, password);
-                        try
-                        {
-                            if (json.getString(KEY_SUCCESS) != null) {
-                                String res = json.getString(KEY_SUCCESS);
-                                if (Integer.parseInt(res) == 1) {
-                                    JSONObject json_user = json.getJSONObject("User");
-                                    servicio.logoutUser(getApplicationContext());
-
-                                    Client client = new Client(null, json_user.getString("Client_Id"), json_user.getString("Name"),
-                                            json_user.getString("Email"), json_user.getString("Phone"));
-                                    ClientController clientController = new ClientController(getApplicationContext());
-                                    clientController.guardarOActualizarClient(client);
-
-                                    Preferencias preferencias = new Preferencias(getApplicationContext());
-                                    preferencias.setSesion(false);
-                                    preferencias.setClient_Id(json_user.getString("Client_Id"));
-
-                                    String Client_Id = preferencias.getClient_Id();
-
-                                    int val = 0;
-                                    final JSONObject json1 = servicio.getClientHistory(Client_Id);
-                                    try {
-                                        if (json1.getString("Success") != null) {
-                                            String res1 = json1.getString("Success");
-                                            if (Integer.parseInt(res1) == 1)
-                                            {
-                                                val = json1.getInt("num");
-
-                                                HistorialController historialController2 = new HistorialController(getApplicationContext());
-                                                historialController2.eliminarTodo();
-                                                for (int i = 0; i < val; i++)
-                                                {
-                                                    JSONObject json_user1 = json1.getJSONObject("Request"+(i+1));
-                                                    Historial historial = new Historial(null, json_user1.getString("Request_Id"), json_user1.getString("Latitude_In"),
-                                                            json_user1.getString("Latitude_Fn"),json_user1.getString("Date"),json_user1.getString("Name"));
-
-                                                    HistorialController historialController = new HistorialController(getApplicationContext());
-                                                    historialController.guardarHistorial(historial);
-                                                }
-                                            }
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
-
-
-
-
-
-                                    final JSONObject json2 = servicio.getFavoriteCabbie(Client_Id);
-                                    try {
-                                        if (json2.getString("Success") != null) {
-                                            String res3 = json2.getString("Success");
-                                            if (Integer.parseInt(res3) == 1)
-                                            {
-
-                                                int val2 = json2.getInt("num");
-                                                Favorite_CabbieController favorite_cabbieController = new Favorite_CabbieController(getApplicationContext());
-                                                favorite_cabbieController.eliminarTodo();
-                                                for (int i = 0; i < val2; i++)
-                                                {
-
-                                                    JSONObject json_user2 = json2.getJSONObject("Cabbie_Id"+(i+1));
-
-                                                    Favorite_Cabbie favorite_cabbie = new Favorite_Cabbie(null, json_user2.getString("Cabbie_Id"),
-                                                            json_user2.getString("Name"),json_user2.getString("Company"));
-
-                                                    favorite_cabbieController = new Favorite_CabbieController(getApplicationContext());
-                                                    favorite_cabbieController.guardarFavorite_Cabbie(favorite_cabbie);
-
-                                                }
-                                            }
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
-
-
-
-                                    final JSONObject json3 = servicio.getFavoritePlace(Client_Id);
-                                    try {
-                                        if (json3.getString("Success") != null) {
-                                            String res5 = json3.getString("Success");
-                                            if (Integer.parseInt(res5) == 1)
-                                            {
-
-                                                int val3 = json3.getInt("num");
-                                                Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getApplicationContext());
-                                                favorite_placeController.eliminarTodo();
-                                                for (int i = 0; i < val3; i++)
-                                                {
-
-                                                    JSONObject json_user3 = json3.getJSONObject("Place"+(i+1));
-
-                                                    Favorite_Place favorite_place = new Favorite_Place(null, json_user3.getString("Place_Favorite_Id"),
-                                                            json_user3.getString("Place_Name"),json_user3.getString("Desc_Place"),
-                                                            json_user3.getString("Latitude"), json_user3.getString("Longitude"));
-
-                                                    favorite_placeController = new Favorite_PlaceController(getApplicationContext());
-                                                    favorite_placeController.guardarFavorite_Place(favorite_place);
-
-                                                }
-                                            }
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                    Intent main = new Intent(getApplicationContext(), Main.class);
-                                    startActivity(main);
-                                    finish();
-                                } else {
-                                    AlertDialog.Builder dialog = new AlertDialog.Builder(Login.this, R.style.AppCompatAlertDialogStyle);
-                                    dialog.setMessage("Usuario/Contraseña Incorrecto(a)");
-                                    dialog.setCancelable(false);
-                                    dialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            dialog.cancel();
-                                        }
-                                    });
-                                    dialog.show();
-                                }
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        dialog.dismiss();
-                    }
-                }, 3000);
+                String email = edtxt_email.getText().toString();
+                String password = edtxt_password.getText().toString();
+                SolicitudLogin oUsuario = new SolicitudLogin();
+                oUsuario.setEmail(email);
+                oUsuario.setPassword(password);
+                LoginWebService(gson.toJson(oUsuario));
             }
         });
     }
 
 
 
-    public boolean exiteConexionInternet() {
-        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
-            return true;
-        }
-        return false;
+    private void LoginWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.LoginWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+                progressdialog = new ProgressDialog(Login.this);
+                progressdialog.setMessage("Iniciando, espere");
+                progressdialog.setCancelable(true);
+                progressdialog.setCanceledOnTouchOutside(false);
+                progressdialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        progressdialog.dismiss();
+                    }
+                });
+                progressdialog.show();
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoLogin = gson.fromJson(result.get("Resultado").toString(), ResultadoLogin.class);
+                        if ((!resultadoLogin.isError()) && resultadoLogin.getData() != null) {
+                            clientController.eliminarTodo();
+                            clientController.guardarOActualizarClient(resultadoLogin.getData());
+
+                            Preferencias preferencias = new Preferencias(getApplicationContext());
+                            String clientId = resultadoLogin.getData().get(0).getClient_Id();
+                            preferencias.setClient_Id(clientId);
+                            preferencias.setSesion(false);
+
+                            Intent main = new Intent(getApplicationContext(), Main.class);
+                            startActivity(main);
+                            finish();
+                        }
+                    }
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+                if (resultadoLogin.isError())
+                {
+                    String messageError = resultadoLogin.getMessage();
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(Login.this, R.style.AppCompatAlertDialogStyle);
+                    dialog.setMessage(messageError);
+                    dialog.setCancelable(true);
+                    dialog.setNegativeButton("OK", new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            dialog.cancel();
+                        }
+                    });
+                    dialog.show();
+                }
+                else {
+                    Preferencias preferencias = new Preferencias(getApplicationContext());
+                    String clientId = preferencias.getClient_Id();
+                    SolicitudTaxistasFavoritos oData = new SolicitudTaxistasFavoritos();
+                    oData.setClient_Id(clientId);
+                    TaxistasFavoritosWebService(gson.toJson(oData));
+                }
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+            }
+        });
+        servicioAsyncService.execute();
     }
+
+    private void LoginFacebookWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.LoginFacebookWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoLoginFacebook = gson.fromJson(result.get("Resultado").toString(), ResultadoLoginFacebook.class);
+                        if ((!resultadoLoginFacebook.isError()) && resultadoLoginFacebook.getData() != null) {
+                            clientController.eliminarTodo();
+                            clientController.guardarOActualizarClient(resultadoLoginFacebook.getData());
+
+                            Preferencias preferencias = new Preferencias(getApplicationContext());
+                            String clientId = resultadoLoginFacebook.getData().get(0).getClient_Id();
+                            preferencias.setClient_Id(clientId);
+                            preferencias.setSesion(false);
+
+
+                            Intent main = new Intent(getApplicationContext(), Main.class);
+                            startActivity(main);
+                            finish();
+                        }
+                    }
+
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+                if (resultadoLoginFacebook.isError())
+                {
+                    SolicitudRegistroFacebook oData = new SolicitudRegistroFacebook();
+                    oData.setName(FacebookName);
+                    oData.setEmail(FacebookEmail);
+                    oData.setPhone("");
+                    oData.setPassword("123456");
+                    RegistroFacebookWebService(gson.toJson(oData));
+                }
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+            }
+        });
+        servicioAsyncService.execute();
+    }
+
+    private void RegistroFacebookWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.RegisterFacebookWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+                progressdialog = new ProgressDialog(Login.this);
+                progressdialog.setMessage("Registrando");
+                progressdialog.setCancelable(true);
+                progressdialog.setCanceledOnTouchOutside(false);
+                progressdialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        progressdialog.dismiss();
+                    }
+                });
+                progressdialog.show();
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoLoginFacebook = gson.fromJson(result.get("Resultado").toString(), ResultadoLoginFacebook.class);
+                        if ((!resultadoLoginFacebook.isError()) && resultadoLoginFacebook.getData() != null) {
+                            clientController.eliminarTodo();
+                            clientController.guardarOActualizarClient(resultadoLoginFacebook.getData());
+
+                            Preferencias preferencias = new Preferencias(getApplicationContext());
+                            String clientId = resultadoLoginFacebook.getData().get(0).getClient_Id();
+                            preferencias.setClient_Id(clientId);
+                            preferencias.setSesion(false);
+
+
+                            Intent main = new Intent(getApplicationContext(), Main.class);
+                            startActivity(main);
+                            finish();
+                        }
+                    }
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+            }
+        });
+        servicioAsyncService.execute();
+    }
+
+    private void HistorialClienteWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetClientHistoryWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {}
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoHistorialCliente = gson.fromJson(result.get("Resultado").toString(), ResultadoHistorialCliente.class);
+                        if ((!resultadoHistorialCliente.isError()) && resultadoHistorialCliente.getData() != null) {
+                            historialController.eliminarTodo();
+                            historialController.guardarOActualizarHistorial(resultadoHistorialCliente.getData());
+                        }
+                    }
+                }
+                catch (Exception error) {
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {}
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                Preferencias preferencias = new Preferencias(getApplicationContext());
+                String clientId = preferencias.getClient_Id();
+                SolicitudLugaresFavoritos oData = new SolicitudLugaresFavoritos();
+                oData.setClient_Id(clientId);
+                LugaresFavoritosWebService(gson.toJson(oData));
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {}
+        });
+        servicioAsyncService.execute();
+    }
+
+    private void TaxistasFavoritosWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetFavoriteCabbieWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoTaxistasFavoritos = gson.fromJson(result.get("Resultado").toString(), ResultadoTaxistasFavoritos.class);
+                        if ((!resultadoTaxistasFavoritos.isError()) && resultadoTaxistasFavoritos.getData() != null) {
+                            favorite_cabbieController.eliminarTodo();
+                            favorite_cabbieController.guardarOActualizarFavorite_Cabbie(resultadoTaxistasFavoritos.getData());
+                        }
+                    }
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                if (resultadoLogin.isError())
+                {
+                    String messageError = resultadoLogin.getMessage();
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(Login.this, R.style.AppCompatAlertDialogStyle);
+                    dialog.setMessage(messageError);
+                    dialog.setCancelable(true);
+                    dialog.setNegativeButton("OK", new DialogInterface.OnClickListener()
+                    {
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            dialog.cancel();
+                        }
+                    });
+                    dialog.show();
+                }
+                else {
+                    Preferencias preferencias = new Preferencias(getApplicationContext());
+                    String clientId = preferencias.getClient_Id();
+                    SolicitudHistorialCliente oData = new SolicitudHistorialCliente();
+                    oData.setClient_Id(clientId);
+                    HistorialClienteWebService(gson.toJson(oData));
+                }
+
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+            }
+        });
+        servicioAsyncService.execute();
+    }
+
+    private void LugaresFavoritosWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetFavoritePlaceWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoLugaresFavoritos = gson.fromJson(result.get("Resultado").toString(), ResultadoLugaresFavoritos.class);
+                        if ((!resultadoLugaresFavoritos.isError()) && resultadoLugaresFavoritos.getData() != null) {
+                            favorite_placeController.eliminarTodo();
+                            favorite_placeController.guardarOActualizarFavorite_Place(resultadoLugaresFavoritos.getData());
+                        }
+                    }
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+            }
+        });
+        servicioAsyncService.execute();
+    }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -702,8 +624,10 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public void resetpass (View view) {goToUrl ("http://appm.rivosservices.com/reset_pass.php");}
-    //public void PreguntasFrecuentes (View view) { goToUrl("http://appm.rivosservices.com/faqs.html");}
+    public void resetpass (View view) {
+        goToUrl("http://appm.rivosservices.com/reset_pass.php");
+    }
+
 
     public void goToUrl (String url) {
         Uri uriUrl = Uri.parse(url);

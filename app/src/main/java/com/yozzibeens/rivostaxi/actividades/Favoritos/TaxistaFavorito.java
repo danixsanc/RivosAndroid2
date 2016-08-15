@@ -2,6 +2,7 @@ package com.YozziBeens.rivostaxi.actividades.Favoritos;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,11 +22,20 @@ import android.widget.TextView;
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.adaptadores.AdaptadorTaxistaFavorito;
 import com.YozziBeens.rivostaxi.controlador.Favorite_CabbieController;
+import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
+import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
 import com.YozziBeens.rivostaxi.modelo.Favorite_Cabbie;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoEliminarHistorial;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoEliminarTaxistaFavorito;
+import com.YozziBeens.rivostaxi.servicios.WebService;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudEliminarHistorial;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudEliminarTaxistaFavorito;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
 import com.YozziBeens.rivostaxi.utilerias.Servicio;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -39,11 +49,15 @@ public class TaxistaFavorito  extends Fragment{
     int cabbie_id[] = new int[0];
     TextView txt_no_data_detected;
 
+    private Gson gson;
+    private ProgressDialog progressdialog;
+    private ResultadoEliminarTaxistaFavorito resultadoEliminarTaxistaFavorito;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootview = inflater.inflate(R.layout.favorite_cabbie, container, false);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+        this.gson = new Gson();
+
 
         Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
 
@@ -176,8 +190,10 @@ public class TaxistaFavorito  extends Fragment{
                                 Preferencias preferencias = new Preferencias(getActivity().getApplicationContext());
                                 String clienteid = preferencias.getClient_Id();
 
-                                Servicio servicio = new Servicio();
-                                servicio.deleteFavoriteCabbie(clienteid, cabbieid);
+                                SolicitudEliminarTaxistaFavorito oData = new SolicitudEliminarTaxistaFavorito();
+                                oData.setClient_Id(clienteid);
+                                oData.setCabbie_Id(cabbieid);
+                                DeleteTaxistaFavoritoWebService(gson.toJson(oData));
 
                                 Favorite_CabbieController favorite_cabbieController = new Favorite_CabbieController(getActivity().getApplicationContext());
                                 Favorite_Cabbie favorite_cabbie;
@@ -211,6 +227,67 @@ public class TaxistaFavorito  extends Fragment{
             TextView txtId;
             ImageButton btnOptions;
         }
+    }
+
+
+    private void DeleteTaxistaFavoritoWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(getActivity(), WebService.DeleteFavoriteCabbieWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+                progressdialog = new ProgressDialog(getActivity());
+                progressdialog.setMessage("Eliminando, espere");
+                progressdialog.setCancelable(true);
+                progressdialog.setCanceledOnTouchOutside(false);
+                progressdialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        progressdialog.dismiss();
+                    }
+                });
+                progressdialog.show();
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoEliminarTaxistaFavorito = gson.fromJson(result.get("Resultado").toString(), ResultadoEliminarTaxistaFavorito.class);
+                    }
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+                String messageError = resultadoEliminarTaxistaFavorito.getMessage();
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity(), R.style.AppCompatAlertDialogStyle);
+                dialog.setMessage(messageError);
+                dialog.setCancelable(true);
+                dialog.setNegativeButton("OK", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int which)
+                    {
+                        dialog.cancel();
+                    }
+                });
+                dialog.show();
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+            }
+        });
+        servicioAsyncService.execute();
     }
 
 }

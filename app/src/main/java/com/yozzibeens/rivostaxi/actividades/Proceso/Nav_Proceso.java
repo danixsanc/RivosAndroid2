@@ -1,7 +1,9 @@
 package com.YozziBeens.rivostaxi.actividades.Proceso;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -17,7 +19,23 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.YozziBeens.rivostaxi.actividades.Ayuda.Nav_Ayuda;
+import com.YozziBeens.rivostaxi.adaptadores.AdaptadorHistorial;
+import com.YozziBeens.rivostaxi.adaptadores.AdaptadorHistorialPendiente;
+import com.YozziBeens.rivostaxi.controlador.HistorialController;
+import com.YozziBeens.rivostaxi.controlador.HistorialPendienteController;
+import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
+import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
+import com.YozziBeens.rivostaxi.modelo.Historial;
+import com.YozziBeens.rivostaxi.modelo.HistorialPendiente;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoHistorialCliente;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoHistorialPendienteCliente;
+import com.YozziBeens.rivostaxi.servicios.WebService;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudHistorialCliente;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudHistorialPendienteCliente;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudLoginFacebook;
 import com.facebook.CallbackManager;
+import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.adaptadores.PendingHistory;
@@ -29,6 +47,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by danixsanc on 18/01/2016.
@@ -36,18 +56,14 @@ import java.util.ArrayList;
 public class Nav_Proceso extends AppCompatActivity {
 
 
-    MaterialEditText add_favorite_cabbie;
-    Button btn_add_favorite_cabbie;
-    Context thisContext;
-    CallbackManager callbackManager;
-    private static String KEY_SUCCESS = "Success";
-    private static String KEY_ERROR = "Error";
-    private static String KEY_ERROR_MSG = "Error_Msg";
-    ImageButton back_button;
+    private Gson gson;
+    private ResultadoHistorialPendienteCliente resultadoHistorialPendienteCliente;
+    private HistorialPendienteController historialPendienteController;
 
     TextView txt_no_data_detected;
     int val;
     String Client_Id;
+    private ProgressDialog progressdialog;
 
 
     ListView pendinghistoryList;
@@ -65,52 +81,21 @@ public class Nav_Proceso extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        this.gson = new Gson();
+
+        Preferencias preferencias = new Preferencias(getApplicationContext());
+        Client_Id = preferencias.getClient_Id();
+
+        SolicitudHistorialPendienteCliente oData = new SolicitudHistorialPendienteCliente();
+        oData.setClient_Id(Client_Id);
+        HistorialPendienteClienteWebService(gson.toJson(oData));
+
+        historialPendienteController = new HistorialPendienteController(this);
 
         Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
 
         txt_no_data_detected = (TextView) findViewById(R.id.txt_no_data_detected);
         txt_no_data_detected.setTypeface(RobotoCondensed_Regular);
-
-
-
-        Preferencias preferencias = new Preferencias(getApplicationContext());
-        Client_Id = preferencias.getClient_Id();
-
-
-        Servicio servicio = new Servicio();
-        final JSONObject json = servicio.getPendingRequest(Client_Id);
-
-        try {
-
-
-
-            if (json.getString(KEY_SUCCESS) != null) {
-                String res = json.getString(KEY_SUCCESS);
-                if (Integer.parseInt(res) == 1)
-                {
-                    val = json.getInt("num");
-                    request_id = new int[val];
-                    for (int i = 0; i < val; i++)
-                    {
-                        JSONObject json_user = json.getJSONObject("Request"+(i+1));
-                        pendinghistoryArray.add(new PendingHistory(json_user.getString("Date")));
-                        request_id[i] = json_user.getInt("Request_Id");
-                    }
-                }
-                else {
-                    txt_no_data_detected.setVisibility(View.VISIBLE);
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-        pendinghistoryList = (ListView) findViewById(R.id.list_pending_history);
-        pendinghistoryAdapter = new PendingHistoryCustomAdapter(getApplicationContext(), R.layout.row_pending_history, pendinghistoryArray);
-        pendinghistoryList.setItemsCanFocus(false);
-        pendinghistoryList.setAdapter(pendinghistoryAdapter);
-
     }
 
 
@@ -128,7 +113,78 @@ public class Nav_Proceso extends AppCompatActivity {
 
 
 
+    private void HistorialPendienteClienteWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetClientHistoryPendingWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+                progressdialog = new ProgressDialog(Nav_Proceso.this);
+                progressdialog.setMessage("Obteniendo Datos, espere");
+                progressdialog.setCancelable(true);
+                progressdialog.setCanceledOnTouchOutside(false);
+                progressdialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialog) {
+                        progressdialog.dismiss();
+                    }
+                });
+                progressdialog.show();
+            }
 
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoHistorialPendienteCliente = gson.fromJson(result.get("Resultado").toString(), ResultadoHistorialPendienteCliente.class);
+                        if ((!resultadoHistorialPendienteCliente.isError()) && resultadoHistorialPendienteCliente.getData() != null) {
+                            historialPendienteController.eliminarTodo();
+                            historialPendienteController.guardarOActualizarHistorialPendiente(resultadoHistorialPendienteCliente.getData());
+                        }
+                    }
+                }
+                catch (Exception error) {
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {}
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+
+
+
+                HistorialPendienteController historialPendienteController = new HistorialPendienteController(getApplicationContext());
+                List<HistorialPendiente> historialList = historialPendienteController.obtenerHistorialPendiente();
+
+                request_id = new int[historialList.size()];
+                for (int i=0; i < historialList.size(); i++)
+                {
+                    String id = historialList.get(i).getRequest_Id();
+                    String fecha = historialList.get(i).getDate();
+                    pendinghistoryArray.add(new PendingHistory(id, fecha));
+                    request_id[i] = Integer.valueOf(historialList.get(i).getRequest_Id());
+                }
+
+
+
+                pendinghistoryList = (ListView) findViewById(R.id.list_pending_history);
+                pendinghistoryAdapter = new PendingHistoryCustomAdapter(getApplicationContext(), R.layout.row_pending_history, pendinghistoryArray);
+                pendinghistoryList.setItemsCanFocus(false);
+                pendinghistoryList.setAdapter(pendinghistoryAdapter);
+                progressdialog.dismiss();
+
+
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+                progressdialog.dismiss();
+            }
+        });
+        servicioAsyncService.execute();
+    }
 
 
 

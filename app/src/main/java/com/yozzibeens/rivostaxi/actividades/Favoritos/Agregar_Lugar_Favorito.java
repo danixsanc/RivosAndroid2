@@ -2,7 +2,10 @@ package com.YozziBeens.rivostaxi.actividades.Favoritos;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
@@ -30,6 +33,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
+import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoAgregarLugarFavorito;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoEliminarLugarFavorito;
+import com.YozziBeens.rivostaxi.servicios.WebService;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudAgregarLugarFavorito;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -53,11 +62,13 @@ import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
 import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
 import com.YozziBeens.rivostaxi.utilerias.Servicio;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -123,6 +134,10 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
 
     ImageView img_Marker_center;
 
+    private Gson gson;
+
+    private ResultadoAgregarLugarFavorito resultadoAgregarLugarFavorito;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +146,7 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
         //----------TIPO DE FUENTE-----------------------------------------------------------------------------
         Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
 
+        this.gson = new Gson();
         autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
         autoCompleteTextView.setTypeface(RobotoCondensed_Regular);
 
@@ -191,12 +207,6 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
             longitude = location.getLongitude();
         }
 
-        /*Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            var = Integer.valueOf(bundle.getString("type"));
-            place_id = Integer.valueOf(bundle.getString("place_id"));
-        }
-*/
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
             placeId = bundle.getString("placeId");
@@ -250,7 +260,7 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
                             city = addresses.get(0).getLocality();
                             state = addresses.get(0).getAdminArea();
                             country = addresses.get(0).getCountryName();
-                            direccion = address + "" + city + "" + state + "" + country;
+                            direccion = address + " " + city + " " + state + " " + country;
                             mAutocompleteTextView.setText(direccion);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -260,176 +270,6 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
                 });
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       /*mMapView = (MapView) findViewById(R.id.map1);
-        mMapView.onCreate(savedInstanceState);
-        mMapView.onResume();
-
-        try {
-            MapsInitializer.initialize(this);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        googleMap = mMapView.getMap();
-        googleMap.setMyLocationEnabled(true);
-
-
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
-        String provider = locationManager.getBestProvider(criteria, true);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
-        }
-        Location location = locationManager.getLastKnownLocation(provider);
-
-
-        if(location!=null){
-            latitude = location.getLatitude();
-            longitude = location.getLongitude();
-        }
-
-
-        marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Aqui Me Encuentro");
-        marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
-
-        markerVer.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        markerEdt.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        markerEdt.draggable(true);
-
-        googleMap.addMarker(marker);
-
-        //latMarkerf = marker.getPosition().latitude;
-        //lngMarkerf = marker.getPosition().longitude;
-
-
-
-
-        if ((latitude == 0) && (longitude == 0))
-        {
-
-            AlertDialog.Builder dialog1 = new AlertDialog.Builder(this, R.style.AppCompatAlertDialogStyle);
-            dialog1.setMessage("El GPS esta desactivado, ¿Desea Activarlo?");
-            dialog1.setCancelable(false);
-            dialog1.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                    startActivity(intent);
-                }
-            });
-            dialog1.setNegativeButton("No", new DialogInterface.OnClickListener() {
-
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-            dialog1.show();
-        }
-
-
-        //googleMap.setOnMarkerClickListener(this);
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latitude, longitude)).zoom(12).build();
-        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-
-        if (var == 2)
-        {
-            mAutocompleteTextView.setKeyListener(null);
-            mAutocompleteTextView.setCursorVisible(false);
-            mAutocompleteTextView.setPressed(false);
-            mAutocompleteTextView.setFocusable(false);
-            PlaceName.setKeyListener(null);
-            PlaceName.setCursorVisible(false);
-            PlaceName.setPressed(false);
-            PlaceName.setFocusable(false);
-
-            Servicio servicio = new Servicio();
-            try {
-                JSONObject json = servicio.getFavoritePlaceForId(String.valueOf(place_id));
-
-                if (json.getString(KEY_SUCCESS) != null) {
-                    String res = json.getString(KEY_SUCCESS);
-                    if (Integer.parseInt(res) == 1) {
-                        JSONObject json_user = json.getJSONObject("Place1");
-                        String namePlace = json_user.getString("Place_Name");
-                        PlaceName.setText(namePlace);
-                        String direccion = json_user.getString("Desc_Place");
-                        mAutocompleteTextView.setText(direccion);
-                        titulo_add_place.setText("Ver Sitio");
-
-                        double lat = Double.valueOf(json_user.getString("Latitude"));
-                        double lng = Double.valueOf(json_user.getString("Longitude"));
-
-                        markerVer.position(new LatLng(lat, lng));
-                        googleMap.addMarker(markerVer);
-
-
-
-                        btn_add_favorite_place.setVisibility(View.GONE);
-                    }
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (var == 3)
-        {
-            Servicio servicio = new Servicio();
-            try {
-                JSONObject json = servicio.getFavoritePlaceForId(String.valueOf(place_id));
-
-                if (json.getString(KEY_SUCCESS) != null) {
-                    String res = json.getString(KEY_SUCCESS);
-                    if (Integer.parseInt(res) == 1) {
-                        JSONObject json_user = json.getJSONObject("Place1");
-                        String namePlace = json_user.getString("Place_Name");
-                        PlaceName.setText(namePlace);
-                        String direccion = json_user.getString("Desc_Place");
-                        mAutocompleteTextView.setText(direccion);
-                        titulo_add_place.setText("Editar Sitio");
-
-                        double lat = Double.valueOf(json_user.getString("Latitude"));
-                        double lng = Double.valueOf(json_user.getString("Longitude"));
-
-                        markerEdt.position(new LatLng(lat, lng));
-                        googleMap.addMarker(markerEdt);
-                        markerEdt.draggable(true);
-
-                        btn_add_favorite_place.setVisibility(View.GONE);
-                        btn_save_favorite_place.setVisibility(View.VISIBLE);
-                    }
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-        googleMap.setOnMarkerDragListener(this);
-*/
 
         btn_add_favorite_place.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -450,31 +290,35 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
 
                     if ((place_name.length() > 0) && (latitudeIcon != 0.0) && (longitudeIcon != 0.0)) {
                         Servicio servicio = new Servicio();
-                        try {
-                            JSONObject json = servicio.setFavoritePlace(Client_Id, place_name,
-                                    String.valueOf(latitudeIcon), String.valueOf(longitudeIcon), mAutocompleteTextView.getText().toString());
 
-                            if (json.getString(KEY_SUCCESS) != null) {
-                                String res = json.getString(KEY_SUCCESS);
-                                if (Integer.parseInt(res) == 1) {
+                        SolicitudAgregarLugarFavorito oData = new SolicitudAgregarLugarFavorito();
+                        oData.setClient_Id(Client_Id);
+                        oData.setDesc_Place(mAutocompleteTextView.getText().toString());
+                        oData.setPlace_Name(place_name);
+                        oData.setLatitude(String.valueOf(latitudeIcon));
+                        oData.setLongitude(String.valueOf(longitudeIcon));
+                        AgregarLugarFavoritoWebService(gson.toJson(oData));
+                        /*JSONObject json = servicio.setFavoritePlace(Client_Id, place_name,
+                                String.valueOf(latitudeIcon), String.valueOf(longitudeIcon), mAutocompleteTextView.getText().toString());
 
-                                    String PlaceId = json.getString("Place_Favorite_Id");
-                                    Favorite_PlaceController favorite_placeController  = new Favorite_PlaceController(getApplicationContext());
-                                    Favorite_Place favorite_place = new Favorite_Place(null , PlaceId,
-                                            PlaceName.getText().toString(), mAutocompleteTextView.getText().toString(),
-                                            String.valueOf(latitudeIcon), String.valueOf(longitudeIcon));
-                                    favorite_placeController.guardarFavorite_Place(favorite_place);
+                        if (json.getString(KEY_SUCCESS) != null) {
+                            String res = json.getString(KEY_SUCCESS);
+                            if (Integer.parseInt(res) == 1) {
 
-                                    Intent returnIntent = new Intent();
-                                    setResult(Activity.RESULT_OK, returnIntent);
+                                String PlaceId = json.getString("Place_Favorite_Id");
+                                Favorite_PlaceController favorite_placeController  = new Favorite_PlaceController(getApplicationContext());
+                                Favorite_Place favorite_place = new Favorite_Place(null , PlaceId,
+                                        PlaceName.getText().toString(), mAutocompleteTextView.getText().toString(),
+                                        String.valueOf(latitudeIcon), String.valueOf(longitudeIcon));
+                                favorite_placeController.guardarFavorite_Place(favorite_place);
 
-                                    finish();
-                                }
+                                Intent returnIntent = new Intent();
+                                setResult(Activity.RESULT_OK, returnIntent);
+
+                                finish();
                             }
+                        }*/
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
                     } else if ((mAutocompleteTextView.length() > 0) && (place_name.length() > 0)) {
                         Snackbar.make(view, "Parece que no has escrito una direccion valida.", Snackbar.LENGTH_LONG).show();
                     } else {
@@ -504,7 +348,7 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
                 if ((place_name.length() > 0) && (latMarkerf != 0.0) && (lngMarkerf != 0.0))
                 {
                     Servicio servicio = new Servicio();
-                    try {
+                    /*try {
                         JSONObject json = servicio.updateFavoritePlace(Client_Id, place_name,
                                 String.valueOf(latMarkerf), String.valueOf(lngMarkerf),
                                 mAutocompleteTextView.getText().toString(), String.valueOf(place_id));
@@ -519,7 +363,7 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
 
                     } catch (JSONException e) {
                         e.printStackTrace();
-                    }
+                    }*/
                 }
                 else if ((mAutocompleteTextView.length() > 0) && (place_name.length() > 0))
                 {
@@ -536,6 +380,60 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
         });
 
     }
+
+
+
+    private void AgregarLugarFavoritoWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(Agregar_Lugar_Favorito.this, WebService.SetFavoritePlaceWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoAgregarLugarFavorito = gson.fromJson(result.get("Resultado").toString(), ResultadoAgregarLugarFavorito.class);
+                    }
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                String PlaceId = resultadoAgregarLugarFavorito.getData();
+                Favorite_PlaceController favorite_placeController  = new Favorite_PlaceController(getApplicationContext());
+                Favorite_Place favorite_place = new Favorite_Place(null , PlaceId,
+                        PlaceName.getText().toString(), mAutocompleteTextView.getText().toString(),
+                        String.valueOf(latitudeIcon), String.valueOf(longitudeIcon));
+                favorite_placeController.guardarFavorite_Place(favorite_place);
+
+                Intent returnIntent = new Intent();
+                setResult(Activity.RESULT_OK, returnIntent);
+
+                finish();
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+            }
+        });
+        servicioAsyncService.execute();
+    }
+
+
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -625,7 +523,7 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
 
     public void cargarDatosPlacesVisitadas(String Client_Id)
     {
-        Servicio servicio = new Servicio();
+        /*Servicio servicio = new Servicio();
         final JSONObject json = servicio.getPlaceHistory(Client_Id);
         try {
             codes = new String[Integer.valueOf(json.getInt("num"))];
@@ -651,7 +549,7 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
             }
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     private AdapterView.OnItemClickListener mAutocompleteClickListener = new AdapterView.OnItemClickListener() {

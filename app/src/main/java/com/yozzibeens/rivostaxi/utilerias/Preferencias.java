@@ -2,6 +2,7 @@ package com.YozziBeens.rivostaxi.utilerias;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 
 /**
  * Created by danixsanc on 27/09/2015.

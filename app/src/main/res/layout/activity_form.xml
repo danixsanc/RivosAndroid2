@@ -10,93 +10,224 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="2dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_local_taxi_black_24dp"
+            android:tint="#cccdda"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_credit_card_black_24dp"
+            android:tint="#cccdda"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:src="@drawable/ic_done_white_24dp"
+            android:tint="#6d73bf"
+            android:layout_weight="1"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/PagoConTarjeta"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
+        android:visibility="gone"
         android:orientation="vertical">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/numberText"
-        android:textColor="#000"
-        android:inputType="number"
-        android:maxLength="16"
-        android:layout_marginBottom="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:hint="Numero de tarjeta"/>
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nombre que aparece en la tarjeta"
+            android:textSize="16dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="30dp"
+            android:background="#696969"
+            android:id="@+id/nameText"
+            android:inputType="text"
+            app:met_clearButton="true"
+            app:met_floatingLabel="highlight"
+            app:met_textColorHint="#8f8f8f"
+            app:met_baseColor="#696969"
+            app:met_primaryColor="#8f8f8f"
+            app:met_errorColor="#ffffff"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Numero de tarjeta"
+                android:textSize="16dp"
+                android:layout_weight="10"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="30dp"
+                android:background="#696969"
+                android:id="@+id/numberText"
+                android:inputType="number"
+                android:maxLength="16"
+                app:met_clearButton="true"
+                app:met_floatingLabel="highlight"
+                app:met_textColorHint="#8f8f8f"
+                app:met_baseColor="#696969"
+                app:met_primaryColor="#8f8f8f"
+                app:met_errorColor="#ffffff"/>
+
+            <ImageButton
+                android:id="@+id/btnVerTarjetas"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_add_white_24dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
+                android:gravity="bottom"
+                android:background="@color/transparent"
+                android:tint="#696969"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
-                <Spinner
-                    android:id="@+id/spinnerMonth"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:textColor="#000"
-                    style="@style/Base.Widget.AppCompat.Spinner"
-                    android:layout_marginRight="5dp"
-                    android:prompt="@string/spinner_title" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <Spinner
-                    android:id="@+id/spinnerYear"
-                    android:layout_width="100dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="5dp"
-                    android:prompt="@string/spinner_title"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1">
-                <EditText
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <com.rengwuxian.materialedittext.MaterialEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cvcText"
-                    android:hint="CVC"
-                    android:maxLength="3"
+                    android:hint="MM"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:background="#696969"
+                    android:id="@+id/vigenciaMonth"
+                    android:maxLength="2"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
                     android:inputType="number"
-                    android:layout_weight="2"
-                    android:textColor="#000" />
+                    app:met_clearButton="true"
+                    app:met_floatingLabel="highlight"
+                    app:met_textColorHint="#8f8f8f"
+                    app:met_baseColor="#696969"
+                    app:met_primaryColor="#8f8f8f"
+                    app:met_errorColor="#ffffff"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="/"
+                    android:textColor="#8f8f8f"
+                    android:textSize="28dp"
+                    android:layout_weight="0"
+                    android:id="@+id/dividerDate" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="YYYY"
+                    android:textAlignment="center"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:background="#696969"
+                    android:id="@+id/vigenciaYear"
+                    android:inputType="number"
+                    android:maxLength="4"
+                    app:met_clearButton="true"
+                    app:met_floatingLabel="highlight"
+                    app:met_textColorHint="#8f8f8f"
+                    app:met_baseColor="#696969"
+                    app:met_primaryColor="#8f8f8f"
+                    app:met_errorColor="#ffffff"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="CVC"
+                    android:textSize="16dp"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="30dp"
+                    android:background="#696969"
+                    android:id="@+id/cvcText"
+                    android:inputType="numberPassword"
+                    android:maxLength="3"
+                    app:met_clearButton="true"
+                    app:met_floatingLabel="highlight"
+                    app:met_textColorHint="#8f8f8f"
+                    app:met_baseColor="#696969"
+                    app:met_primaryColor="#8f8f8f"
+                    app:met_errorColor="#ffffff"/>
             </LinearLayout>
         </LinearLayout>
 
 
 
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/nameText"
-        android:textColor="#000"
-        android:layout_marginTop="15dp"
-        android:hint="Nombre que aparece en la tarjeta" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pagar"
-        android:layout_marginTop="30dp"
-        android:textColor="#000"
-        android:id="@+id/btnTokenize"
-        android:layout_marginBottom="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            app:mrl_rippleOverlay="true"
+            app:mrl_rippleColor="#9b9b9b"
+            app:mrl_rippleAlpha="0.2"
+            app:mrl_rippleDelayClick="false"
+            app:mrl_rippleHover="true">
+            <Button
+                android:id="@+id/btnTokenize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                android:elevation="2dp"
+                android:background="@drawable/rb_pagar"
+                android:textColor="#ffffff"
+                android:textAllCaps="false"
+                android:text="Confirmar Pago" />
+        </com.balysv.materialripple.MaterialRippleLayout>
 
 
 
@@ -123,5 +254,54 @@
         android:layout_below="@+id/outputView"
         android:layout_alignLeft="@+id/nameText"
         android:layout_alignStart="@+id/nameText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/PagoAlTaxista"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="El taxista no cuenta con permisos para cobrar con tarjeta de credito ni debito, por lo cual si desea pagar con tarjeta lo debera realizar directamente de la aplicacion.\n\nEl pago al taxista se debe realizar al abordar la unidad de lo contrario su solicitud podria ser rechazada."/>
+
+
+        <Switch
+            android:id="@+id/sw_deAcuerdo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_gravity="center"
+            android:text="Estoy de acuerdo"/>
+
+
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            app:mrl_rippleOverlay="true"
+            app:mrl_rippleColor="#9b9b9b"
+            app:mrl_rippleAlpha="0.2"
+            app:mrl_rippleDelayClick="false"
+            app:mrl_rippleHover="true">
+            <Button
+                android:id="@+id/btnFinalizar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="16dp"
+                android:elevation="2dp"
+                android:background="@drawable/rb_pagar"
+                android:textColor="#ffffff"
+                android:textAllCaps="false"
+                android:text="Finalizar" />
+        </com.balysv.materialripple.MaterialRippleLayout>
+
     </LinearLayout>
 </LinearLayout>
