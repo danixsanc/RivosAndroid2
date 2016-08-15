@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="50dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_marginTop="5dp"
+        android:id="@+id/rlContenedor"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/mr_sucursales">
+
+        <ImageView
+            android:id="@+id/imgSucursal"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:contentDescription="Sucursal"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_cargando" />
+
+
+        <RelativeLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/mr_sucursales_dummy"
+            android:padding="5dp">
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/mrComercios"
+        android:layout_width="20dp"
+        android:layout_height="10dp"
+        android:layout_marginTop="-2dp"
+        android:layout_below="@+id/rlContenedor"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="Sucursal"
+        android:tint="@color/colorAccent"
+        android:src="@drawable/ic_mr_comercios" />
+
+
+
+</RelativeLayout>

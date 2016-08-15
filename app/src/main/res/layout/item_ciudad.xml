@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.esoftmovil.enrutate.controles.CheckedTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/txtSettings"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:paddingLeft="30dp"
+    android:gravity="left|center"
+    android:textColor="#000"
+    android:textSize="18sp" />
