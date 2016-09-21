@@ -2,9 +2,15 @@ package com.YozziBeens.rivostaxi.servicios;
 
 public class WebService {
 
-    public static final String RegisterWebService = "http://appm.rivosservices.com/webservices/Register.php";
+    //public static final String LoginWebService = "http://appm.rivosservices.com/webservices/Login.php";
+    public static final String LoginWebService = "http://sistema.rivosservices.com/api/userLogin";
+    //public static final String RegisterWebService = "http://appm.rivosservices.com/webservices/Register.php";
+    public static final String RegisterWebService = "http://sistema.rivosservices.com/api/userRegister";
+
+
+
+
     public static final String ObtenerPrecioWebService = "http://appm.rivosservices.com/webservices/GetPriceComplete.php";
-    public static final String LoginWebService = "http://appm.rivosservices.com/webservices/Login.php";
     public static final String GetClientHistoryWebService = "http://appm.rivosservices.com/webservices/GetClientHistory.php";
     public static final String GetFavoriteCabbieWebService = "http://appm.rivosservices.com/webservices/GetFavoriteCabbie.php";
     public static final String DeleteFavoriteCabbieWebService = "http://appm.rivosservices.com/webservices/DeleteFavoriteCabbie.php";

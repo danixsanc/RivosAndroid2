@@ -7,26 +7,25 @@ import java.util.ArrayList;
 
 public class ResultadoLogin {
 
-    private ArrayList<Client> Data;
-    private boolean Error;
+    private ArrayList<Client> UserData;
+    private boolean IsError;
     private String Message;
-    private String Success;
 
 
     public ArrayList<Client> getData() {
-        return Data;
+        return UserData;
     }
 
     public void setData(ArrayList<Client> data) {
-        Data = data;
+        UserData = data;
     }
 
     public boolean isError() {
-        return Error;
+        return IsError;
     }
 
     public void setError(boolean error) {
-        Error = error;
+        IsError = error;
     }
 
     public String getMessage() {
@@ -36,18 +35,6 @@ public class ResultadoLogin {
     public void setMessage(String message) {
         Message = message;
     }
-
-    public String getSuccess() {
-        return Success;
-    }
-
-    public void setSuccess(String success) {
-        Success = success;
-    }
-
-
-
-
 
 
 }

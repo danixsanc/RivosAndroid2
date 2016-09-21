@@ -2,375 +2,375 @@
 <items version="2" >
 
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="08d34b2d135c1cc96ab506fd8bf6916d1e2f391a">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-panorama-8.4.0_76ebf9bb180742d1380aff1ce3c9d68a88555d7b/classes.dex" />
+        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-8.4.0_44a4d27615dc42dd3f8198e5a73bec64626d6a91/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="04de44f90606c77f3b28cf44861f306290505aac">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-8.4.0_18f85bbc624f63ead7ce35c8b7f7669a90007886/classes.dex" />
+        sha1="2d7fe76982677315c4dc4edfb459c8ca718a9d4c">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-8.4.0_dafe91161c652ab8b020157587245a10d91363e3/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-measurement/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="c54246475c1bb64ac6857d1320364bfbfeda2c46">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-fitness-8.4.0_b9f80bb81d7ef8f218085b041ad1ce11e0351071/classes.dex" />
+        sha1="613298b7aa012f121ce542881c0a599ebd8078f2">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-measurement-8.4.0_ddf0b1f853e99eb156c1ef28d9b46e559d5b63ae/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/customtabs/23.4.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="2d1eaa9e0b98f8fc4c2b989d9b30d4f1480648ac">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-customtabs-23.4.0_a2471bd839d4f6471bd42f59962e8b77f949d3af/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.4.0_a0d814810a38119f8e51dfac5709395ff9d94f1e/classes.dex" />
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.4.0_3d7cb606b609d49ec4dd9cf15317c35895a8877f/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="551e78f21acf69ebfb489c0e79647824c838013e">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-8.4.0_49f9d51552359af673e6281ff2d2466f69a00363/classes.dex" />
+        sha1="b82b8e847173c28efffcd291b2a0b1ae9ad17fa4">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-8.4.0_6649efef86664de1323ed33e99bd54b4c995654f/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.maps.android/android-maps-utils/0.3.4/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/fr.baloomba/viewpagerindicator/2.4.2/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="cf251baf39f5c5138224b67b4106eb6331abbd13">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.maps.android-android-maps-utils-0.3.4_562ea6958c23bb6abb322e06561b736e27dd85ae/classes.dex" />
+        sha1="1c0f42853ca7567a621142dc9b533b6428b37d73">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/fr.baloomba-viewpagerindicator-2.4.2_bb2a7d9faa20d24bf7c34ecbd291651a8d615435/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.balysv/material-ripple/1.0.2/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="c733e9d1b065d940a08f2fca0ff920dfc08d94cc">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.balysv-material-ripple-1.0.2_5d4dd813525581405b33ea380a4c83823ce28135/classes.dex" />
+        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-8.4.0_d7b1d7e9d9c868c7d66433a8c3231a5e404c4d25/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="1a78298e7724d5440d210bcb946b3493250d354d">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-plus-8.4.0_cf9e4eef12635c0b4c947f620a1d9493799cd70e/classes.dex" />
+        sha1="b36f30ac5ee5d5214f4b1e2ac49f11889d58e71a">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-drive-8.4.0_93ad4c3496f8922b732157a1a990e186f3acbd71/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.14.1/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="42a3ae86dd3ae2876d3e95c2e6e104ae57a50a65">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.android-facebook-android-sdk-4.14.1_02ddefb2b69a02fc1ef66dde14a1dc44db5af72f/classes.dex" />
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.1.1_f467bd5133b657dbd2f815e9050af4ab0fb287f5/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="0c3529d9491be892952749d252ae1defa9b1f937">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/cn.pedant.sweetalert-library-1.3_ca56f6b0f21d64df28a68f87d814165204867c86/classes.dex" />
+        sha1="4f1a63cb7bae9728301d384928e9da3d521a32d3">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_b6051042fa8b53e98cc6e947d9bb1c0e862f3ecd/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-8.4.0_b31751dcd74e1417149e03259d93c85d93763762/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.15.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="820605b42a2d3d9cb9e6c4cc7453fb4f802aedff">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.facebook.android-facebook-android-sdk-4.15.0_a6aa8146c58beba4178c7a393ea11e29548be786/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="b5e7892fb0708e792e0e933c4c0a0ca0ac7831fb">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-8.4.0_a5579666a80a9c0b421e2d5723fbd342cae60317/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="9fe026fb4c7fce21bc5142f6e1bdf844f28061ac">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appinvite-8.4.0_cf2ba4f5e02363b17391b3427f23e80b921830b9/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/de.hdodenhof/circleimageview/1.3.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="ac6948cce36f694f3eb3d73a135e298dc4b3527a">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/de.hdodenhof-circleimageview-1.3.0_bc6ac832be7cd40555fba8fca5f45ff66282a980/classes.dex" />
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/de.hdodenhof-circleimageview-1.3.0_5d77b3ae2579728d7b695e8106921aafd8e99345/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="966e5771a5a2ebfb31bf00d7cd6cd2546d245517">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-8.4.0_81ee4361341aebca8eccc589b520a1687a25fdd3/classes.dex" />
+        sha1="551e78f21acf69ebfb489c0e79647824c838013e">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-cast-8.4.0_d290d0521aa4099bb8bb699b9126d670d422895a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.0.0_a1feb0f95a67a829806a7254ad84472a58886708/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="dfecc4d835cdabcdecf7e95f0d20a3ef1e9d8ef4">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-8.4.0_255cca9a5e50e588d9dbb3868649373f3d5926ba/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.1.1_28140fd08140feffd080a4ba87b7d6e0cb50ad90/classes.dex" />
     </item>
     <item
         jar="/Users/danixsanc/.gradle/caches/modules-2/files-2.1/com.nineoldandroids/library/2.4.0/e9b63380f3a242dbdbf103a2355ad7e43bad17cb/library-2.4.0.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="e9b63380f3a242dbdbf103a2355ad7e43bad17cb">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/library-2.4.0_2085c8f7bbd07b3b3660d0dc2e2c1f1d4cbba560/classes.dex" />
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/library-2.4.0_2085c8f7bbd07b3b3660d0dc2e2c1f1d4cbba560/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.pnikosis/materialish-progress/1.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="2340b0e01b627d6b578fa245b187748affe9749e">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_0d1bb61e5602585c1f2ac65d1e594493246cdcd3/classes.dex" />
+        sha1="57487745ce450899f9f250d5ae5c092a682cd041">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.pnikosis-materialish-progress-1.0_404e55e9c7ff59b9b36c685bc5defb8c5609f171/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="8e673cdfadd8f2d98fdb2fda2285c30f6e449782">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-8.4.0_6983f04c674ec1b2358abbc383c5253a1c7fb7d7/classes.dex" />
+        sha1="3a364cc6b698d1b3b2d284f64618daaa7fe77ddf">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-games-8.4.0_a582ceb028d143fc427b41d9a6709f7239c8d042/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/customtabs/23.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="fef2b3e4b6b1b0e5fe7b69fa137a5fa55a3182ab">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-8.4.0_f08444aa24ce47742de740d68041f6276c56e8eb/classes.dex" />
+        sha1="2d1eaa9e0b98f8fc4c2b989d9b30d4f1480648ac">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-customtabs-23.4.0_86714f10d0f3626e6e54ee88ead0034948524e4e/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/libs/internal_impl-23.0.0.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.rengwuxian.materialedittext/library/2.1.4/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="03d38bb042efe3e5ce27ba66b729a9523c36d8fe">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.0.0_bae7e9a203ab4ad4e4a9e9f897249a83002905e3/classes.dex" />
+        sha1="288913b440a3c61c30aa171095453a605432277a">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.rengwuxian.materialedittext-library-2.1.4_a41f1a78fbd93c3c0e86af751ad0797047d34919/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.4.0_af092ecae12d124c75824639c54e277d9fe1511d/classes.dex" />
+        sha1="d9ecde39b460470e655de6e47c05573d2d5a8bfb">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-23.4.0_019a9ea2654a94446021e18edf3e9c2e4d384375/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.balysv/material-ripple/1.0.2/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.1.1_c9b8bfc172731ab3daa75e226a972caaac415638/classes.dex" />
+        sha1="c733e9d1b065d940a08f2fca0ff920dfc08d94cc">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.balysv-material-ripple-1.0.2_c8fa184279868d803d39de2d0d13def53b6ab036/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.maps.android/android-maps-utils/0.3.4/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.1.1_8cbbe306ee34f504c51288166ce3ee7b4679e7fc/classes.dex" />
+        sha1="cf251baf39f5c5138224b67b4106eb6331abbd13">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.maps.android-android-maps-utils-0.3.4_27452c8229b2ca64e039122db0c9fc95520c7426/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="1c9f35e952b212c843f7bd2c7eec8e82ad95602e">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-8.4.0_69ac4ecea6413ce4f3cfb83c0389bfc1a561bc17/classes.dex" />
     </item>
     <item
         jar="/Users/danixsanc/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-applinks-1.4.0_6b51023e5617421be5ba3d196b0f276f86647825/classes.dex" />
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-applinks-1.4.0_6b51023e5617421be5ba3d196b0f276f86647825/classes.dex" />
     </item>
     <item
         jar="/Users/danixsanc/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-tasks-1.4.0_9d442106e96b27bdab9896149257603a36a38067/classes.dex" />
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/bolts-tasks-1.4.0_9d442106e96b27bdab9896149257603a36a38067/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="e167a34eaca0b31704212f43f9576ea84e05046f">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wearable-8.4.0_0a24c1af17f540ff4a69a5d66ccaa88f628c4e5a/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.orhanobut/dialogplus/1.11/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="184f86117c6463267c1f0deba84d4853cb165c40">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.orhanobut-dialogplus-1.11_2c746346fc5d33d636ab9521e6a8012b8e4fd236/classes.dex" />
+        sha1="0194a7409c40de94fb539d4ad9928ec5d47afeb7">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-safetynet-8.4.0_e0ae9f559f1c28c457f344a9129adf646440e18a/classes.dex" />
     </item>
     <item
         jar="/Users/danixsanc/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.4.0_2e8369043439594710d4eb3d1e20e230eeb24525/classes.dex" />
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.4.0_2e8369043439594710d4eb3d1e20e230eeb24525/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-auth/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="1c9f35e952b212c843f7bd2c7eec8e82ad95602e">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-8.4.0_c89237462b5fe0b451281e5b278d43429f49e1c0/classes.dex" />
+        sha1="966e5771a5a2ebfb31bf00d7cd6cd2546d245517">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-auth-8.4.0_beff65be83cfd41f47a538736bd3af81f7bb56b7/classes.dex" />
     </item>
     <item
         jar="/Users/danixsanc/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.3_9944fdd5a392c209611941e5f5566208deacb980/classes.dex" />
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.3_9944fdd5a392c209611941e5f5566208deacb980/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="b82b8e847173c28efffcd291b2a0b1ae9ad17fa4">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-identity-8.4.0_247358026dacd003198afd5672d915d60d886010/classes.dex" />
+        sha1="a8412b654dab86d57bf90683367488211c8a81f1">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-location-8.4.0_cac8173c4a0c5ef6f054fb3465975f84785ab772/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="04de44f90606c77f3b28cf44861f306290505aac">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-maps-8.4.0_a2ba6859398f1d4a5c40b2702996f6f0d901386f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/cn.pedant.sweetalert/library/1.3/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="0c3529d9491be892952749d252ae1defa9b1f937">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/cn.pedant.sweetalert-library-1.3_da6f3975bc0bb0924f3864f49ff33ca910d99c7b/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="f2df436a8f02ce7e4d7d209671fc45f97c470f0e">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-8.4.0_73e968c161cf6f9497a656d174f5467773a79c94/classes.dex" />
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wallet-8.4.0_ad04cf562a3ff3a557ca569e63393983c8ad63b5/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-mediarouter-v7-23.0.0_7a8e7cfb1521953cc036dd2a3e9445bcbd7d6f26/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.1.1_f5b12dffe7b331ce63e09bfcc799375bb2069e5f/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.orhanobut/dialogplus/1.11/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="184f86117c6463267c1f0deba84d4853cb165c40">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.orhanobut-dialogplus-1.11_658de8eaa0851ca99c9a1877bec358ebf51caa38/classes.dex" />
+    </item>
+    <item
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/8.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.3"
+        sha1="08d34b2d135c1cc96ab506fd8bf6916d1e2f391a">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-panorama-8.4.0_cceb515ef0516c6705c17fe1bf36bcf5d754b224/classes.dex" />
     </item>
     <item
         jar="/Users/danixsanc/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife/6.1.0/63735f48b82bcd24cdd33821342428252eb1ca5a/butterknife-6.1.0.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-6.1.0_e00cd8162788d9535dc93852ed8878385a0fefcd/classes.dex" />
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/butterknife-6.1.0_e00cd8162788d9535dc93852ed8878385a0fefcd/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="170f64ec3b6586e5f38797b7ffd88576764affae">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_35ea4ada2a31710446aa1116ad083ee4a452380f/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/fr.baloomba/viewpagerindicator/2.4.2/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="1c0f42853ca7567a621142dc9b533b6428b37d73">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/fr.baloomba-viewpagerindicator-2.4.2_ec716fa969fde54f1ec05fd04194f8e14d10eaea/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-vision/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="dfecc4d835cdabcdecf7e95f0d20a3ef1e9d8ef4">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-vision-8.4.0_87897a81be8fa603e7337b74f14ead739f25cad9/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.rengwuxian.materialedittext/library/2.1.4/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="288913b440a3c61c30aa171095453a605432277a">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.rengwuxian.materialedittext-library-2.1.4_f10e2a2bf3a899cf1ad360e708e08c327a163326/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="65d086ee9daaf87b5af62ad24471edafa433354c">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appindexing-8.4.0_a0e988de2bea8fc91833eddba9a8c628a33f3444/classes.dex" />
+        sha1="8189ece458ef9a864566482084ddf091fc209219">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_c9e131252f9198b29cb203ff569add3a69e9a6d8/classes.dex" />
     </item>
     <item
         jar="/Users/danixsanc/.gradle/caches/modules-2/files-2.1/com.flaviofaria/kenburnsview/1.0.7/ce4e8bba9e026dd29f8110b2f6bb1fc4ecbdd9b1/kenburnsview-1.0.7.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="ce4e8bba9e026dd29f8110b2f6bb1fc4ecbdd9b1">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/kenburnsview-1.0.7_ac0ac988fdb13ac88a64f4086711de59805bc4e9/classes.dex" />
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/kenburnsview-1.0.7_ac0ac988fdb13ac88a64f4086711de59805bc4e9/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.pnikosis/materialish-progress/1.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="57487745ce450899f9f250d5ae5c092a682cd041">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.pnikosis-materialish-progress-1.0_6be94c256c8eca0184e5ced3629c459e80a0a2e5/classes.dex" />
+        sha1="c54246475c1bb64ac6857d1320364bfbfeda2c46">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-fitness-8.4.0_29ed619221e044c3fd5adda9f2ba7602a54ec62d/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="a8412b654dab86d57bf90683367488211c8a81f1">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-location-8.4.0_b0cb96b48ddc5f6893b6e79d6f31f8a9bfee107e/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.4.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="d9ecde39b460470e655de6e47c05573d2d5a8bfb">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-cardview-v7-23.4.0_3e1686fe5db2e60990914a264f0f4aa3983de1f5/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="b5e7892fb0708e792e0e933c4c0a0ca0ac7831fb">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-ads-8.4.0_b9f00fe2eb8e8d0246df48483ba60ea92cc80bb2/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="b36f30ac5ee5d5214f4b1e2ac49f11889d58e71a">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-drive-8.4.0_bbb0a2727e4a263b9aafbca7d83609477f1b9070/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-measurement/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="613298b7aa012f121ce542881c0a599ebd8078f2">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-measurement-8.4.0_805932119ad8ac6687e22f17b435e1fc70a69fd0/classes.dex" />
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-multidex-1.0.1_c43dd20ee7ab4a50bbca05db9474b707df7231e5/classes.dex" />
     </item>
     <item
         jar="/Users/danixsanc/.gradle/caches/modules-2/files-2.1/de.greenrobot/greendao/1.3.7/dda08161d004c4df96938da6909f1c2b96cd33c8/greendao-1.3.7.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="dda08161d004c4df96938da6909f1c2b96cd33c8">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/greendao-1.3.7_22159b1c40493b0904fb56974540530da8994528/classes.dex" />
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/greendao-1.3.7_22159b1c40493b0904fb56974540530da8994528/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/multidex/1.0.1/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-multidex-1.0.1_e2ca88751554870b607a4e3004fa68ea7312dc9b/classes.dex" />
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.4.0_957a742e90f670cebe17c8cb4d4267f7ae345da5/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="3a364cc6b698d1b3b2d284f64618daaa7fe77ddf">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-games-8.4.0_9a120b27560ab5584a17f31a13bf594070d476c5/classes.dex" />
+        sha1="e167a34eaca0b31704212f43f9576ea84e05046f">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-wearable-8.4.0_726af6db24c8993180c76d0fec8be39efb2364f1/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="9fe026fb4c7fce21bc5142f6e1bdf844f28061ac">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-appinvite-8.4.0_d980eb9e336131321ceee3dcb325c7627a1dbfcf/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.1.1_352f16eca600fc7c7b6617c2d8c5e0ad7720fa3f/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/8.4.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="0194a7409c40de94fb539d4ad9928ec5d47afeb7">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-safetynet-8.4.0_27df281c091d3a6d2eeb45b7d49a9a9bff0253fa/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="9cad249cf62751a323d9af568caf12284b7d6062">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-nearby-8.4.0_fe6f12490f8a7d7772cc83be8a3878496f526734/classes.dex" />
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-nearby-8.4.0_07f06daca796eb59380ec06f708de60020ab0197/classes.dex" />
     </item>
     <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/8.4.0/jars/classes.jar"
+        jar="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/8.4.0/jars/classes.jar"
         jumboMode="true"
         revision="23.0.3"
-        sha1="2d7fe76982677315c4dc4edfb459c8ca718a9d4c">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-gcm-8.4.0_2c9ef68d400b55a51ee3f6f4f7444f83dc60fb5f/classes.dex" />
+        sha1="1a78298e7724d5440d210bcb946b3493250d354d">
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-plus-8.4.0_ecf76ff94c440e7090ae31df3a9aeed722872386/classes.dex" />
     </item>
     <item
         jar="/Users/danixsanc/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.2.1/2287494d4f5f9f3a9a2bb6980e3f32053721b315/core-3.2.1.jar"
         jumboMode="true"
         revision="23.0.3"
         sha1="2287494d4f5f9f3a9a2bb6980e3f32053721b315">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/core-3.2.1_634efd7bde62376fbc8ac062e21b260248407f75/classes.dex" />
-    </item>
-    <item
-        jar="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/23.0.0/jars/classes.jar"
-        jumboMode="true"
-        revision="23.0.3"
-        sha1="d358b3dd49a7c67844622dcbc9cf4339e13952ce">
-        <dex dex="/Users/danixsanc/Desktop/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-mediarouter-v7-23.0.0_0bdb44355abcb457dfb264470bd51aa01cbbc1c9/classes.dex" />
+        <dex dex="/Users/danixsanc/Documents/RivosAndroid2/app/build/intermediates/transforms/dex/debug/folders/1000/10/core-3.2.1_634efd7bde62376fbc8ac062e21b260248407f75/classes.dex" />
     </item>
 
 </items>
