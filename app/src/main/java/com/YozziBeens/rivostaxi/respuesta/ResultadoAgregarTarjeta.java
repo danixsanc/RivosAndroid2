@@ -8,16 +8,15 @@ import java.util.ArrayList;
 
 public class ResultadoAgregarTarjeta {
 
-    private ArrayList<TarjetaId> Data;
+    private String Data;
     private boolean Error;
     private String Message;
-    private String Success;
 
-    public ArrayList<TarjetaId> getData() {
+    public String getData() {
         return Data;
     }
 
-    public void setData(ArrayList<TarjetaId> data) {
+    public void setData(String data) {
         Data = data;
     }
 
@@ -36,18 +35,6 @@ public class ResultadoAgregarTarjeta {
     public void setMessage(String message) {
         Message = message;
     }
-
-    public String getSuccess() {
-        return Success;
-    }
-
-    public void setSuccess(String success) {
-        Success = success;
-    }
-
-
-
-
 
 
 }

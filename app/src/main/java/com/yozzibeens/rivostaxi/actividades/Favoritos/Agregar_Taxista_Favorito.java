@@ -1,5 +1,5 @@
 package com.YozziBeens.rivostaxi.actividades.Favoritos;
-
+/*
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -52,10 +52,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
+*/
 /**
  * Created by danixsanc on 29/10/2015.
  */
+/*
 public class Agregar_Taxista_Favorito extends AppCompatActivity {
 
 
@@ -97,7 +98,7 @@ public class Agregar_Taxista_Favorito extends AppCompatActivity {
         txt_taxistas = (TextView) findViewById(R.id.txt_taxistas);
         txt_taxistas.setTypeface(RobotoCondensed_Regular);
 
-
+*/
         /*addfavoritecabbieList = (ListView) findViewById(R.id.list_cabbie_history);
         addfavoritecabbieAdapter = new AddFavoriteCabbieCustomAdapter(getApplicationContext(), R.layout.row_agregar_taxista_favorito, addfavoritecabbieArray);
         addfavoritecabbieList.setItemsCanFocus(false);
@@ -108,7 +109,7 @@ public class Agregar_Taxista_Favorito extends AppCompatActivity {
         //String Client_Id = preferencias.getClient_Id();
 
         //cargarDatosCabbiesRequest(Client_Id);
-
+/*
         this.gson = new Gson();
 
         Preferencias preferencias = new Preferencias(getApplicationContext());
@@ -182,7 +183,7 @@ public class Agregar_Taxista_Favorito extends AppCompatActivity {
                 }
             }
         });*/
-    }
+  /*  }
 
 
 
@@ -408,3 +409,4 @@ public class Agregar_Taxista_Favorito extends AppCompatActivity {
     }
 
 }
+*/

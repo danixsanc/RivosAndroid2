@@ -27,9 +27,12 @@ import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
 import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
 import com.YozziBeens.rivostaxi.modelo.Historial;
 import com.YozziBeens.rivostaxi.respuesta.ResultadoEliminarHistorial;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoHistorialCliente;
 import com.YozziBeens.rivostaxi.respuesta.ResultadoMensajeAyuda;
 import com.YozziBeens.rivostaxi.servicios.WebService;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudEliminarHistorial;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudHistorialCliente;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudLugaresFavoritos;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudMensajeAyuda;
 import com.YozziBeens.rivostaxi.utilerias.FechasBD;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
@@ -45,20 +48,19 @@ import java.util.List;
  */
 public class Nav_Historial extends AppCompatActivity {
 
-    private static String KEY_SUCCESS = "Success";
-
     TextView txt_no_data_detected;
 
     ListView historyList;
     HistoryCustomAdapter historyAdapter;
     ArrayList<AdaptadorHistorial> historyArray = new ArrayList<AdaptadorHistorial>();
 
-    int request_id[] = new int[0];
 
     private Gson gson;
     private ProgressDialog progressdialog;
     private ResultadoEliminarHistorial resultadoEliminarHistorial;
-
+    private ResultadoHistorialCliente resultadoHistorialCliente;
+    private HistorialController historialController;
+    private Preferencias preferencias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,20 +68,22 @@ public class Nav_Historial extends AppCompatActivity {
         setContentView(R.layout.nav_historial);
 
         this.gson = new Gson();
+        this.resultadoHistorialCliente = new ResultadoHistorialCliente();
+        this.historialController = new HistorialController(this);
+        this.preferencias = new Preferencias(getApplicationContext());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Preferencias preferencias = new Preferencias(getApplicationContext());
-        String Client_Id = preferencias.getClient_Id();
-        int val;
+        SolicitudHistorialCliente oData = new SolicitudHistorialCliente();
+        oData.setClient_Id(preferencias.getClient_Id());
+        HistorialClienteWebService(gson.toJson(oData));
 
         Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
 
         txt_no_data_detected = (TextView) findViewById(R.id.txt_no_data_detected2);
         txt_no_data_detected.setTypeface(RobotoCondensed_Regular);
-
 
 
         HistorialController historialController = new HistorialController(getApplicationContext());
@@ -117,6 +121,43 @@ public class Nav_Historial extends AppCompatActivity {
 
 
     }
+
+    private void HistorialClienteWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetClientHistoryWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {}
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoHistorialCliente = gson.fromJson(result.get("Resultado").toString(), ResultadoHistorialCliente.class);
+
+                    }
+                }
+                catch (Exception error) {
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {}
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                if ((!resultadoHistorialCliente.isError()) && resultadoHistorialCliente.getData() != null) {
+                    historialController.eliminarTodo();
+                    historialController.guardarOActualizarHistorial(resultadoHistorialCliente.getData());
+                }
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {}
+        });
+        servicioAsyncService.execute();
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -97,6 +97,7 @@
                                 android:paddingRight="30dp"
                                 android:singleLine="true"
                                 android:textColor="#fff"
+                                android:textSize="14sp"
                                 android:textColorHint="#fff" />
 
                             <ImageButton
@@ -129,19 +130,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="50dp">
 
-                            <EditText
-                                android:id="@+id/edtDestino"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:background="@null"
-                                android:hint="Destino"
-                                android:lines="1"
-                                android:paddingLeft="10dp"
-                                android:paddingRight="30dp"
-                                android:singleLine="true"
-                                android:textColor="#fff"
-                                android:textColorHint="#fff" />
-
                             <ImageButton
                                 android:id="@+id/btnCancelarDestino"
                                 android:layout_width="20dp"
@@ -151,6 +139,20 @@
                                 android:scaleType="fitXY"
                                 android:visibility="gone"
                                 android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+                            <EditText
+                                android:id="@+id/edtDestino"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@null"
+                                android:hint="Destino"
+                                android:lines="1"
+                                android:textSize="14sp"
+                                android:paddingLeft="10dp"
+                                android:paddingRight="30dp"
+                                android:singleLine="true"
+                                android:textColor="#fff"
+                                android:textColorHint="#fff" />
 
                         </FrameLayout>
 
@@ -177,8 +179,6 @@
 
         </android.support.design.widget.AppBarLayout>
 
-        <include layout="@layout/content_cargar_direcciones"/>
-
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
             android:layout_width="wrap_content"
@@ -187,6 +187,8 @@
             android:src="@drawable/ic_done_white_24dp"
             app:layout_anchor="@id/llContenido"
             app:layout_anchorGravity="bottom|right" />
+
+        <include layout="@layout/content_cargar_direcciones"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

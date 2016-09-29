@@ -14,10 +14,8 @@
         android:padding="30dp"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
+        android:elevation="2dp"
         android:orientation="vertical">
-
-
-
 
 
         <LinearLayout
@@ -50,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textColor="#ffffff"
-                android:textSize="16dp"
+                android:textSize="13dp"
                 android:textStyle="bold"
                 android:text="Nombre de usuario"/>
 
@@ -61,7 +59,7 @@
                 android:gravity="center"
                 android:textColor="#ffffff"
                 android:layout_marginBottom="5dp"
-                android:textSize="14dp"
+                android:textSize="12dp"
                 android:text="Correo" />
 
         </LinearLayout>
@@ -71,14 +69,16 @@
 
     </LinearLayout>
 
+
+
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
         android:orientation="vertical">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -91,8 +91,8 @@
             android:layout_height="50dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/icon_drawer"
+                android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_local_taxi_black_24dp"
                 android:tint="#909090"
                 android:layout_marginLeft="16dp"/>
@@ -104,7 +104,7 @@
                 android:layout_marginLeft="30dp"
                 android:text="Solicitar"
                 android:textColor="#909090"
-                android:textSize="14sp"/>
+                android:textSize="@dimen/text_item_drawer"/>
 
         </LinearLayout>
 
@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:tint="#eaeaea"/>
+            android:tint="@color/line_drawer"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/nav_onProcess"
@@ -124,8 +124,8 @@
             android:layout_height="50dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/icon_drawer"
+                android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_traffic_black_24dp"
                 android:tint="#909090"
                 android:layout_marginLeft="16dp"/>
@@ -136,7 +136,7 @@
                 android:layout_marginLeft="30dp"
                 android:text="En Proceso"
                 android:textColor="#909090"
-                android:textSize="14sp"
+                android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_proceso" />
 
         </LinearLayout>
@@ -145,7 +145,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:tint="#eaeaea"/>
+            android:tint="@color/line_drawer"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/nav_tarjetas"
@@ -157,8 +157,8 @@
             android:layout_height="50dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/icon_drawer"
+                android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_credit_card_black_24dp"
                 android:tint="#909090"
                 android:layout_marginLeft="16dp"/>
@@ -169,7 +169,7 @@
                 android:layout_marginLeft="30dp"
                 android:text="Pagos"
                 android:textColor="#909090"
-                android:textSize="14sp"
+                android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_tarjetas" />
 
         </LinearLayout>
@@ -178,7 +178,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:tint="#eaeaea"/>
+            android:tint="@color/line_drawer"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/nav_favoritos"
@@ -190,8 +190,8 @@
             android:layout_height="50dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/icon_drawer"
+                android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_star_black_24dp"
                 android:tint="#909090"
                 android:layout_marginLeft="16dp"/>
@@ -202,7 +202,7 @@
                 android:layout_marginLeft="30dp"
                 android:text="Favoritos"
                 android:textColor="#909090"
-                android:textSize="14sp"
+                android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_favoritos" />
 
         </LinearLayout>
@@ -211,7 +211,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:tint="#eaeaea"/>
+            android:tint="@color/line_drawer"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/nav_historial"
@@ -223,8 +223,8 @@
             android:layout_height="50dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/icon_drawer"
+                android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_history_black_24dp"
                 android:tint="#909090"
                 android:layout_marginLeft="16dp"/>
@@ -235,7 +235,7 @@
                 android:layout_marginLeft="30dp"
                 android:text="Historial"
                 android:textColor="#909090"
-                android:textSize="14sp"
+                android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_historial" />
 
         </LinearLayout>
@@ -244,7 +244,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:tint="#eaeaea"/>
+            android:tint="@color/line_drawer"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/nav_perfil"
@@ -256,8 +256,8 @@
             android:layout_height="50dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/icon_drawer"
+                android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_person_black_24dp"
                 android:tint="#909090"
                 android:layout_marginLeft="16dp"/>
@@ -268,7 +268,7 @@
                 android:layout_marginLeft="30dp"
                 android:text="Perfil"
                 android:textColor="#909090"
-                android:textSize="14sp"
+                android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_perfil" />
 
         </LinearLayout>
@@ -277,7 +277,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:tint="#eaeaea"/>
+            android:tint="@color/line_drawer"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/nav_ayuda"
@@ -289,8 +289,8 @@
             android:layout_height="50dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/icon_drawer"
+                android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_live_help_black_24dp"
                 android:tint="#909090"
                 android:layout_marginLeft="16dp"/>
@@ -301,7 +301,7 @@
                 android:layout_marginLeft="30dp"
                 android:text="Ayuda"
                 android:textColor="#909090"
-                android:textSize="14sp"
+                android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_ayuda" />
 
         </LinearLayout>
@@ -310,7 +310,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_linea"
-            android:tint="#eaeaea"/>
+            android:tint="@color/line_drawer"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/CerrarSesion"
@@ -322,8 +322,8 @@
             android:layout_height="50dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/icon_drawer"
+                android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_power_settings_new_black_24dp"
                 android:tint="#909090"
                 android:layout_marginLeft="16dp"/>
@@ -334,7 +334,7 @@
                 android:layout_marginLeft="20dp"
                 android:text="Cerrar Sesion"
                 android:textColor="#909090"
-                android:textSize="14sp"
+                android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_CerrarSesion" />
 
         </LinearLayout>

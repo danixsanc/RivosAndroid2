@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff">
-
     <include layout="@layout/toolbar" />
+
 
 
     <ImageView
@@ -87,4 +87,5 @@
         android:text="Yozzi Been's SA de CV"
         android:textSize="14dp"
         android:id="@+id/textView10" />
+
 </LinearLayout>

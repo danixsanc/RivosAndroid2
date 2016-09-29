@@ -145,7 +145,7 @@ public class DataInActivity extends AppCompatActivity {
                             clientController.guardarOActualizarClient(resultadoModificarDatos.getData());
 
                             Preferencias preferencias = new Preferencias(getApplicationContext());
-                            String clientId = resultadoModificarDatos.getData().get(0).getClient_Id();
+                            String clientId = resultadoModificarDatos.getData().get(0).getClient_Id().toString();
                             preferencias.setClient_Id(clientId);
                             preferencias.setSesion(false);
 

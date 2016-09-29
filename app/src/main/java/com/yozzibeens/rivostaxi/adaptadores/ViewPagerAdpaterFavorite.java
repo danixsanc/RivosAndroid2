@@ -1,11 +1,11 @@
 package com.YozziBeens.rivostaxi.adaptadores;
 
+/*
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.YozziBeens.rivostaxi.actividades.Favoritos.LugarFavorito;
-import com.YozziBeens.rivostaxi.actividades.Favoritos.TaxistaFavorito;
+import com.YozziBeens.rivostaxi.actividades.Favoritos.Nav_Favorito;
 
 
 public class ViewPagerAdpaterFavorite extends FragmentStatePagerAdapter {
@@ -31,7 +31,7 @@ public class ViewPagerAdpaterFavorite extends FragmentStatePagerAdapter {
             case 0:
                 return new TaxistaFavorito();
             case 1:
-                return new LugarFavorito();
+                return new Nav_Favorito();
         }
 
         return null;
@@ -51,3 +51,4 @@ public class ViewPagerAdpaterFavorite extends FragmentStatePagerAdapter {
         return NumbOfTabs;
     }
 }
+*/

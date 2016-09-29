@@ -103,13 +103,14 @@ public class Splash extends Activity {
 
                     Preferencias preferencias = new Preferencias(getApplicationContext());
                     String Client_Id = preferencias.getClient_Id();
+                    preferencias.setGcm_Id(regId);
 
                     if (!Client_Id.equals(null))
                     {
                         SolicitudRegistrarGCM oData0 = new SolicitudRegistrarGCM();
                         oData0.setClient_Id(Client_Id);
                         oData0.setGcmId(regId);
-                        RegisterGCMWebService(gson.toJson(oData0));
+                        //RegisterGCMWebService(gson.toJson(oData0));
 
                         SolicitudHistorialCliente oData1 = new SolicitudHistorialCliente();
                         oData1.setClient_Id(Client_Id);
@@ -117,7 +118,7 @@ public class Splash extends Activity {
 
                         SolicitudTaxistasFavoritos oData2 = new SolicitudTaxistasFavoritos();
                         oData2.setClient_Id(Client_Id);
-                        TaxistasFavoritosWebService(gson.toJson(oData2));
+                        //TaxistasFavoritosWebService(gson.toJson(oData2));
 
                         SolicitudLugaresFavoritos oData3 = new SolicitudLugaresFavoritos();
                         oData3.setClient_Id(Client_Id);
@@ -218,7 +219,7 @@ public class Splash extends Activity {
 
 
 
-    private void RegisterGCMWebService(String rawJson) {
+    /*private void RegisterGCMWebService(String rawJson) {
         ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.RegisterGcmIdWebService, rawJson);
         servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
             @Override
@@ -252,7 +253,7 @@ public class Splash extends Activity {
             }
         });
         servicioAsyncService.execute();
-    }
+    }*/
 
 
     private void HistorialClienteWebService(String rawJson) {
@@ -295,7 +296,7 @@ public class Splash extends Activity {
         servicioAsyncService.execute();
     }
 
-    private void TaxistasFavoritosWebService(String rawJson) {
+    /*private void TaxistasFavoritosWebService(String rawJson) {
         ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetFavoriteCabbieWebService, rawJson);
         servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
             @Override
@@ -332,7 +333,7 @@ public class Splash extends Activity {
             }
         });
         servicioAsyncService.execute();
-    }
+    }*/
 
     private void LugaresFavoritosWebService(String rawJson) {
         ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetFavoritePlaceWebService, rawJson);

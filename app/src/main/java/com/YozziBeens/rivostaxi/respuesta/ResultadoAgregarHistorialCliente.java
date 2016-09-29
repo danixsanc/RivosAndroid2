@@ -2,22 +2,23 @@ package com.YozziBeens.rivostaxi.respuesta;
 
 import com.YozziBeens.rivostaxi.modelo.Historial;
 import com.YozziBeens.rivostaxi.modelosApp.AgregarHistorialCliente;
+import com.YozziBeens.rivostaxi.modelosApp.RespSolicitud;
 
 import java.util.ArrayList;
 
 
 public class ResultadoAgregarHistorialCliente {
 
-    private ArrayList<AgregarHistorialCliente> Data;
+    private RespSolicitud Data;
     private boolean Error;
     private String Message;
-    private String Success;
 
-    public ArrayList<AgregarHistorialCliente> getData() {
+
+    public RespSolicitud getData() {
         return Data;
     }
 
-    public void setData(ArrayList<AgregarHistorialCliente> data) {
+    public void setData(RespSolicitud data) {
         Data = data;
     }
 
@@ -36,17 +37,6 @@ public class ResultadoAgregarHistorialCliente {
     public void setMessage(String message) {
         Message = message;
     }
-
-    public String getSuccess() {
-        return Success;
-    }
-
-    public void setSuccess(String success) {
-        Success = success;
-    }
-
-
-
 
 
 

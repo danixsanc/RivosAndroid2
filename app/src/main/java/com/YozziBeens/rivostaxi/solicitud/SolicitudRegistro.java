@@ -3,7 +3,7 @@ package com.YozziBeens.rivostaxi.solicitud;
 public class SolicitudRegistro {
 
 
-    public SolicitudRegistro(String firstName, String lastName, String phone, String email, String password, String gcm_Id, String user_Type, boolean register_Fb) {
+    public SolicitudRegistro(String firstName, String lastName, String phone, String email, String password, String gcm_Id, String user_Type) {
         FirstName = firstName;
         LastName = lastName;
         Phone = phone;
@@ -11,7 +11,6 @@ public class SolicitudRegistro {
         Password = password;
         Gcm_Id = gcm_Id;
         User_Type = user_Type;
-        Register_Fb = register_Fb;
     }
 
     public SolicitudRegistro() {
@@ -73,14 +72,6 @@ public class SolicitudRegistro {
         User_Type = user_Type;
     }
 
-    public boolean isRegister_Fb() {
-        return Register_Fb;
-    }
-
-    public void setRegister_Fb(boolean register_Fb) {
-        Register_Fb = register_Fb;
-    }
-
     private String FirstName;
     private String LastName;
     private String Phone;
@@ -88,7 +79,6 @@ public class SolicitudRegistro {
     private String Password;
     private String Gcm_Id;
     private String User_Type;
-    private boolean Register_Fb;
 
 
 }

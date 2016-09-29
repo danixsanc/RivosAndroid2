@@ -6,4 +6,8 @@
 
     <dimen name="tutorial_bottom_height">52dp</dimen>
     <dimen name="tutorial_bottom_min_width">42dp</dimen>
+
+
+    <dimen name="icon_drawer">24dp</dimen>
+    <dimen name="text_item_drawer">13sp</dimen>
 </resources>

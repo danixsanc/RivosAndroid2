@@ -14,37 +14,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.YozziBeens.rivostaxi.actividades.Ayuda.Nav_Ayuda;
-import com.YozziBeens.rivostaxi.adaptadores.AdaptadorHistorial;
-import com.YozziBeens.rivostaxi.adaptadores.AdaptadorHistorialPendiente;
-import com.YozziBeens.rivostaxi.controlador.HistorialController;
 import com.YozziBeens.rivostaxi.controlador.HistorialPendienteController;
 import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
 import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
-import com.YozziBeens.rivostaxi.modelo.Historial;
 import com.YozziBeens.rivostaxi.modelo.HistorialPendiente;
-import com.YozziBeens.rivostaxi.respuesta.ResultadoHistorialCliente;
 import com.YozziBeens.rivostaxi.respuesta.ResultadoHistorialPendienteCliente;
 import com.YozziBeens.rivostaxi.servicios.WebService;
-import com.YozziBeens.rivostaxi.solicitud.SolicitudHistorialCliente;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudHistorialPendienteCliente;
-import com.YozziBeens.rivostaxi.solicitud.SolicitudLoginFacebook;
-import com.facebook.CallbackManager;
 import com.google.gson.Gson;
-import com.rengwuxian.materialedittext.MaterialEditText;
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.adaptadores.PendingHistory;
 import com.YozziBeens.rivostaxi.utilerias.FechasBD;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
-import com.YozziBeens.rivostaxi.utilerias.Servicio;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;

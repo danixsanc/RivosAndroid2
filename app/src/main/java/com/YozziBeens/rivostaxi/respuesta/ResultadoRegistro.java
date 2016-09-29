@@ -7,16 +7,15 @@ import java.util.ArrayList;
 
 public class ResultadoRegistro {
 
-    private ArrayList<Client> Data;
+    private Client Data;
     private boolean Error;
     private String Message;
-    private String Success;
 
-    public ArrayList<Client> getData() {
+    public Client getData() {
         return Data;
     }
 
-    public void setData(ArrayList<Client> data) {
+    public void setData(Client data) {
         Data = data;
     }
 
@@ -35,18 +34,5 @@ public class ResultadoRegistro {
     public void setMessage(String message) {
         Message = message;
     }
-
-    public String getSuccess() {
-        return Success;
-    }
-
-    public void setSuccess(String success) {
-        Success = success;
-    }
-
-
-
-
-
 
 }

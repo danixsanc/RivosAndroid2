@@ -3,6 +3,7 @@ package com.YozziBeens.rivostaxi.app;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.location.Address;
 import android.location.Location;
@@ -96,6 +97,8 @@ public class CargarDirecciones extends LocationActivity {
         /*AnalyticsEnrutate application = (AnalyticsEnrutate) getApplication();
         mTracker = application.getDefaultTracker();*/
 
+        Typeface Roboto = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
+
         this.edtOrigen = (EditText) findViewById(R.id.edtOrigen);
         this.edtDestino = (EditText) findViewById(R.id.edtDestino);
         this.lsvLugares = (ListView) findViewById(R.id.lsvLugares);
@@ -107,6 +110,9 @@ public class CargarDirecciones extends LocationActivity {
         this.txtMensaje = (TextView) findViewById(R.id.txtMensaje);
         this.lugarController = new LugarController(this);
         this.favorite_placeController = new Favorite_PlaceController(this);
+
+        this.edtOrigen.setTypeface(Roboto);
+        this.edtDestino.setTypeface(Roboto);
 
         //Toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

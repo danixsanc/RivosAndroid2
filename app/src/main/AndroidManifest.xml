@@ -135,7 +135,7 @@
 
         <activity
             android:label="Favoritos"
-            android:name="com.YozziBeens.rivostaxi.actividades.Favoritos.Nav_Favoritos"
+            android:name=".actividades.Favoritos.Nav_Favorito"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden"></activity>
 

@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:background="#fff">
 
+    <include layout="@layout/toolbar" />
+
     <TextView
         android:id="@+id/txt_no_data_detected"
         android:layout_width="match_parent"

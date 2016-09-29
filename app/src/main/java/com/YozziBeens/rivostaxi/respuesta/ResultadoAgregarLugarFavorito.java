@@ -7,7 +7,6 @@ public class ResultadoAgregarLugarFavorito {
     private String Data;
     private boolean Error;
     private String Message;
-    private String Success;
 
     public String getData() {
         return Data;
@@ -32,18 +31,5 @@ public class ResultadoAgregarLugarFavorito {
     public void setMessage(String message) {
         Message = message;
     }
-
-    public String getSuccess() {
-        return Success;
-    }
-
-    public void setSuccess(String success) {
-        Success = success;
-    }
-
-
-
-
-
 
 }

@@ -3,28 +3,43 @@ package com.YozziBeens.rivostaxi.servicios;
 public class WebService {
 
     //public static final String LoginWebService = "http://appm.rivosservices.com/webservices/Login.php";
-    public static final String LoginWebService = "http://sistema.rivosservices.com/api/userLogin";
+    public static final String LoginWebService = "http://sistema.rivosservices.com/test/userLogin";
     //public static final String RegisterWebService = "http://appm.rivosservices.com/webservices/Register.php";
-    public static final String RegisterWebService = "http://sistema.rivosservices.com/api/userRegister";
+    public static final String RegisterWebService = "http://sistema.rivosservices.com/test/userRegister";
+    //public static final String MessageWebService = "http://appm.rivosservices.com/webservices/Message.php";
+    public static final String MessageWebService = "http://sistema.rivosservices.com/test/sendMessage";
+    //public static final String GetClientHistoryWebService = "http://appm.rivosservices.com/webservices/GetClientHistory.php";
+    public static final String GetClientHistoryWebService = "http://sistema.rivosservices.com/test/getHistory";
+    //public static final String DeleteHistoryClientWebService = "http://appm.rivosservices.com/webservices/DeleteHistoryClient.php";
+    public static final String DeleteHistoryClientWebService = "http://sistema.rivosservices.com/test/deleteHistory";
+    //public static final String GetFavoritePlaceWebService = "http://appm.rivosservices.com/webservices/GetFavoritePlace.php";
+    public static final String GetFavoritePlaceWebService = "http://sistema.rivosservices.com/test/getFavoritePlace";
+    //public static final String SetFavoritePlaceWebService = "http://appm.rivosservices.com/webservices/SetFavoritePlace.php";
+    public static final String SetFavoritePlaceWebService = "http://sistema.rivosservices.com/test/setFavoritePlace";
+    //public static final String DeleteFavoritePlaceWebService = "http://appm.rivosservices.com/webservices/DeleteFavoritePlace.php";
+    public static final String DeleteFavoritePlaceWebService = "http://sistema.rivosservices.com/test/deleteFavoritePlace";
+    //public static final String SetCardWebService = "http://appm.rivosservices.com/webservices/SetCard.php";
+    public static final String SetCardWebService = "http://sistema.rivosservices.com/test/setCard";
+    //public static final String ObtenerPrecioWebService = "http://appm.rivosservices.com/webservices/GetPriceComplete.php";
+    public static final String ObtenerPrecioWebService = "http://sistema.rivosservices.com/test/GetPrice";
+    //public static final String SetClientHistoryWebService = "http://appm.rivosservices.com/webservices/SetClientHistory.php";
+    public static final String SetClientHistoryWebService = "http://sistema.rivosservices.com/test/setRequest";
+
+
+    public static final String CancelCabbieWebService = "http://sistema.rivosservices.com/test/cancelCabbie";
 
 
 
 
-    public static final String ObtenerPrecioWebService = "http://appm.rivosservices.com/webservices/GetPriceComplete.php";
-    public static final String GetClientHistoryWebService = "http://appm.rivosservices.com/webservices/GetClientHistory.php";
-    public static final String GetFavoriteCabbieWebService = "http://appm.rivosservices.com/webservices/GetFavoriteCabbie.php";
-    public static final String DeleteFavoriteCabbieWebService = "http://appm.rivosservices.com/webservices/DeleteFavoriteCabbie.php";
-    public static final String DeleteFavoritePlaceWebService = "http://appm.rivosservices.com/webservices/DeleteFavoritePlace.php";
-    public static final String DeleteHistoryClientWebService = "http://appm.rivosservices.com/webservices/DeleteHistoryClient.php";
-    public static final String GetCabbieHistoryWebService = "http://appm.rivosservices.com/webservices/GetCabbieHistory.php";
+
+    //public static final String GetFavoriteCabbieWebService = "http://appm.rivosservices.com/webservices/GetFavoriteCabbie.php";
+    //public static final String DeleteFavoriteCabbieWebService = "http://appm.rivosservices.com/webservices/DeleteFavoriteCabbie.php";
+    //public static final String GetCabbieHistoryWebService = "http://appm.rivosservices.com/webservices/GetCabbieHistory.php";
     public static final String GetClientHistoryPendingWebService = "http://appm.rivosservices.com/webservices/GetClientHistoryPending.php";
-    public static final String GetFavoritePlaceWebService = "http://appm.rivosservices.com/webservices/GetFavoritePlace.php";
-    public static final String LoginFacebookWebService = "http://appm.rivosservices.com/webservices/LoginFacebook.php";
-    public static final String MessageWebService = "http://appm.rivosservices.com/webservices/Message.php";
-    public static final String RegisterFacebookWebService = "http://appm.rivosservices.com/webservices/RegisterFacebook.php";
-    public static final String RegisterGcmIdWebService = "http://appm.rivosservices.com/webservices/RegisterGcmId.php";
-    public static final String SetFavoriteCabbieWebService = "http://appm.rivosservices.com/webservices/SetFavoriteCabbie.php";
-    public static final String SetFavoritePlaceWebService = "http://appm.rivosservices.com/webservices/SetFavoritePlace.php";
+    //public static final String LoginFacebookWebService = "http://appm.rivosservices.com/webservices/LoginFacebook.php";
+    //public static final String RegisterFacebookWebService = "http://appm.rivosservices.com/webservices/RegisterFacebook.php";
+    //public static final String RegisterGcmIdWebService = "http://appm.rivosservices.com/webservices/RegisterGcmId.php";
+    //public static final String SetFavoriteCabbieWebService = "http://appm.rivosservices.com/webservices/SetFavoriteCabbie.php";
     public static final String UpdateUserWebService = "http://appm.rivosservices.com/webservices/UpdateUser.php";
     public static final String ProcesPayWebService = "http://appm.rivosservices.com/conekta/ProcesPay.php";
 
@@ -34,7 +49,6 @@ public class WebService {
     //faltan por agregar
     public static final String GetCloseCabbieWebService = "http://appm.rivosservices.com/webservices/GetCloseCabbie.php";
     public static final String SetClientHistoryPendingWebService = "http://appm.rivosservices.com/webservices/SetClientHistoryPending.php";
-    public static final String SetClientHistoryWebService = "http://appm.rivosservices.com/webservices/SetClientHistory.php";
 
 
     // ya no se usaran
@@ -49,7 +63,7 @@ public class WebService {
     public static final String GetFavoritePlaceForIdWebService = "http://appm.rivosservices.com/webservices/GetFavoritePlaceForId.php";
     public static final String DeleteCardWebService = "http://appm.rivosservices.com/webservices/DeleteCard.php";
     public static final String GetCardWebService = "http://appm.rivosservices.com/webservices/GetCard.php";
-    public static final String SetCardWebService = "http://appm.rivosservices.com/webservices/SetCard.php";
+
     public static final String SetReservationWebService = "http://appm.rivosservices.com/webservices/SetReservation.php";
     public static final String GetReservationWebService = "http://appm.rivosservices.com/webservices/GetReservation.php";
 

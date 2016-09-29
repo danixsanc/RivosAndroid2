@@ -39,7 +39,8 @@ public class Generador {
 
 
         Entity usuario = schema.addEntity("Client");
-        usuario.addLongProperty("Client_Id").primaryKey();
+        usuario.addLongProperty("id").primaryKey().autoincrement();
+        usuario.addStringProperty("Client_Id");
         usuario.addStringProperty("Name");
         usuario.addStringProperty("Email");
         usuario.addStringProperty("Phone");

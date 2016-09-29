@@ -7,17 +7,17 @@ import java.util.ArrayList;
 
 public class ResultadoLogin {
 
-    private ArrayList<Client> UserData;
+    private Client Data;
     private boolean IsError;
     private String Message;
 
 
-    public ArrayList<Client> getData() {
-        return UserData;
+    public Client getData() {
+        return Data;
     }
 
-    public void setData(ArrayList<Client> data) {
-        UserData = data;
+    public void setData(Client data) {
+        Data = data;
     }
 
     public boolean isError() {

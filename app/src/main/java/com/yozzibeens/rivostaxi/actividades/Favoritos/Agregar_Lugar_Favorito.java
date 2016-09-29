@@ -147,6 +147,7 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
         Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
 
         this.gson = new Gson();
+        this.resultadoAgregarLugarFavorito = new ResultadoAgregarLugarFavorito();
         autoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.autoCompleteTextView);
         autoCompleteTextView.setTypeface(RobotoCondensed_Regular);
 
@@ -293,8 +294,8 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
 
                         SolicitudAgregarLugarFavorito oData = new SolicitudAgregarLugarFavorito();
                         oData.setClient_Id(Client_Id);
-                        oData.setDesc_Place(mAutocompleteTextView.getText().toString());
-                        oData.setPlace_Name(place_name);
+                        oData.setDescription(mAutocompleteTextView.getText().toString());
+                        oData.setName(place_name);
                         oData.setLatitude(String.valueOf(latitudeIcon));
                         oData.setLongitude(String.valueOf(longitudeIcon));
                         AgregarLugarFavoritoWebService(gson.toJson(oData));

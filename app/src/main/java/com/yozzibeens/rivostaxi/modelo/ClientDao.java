@@ -23,7 +23,7 @@ public class ClientDao extends AbstractDao<Client, Long> {
      * Can be used for QueryBuilder and for referencing column names.
     */
     public static class Properties {
-        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property Id = new Property(0, Long.class, "id", true, "ID");
         public final static Property Client_Id = new Property(1, String.class, "Client_Id", false, "CLIENT__ID");
         public final static Property Name = new Property(2, String.class, "Name", false, "NAME");
         public final static Property Email = new Property(3, String.class, "Email", false, "EMAIL");
@@ -43,7 +43,7 @@ public class ClientDao extends AbstractDao<Client, Long> {
     public static void createTable(SQLiteDatabase db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'CLIENT' (" + //
-                "'_id' INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
+                "'ID' INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "'CLIENT__ID' TEXT," + // 1: Client_Id
                 "'NAME' TEXT," + // 2: Name
                 "'EMAIL' TEXT," + // 3: Email

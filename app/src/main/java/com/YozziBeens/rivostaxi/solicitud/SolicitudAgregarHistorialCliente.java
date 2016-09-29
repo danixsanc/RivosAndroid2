@@ -3,17 +3,17 @@ package com.YozziBeens.rivostaxi.solicitud;
 public class SolicitudAgregarHistorialCliente {
 
 
-    public SolicitudAgregarHistorialCliente(String latitude_In, String longitude_In, String latitude_Fn, String longitude_Fn, String client_Id, String cabbie_Id, String price_Id, String inicio, String destino, String tipo) {
+    public SolicitudAgregarHistorialCliente(String latitude_In, String longitude_In, String latitude_Fn, String longitude_Fn, String inicio, String destino, String precio, String client_Id, String cabbie_Id, String paymentType_Id) {
         Latitude_In = latitude_In;
         Longitude_In = longitude_In;
         Latitude_Fn = latitude_Fn;
         Longitude_Fn = longitude_Fn;
-        Client_Id = client_Id;
-        Cabbie_Id = cabbie_Id;
-        Price_Id = price_Id;
         Inicio = inicio;
         Destino = destino;
-        Tipo = tipo;
+        Precio = precio;
+        Client_Id = client_Id;
+        Cabbie_Id = cabbie_Id;
+        PaymentType_Id = paymentType_Id;
     }
 
     public SolicitudAgregarHistorialCliente() {
@@ -51,30 +51,6 @@ public class SolicitudAgregarHistorialCliente {
         Longitude_Fn = longitude_Fn;
     }
 
-    public String getClient_Id() {
-        return Client_Id;
-    }
-
-    public void setClient_Id(String client_Id) {
-        Client_Id = client_Id;
-    }
-
-    public String getCabbie_Id() {
-        return Cabbie_Id;
-    }
-
-    public void setCabbie_Id(String cabbie_Id) {
-        Cabbie_Id = cabbie_Id;
-    }
-
-    public String getPrice_Id() {
-        return Price_Id;
-    }
-
-    public void setPrice_Id(String price_Id) {
-        Price_Id = price_Id;
-    }
-
     public String getInicio() {
         return Inicio;
     }
@@ -91,32 +67,47 @@ public class SolicitudAgregarHistorialCliente {
         Destino = destino;
     }
 
-    public String getTipo() {
-        return Tipo;
+    public String getPrecio() {
+        return Precio;
     }
 
-    public void setTipo(String tipo) {
-        Tipo = tipo;
+    public void setPrecio(String precio) {
+        Precio = precio;
     }
+
+    public String getClient_Id() {
+        return Client_Id;
+    }
+
+    public void setClient_Id(String client_Id) {
+        Client_Id = client_Id;
+    }
+
+    public String getCabbie_Id() {
+        return Cabbie_Id;
+    }
+
+    public void setCabbie_Id(String cabbie_Id) {
+        Cabbie_Id = cabbie_Id;
+    }
+
+    public String getPaymentType_Id() {
+        return PaymentType_Id;
+    }
+
+    public void setPaymentType_Id(String paymentType_Id) {
+        PaymentType_Id = paymentType_Id;
+    }
+
 
     private String Latitude_In;
     private String Longitude_In;
     private String Latitude_Fn;
     private String Longitude_Fn;
-    private String Client_Id;
-    private String Cabbie_Id;
-    private String Price_Id;
     private String Inicio;
     private String Destino;
-    private String Tipo;
-
-
-
-
-
-
-
-
-
-
+    private String Precio;
+    private String Client_Id;
+    private String Cabbie_Id;
+    private String PaymentType_Id;
 }

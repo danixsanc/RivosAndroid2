@@ -1,6 +1,7 @@
 package com.YozziBeens.rivostaxi.adaptadores;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,9 @@ public class LugarAdapter extends ArrayAdapter<Favorite_Place> {
             view = vi.inflate(R.layout.item_lugar, parent, false);
             holder = new ViewHolder();
             holder.txtNombreLugar = (TextView) view.findViewById(R.id.txtNombreLugar);
+            Typeface Roboto = Typeface.createFromAsset(getContext().getAssets(), "Roboto-Light.ttf");
+
+            holder.txtNombreLugar.setTypeface(Roboto);
             view.setTag(holder);
         } else
             holder = (ViewHolder) view.getTag();

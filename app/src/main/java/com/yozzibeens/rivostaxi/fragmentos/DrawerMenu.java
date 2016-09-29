@@ -19,11 +19,11 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.YozziBeens.rivostaxi.actividades.Favoritos.Nav_Favorito;
 import com.YozziBeens.rivostaxi.actividades.Tarjetas.Nav_Tarjetas;
 import com.facebook.login.LoginManager;
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.actividades.Ayuda.Nav_Ayuda;
-import com.YozziBeens.rivostaxi.actividades.Favoritos.Nav_Favoritos;
 import com.YozziBeens.rivostaxi.actividades.Historial.Nav_Historial;
 import com.YozziBeens.rivostaxi.actividades.Perfil.Nav_Perfil;
 import com.YozziBeens.rivostaxi.actividades.Proceso.Nav_Proceso;
@@ -50,7 +50,7 @@ public class DrawerMenu extends Fragment {
     View rootview;
     String correo;
     String nombre;
-    TextView txt_solicitar,txt_proceso,txt_favoritos,txt_historial,txt_perfil,txt_ayuda,txt_CerrarSesion;
+    TextView txt_solicitar,txt_proceso, txt_tarjetas, txt_favoritos,txt_historial,txt_perfil,txt_ayuda,txt_CerrarSesion;
 
     private LatLng mOrigen;
 
@@ -63,27 +63,8 @@ public class DrawerMenu extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //----Tipo de fuentes---------------------------------------------------------------------------------
 
-       /* Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
-        txtNombre = (TextView) getActivity().findViewById(R.id.txtNombre);
 
-        txtCorreo = (TextView) getActivity().findViewById(R.id.txtCorreo);
-        txt_solicitar  = (TextView) getActivity().findViewById(R.id.txt_solicitar);
-        txt_solicitar.setTypeface(RobotoCondensed_Regular);
-        txt_proceso = (TextView) getActivity().findViewById(R.id.txt_proceso);
-        txt_proceso.setTypeface(RobotoCondensed_Regular);
-        txt_favoritos = (TextView) getActivity().findViewById(R.id.txt_favoritos);
-        txt_favoritos.setTypeface(RobotoCondensed_Regular);
-        txt_historial = (TextView) getActivity().findViewById(R.id.txt_historial);
-        txt_historial.setTypeface(RobotoCondensed_Regular);
-        txt_perfil = (TextView) getActivity().findViewById(R.id.txt_perfil);
-        txt_perfil.setTypeface(RobotoCondensed_Regular);
-        txt_ayuda = (TextView) getActivity().findViewById(R.id.txt_ayuda);
-        txt_ayuda.setTypeface(RobotoCondensed_Regular);
-        txt_CerrarSesion = (TextView) getActivity().findViewById(R.id.txt_CerrarSesion);
-        txt_CerrarSesion.setTypeface(RobotoCondensed_Regular);*/
-        //-----------------------------------------------------------------------------------------------------
     }
 
 
@@ -146,11 +127,13 @@ public class DrawerMenu extends Fragment {
         // Inflate the layout for this fragment
         View view  = inflater.inflate(R.layout.drawer_menu, container, false);
 
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "Roboto-Light.ttf");
+
 
         final Preferencias preferencias = new Preferencias(getActivity().getApplicationContext());
 
         boolean check = preferencias.getSesion();
-        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
+        //Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
         if (!check)
         {
             String Client_Id = preferencias.getClient_Id();
@@ -166,6 +149,24 @@ public class DrawerMenu extends Fragment {
             txtCorreo.setText(correo);
             txtCorreo.setTypeface(RobotoCondensed_Regular);
             txtNombre.setText(nombre);
+
+            txt_solicitar  = (TextView) view.findViewById(R.id.txt_solicitar);
+            txt_solicitar.setTypeface(RobotoCondensed_Regular);
+            txt_proceso = (TextView) view.findViewById(R.id.txt_proceso);
+            txt_proceso.setTypeface(RobotoCondensed_Regular);
+            txt_tarjetas = (TextView) view.findViewById(R.id.txt_tarjetas);
+            txt_tarjetas.setTypeface(RobotoCondensed_Regular);
+            txt_favoritos = (TextView) view.findViewById(R.id.txt_favoritos);
+            txt_favoritos.setTypeface(RobotoCondensed_Regular);
+            txt_historial = (TextView) view.findViewById(R.id.txt_historial);
+            txt_historial.setTypeface(RobotoCondensed_Regular);
+            txt_perfil = (TextView) view.findViewById(R.id.txt_perfil);
+            txt_perfil.setTypeface(RobotoCondensed_Regular);
+            txt_ayuda = (TextView) view.findViewById(R.id.txt_ayuda);
+            txt_ayuda.setTypeface(RobotoCondensed_Regular);
+            txt_CerrarSesion = (TextView) view.findViewById(R.id.txt_CerrarSesion);
+            txt_CerrarSesion.setTypeface(RobotoCondensed_Regular);
+
 
         }
 
@@ -259,7 +260,7 @@ public class DrawerMenu extends Fragment {
         favoritos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), Nav_Favoritos.class));
+                startActivity(new Intent(getActivity(), Nav_Favorito.class));
             }
         });
 

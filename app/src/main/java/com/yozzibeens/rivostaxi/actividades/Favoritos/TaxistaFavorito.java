@@ -1,5 +1,5 @@
 package com.YozziBeens.rivostaxi.actividades.Favoritos;
-
+/*
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -38,9 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-/**
- * Created by danixsanc on 16/01/2016.
- */
+
 public class TaxistaFavorito  extends Fragment{
     View rootview;
     ListView favoritecabbieList;
@@ -170,7 +168,7 @@ public class TaxistaFavorito  extends Fragment{
                     Log.i("Edit Button Clicked", "**********");
                     Snackbar.make(rootview, "Edit button Clicked " + cabbie_id[position], Snackbar.LENGTH_LONG).setAction("Action", null).show();
                 }
-            });*/
+            });*//*
             final UserHolder finalHolder = holder;
             holder.btnOptions.setOnClickListener(new View.OnClickListener() {
 
@@ -291,3 +289,4 @@ public class TaxistaFavorito  extends Fragment{
     }
 
 }
+*/

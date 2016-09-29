@@ -13,20 +13,20 @@ public class SolicitudAgregarLugarFavorito {
         Client_Id = client_Id;
     }
 
-    public String getDesc_Place() {
-        return Desc_Place;
+    public String getDescription() {
+        return Description;
     }
 
-    public void setDesc_Place(String desc_Place) {
-        Desc_Place = desc_Place;
+    public void setDescription(String desc_Place) {
+        Description = desc_Place;
     }
 
-    public String getPlace_Name() {
-        return Place_Name;
+    public String getName() {
+        return Name;
     }
 
-    public void setPlace_Name(String place_Name) {
-        Place_Name = place_Name;
+    public void setName(String place_Name) {
+        Name = place_Name;
     }
 
     public String getLongitude() {
@@ -46,15 +46,15 @@ public class SolicitudAgregarLugarFavorito {
     }
 
     private String Client_Id;
-    private String Desc_Place;
-    private String Place_Name;
+    private String Description;
+    private String Name;
     private String Longitude;
     private String Latitude;
 
     public SolicitudAgregarLugarFavorito(String client_Id, String desc_Place, String place_Name, String longitude, String latitude) {
         Client_Id = client_Id;
-        Desc_Place = desc_Place;
-        Place_Name = place_Name;
+        Description = desc_Place;
+        Name = place_Name;
         Longitude = longitude;
         Latitude = latitude;
     }

@@ -24,8 +24,8 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/icon_drawer"
+                android:layout_height="@dimen/icon_drawer"
                 android:layout_marginLeft="16dp"
                 android:contentDescription="@string/app_name"
                 android:tint="@color/colorBorder"

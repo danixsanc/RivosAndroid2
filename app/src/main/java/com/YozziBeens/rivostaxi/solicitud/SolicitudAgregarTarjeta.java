@@ -2,18 +2,9 @@ package com.YozziBeens.rivostaxi.solicitud;
 
 public class SolicitudAgregarTarjeta {
 
-    private String Client_Id;
-    private String Card;
-    private String Month;
-    private String Year;
-    private String Name_Card;
-
-    public SolicitudAgregarTarjeta(String client_Id, String card, String month, String year, String name_Card) {
+    public SolicitudAgregarTarjeta(String client_Id, String conekta_Token) {
         Client_Id = client_Id;
-        Card = card;
-        Month = month;
-        Year = year;
-        Name_Card = name_Card;
+        Conekta_Token = conekta_Token;
     }
 
     public SolicitudAgregarTarjeta() {
@@ -27,50 +18,15 @@ public class SolicitudAgregarTarjeta {
         Client_Id = client_Id;
     }
 
-    public String getCard() {
-        return Card;
+    public String getConekta_Token() {
+        return Conekta_Token;
     }
 
-    public void setCard(String card) {
-        Card = card;
+    public void setConekta_Token(String conekta_Token) {
+        Conekta_Token = conekta_Token;
     }
 
-    public String getMonth() {
-        return Month;
-    }
-
-    public void setMonth(String month) {
-        Month = month;
-    }
-
-    public String getYear() {
-        return Year;
-    }
-
-    public void setYear(String year) {
-        Year = year;
-    }
-
-    public String getName_Card() {
-        return Name_Card;
-    }
-
-    public void setName_Card(String name_Card) {
-        Name_Card = name_Card;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private String Client_Id;
+    private String Conekta_Token;
 
 }

@@ -3,15 +3,17 @@ package com.YozziBeens.rivostaxi.solicitud;
 public class SolicitudLogin {
 
 
+
+    public SolicitudLogin() {
+    }
+
+
     public SolicitudLogin(String email, String password, String gcm_Id, String user_Type, boolean login_Fb) {
         Email = email;
         Password = password;
         Gcm_Id = gcm_Id;
         User_Type = user_Type;
         Login_Fb = login_Fb;
-    }
-
-    public SolicitudLogin() {
     }
 
     public String getEmail() {
@@ -53,8 +55,6 @@ public class SolicitudLogin {
     public void setLogin_Fb(boolean login_Fb) {
         Login_Fb = login_Fb;
     }
-
-
 
     private String Email;
     private String Password;

@@ -10,6 +10,8 @@ import android.graphics.Typeface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,8 +28,10 @@ import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
 import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
 import com.YozziBeens.rivostaxi.respuesta.ResultadoEliminarLugarFavorito;
 import com.YozziBeens.rivostaxi.respuesta.ResultadoEliminarTaxistaFavorito;
+import com.YozziBeens.rivostaxi.respuesta.ResultadoLugaresFavoritos;
 import com.YozziBeens.rivostaxi.servicios.WebService;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudEliminarLugarFavorito;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudLugaresFavoritos;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
 import com.YozziBeens.rivostaxi.utilerias.Servicio;
 import com.google.gson.Gson;
@@ -39,9 +43,9 @@ import java.util.List;
 /**
  * Created by danixsanc on 16/01/2016.
  */
-public class LugarFavorito extends Fragment {
+public class Nav_Favorito extends AppCompatActivity {
 
-    View rootview;
+
     ListView favoriteplaceList;
     FavoritePlaceCustomAdapter favoriteplaceAdapter;
     ArrayList<AdaptadorLugarFavorito> favoriteplaceArray = new ArrayList<AdaptadorLugarFavorito>();
@@ -50,27 +54,40 @@ public class LugarFavorito extends Fragment {
     private Gson gson;
     private ProgressDialog progressdialog;
     private ResultadoEliminarLugarFavorito resultadoEliminarLugarFavorito;
+    private ResultadoLugaresFavoritos resultadoLugaresFavoritos;
+    private Favorite_PlaceController favorite_placeController;
+    private Preferencias preferencias;
 
-
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootview = inflater.inflate(R.layout.favorite_place, container, false);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.favorite_place);
 
         this.gson = new Gson();
+        this.resultadoLugaresFavoritos = new ResultadoLugaresFavoritos();
+        this.favorite_placeController = new Favorite_PlaceController(this);
+        this.preferencias = new Preferencias(getApplicationContext());
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        SolicitudLugaresFavoritos oData = new SolicitudLugaresFavoritos();
+        oData.setClient_Id(preferencias.getClient_Id());
+        LugaresFavoritosWebService(gson.toJson(oData));
 
-        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
 
-        txt_no_data_detected = (TextView) rootview.findViewById(R.id.txt_no_data_detected);
+        txt_no_data_detected = (TextView) findViewById(R.id.txt_no_data_detected);
         txt_no_data_detected.setTypeface(RobotoCondensed_Regular);
 
 
-        favoriteplaceList = (ListView) rootview.findViewById(R.id.list_favorite_place);
-        favoriteplaceAdapter = new FavoritePlaceCustomAdapter(getActivity(), R.layout.row_favorite_place, favoriteplaceArray);
+        favoriteplaceList = (ListView) findViewById(R.id.list_favorite_place);
+        favoriteplaceAdapter = new FavoritePlaceCustomAdapter(this, R.layout.row_favorite_place, favoriteplaceArray);
         favoriteplaceList.setItemsCanFocus(false);
         favoriteplaceList.setAdapter(favoriteplaceAdapter);
 
-        Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getActivity().getApplicationContext());
+        Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getApplicationContext());
         List<Favorite_Place> FPlaceList = favorite_placeController.obtenerFavorite_Place();
 
         for (int i = 0; i < FPlaceList.size(); i++)
@@ -88,12 +105,12 @@ public class LugarFavorito extends Fragment {
             favoriteplaceList.setVisibility(View.VISIBLE);
         }
 
-        FloatingActionButton floatingActionButton = (FloatingActionButton) rootview.findViewById(R.id.fab);
+        FloatingActionButton floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent( getActivity(), Agregar_Lugar_Favorito.class);
+                Intent intent = new Intent( getApplicationContext(), Agregar_Lugar_Favorito.class);
                 intent.putExtra("Status", "agregar");
                 startActivityForResult(intent, 1521);
 
@@ -101,9 +118,47 @@ public class LugarFavorito extends Fragment {
             }
         });
 
-
-        return rootview;
     }
+    private void LugaresFavoritosWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetFavoritePlaceWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+                try {
+                    int statusCode = Integer.parseInt(result.get("StatusCode").toString());
+                    if (statusCode == 0) {
+                        resultadoLugaresFavoritos = gson.fromJson(result.get("Resultado").toString(), ResultadoLugaresFavoritos.class);
+
+                    }
+                }
+                catch (Exception error) {
+
+                }
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+                if ((!resultadoLugaresFavoritos.isError()) && resultadoLugaresFavoritos.getData() != null) {
+                    favorite_placeController.eliminarTodo();
+                    favorite_placeController.guardarOActualizarFavorite_Place(resultadoLugaresFavoritos.getData());
+                }
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+            }
+        });
+        servicioAsyncService.execute();
+    }
+
 
 
     @Override
@@ -113,7 +168,7 @@ public class LugarFavorito extends Fragment {
             case 1521:
                 if (resultCode == Activity.RESULT_OK) {
                     favoriteplaceArray.clear();
-                    Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getActivity());
+                    Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getApplicationContext());
                     List<Favorite_Place> fplist = favorite_placeController.obtenerFavorite_Place();
                     for (int i = 0; i<fplist.size();i++){
                         String placeid2 = fplist.get(i).getPlaceFavoriteId();
@@ -151,7 +206,7 @@ public class LugarFavorito extends Fragment {
             UserHolder holder = null;
 
             if (row == null) {
-                Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getActivity().getAssets(), "RobotoCondensed-Regular.ttf");
+                Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
                 LayoutInflater inflater = ((Activity) context).getLayoutInflater();
                 row = inflater.inflate(layoutResourceId, parent, false);
                 holder = new UserHolder();
@@ -165,7 +220,7 @@ public class LugarFavorito extends Fragment {
                 row.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getActivity(), Agregar_Lugar_Favorito.class);
+                        Intent intent = new Intent(getApplicationContext(), Agregar_Lugar_Favorito.class);
                         String placeId = finalHolder.txtIdPlace.getText().toString();
                         intent.putExtra("placeId", placeId);
                         intent.putExtra("Status", "detalle");
@@ -189,7 +244,7 @@ public class LugarFavorito extends Fragment {
 
 
                     final CharSequence[] options = {"Eliminar", "Cancelar"};
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
 
                     builder.setTitle("Elige una opcion");
                     builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -198,7 +253,7 @@ public class LugarFavorito extends Fragment {
                              if (options[seleccion] == "Eliminar") {
 
                                 String placeid = finalHolder1.txtIdPlace.getText().toString();
-                                Preferencias preferencias = new Preferencias(getActivity().getApplicationContext());
+                                Preferencias preferencias = new Preferencias(getApplicationContext());
                                 String clienteid = preferencias.getClient_Id();
 
                                  SolicitudEliminarLugarFavorito oData = new SolicitudEliminarLugarFavorito();
@@ -206,7 +261,7 @@ public class LugarFavorito extends Fragment {
                                  oData.setPlace_Id(placeid);
                                  DeleteLugarFavoritoWebService(gson.toJson(oData));
 
-                                Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getActivity().getApplicationContext());
+                                Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getApplicationContext());
                                 Favorite_Place favorite_place;
                                 favorite_place = favorite_placeController.obtenerFavorite_PlacePorPlaceId(placeid);
                                 favorite_placeController.eliminarFavorite_Place(favorite_place);
@@ -243,11 +298,11 @@ public class LugarFavorito extends Fragment {
 
 
     private void DeleteLugarFavoritoWebService(String rawJson) {
-        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(getActivity(), WebService.DeleteFavoritePlaceWebService, rawJson);
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(getApplicationContext(), WebService.DeleteFavoritePlaceWebService, rawJson);
         servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
             @Override
             public void onTaskStart() {
-                progressdialog = new ProgressDialog(getActivity());
+                progressdialog = new ProgressDialog(getApplicationContext());
                 progressdialog.setMessage("Eliminando, espere");
                 progressdialog.setCancelable(true);
                 progressdialog.setCanceledOnTouchOutside(false);
@@ -281,7 +336,7 @@ public class LugarFavorito extends Fragment {
             public void onTaskComplete(HashMap<String, Object> result) {
                 progressdialog.dismiss();
                 String messageError = resultadoEliminarLugarFavorito.getMessage();
-                AlertDialog.Builder dialog = new AlertDialog.Builder(getActivity(), R.style.AppCompatAlertDialogStyle);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(getApplicationContext(), R.style.AppCompatAlertDialogStyle);
                 dialog.setMessage(messageError);
                 dialog.setCancelable(true);
                 dialog.setNegativeButton("OK", new DialogInterface.OnClickListener()

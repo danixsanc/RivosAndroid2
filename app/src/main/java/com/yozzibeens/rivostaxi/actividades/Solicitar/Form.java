@@ -12,6 +12,7 @@ import android.location.Geocoder;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.StrictMode;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -44,6 +45,7 @@ import com.YozziBeens.rivostaxi.modelo.Client;
 import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
 import com.YozziBeens.rivostaxi.modelo.Tarjeta;
 import com.YozziBeens.rivostaxi.modelosApp.AgregarHistorialCliente;
+import com.YozziBeens.rivostaxi.modelosApp.Solicitud;
 import com.YozziBeens.rivostaxi.modelosApp.TaxistasCercanos;
 import com.YozziBeens.rivostaxi.respuesta.ResultadoAgregarHistorialCliente;
 import com.YozziBeens.rivostaxi.respuesta.ResultadoLugaresFavoritos;
@@ -52,6 +54,7 @@ import com.YozziBeens.rivostaxi.respuesta.ResultadoToken;
 import com.YozziBeens.rivostaxi.respuesta.ResultadoTokenError;
 import com.YozziBeens.rivostaxi.servicios.WebService;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudAgregarHistorialCliente;
+import com.YozziBeens.rivostaxi.solicitud.SolicitudCancelCabbie;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudObtenerPrecio;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudObtenerTaxistasCercanos;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudToken;
@@ -102,6 +105,7 @@ public class Form extends AppCompatActivity {
     private LinearLayout PagoAlTaxista;
     private Button btnFinalizar;
     private Switch sw_deAcuerdo;
+    private Preferencias preferencias;
     String month, year;
     String name;
     String number;
@@ -117,9 +121,12 @@ public class Form extends AppCompatActivity {
 
     SweetAlertDialog pDialog;
 
-    int price, price_Id;
+    String Cabbie_Id;
+
+    int price_Id;
+    String price;
     //private ProgressDialog progressdialog;
-    double latautc_inicio, lngautc_inicio, latautc_final, lngautc_final;
+    //double latautc_inicio, lngautc_inicio, latautc_final, lngautc_final;
     String direccion;
     private Gson gson;
 
@@ -132,17 +139,29 @@ public class Form extends AppCompatActivity {
     private ResultadoTokenError resultadoTokenError;
     String tipo;
 
+    TextView timer;
+    TextView timer2;
+    boolean canRequest = false;
+
+    private Solicitud solicitud;
+    private CountDownTimer c;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_form);
+
+
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
         this.gson = new Gson();
+        this.preferencias = new Preferencias(getApplicationContext());
 
+        this.solicitud = new Solicitud();
+        this.timer = (TextView) findViewById(R.id.timer);
+        this.timer2 = (TextView) findViewById(R.id.timer2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -154,14 +173,26 @@ public class Form extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             tipo = bundle.getString("tipo");
-            latautc_inicio = bundle.getDouble("latautc_inicio");
-            lngautc_inicio = bundle.getDouble("lngautc_inicio");
-            latautc_final = bundle.getDouble("latautc_final");
-            lngautc_final = bundle.getDouble("lngautc_final");
-            price = bundle.getInt("Price");
-            price_Id = bundle.getInt("price_Id");
-            inicio = bundle.getString("inicio");
-            destino = bundle.getString("destino");
+            solicitud = (Solicitud) bundle.getSerializable("Solicitud");
+
+            this.c = new CountDownTimer(Integer.parseInt(solicitud.getTimeRest().toString()) * 1000, 1000) {
+
+                public void onTick(long millisUntilFinished) {
+                    timer.setText(""+millisUntilFinished / 1000);
+                    timer2.setText(""+millisUntilFinished / 1000);
+                    canRequest = true;
+                }
+
+                public void onFinish() {
+                    timer.setText("Agotado!");
+                    timer2.setText("Agotado!");
+                    SolicitudCancelCabbie oData = new SolicitudCancelCabbie();
+                    oData.setCabbie_Id(Cabbie_Id);
+                    CancelCabbieWebService(gson.toJson(oData));
+                    canRequest = false;
+                }
+            };
+            this.c.start();
 
             if (tipo.equals("T")){
 
@@ -184,7 +215,6 @@ public class Form extends AppCompatActivity {
                         CargarTarjetas(view);
                     }
                 });
-
 
 
                 numberText.addTextChangedListener(new TextWatcher() {
@@ -260,12 +290,22 @@ public class Form extends AppCompatActivity {
                     }
                 });
 
-
-
                 btnTokenize.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        RealizarPago(view);
+                        if (canRequest)
+                        {
+                            RealizarPago(view);
+                        }
+                        else
+                        {
+                            new SweetAlertDialog(Form.this, SweetAlertDialog.WARNING_TYPE)
+                                    .setTitleText("Oops...")
+                                    .setContentText("El tiempo se ha agotado, regresa a la seccion anterior!")
+                                    .setConfirmText("Entendido")
+                                    .show();
+                        }
+
                     }
                 });
 
@@ -275,20 +315,32 @@ public class Form extends AppCompatActivity {
                 PagoAlTaxista.setVisibility(View.VISIBLE);
                 sw_deAcuerdo = (Switch) findViewById(R.id.sw_deAcuerdo);
 
+
                 btnFinalizar = (Button) findViewById(R.id.btnFinalizar);
                 btnFinalizar.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (sw_deAcuerdo.isChecked()){
-                            RealizarPago(v);
+                        if (canRequest){
+                            if (sw_deAcuerdo.isChecked()){
+                                RealizarPago(v);
+                            }
+                            else{
+                                new SweetAlertDialog(Form.this, SweetAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Oops...")
+                                        .setContentText("Primero debes aceptar el acuerdo!")
+                                        .setConfirmText("Entendido")
+                                        .show();
+                            }
                         }
-                        else{
+                        else
+                        {
                             new SweetAlertDialog(Form.this, SweetAlertDialog.WARNING_TYPE)
                                     .setTitleText("Oops...")
-                                    .setContentText("Primero debes aceptar el acuerdo!")
+                                    .setContentText("El tiempo se ha agotado, regresa a la seccion anterior!")
                                     .setConfirmText("Entendido")
                                     .show();
                         }
+
 
                     }
                 });
@@ -315,20 +367,6 @@ public class Form extends AppCompatActivity {
         pDialog.show();
 
 
-        /*progressdialog = new ProgressDialog(Form.this);
-        progressdialog.setMessage("Realizando pago, espere");
-        progressdialog.setCancelable(true);
-        progressdialog.setCanceledOnTouchOutside(false);
-        progressdialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            @Override
-            public void onCancel(DialogInterface dialog) {
-                progressdialog.dismiss();
-            }
-        });
-        progressdialog.show();*/
-
-        Boolean haveInternet = isOnline();
-
         if (tipo.equals("T")){
             name = nameText.getText().toString();
             number = numberText.getText().toString();
@@ -351,9 +389,9 @@ public class Form extends AppCompatActivity {
                             if (year.length() == 4 &&((yearNumber > 2015)&&(yearNumber < 2020)))
                             {
                                 SolicitudObtenerTaxistasCercanos oData = new SolicitudObtenerTaxistasCercanos();
-                                oData.setLatitude(String.valueOf(latautc_inicio));
-                                oData.setLongitude(String.valueOf(lngautc_inicio));
-                                GetCloseCabbieWebService(gson.toJson(oData));
+                                oData.setLatitude(String.valueOf(solicitud.getLatOrigen()));
+                                oData.setLongitude(String.valueOf(solicitud.getLongOrigen()));
+                                //GetCloseCabbieWebService(gson.toJson(oData));
                             }
                             else
                             {
@@ -385,10 +423,22 @@ public class Form extends AppCompatActivity {
             }
         }
         else if (tipo.equals("P")){
-            SolicitudObtenerTaxistasCercanos oData = new SolicitudObtenerTaxistasCercanos();
-            oData.setLatitude(String.valueOf(latautc_inicio));
-            oData.setLongitude(String.valueOf(lngautc_inicio));
-            GetCloseCabbieWebService(gson.toJson(oData));
+
+            String Client_Id = preferencias.getClient_Id();
+            SolicitudAgregarHistorialCliente oData = new SolicitudAgregarHistorialCliente();
+
+            oData.setLatitude_In(solicitud.getLatOrigen());
+            oData.setLongitude_In(solicitud.getLongOrigen());
+            oData.setLatitude_Fn(solicitud.getLatDestino());
+            oData.setLongitude_Fn(solicitud.getLongDestino());
+            oData.setInicio(solicitud.getDirOrigen());
+            oData.setDestino(solicitud.getDirDestino());
+            oData.setPrecio(solicitud.getPrice());
+            oData.setClient_Id(Client_Id);
+            oData.setCabbie_Id(solicitud.getCabbie_Id());
+            oData.setPaymentType_Id("2");
+            SetClientHistoryWebService(gson.toJson(oData));
+
         }
     }
 
@@ -428,7 +478,7 @@ public class Form extends AppCompatActivity {
         builder.show();
     }
 
-    private void GetCloseCabbieWebService(String rawJson) {
+   /* private void GetCloseCabbieWebService(String rawJson) {
         ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetCloseCabbieWebService, rawJson);
         servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
             @Override
@@ -467,10 +517,6 @@ public class Form extends AppCompatActivity {
                     }
 
                     if (tipo.equals("T")){
-                        //live
-                        //Conekta.setPublicKey("key_TsVXhSTCa66D29qjfwc4eZQ");
-                        //prueba
-                        //Conekta.setPublicKey("key_Ms2JtV99zBb9ozAsz16yLTQ");
                         Conekta.setPublicKey("key_H9xwdHFLt9Vy9vYMh1DP3zw");
                         Conekta.setApiVersion("0.3.0");
                         Conekta.collectDevice(activity);
@@ -564,7 +610,7 @@ public class Form extends AppCompatActivity {
             }
         });
         servicioAsyncService.execute();
-    }
+    }*/
 
     private void ProcesPayWebService(String rawJson) {
         ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.ProcesPayWebService, rawJson);
@@ -593,7 +639,7 @@ public class Form extends AppCompatActivity {
 
                         if ((!resultadoToken.isError()) && resultadoToken.isData() != false) {
 
-                            Preferencias preferencias = new Preferencias(getApplicationContext());
+                            /*Preferencias preferencias = new Preferencias(getApplicationContext());
                             String Client_Id = preferencias.getClient_Id();
 
                             SolicitudAgregarHistorialCliente oData = new SolicitudAgregarHistorialCliente();
@@ -607,7 +653,7 @@ public class Form extends AppCompatActivity {
                             oData.setInicio(inicio);
                             oData.setDestino(destino);
                             oData.setTipo("T");
-                            SetClientHistoryWebService(gson.toJson(oData));
+                            SetClientHistoryWebService(gson.toJson(oData));s*/
 
                         }
                     }
@@ -666,32 +712,17 @@ public class Form extends AppCompatActivity {
 
 
                 if ((!resultadoAgregarHistorialCliente.isError()) && resultadoAgregarHistorialCliente.getData() != null) {
-                    ArrayList<AgregarHistorialCliente> agregarHistorialClientes = resultadoAgregarHistorialCliente.getData();
 
-                    String date = null;
-                    String ref = null;
 
-                    for (int i = 0; i < agregarHistorialClientes.size(); i++) {
-                        date = agregarHistorialClientes.get(i).getDate();
-                        ref = agregarHistorialClientes.get(i).getRef();
-                    }
+                    String ref = resultadoAgregarHistorialCliente.getData().getRef();
+                    String date = resultadoAgregarHistorialCliente.getData().getDate();
 
                     Intent i = new Intent(Form.this, Compra_Final.class);
-                    i.putExtra("latautc_inicio", latautc_inicio);
-                    i.putExtra("lngautc_inicio", lngautc_inicio);
-                    i.putExtra("latautc_final", latautc_final);
-                    i.putExtra("lngautc_final", lngautc_final);
-                    i.putExtra("direccion", direccion);
-                    i.putExtra("Price", price);
-                    i.putExtra("price_Id", price_Id);
-                    i.putExtra("id_cabbie", id_cabbie);
-                    i.putExtra("name_cabbie", name_cabbie);
-                    i.putExtra("gcm_id_cabbie", gcm_id_cabbie);
-                    i.putExtra("latitude_cabbie", latitude_cabbie);
-                    i.putExtra("longitude_cabbie", longitude_cabbie);
-                    i.putExtra("date", date);
-                    i.putExtra("ref", ref);
+                    i.putExtra("Solicitud", solicitud);
+                    i.putExtra("Ref", ref);
+                    i.putExtra("Date", date);
                     pDialog.dismiss();
+                    c.cancel();
                     startActivity(i);
                     finish();
 
@@ -706,15 +737,6 @@ public class Form extends AppCompatActivity {
         servicioAsyncService.execute();
     }
 
-    public boolean isOnline () {
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        if (netInfo != null && netInfo.isConnected()) {
-            return true;
-        }
-        return false;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -725,6 +747,32 @@ public class Form extends AppCompatActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void CancelCabbieWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.CancelCabbieWebService, rawJson);
+        servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
+            @Override
+            public void onTaskStart() {
+            }
+
+            @Override
+            public void onTaskDownloadedFinished(HashMap<String, Object> result) {
+            }
+
+            @Override
+            public void onTaskUpdate(String result) {
+            }
+
+            @Override
+            public void onTaskComplete(HashMap<String, Object> result) {
+            }
+
+            @Override
+            public void onTaskCancelled(HashMap<String, Object> result) {
+            }
+        });
+        servicioAsyncService.execute();
     }
 
 

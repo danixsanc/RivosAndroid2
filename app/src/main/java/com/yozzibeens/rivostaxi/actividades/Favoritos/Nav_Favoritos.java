@@ -1,5 +1,5 @@
 package com.YozziBeens.rivostaxi.actividades.Favoritos;
-
+/*
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -9,11 +9,12 @@ import android.view.MenuItem;
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.adaptadores.SlidingTabLayout;
 import com.YozziBeens.rivostaxi.adaptadores.ViewPagerAdpaterFavorite;
-
+*/
 
 /**
  * Created by danixsanc on 12/01/2016.
  */
+/*
 public class Nav_Favoritos extends AppCompatActivity {
 
     ViewPager pager;
@@ -60,3 +61,4 @@ public class Nav_Favoritos extends AppCompatActivity {
 
 
 }
+*/

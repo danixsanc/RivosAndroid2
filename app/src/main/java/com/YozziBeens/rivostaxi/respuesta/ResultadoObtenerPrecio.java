@@ -1,18 +1,19 @@
 package com.YozziBeens.rivostaxi.respuesta;
 
 
+import com.YozziBeens.rivostaxi.modelosApp.RespPrice;
+
 public class ResultadoObtenerPrecio {
 
-    private String Data;
+    private RespPrice Data;
     private boolean Error;
     private String Message;
-    private String Success;
 
-    public String getData() {
+    public RespPrice getData() {
         return Data;
     }
 
-    public void setData(String data) {
+    public void setData(RespPrice data) {
         Data = data;
     }
 
@@ -31,18 +32,6 @@ public class ResultadoObtenerPrecio {
     public void setMessage(String message) {
         Message = message;
     }
-
-    public String getSuccess() {
-        return Success;
-    }
-
-    public void setSuccess(String success) {
-        Success = success;
-    }
-
-
-
-
 
 
 }

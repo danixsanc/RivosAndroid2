@@ -17,6 +17,7 @@ import com.YozziBeens.rivostaxi.adaptadores.AddFavoriteCabbie;
 import com.YozziBeens.rivostaxi.app.Main;
 import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
 import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
+import com.YozziBeens.rivostaxi.modelosApp.Solicitud;
 import com.YozziBeens.rivostaxi.modelosApp.TaxistasCercanos;
 import com.YozziBeens.rivostaxi.modelosApp.TaxistasQueAtendieron;
 import com.YozziBeens.rivostaxi.respuesta.ResultadoLogin;
@@ -59,39 +60,21 @@ public class Compra_Final extends AppCompatActivity {
     TextView Costo;
     TextView txt_llegaPorTiEn,txt_aproximadamente,txt_aproximadamente2,txt_costo_delViaje;
     Button btn_perfil_cabbie;
-    String fecha, referecia;
-
-    double latautc_inicio;
-    double lngautc_inicio;
-    double latautc_final;
-    double lngautc_final;
-    double latcabbie;
-    double lngcabbie;
-    int price_id;
-    int price, price_Id;
-    double pricef;
-    String cabbie_id;
-    String direccion;
-    ImageView imgQrCode;
 
 
-    String id_cabbie;
-    String name_cabbie;
-    String gcm_id_cabbie;
-    String latitude_cabbie;
-    String longitude_cabbie;
 
     ImageView qrCodeImageview;
     String QRcode;
     public final static int WIDTH = 500;
 
-    String date;
-    String ref;
+
+    String ref, date;
     private Gson gson;
     private ResultadoNotificacion resultadoNotificacion;
 
     double metros;
     double kilometros;
+    private Solicitud solicitud;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,6 +90,8 @@ public class Compra_Final extends AppCompatActivity {
 
         Preferencias preferencias = new Preferencias(getApplicationContext());
         String Client_Id = preferencias.getClient_Id();
+
+        this.solicitud = new Solicitud();
 
        //------Tipo de fuente---------------------------------------------------------------------------------
         Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
@@ -152,34 +137,22 @@ public class Compra_Final extends AppCompatActivity {
 
         Bundle   bundle = getIntent().getExtras();
         if (bundle != null) {
-            latautc_inicio = bundle.getDouble("latautc_inicio");
-            lngautc_inicio = bundle.getDouble("lngautc_inicio");
-            latautc_final = bundle.getDouble("latautc_final");
-            lngautc_final = bundle.getDouble("lngautc_final");
-            direccion = bundle.getString("direccion");
-            price = bundle.getInt("Price");
-            price_Id = bundle.getInt("price_Id");
-
-            id_cabbie = bundle.getString("id_cabbie");
-            name_cabbie = bundle.getString("name_cabbie");
-            gcm_id_cabbie = bundle.getString("gcm_id_cabbie");
-            latitude_cabbie = bundle.getString("latitude_cabbie");
-            longitude_cabbie = bundle.getString("longitude_cabbie");
-
-            date = bundle.getString("date");
-            ref = bundle.getString("ref");
+            solicitud = (Solicitud) bundle.getSerializable("Solicitud");
+            //date = bundle.getString("date");
+            ref = bundle.getString("Ref");
+            date = bundle.getString("Date");
         }
 
-        NombreTaxista.setText(name_cabbie);
+        NombreTaxista.setText(solicitud.getCabbie());
 
 
-        LatLng l1 = new LatLng(latautc_inicio, lngautc_inicio);
-        LatLng l2 = new LatLng(Double.valueOf(latitude_cabbie), Double.valueOf(longitude_cabbie));
+        LatLng l1 = new LatLng(Double.valueOf(solicitud.getLatOrigen()), Double.valueOf(solicitud.getLongOrigen()));
+        LatLng l2 = new LatLng(Double.valueOf(solicitud.getLatCabbie()), Double.valueOf(solicitud.getLongCabbie()));
 
         double distance = SphericalUtil.computeDistanceBetween(l1, l2);
         Distancia.setText(formatNumber(distance));
 
-        Costo.setText("$ "+String.valueOf(price)+".00");
+        Costo.setText("$ "+solicitud.getPrice()+".00");
 
 
         if (metros > 0)
@@ -192,24 +165,6 @@ public class Compra_Final extends AppCompatActivity {
             tiempo = tiempo * 60;
             Tiempo.setText((int)tiempo + " MIN");
         }
-
-
-        /*JSONObject json2 = servicio.set_Client_History(String.valueOf(latautc_inicio), String.valueOf(lngautc_inicio), String.valueOf(latautc_final),
-                String.valueOf(lngautc_final), Client_Id, cabbie_id, String.valueOf(price_Id));
-
-        try {
-            if (json2.getString(KEY_SUCCESS) != null) {
-                String res = json.getString(KEY_SUCCESS);
-                if (Integer.parseInt(res) == 1) {
-                    fecha = json2.getString("Date");
-                    referecia = json2.getString("Ref");
-
-
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
 
 
         FechasBD fechasBD = new FechasBD();
@@ -250,7 +205,7 @@ public class Compra_Final extends AppCompatActivity {
 
 
         SolicitudNotificacion oData = new SolicitudNotificacion();
-        oData.setGcm_Id(gcm_id_cabbie);
+        oData.setGcm_Id(solicitud.getGcmIdCabbie());
         oData.setMessage("Nueva Solicitud");
         oData.setType("A");
         NotificacionWebService(gson.toJson(oData));
@@ -345,5 +300,7 @@ public class Compra_Final extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 
 }
