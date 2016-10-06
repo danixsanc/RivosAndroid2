@@ -69,7 +69,7 @@ public class Generador {
         historialPendiente.addStringProperty("Inicio");
         historialPendiente.addStringProperty("Destino");
         historialPendiente.addStringProperty("Date");
-        historialPendiente.addStringProperty("Cabbie");
+        historialPendiente.addStringProperty("Cabbie_Id");
         historialPendiente.addStringProperty("Cabbie_Name");
         historialPendiente.addStringProperty("Ref");
         historialPendiente.addStringProperty("Price");
@@ -95,10 +95,11 @@ public class Generador {
         Entity tarjeta = schema.addEntity("Tarjeta");
         tarjeta.addIdProperty().primaryKey().autoincrement();
         tarjeta.addStringProperty("Card_Id");
-        tarjeta.addStringProperty("Number_Card");
-        tarjeta.addStringProperty("Month");
-        tarjeta.addStringProperty("Year");
-        tarjeta.addStringProperty("Name_Card");
+        tarjeta.addStringProperty("Name");
+        tarjeta.addStringProperty("Last4");
+        tarjeta.addStringProperty("Exp_Month");
+        tarjeta.addStringProperty("Exp_Year");
+        tarjeta.addStringProperty("Brand");
         oPlantillaGenerador.generarController("Tarjeta", false);
 
 

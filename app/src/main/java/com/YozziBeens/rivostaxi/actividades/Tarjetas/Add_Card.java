@@ -32,9 +32,7 @@ import com.YozziBeens.rivostaxi.servicios.WebService;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudAgregarTarjeta;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudToken;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
-import com.conekta.conektasdk.Card;
-import com.conekta.conektasdk.Conekta;
-import com.conekta.conektasdk.Token;
+
 import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -42,6 +40,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import io.conekta.conektasdk.Card;
+import io.conekta.conektasdk.Conekta;
+import io.conekta.conektasdk.Token;
 
 /**
  * Created by danixsanc on 23/02/2016.
@@ -295,9 +297,12 @@ public class Add_Card  extends AppCompatActivity{
                     String tarjetaId = resultadoAgregarTarjeta.getData();
 
                     TarjetaController tarjetaController  = new TarjetaController(getApplicationContext());
-                    Tarjeta tarjeta = new Tarjeta(null, tarjetaId, numberText.getText().toString(),
+                    Tarjeta tarjeta = new Tarjeta(null, tarjetaId, nameText.getText().toString(),
+                            numberText.getText().toString(), vigenciaMonth.getText().toString(),
+                            vigenciaYear.getText().toString(), "Visa");
+                    /*Tarjeta tarjeta = new Tarjeta(null, tarjetaId, numberText.getText().toString(),
                             vigenciaMonth.getText().toString(), vigenciaYear.getText().toString(), nameText.getText().toString());
-
+*/
                     tarjetaController.guardarOActualizarTarjeta(tarjeta);
 
                     Intent returnIntent = new Intent();

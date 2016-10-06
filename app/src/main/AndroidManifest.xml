@@ -248,6 +248,6 @@
             android:exported="false"/-->
 
     </application>
-    <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="23" />
+    <uses-sdk android:minSdkVersion="15" android:targetSdkVersion="24" />
 
 </manifest>

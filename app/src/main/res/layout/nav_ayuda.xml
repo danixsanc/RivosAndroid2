@@ -39,7 +39,7 @@
                     android:paddingRight="30dp"
                     android:textSize="16dp"
                     android:drawableLeft="@drawable/ic_phone_white_24dp"
-                    android:background="@drawable/rb_iniciar_sesion"
+                    android:background="@color/colorPrimaryDark"
                     android:textColor="#ffffff"
                     android:text="Asistencia telefonica" />
 
@@ -72,7 +72,7 @@
                     android:textColor="#ffffff"
                     android:onClick="goTopage"
                     android:drawableLeft="@drawable/ic_question_answer_white_24dp"
-                    android:background="@drawable/rb_iniciar_sesion"
+                    android:background="@color/colorPrimaryDark"
                     android:text="Preguntas frecuentes" />
 
             </com.balysv.materialripple.MaterialRippleLayout>
@@ -82,6 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
+                android:tint="@color/colorAccent"
                 android:src="@drawable/ic_linea"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -89,7 +90,7 @@
                 android:textSize="18dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:textColor="#121748"
+                android:textColor="@color/colorPrimaryDark"
                 android:textStyle="bold"
                 android:layout_marginLeft="20dp"
                 android:text="Contactanos"
@@ -160,7 +161,7 @@
                     android:textColor="#ffffff"
                     android:onClick="goTopage"
                     android:drawableLeft="@drawable/ic_speaker_notes_white_24dp"
-                    android:background="@drawable/rb_iniciar_sesion"
+                    android:background="@color/colorPrimaryDark"
                     android:text="Enviar" />
 
             </com.balysv.materialripple.MaterialRippleLayout>

@@ -42,8 +42,8 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
                         android:src="@color/colorOrigen"
-                        app:border_color="@color/colorBorder"
-                        app:border_width="1dp"/>
+                        app:civ_border_color="@color/colorBorder"
+                        app:civ_border_width="1dp"/>
 
                     <LinearLayout
                         android:layout_width="1dp"
@@ -65,8 +65,8 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="15dp"
                         android:src="@color/colorDestino"
-                        app:border_color="@color/colorBorder"
-                        app:border_width="1dp"/>
+                        app:civ_border_color="@color/colorBorder"
+                        app:civ_border_width="1dp"/>
 
 
                 </RelativeLayout>

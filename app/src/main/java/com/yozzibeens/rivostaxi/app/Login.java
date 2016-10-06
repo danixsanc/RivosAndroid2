@@ -84,8 +84,6 @@ public class Login extends AppCompatActivity {
     private Favorite_CabbieController favorite_cabbieController;
     private Favorite_PlaceController favorite_placeController;
     private ResultadoLogin resultadoLogin;
-    private ResultadoHistorialCliente resultadoHistorialCliente;
-    private ResultadoTaxistasFavoritos resultadoTaxistasFavoritos;
     private ResultadoLugaresFavoritos resultadoLugaresFavoritos;
     private Preferencias preferencias;
     public static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
@@ -110,6 +108,7 @@ public class Login extends AppCompatActivity {
         favorite_placeController = new Favorite_PlaceController(this);
         preferencias = new Preferencias(getApplicationContext());
         this.resultadoLogin = new ResultadoLogin();
+        this.resultadoLugaresFavoritos = new ResultadoLugaresFavoritos();
 
 
 
@@ -314,6 +313,10 @@ public class Login extends AppCompatActivity {
                         preferencias.setClient_Id(clientId);
                         preferencias.setSesion(false);
 
+                        SolicitudLugaresFavoritos oData = new SolicitudLugaresFavoritos();
+                        oData.setClient_Id(clientId);
+                        LugaresFavoritosWebService(gson.toJson(oData));
+
                         Intent main = new Intent(getApplicationContext(), Main.class);
                         startActivity(main);
                         finish();
@@ -368,9 +371,8 @@ public class Login extends AppCompatActivity {
         servicioAsyncService.execute();
     }
 
-
-    /*private void TaxistasFavoritosWebService(String rawJson) {
-        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetFavoriteCabbieWebService, rawJson);
+    private void LugaresFavoritosWebService(String rawJson) {
+        ServicioAsyncService servicioAsyncService = new ServicioAsyncService(this, WebService.GetFavoritePlaceWebService, rawJson);
         servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
             @Override
             public void onTaskStart() {
@@ -381,14 +383,9 @@ public class Login extends AppCompatActivity {
                 try {
                     int statusCode = Integer.parseInt(result.get("StatusCode").toString());
                     if (statusCode == 0) {
-                        resultadoTaxistasFavoritos = gson.fromJson(result.get("Resultado").toString(), ResultadoTaxistasFavoritos.class);
-                        if ((!resultadoTaxistasFavoritos.isError()) && resultadoTaxistasFavoritos.getData() != null) {
-                            favorite_cabbieController.eliminarTodo();
-                            favorite_cabbieController.guardarOActualizarFavorite_Cabbie(resultadoTaxistasFavoritos.getData());
-                        }
+                        resultadoLugaresFavoritos = gson.fromJson(result.get("Resultado").toString(), ResultadoLugaresFavoritos.class);
                     }
-                }
-                catch (Exception error) {
+                } catch (Exception error) {
 
                 }
             }
@@ -399,29 +396,10 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void onTaskComplete(HashMap<String, Object> result) {
-                if (resultadoLogin.isError())
-                {
-                    String messageError = resultadoLogin.getMessage();
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(Login.this, R.style.AppCompatAlertDialogStyle);
-                    dialog.setMessage(messageError);
-                    dialog.setCancelable(true);
-                    dialog.setNegativeButton("OK", new DialogInterface.OnClickListener()
-                    {
-                        public void onClick(DialogInterface dialog, int which)
-                        {
-                            dialog.cancel();
-                        }
-                    });
-                    dialog.show();
+                if ((!resultadoLugaresFavoritos.isError()) && resultadoLugaresFavoritos.getData() != null) {
+                    favorite_placeController.eliminarTodo();
+                    favorite_placeController.guardarOActualizarFavorite_Place(resultadoLugaresFavoritos.getData());
                 }
-                else {
-                    Preferencias preferencias = new Preferencias(getApplicationContext());
-                    String clientId = preferencias.getClient_Id();
-                    SolicitudHistorialCliente oData = new SolicitudHistorialCliente();
-                    oData.setClient_Id(clientId);
-                    //HistorialClienteWebService(gson.toJson(oData));
-                }
-
             }
 
             @Override
@@ -429,8 +407,7 @@ public class Login extends AppCompatActivity {
             }
         });
         servicioAsyncService.execute();
-    }*/
-
+    }
 
 
 

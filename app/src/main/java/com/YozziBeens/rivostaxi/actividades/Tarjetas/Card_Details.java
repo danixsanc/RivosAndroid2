@@ -70,14 +70,14 @@ public class Card_Details extends AppCompatActivity {
 
 
         TarjetasBD tarjetasBD = new TarjetasBD();
-        String tarjF = tarjetasBD.ocultarTarjeta(tarjeta.getNumber_Card());
+        String tarjF = tarjetasBD.ocultarTarjeta(tarjeta.getLast4());
         txtId.setText(tarjF);
 
-        String date = tarjeta.getMonth();
+        String date = tarjeta.getExp_Month();
         txtNombre.setText(date);
-        txtFecha.setText(tarjeta.getName_Card());
+        txtFecha.setText(tarjeta.getName());
 
-        txtPrecio.setText(tarjeta.getYear());
+        txtPrecio.setText(tarjeta.getExp_Year());
 
     }
 

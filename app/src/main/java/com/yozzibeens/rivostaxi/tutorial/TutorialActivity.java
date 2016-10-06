@@ -16,25 +16,25 @@ import com.YozziBeens.rivostaxi.tutorial.view.ViewPagerCustomDuration;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
 import com.viewpagerindicator.CirclePageIndicator;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
 
 public class TutorialActivity extends ActionBarActivity {
 
     private static final int colorArray[] = new int[3];
-    @InjectView(R.id.pager)
+    @BindView(R.id.pager)
     ViewPagerCustomDuration viewPager;
-    @InjectView(R.id.indicator)
+    @BindView(R.id.indicator)
     CirclePageIndicator circleIndicator;
-    @InjectView(R.id.next_btn)
+    @BindView(R.id.next_btn)
     View nextBtn;
-    @InjectView(R.id.skip_btn)
+    @BindView(R.id.skip_btn)
     View skipBtn;
-    @InjectView(R.id.done_btn)
+    @BindView(R.id.done_btn)
     View doneBtn;
-    @InjectView(R.id.bg)
+    @BindView(R.id.bg)
     SmoothFrameLayout bg;
 
     @Override
@@ -42,7 +42,7 @@ public class TutorialActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
         getWindow().setBackgroundDrawable(null);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         colorArray[0] = getResources().getColor(R.color.page_blue);
         colorArray[1] = getResources().getColor(R.color.page_red);
         colorArray[2] = getResources().getColor(R.color.page_green);

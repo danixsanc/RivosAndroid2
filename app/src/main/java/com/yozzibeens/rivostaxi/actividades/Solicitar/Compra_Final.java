@@ -86,6 +86,8 @@ public class Compra_Final extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+
+
         this.gson = new Gson();
 
         Preferencias preferencias = new Preferencias(getApplicationContext());
@@ -295,6 +297,9 @@ public class Compra_Final extends AppCompatActivity {
         switch (item.getItemId()) {
             // Respond to the action bar's Up/Home button
             case android.R.id.home:
+                Intent i = new Intent(Compra_Final.this, Main.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
                 finish();
                 return true;
         }

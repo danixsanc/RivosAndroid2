@@ -25,10 +25,11 @@ public class TarjetaDao extends AbstractDao<Tarjeta, Long> {
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
         public final static Property Card_Id = new Property(1, String.class, "Card_Id", false, "CARD__ID");
-        public final static Property Number_Card = new Property(2, String.class, "Number_Card", false, "NUMBER__CARD");
-        public final static Property Month = new Property(3, String.class, "Month", false, "MONTH");
-        public final static Property Year = new Property(4, String.class, "Year", false, "YEAR");
-        public final static Property Name_Card = new Property(5, String.class, "Name_Card", false, "NAME__CARD");
+        public final static Property Name = new Property(2, String.class, "Name", false, "NAME");
+        public final static Property Last4 = new Property(3, String.class, "Last4", false, "LAST4");
+        public final static Property Exp_Month = new Property(4, String.class, "Exp_Month", false, "EXP__MONTH");
+        public final static Property Exp_Year = new Property(5, String.class, "Exp_Year", false, "EXP__YEAR");
+        public final static Property Brand = new Property(6, String.class, "Brand", false, "BRAND");
     };
 
 
@@ -46,10 +47,11 @@ public class TarjetaDao extends AbstractDao<Tarjeta, Long> {
         db.execSQL("CREATE TABLE " + constraint + "'TARJETA' (" + //
                 "'_id' INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
                 "'CARD__ID' TEXT," + // 1: Card_Id
-                "'NUMBER__CARD' TEXT," + // 2: Number_Card
-                "'MONTH' TEXT," + // 3: Month
-                "'YEAR' TEXT," + // 4: Year
-                "'NAME__CARD' TEXT);"); // 5: Name_Card
+                "'NAME' TEXT," + // 2: Name
+                "'LAST4' TEXT," + // 3: Last4
+                "'EXP__MONTH' TEXT," + // 4: Exp_Month
+                "'EXP__YEAR' TEXT," + // 5: Exp_Year
+                "'BRAND' TEXT);"); // 6: Brand
     }
 
     /** Drops the underlying database table. */
@@ -73,24 +75,29 @@ public class TarjetaDao extends AbstractDao<Tarjeta, Long> {
             stmt.bindString(2, Card_Id);
         }
  
-        String Number_Card = entity.getNumber_Card();
-        if (Number_Card != null) {
-            stmt.bindString(3, Number_Card);
+        String Name = entity.getName();
+        if (Name != null) {
+            stmt.bindString(3, Name);
         }
  
-        String Month = entity.getMonth();
-        if (Month != null) {
-            stmt.bindString(4, Month);
+        String Last4 = entity.getLast4();
+        if (Last4 != null) {
+            stmt.bindString(4, Last4);
         }
  
-        String Year = entity.getYear();
-        if (Year != null) {
-            stmt.bindString(5, Year);
+        String Exp_Month = entity.getExp_Month();
+        if (Exp_Month != null) {
+            stmt.bindString(5, Exp_Month);
         }
  
-        String Name_Card = entity.getName_Card();
-        if (Name_Card != null) {
-            stmt.bindString(6, Name_Card);
+        String Exp_Year = entity.getExp_Year();
+        if (Exp_Year != null) {
+            stmt.bindString(6, Exp_Year);
+        }
+ 
+        String Brand = entity.getBrand();
+        if (Brand != null) {
+            stmt.bindString(7, Brand);
         }
     }
 
@@ -106,10 +113,11 @@ public class TarjetaDao extends AbstractDao<Tarjeta, Long> {
         Tarjeta entity = new Tarjeta( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
             cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // Card_Id
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // Number_Card
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // Month
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // Year
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // Name_Card
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // Name
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // Last4
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // Exp_Month
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // Exp_Year
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6) // Brand
         );
         return entity;
     }
@@ -119,10 +127,11 @@ public class TarjetaDao extends AbstractDao<Tarjeta, Long> {
     public void readEntity(Cursor cursor, Tarjeta entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
         entity.setCard_Id(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setNumber_Card(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setMonth(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setYear(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setName_Card(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setLast4(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setExp_Month(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setExp_Year(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setBrand(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
      }
     
     /** @inheritdoc */

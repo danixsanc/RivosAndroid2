@@ -159,11 +159,11 @@ public class Agregar_Lugar_Favorito extends AppCompatActivity implements GoogleA
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        mapa1= ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapa1)).getMap();
+        /*mapa1= ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapa1)).getMap();
         mapa1.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mapa1.setMyLocationEnabled(true);
         mapa1.getUiSettings().setZoomControlsEnabled(false);
-        mapa1.getUiSettings().setCompassEnabled(true);
+        mapa1.getUiSettings().setCompassEnabled(true);*/
 
         Preferencias preferencias = new Preferencias(getApplicationContext());
         String Client_Id = preferencias.getClient_Id();

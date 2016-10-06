@@ -11,7 +11,7 @@ public class HistorialPendiente {
     private String Inicio;
     private String Destino;
     private String Date;
-    private String Cabbie;
+    private String Cabbie_Id;
     private String Cabbie_Name;
     private String Ref;
     private String Price;
@@ -23,13 +23,13 @@ public class HistorialPendiente {
         this.id = id;
     }
 
-    public HistorialPendiente(Long id, String Request_Id, String Inicio, String Destino, String Date, String Cabbie, String Cabbie_Name, String Ref, String Price) {
+    public HistorialPendiente(Long id, String Request_Id, String Inicio, String Destino, String Date, String Cabbie_Id, String Cabbie_Name, String Ref, String Price) {
         this.id = id;
         this.Request_Id = Request_Id;
         this.Inicio = Inicio;
         this.Destino = Destino;
         this.Date = Date;
-        this.Cabbie = Cabbie;
+        this.Cabbie_Id = Cabbie_Id;
         this.Cabbie_Name = Cabbie_Name;
         this.Ref = Ref;
         this.Price = Price;
@@ -75,12 +75,12 @@ public class HistorialPendiente {
         this.Date = Date;
     }
 
-    public String getCabbie() {
-        return Cabbie;
+    public String getCabbie_Id() {
+        return Cabbie_Id;
     }
 
-    public void setCabbie(String Cabbie) {
-        this.Cabbie = Cabbie;
+    public void setCabbie_Id(String Cabbie_Id) {
+        this.Cabbie_Id = Cabbie_Id;
     }
 
     public String getCabbie_Name() {

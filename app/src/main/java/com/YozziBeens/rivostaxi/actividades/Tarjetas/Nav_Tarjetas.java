@@ -117,9 +117,9 @@ public class Nav_Tarjetas extends AppCompatActivity {
                     for (int i=0; i < tarjetaslista2.size(); i++)
                     {
                         String id = String.valueOf(tarjetaslista2.get(i).getCard_Id());
-                        String tarjeta = tarjetaslista2.get(i).getNumber_Card();
+                        String tarjeta = tarjetaslista2.get(i).getLast4();
 
-                        int cont = tarjeta.length();
+                        /*int cont = tarjeta.length();
                         int num = cont - 4;
                         String tarjetaSeg = tarjeta.substring(num, tarjeta.length());
                         String tarjF;
@@ -130,9 +130,9 @@ public class Nav_Tarjetas extends AppCompatActivity {
                         else
                         {
                             tarjF = "**** **** " + tarjetaSeg;
-                        }
+                        }*/
 
-                        tarjetasArray.add(new AdaptadorTarjetas(tarjF, id));
+                        tarjetasArray.add(new AdaptadorTarjetas("**** **** **** " + tarjeta, id));
                         //request_id[i] = Integer.valueOf(String.valueOf(tarjetaslista2.get(i).getCard_Id()));
                     }
 
@@ -209,10 +209,10 @@ public class Nav_Tarjetas extends AppCompatActivity {
                 for (int i=0; i < tarjetasLista.size(); i++)
                 {
                     String id = String.valueOf(tarjetasLista.get(i).getCard_Id());
-                    String tarjeta = tarjetasLista.get(i).getNumber_Card();
+                    String tarjeta = tarjetasLista.get(i).getLast4();
 
                     TarjetasBD tarjetasBD = new TarjetasBD();
-                    String tarjF = tarjetasBD.ocultarTarjeta(tarjetasLista.get(i).getNumber_Card());
+                    String tarjF = tarjetasBD.ocultarTarjeta(tarjetasLista.get(i).getLast4());
                     tarjetasArray.add(new AdaptadorTarjetas(tarjF, id));
                     request_id[i] = Integer.valueOf(String.valueOf(tarjetasLista.get(i).getCard_Id()));
                 }

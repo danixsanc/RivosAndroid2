@@ -8,10 +8,11 @@ public class Tarjeta {
 
     private Long id;
     private String Card_Id;
-    private String Number_Card;
-    private String Month;
-    private String Year;
-    private String Name_Card;
+    private String Name;
+    private String Last4;
+    private String Exp_Month;
+    private String Exp_Year;
+    private String Brand;
 
     public Tarjeta() {
     }
@@ -20,13 +21,14 @@ public class Tarjeta {
         this.id = id;
     }
 
-    public Tarjeta(Long id, String Card_Id, String Number_Card, String Month, String Year, String Name_Card) {
+    public Tarjeta(Long id, String Card_Id, String Name, String Last4, String Exp_Month, String Exp_Year, String Brand) {
         this.id = id;
         this.Card_Id = Card_Id;
-        this.Number_Card = Number_Card;
-        this.Month = Month;
-        this.Year = Year;
-        this.Name_Card = Name_Card;
+        this.Name = Name;
+        this.Last4 = Last4;
+        this.Exp_Month = Exp_Month;
+        this.Exp_Year = Exp_Year;
+        this.Brand = Brand;
     }
 
     public Long getId() {
@@ -45,36 +47,44 @@ public class Tarjeta {
         this.Card_Id = Card_Id;
     }
 
-    public String getNumber_Card() {
-        return Number_Card;
+    public String getName() {
+        return Name;
     }
 
-    public void setNumber_Card(String Number_Card) {
-        this.Number_Card = Number_Card;
+    public void setName(String Name) {
+        this.Name = Name;
     }
 
-    public String getMonth() {
-        return Month;
+    public String getLast4() {
+        return Last4;
     }
 
-    public void setMonth(String Month) {
-        this.Month = Month;
+    public void setLast4(String Last4) {
+        this.Last4 = Last4;
     }
 
-    public String getYear() {
-        return Year;
+    public String getExp_Month() {
+        return Exp_Month;
     }
 
-    public void setYear(String Year) {
-        this.Year = Year;
+    public void setExp_Month(String Exp_Month) {
+        this.Exp_Month = Exp_Month;
     }
 
-    public String getName_Card() {
-        return Name_Card;
+    public String getExp_Year() {
+        return Exp_Year;
     }
 
-    public void setName_Card(String Name_Card) {
-        this.Name_Card = Name_Card;
+    public void setExp_Year(String Exp_Year) {
+        this.Exp_Year = Exp_Year;
+    }
+
+    public String getBrand() {
+        return Brand;
+    }
+
+    public void setBrand(String Brand) {
+        this.Brand = Brand;
     }
 
 }

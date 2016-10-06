@@ -28,7 +28,7 @@ public class HistorialPendienteDao extends AbstractDao<HistorialPendiente, Long>
         public final static Property Inicio = new Property(2, String.class, "Inicio", false, "INICIO");
         public final static Property Destino = new Property(3, String.class, "Destino", false, "DESTINO");
         public final static Property Date = new Property(4, String.class, "Date", false, "DATE");
-        public final static Property Cabbie = new Property(5, String.class, "Cabbie", false, "CABBIE");
+        public final static Property Cabbie_Id = new Property(5, String.class, "Cabbie_Id", false, "CABBIE__ID");
         public final static Property Cabbie_Name = new Property(6, String.class, "Cabbie_Name", false, "CABBIE__NAME");
         public final static Property Ref = new Property(7, String.class, "Ref", false, "REF");
         public final static Property Price = new Property(8, String.class, "Price", false, "PRICE");
@@ -52,7 +52,7 @@ public class HistorialPendienteDao extends AbstractDao<HistorialPendiente, Long>
                 "'INICIO' TEXT," + // 2: Inicio
                 "'DESTINO' TEXT," + // 3: Destino
                 "'DATE' TEXT," + // 4: Date
-                "'CABBIE' TEXT," + // 5: Cabbie
+                "'CABBIE__ID' TEXT," + // 5: Cabbie_Id
                 "'CABBIE__NAME' TEXT," + // 6: Cabbie_Name
                 "'REF' TEXT," + // 7: Ref
                 "'PRICE' TEXT);"); // 8: Price
@@ -94,9 +94,9 @@ public class HistorialPendienteDao extends AbstractDao<HistorialPendiente, Long>
             stmt.bindString(5, Date);
         }
  
-        String Cabbie = entity.getCabbie();
-        if (Cabbie != null) {
-            stmt.bindString(6, Cabbie);
+        String Cabbie_Id = entity.getCabbie_Id();
+        if (Cabbie_Id != null) {
+            stmt.bindString(6, Cabbie_Id);
         }
  
         String Cabbie_Name = entity.getCabbie_Name();
@@ -130,7 +130,7 @@ public class HistorialPendienteDao extends AbstractDao<HistorialPendiente, Long>
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // Inicio
             cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // Destino
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // Date
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // Cabbie
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // Cabbie_Id
             cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // Cabbie_Name
             cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // Ref
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8) // Price
@@ -146,7 +146,7 @@ public class HistorialPendienteDao extends AbstractDao<HistorialPendiente, Long>
         entity.setInicio(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
         entity.setDestino(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setDate(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setCabbie(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setCabbie_Id(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
         entity.setCabbie_Name(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
         entity.setRef(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
         entity.setPrice(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));

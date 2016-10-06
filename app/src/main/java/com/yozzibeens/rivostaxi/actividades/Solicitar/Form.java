@@ -60,9 +60,7 @@ import com.YozziBeens.rivostaxi.solicitud.SolicitudObtenerTaxistasCercanos;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudToken;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
 import com.YozziBeens.rivostaxi.utilerias.Servicio;
-import com.conekta.conektasdk.Card;
-import com.conekta.conektasdk.Conekta;
-import com.conekta.conektasdk.Token;
+
 import com.google.android.gms.gcm.Task;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
@@ -162,6 +160,7 @@ public class Form extends AppCompatActivity {
         this.solicitud = new Solicitud();
         this.timer = (TextView) findViewById(R.id.timer);
         this.timer2 = (TextView) findViewById(R.id.timer2);
+        this.resultadoAgregarHistorialCliente = new ResultadoAgregarHistorialCliente();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -450,7 +449,7 @@ public class Form extends AppCompatActivity {
 
         for (int i = 0; i < listfp.size(); i++) {
             String card_id = listfp.get(i).getCard_Id();
-            String card = listfp.get(i).getNumber_Card();
+            String card = listfp.get(i).getLast4();
 
             titulo[i] = card_id;
             titulo2[i] = card;
@@ -461,10 +460,10 @@ public class Form extends AppCompatActivity {
         builder.setTitle("Mis Tarjetas");
         builder.setItems(items, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int item) {
-                numberText.setText(listfp.get(item).getNumber_Card());
-                nameText.setText(listfp.get(item).getName_Card());
-                vigenciaMonth.setText(listfp.get(item).getMonth());
-                vigenciaYear.setText(listfp.get(item).getYear());
+                numberText.setText(listfp.get(item).getLast4());
+                nameText.setText(listfp.get(item).getName());
+                vigenciaMonth.setText(listfp.get(item).getExp_Month());
+                vigenciaYear.setText(listfp.get(item).getExp_Year());
                 cvcText.setText("");
             }
 

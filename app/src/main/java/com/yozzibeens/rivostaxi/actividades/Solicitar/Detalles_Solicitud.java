@@ -72,7 +72,7 @@ public class Detalles_Solicitud extends AppCompatActivity {
             txt_Destino.setText(solicitud.getDirDestino().toString());
         }
 
-        new CountDownTimer(120000, 1000) {
+        new CountDownTimer(60000, 1000) {
 
             public void onTick(long millisUntilFinished) {
                 time.setText(""+millisUntilFinished / 1000);

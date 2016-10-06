@@ -7,9 +7,9 @@ package com.YozziBeens.rivostaxi.modelo;
 public class Favorite_Place {
 
     private Long id;
-    private String Place_Favorite_Id;
+    private String PlaceFavoriteId;
     private String Name;
-    private String Description;
+    private String Desc;
     private String Latitude;
     private String Longitude;
 
@@ -22,9 +22,9 @@ public class Favorite_Place {
 
     public Favorite_Place(Long id, String PlaceFavoriteId, String Name, String Desc, String Latitude, String Longitude) {
         this.id = id;
-        this.Place_Favorite_Id = PlaceFavoriteId;
+        this.PlaceFavoriteId = PlaceFavoriteId;
         this.Name = Name;
-        this.Description = Desc;
+        this.Desc = Desc;
         this.Latitude = Latitude;
         this.Longitude = Longitude;
     }
@@ -38,11 +38,11 @@ public class Favorite_Place {
     }
 
     public String getPlaceFavoriteId() {
-        return Place_Favorite_Id;
+        return PlaceFavoriteId;
     }
 
     public void setPlaceFavoriteId(String PlaceFavoriteId) {
-        this.Place_Favorite_Id = PlaceFavoriteId;
+        this.PlaceFavoriteId = PlaceFavoriteId;
     }
 
     public String getName() {
@@ -54,11 +54,11 @@ public class Favorite_Place {
     }
 
     public String getDesc() {
-        return Description;
+        return Desc;
     }
 
     public void setDesc(String Desc) {
-        this.Description = Desc;
+        this.Desc = Desc;
     }
 
     public String getLatitude() {
