@@ -251,19 +251,12 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
+                    <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:id="@+id/imageCabbie"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:src="@color/colorOrigen"
-                        app:civ_border_color="@color/colorBorder"
-                        android:layout_marginRight="10dp"
-                        app:civ_border_width="1dp"/>
-
-
+                        android:layout_marginRight="20dp"
+                        android:src="@drawable/raulc"
+                        android:id="@+id/imageView3" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -289,115 +282,6 @@
 
             </LinearLayout>
 
-        </LinearLayout>
-
-
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryDark"
-            android:layout_marginTop="15dp"
-            android:padding="20dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_weight="1">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/brand"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Toyota"
-                        android:textColor="#a0000000"
-                        android:textSize="13dp" />
-
-                    <TextView
-                        android:id="@+id/model"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="Camry"
-                        android:textColor="#a0000000"
-                        android:textSize="15dp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:gravity="center">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_gravity="center">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Capacidad"
-                        android:textColor="#a0000000"
-                        android:textSize="13dp" />
-
-                    <TextView
-                        android:id="@+id/passengers"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="4 Personas"
-                        android:textColor="#a0000000"
-                        android:textSize="15dp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:layout_weight="1">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:text="Tiempo:"
-                        android:textColor="#a0000000"
-                        android:textSize="13dp" />
-
-                    <TextView
-                        android:id="@+id/timeCabbie"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="2 Min."
-                        android:textColor="#a0000000"
-                        android:textSize="15dp" />
-                </LinearLayout>
-
-            </LinearLayout>
-
 
         </LinearLayout>
 
@@ -406,16 +290,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:background="@color/colorPrimary"
         android:orientation="horizontal">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total: "
-            android:textSize="16dp"
+            android:textSize="26dp"
             android:layout_marginRight="20dp"
             android:textColor="#696969"/>
 
@@ -423,9 +306,9 @@
             android:id="@+id/price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="$ 200.00"
+            android:text="$ 00.00"
             android:textStyle="bold"
-            android:textSize="26dp"
+            android:textSize="28dp"
             android:textColor="#696969"/>
     </LinearLayout>
 
@@ -453,11 +336,12 @@
             android:background="@drawable/rb_iniciar_sesion"
             android:textColor="#ffffff"
             android:text="Pagar"/>
-    </com.balysv.materialripple.MaterialRippleLayo ut-->
+    </com.balysv.materialripple.MaterialRippleLayout-->
 
     <com.balysv.materialripple.MaterialRippleLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         app:mrl_rippleOverlay="true"
@@ -472,13 +356,10 @@
             android:layout_gravity="center"
             android:textAllCaps="false"
             android:textSize="16sp"
-            android:background="@color/colorAccent"
+            android:background="@drawable/rb_iniciar_sesion"
             android:textColor="#ffffff"
             android:text="Pagar"/>
     </com.balysv.materialripple.MaterialRippleLayout>
-
-
-
 
 
 

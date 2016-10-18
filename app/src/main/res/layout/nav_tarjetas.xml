@@ -18,7 +18,7 @@
             android:textSize="20dp"
             android:layout_marginTop="150dp"
             android:gravity="center"
-            android:text="No hay taxistas registrados"/>
+            android:text="No hay tarjetas registradas"/>
 
         <ListView
             android:layout_width="fill_parent"
@@ -42,7 +42,7 @@
                 app:borderWidth="0dp"
                 app:elevation="6dp"
                 android:layout_marginBottom="@dimen/fab_margin"
-                app:backgroundTint="#2f3794"
+                app:backgroundTint="@color/textColorPrimary"
                 android:layout_marginRight="@dimen/fab_margin"/>
 
         </FrameLayout>

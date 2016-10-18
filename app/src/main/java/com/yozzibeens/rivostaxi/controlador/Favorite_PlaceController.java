@@ -138,7 +138,7 @@ public class Favorite_PlaceController {
         try {
             DaoSession oRivosDB = RivosDB.getInstance().openDatabase(context);
             Favorite_PlaceDao oFavorite_PlaceDao = oRivosDB.getFavorite_PlaceDao();
-            return oFavorite_PlaceDao.queryBuilder().where(Favorite_PlaceDao.Properties.PlaceFavoriteId.eq(PlaceId)).unique();
+            return oFavorite_PlaceDao.queryBuilder().where(Favorite_PlaceDao.Properties.Place_Favorite_Id.eq(PlaceId)).unique();
         }
         catch (Exception error){
             Log.e(TAG, error.getMessage());

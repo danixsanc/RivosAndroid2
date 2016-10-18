@@ -47,7 +47,7 @@ public class Nav_Perfil extends AppCompatActivity {
     Fotografia oFotofrafia;
     ImageView imgPerfil;
 
-    ImageButton btn_modifydata;
+    //ImageButton btn_modifydata;
     ImagePerfilController imagePerfilController = new ImagePerfilController(this);
 
     @Override
@@ -98,7 +98,7 @@ public class Nav_Perfil extends AppCompatActivity {
 
         cargarImagen();
 
-        btn_modifydata = (ImageButton) findViewById(R.id.modify_data);
+        /*btn_modifydata = (ImageButton) findViewById(R.id.modify_data);
         btn_modifydata.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
 
@@ -108,7 +108,7 @@ public class Nav_Perfil extends AppCompatActivity {
 
 
             }
-        });
+        });*/
 
     }
 

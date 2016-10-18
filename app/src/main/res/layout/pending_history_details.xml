@@ -35,17 +35,17 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tint="#fff"
+                android:tint="@color/textColorPrimary"
                 android:src="@drawable/ic_local_taxi_black_24dp"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tint="#fff"
+                android:tint="@color/textColorPrimary"
                 android:src="@drawable/ic_more_vert_black_24dp"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:tint="#fff"
+                android:tint="@color/textColorPrimary"
                 android:src="@drawable/ic_location_on_black_24dp"/>
         </LinearLayout>
         <LinearLayout
@@ -57,7 +57,7 @@
                 android:id="@+id/place_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#fff"
+                android:textColor="@color/textColorPrimary"
                 android:text="Inicio"
                 android:textSize="13dp"/>
 
@@ -66,12 +66,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:textColor="#fff"
+                android:textColor="@color/textColorPrimary"
                 android:text="Destino"
                 android:textSize="13dp"/>
 
         </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

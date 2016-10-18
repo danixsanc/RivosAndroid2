@@ -12,7 +12,8 @@ public class Solicitud implements Serializable {
     public Solicitud() {
     }
 
-    public Solicitud(String latOrigen, String longOrigen, String latDestino, String longDestino, String price, String timeRest, String dirOrigen, String dirDestino, String cabbie_Id, String cabbie, String latcabbie, String longCabbie, String gcmIdCabbie) {
+
+    public Solicitud(String latOrigen, String longOrigen, String latDestino, String longDestino, String price, String timeRest, String dirOrigen, String dirDestino, String cabbie_Id, String cabbie, String latCabbie, String longCabbie, String gcmIdCabbie, String model, String passengers, String brand, String image, String dist) {
         this.latOrigen = latOrigen;
         this.longOrigen = longOrigen;
         this.latDestino = latDestino;
@@ -23,9 +24,14 @@ public class Solicitud implements Serializable {
         this.dirDestino = dirDestino;
         Cabbie_Id = cabbie_Id;
         Cabbie = cabbie;
-        LatCabbie = latcabbie;
+        LatCabbie = latCabbie;
         LongCabbie = longCabbie;
         GcmIdCabbie = gcmIdCabbie;
+        Model = model;
+        Passengers = passengers;
+        Brand = brand;
+        Image = image;
+        Dist = dist;
     }
 
     public String getLatOrigen() {
@@ -112,8 +118,8 @@ public class Solicitud implements Serializable {
         return LatCabbie;
     }
 
-    public void setLatCabbie(String latcabbie) {
-        LatCabbie = latcabbie;
+    public void setLatCabbie(String latCabbie) {
+        LatCabbie = latCabbie;
     }
 
     public String getLongCabbie() {
@@ -132,6 +138,46 @@ public class Solicitud implements Serializable {
         GcmIdCabbie = gcmIdCabbie;
     }
 
+    public String getModel() {
+        return Model;
+    }
+
+    public void setModel(String model) {
+        Model = model;
+    }
+
+    public String getPassengers() {
+        return Passengers;
+    }
+
+    public void setPassengers(String passengers) {
+        Passengers = passengers;
+    }
+
+    public String getBrand() {
+        return Brand;
+    }
+
+    public void setBrand(String brand) {
+        Brand = brand;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
+    public String getDist() {
+        return Dist;
+    }
+
+    public void setDist(String dist) {
+        Dist = dist;
+    }
+
     private String latOrigen;
     private String longOrigen;
     private String latDestino;
@@ -145,4 +191,9 @@ public class Solicitud implements Serializable {
     private String LatCabbie;
     private String LongCabbie;
     private String GcmIdCabbie;
+    private String Model;
+    private String Passengers;
+    private String Brand;
+    private String Image;
+    private String Dist;
 }

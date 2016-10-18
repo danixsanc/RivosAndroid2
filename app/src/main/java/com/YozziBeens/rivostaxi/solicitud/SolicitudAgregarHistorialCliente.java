@@ -3,7 +3,13 @@ package com.YozziBeens.rivostaxi.solicitud;
 public class SolicitudAgregarHistorialCliente {
 
 
-    public SolicitudAgregarHistorialCliente(String latitude_In, String longitude_In, String latitude_Fn, String longitude_Fn, String inicio, String destino, String precio, String client_Id, String cabbie_Id, String paymentType_Id) {
+
+
+    public SolicitudAgregarHistorialCliente() {
+    }
+
+
+    public SolicitudAgregarHistorialCliente(String latitude_In, String longitude_In, String latitude_Fn, String longitude_Fn, String inicio, String destino, String precio, String client_Id, String cabbie_Id, String paymentType_Id, String card_Id) {
         Latitude_In = latitude_In;
         Longitude_In = longitude_In;
         Latitude_Fn = latitude_Fn;
@@ -14,9 +20,7 @@ public class SolicitudAgregarHistorialCliente {
         Client_Id = client_Id;
         Cabbie_Id = cabbie_Id;
         PaymentType_Id = paymentType_Id;
-    }
-
-    public SolicitudAgregarHistorialCliente() {
+        Card_Id = card_Id;
     }
 
     public String getLatitude_In() {
@@ -99,6 +103,13 @@ public class SolicitudAgregarHistorialCliente {
         PaymentType_Id = paymentType_Id;
     }
 
+    public String getCard_Id() {
+        return Card_Id;
+    }
+
+    public void setCard_Id(String card_Id) {
+        Card_Id = card_Id;
+    }
 
     private String Latitude_In;
     private String Longitude_In;
@@ -110,4 +121,5 @@ public class SolicitudAgregarHistorialCliente {
     private String Client_Id;
     private String Cabbie_Id;
     private String PaymentType_Id;
+    private String Card_Id;
 }

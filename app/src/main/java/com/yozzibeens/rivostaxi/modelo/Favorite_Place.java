@@ -7,9 +7,9 @@ package com.YozziBeens.rivostaxi.modelo;
 public class Favorite_Place {
 
     private Long id;
-    private String PlaceFavoriteId;
+    private String Place_Favorite_Id;
     private String Name;
-    private String Desc;
+    private String Description;
     private String Latitude;
     private String Longitude;
 
@@ -20,11 +20,11 @@ public class Favorite_Place {
         this.id = id;
     }
 
-    public Favorite_Place(Long id, String PlaceFavoriteId, String Name, String Desc, String Latitude, String Longitude) {
+    public Favorite_Place(Long id, String Place_Favorite_Id, String Name, String Description, String Latitude, String Longitude) {
         this.id = id;
-        this.PlaceFavoriteId = PlaceFavoriteId;
+        this.Place_Favorite_Id = Place_Favorite_Id;
         this.Name = Name;
-        this.Desc = Desc;
+        this.Description = Description;
         this.Latitude = Latitude;
         this.Longitude = Longitude;
     }
@@ -37,12 +37,12 @@ public class Favorite_Place {
         this.id = id;
     }
 
-    public String getPlaceFavoriteId() {
-        return PlaceFavoriteId;
+    public String getPlace_Favorite_Id() {
+        return Place_Favorite_Id;
     }
 
-    public void setPlaceFavoriteId(String PlaceFavoriteId) {
-        this.PlaceFavoriteId = PlaceFavoriteId;
+    public void setPlace_Favorite_Id(String Place_Favorite_Id) {
+        this.Place_Favorite_Id = Place_Favorite_Id;
     }
 
     public String getName() {
@@ -53,12 +53,12 @@ public class Favorite_Place {
         this.Name = Name;
     }
 
-    public String getDesc() {
-        return Desc;
+    public String getDescription() {
+        return Description;
     }
 
-    public void setDesc(String Desc) {
-        this.Desc = Desc;
+    public void setDescription(String Description) {
+        this.Description = Description;
     }
 
     public String getLatitude() {

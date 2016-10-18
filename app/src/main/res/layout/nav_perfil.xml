@@ -25,17 +25,17 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="180dp"
+                        android:layout_height="140dp"
                         android:orientation="vertical"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="#fff"
                         android:layout_gravity="center"
                         android:gravity="center">
 
                         <ImageView
                             android:id="@+id/imgPerfil"
-                            android:layout_width="120dp"
+                            android:layout_width="100dp"
                             android:layout_height="120dp"
-                            android:src="@drawable/logo"/>
+                            android:src="@drawable/nuevologo"/>
 
                     </RelativeLayout>
 
@@ -183,7 +183,7 @@
         </LinearLayout>
             </ScrollView>
 
-        <FrameLayout
+        <!--FrameLayout
             android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -200,8 +200,8 @@
                 app:borderWidth="0dp"
                 app:elevation="6dp"
                 android:layout_marginBottom="@dimen/fab_margin"
-                app:backgroundTint="#2f3794"
+                app:backgroundTint="@color/textColorPrimary"
                 android:layout_marginRight="@dimen/fab_margin"/>
-        </FrameLayout>
+        </FrameLayout-->
     </RelativeLayout>
 </LinearLayout>

@@ -1,12 +1,9 @@
 package com.YozziBeens.rivostaxi.app;
 
 
-
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.IntentService;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,89 +12,63 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.location.Address;
 import android.location.Criteria;
-import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.ResultReceiver;
 import android.provider.Settings;
-import android.provider.SyncStateContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
-import android.text.Layout;
-import android.util.Base64;
 import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.YozziBeens.rivostaxi.fragmentos.DrawerBottom;
 import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
 import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
+import com.YozziBeens.rivostaxi.modelo.Ciudad;
 import com.YozziBeens.rivostaxi.modelo.RivosDB;
 import com.YozziBeens.rivostaxi.modelosApp.Solicitud;
 import com.YozziBeens.rivostaxi.respuesta.ResultadoObtenerPrecio;
 import com.YozziBeens.rivostaxi.servicios.WebService;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudObtenerPrecio;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.PlaceBuffer;
-import com.google.android.gms.location.places.Places;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.actividades.Solicitar.Detalles_Solicitud;
-import com.YozziBeens.rivostaxi.adaptadores.PlaceArrayAdapter;
-import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
 import com.YozziBeens.rivostaxi.fragmentos.DrawerMenu;
-import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
 import com.YozziBeens.rivostaxi.tutorial.TutorialActivity;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
 
-import com.google.android.gms.plus.model.people.Person;
 import com.google.gson.Gson;
 import com.google.maps.android.SphericalUtil;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-public class Main extends AppCompatActivity{
+public class Main extends AppCompatActivity implements OnMapReadyCallback {
 
     private DrawerMenu mDrawerMenu;
     private GoogleMap mapa;
@@ -132,15 +103,14 @@ public class Main extends AppCompatActivity{
             Intent intent = new Intent(Main.this, Login.class);
             startActivity(intent);
             finish();
-        }
-        else {
+        } else {
 
             boolean checkTutorial = preferencias.getTutorial();
 
-            if (checkTutorial) {
+            /*if (checkTutorial) {
                 Intent intent2 = new Intent(Main.this, TutorialActivity.class);
                 startActivity(intent2);
-            }
+            }*/
 
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
@@ -151,67 +121,33 @@ public class Main extends AppCompatActivity{
 
             layout_origen_destino = (LinearLayout) findViewById(R.id.layout_origen_destino);
 
-            mapa = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-            mapa.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-            mapa.setMyLocationEnabled(true);
-            mapa.getUiSettings().setZoomControlsEnabled(false);
-            mapa.getUiSettings().setCompassEnabled(true);
+            SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+            mapFragment.getMapAsync(this);
 
-            LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-            Criteria criteria = new Criteria();
-            String provider = locationManager.getBestProvider(criteria, true);
+            LocationManager locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+
+            String locationProvider = LocationManager.NETWORK_PROVIDER;
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 return;
             }
-            Location location = locationManager.getLastKnownLocation(provider);
+            Location lastlocation = locationManager.getLastKnownLocation(locationProvider);
 
+            latitude = lastlocation.getLatitude();
+            longitude = lastlocation.getLongitude();
 
-            if(location!=null){
-                latitude = location.getLatitude();
-                longitude = location.getLongitude();
-
-                if ((latitude == 0) && (longitude == 0))
-                {
-                    AlertDialog.Builder dialog1 = new AlertDialog.Builder(Main.this, R.style.AppCompatAlertDialogStyle);
-                    dialog1.setMessage("El GPS esta desactivado, ¿Desea Activarlo?");
-                    dialog1.setCancelable(false);
-                    dialog1.setPositiveButton("Si", new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                            startActivity(intent);
-                        }
-                    });
-                    dialog1.setNegativeButton("No", new DialogInterface.OnClickListener() {
-
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-                    dialog1.show();
-                }
-                else{
-                    CameraPosition cameraPosition = new CameraPosition.Builder().target(new LatLng(latitude, longitude)).zoom(16).build();
-                    mapa.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
-                }
-            }
 
             btnpedirtaxi = (FloatingActionButton) findViewById(R.id.btn_ver_taxistas);
             btnpedirtaxi.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
 
-                    if ((latOrigen == 0.0) && (latDestino == 0.0) && (longOrigen == 0.0) && (longDestino == 0.0))
-                    {
+                    if ((latOrigen == 0.0) && (latDestino == 0.0) && (longOrigen == 0.0) && (longDestino == 0.0)) {
                         new SweetAlertDialog(Main.this, SweetAlertDialog.WARNING_TYPE)
                                 .setTitleText("Oops...")
                                 .setContentText("Primero debes seleccionar un destino!")
                                 .setConfirmText("Entendido")
                                 .show();
 
-                    }
-                    else {
+                    } else {
                         if (((Math.abs(latOrigen - latDestino)) < 0.0025) && ((Math.abs(longOrigen - longDestino)) < 0.0025)) {
                             new SweetAlertDialog(Main.this, SweetAlertDialog.WARNING_TYPE)
                                     .setTitleText("Oops...")
@@ -239,10 +175,10 @@ public class Main extends AppCompatActivity{
             });
 
             Bundle bundle = getIntent().getExtras();
-            if (bundle != null){
+            if (bundle != null) {
                 String c = bundle.getString("Notif");
 
-                if (c.equals("C")){
+                if (c.equals("C")) {
                     AlertDialog.Builder dialog = new AlertDialog.Builder(Main.this, R.style.AppCompatAlertDialogStyle);
                     dialog.setMessage("Tu taxista llego por ti.");
                     dialog.setCancelable(true);
@@ -267,6 +203,21 @@ public class Main extends AppCompatActivity{
         }
     }
 
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        this.mapa = map;
+
+        LatLng myLocation = new LatLng(latitude, longitude);
+
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        map.setMyLocationEnabled(true);
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 16));
+
+    }
 
 
     private double formatNumber(double distance) {
@@ -399,25 +350,43 @@ public class Main extends AppCompatActivity{
                     dialog.show();
                 }
                 else {
-                    pDialog.dismiss();
-                    Solicitud solicitud = new Solicitud();
-                    solicitud.setLatOrigen(String.valueOf(latOrigen));
-                    solicitud.setLatDestino(String.valueOf(latDestino));
-                    solicitud.setLongOrigen(String.valueOf(longOrigen));
-                    solicitud.setLongDestino(String.valueOf(longDestino));
-                    solicitud.setPrice(resultadoObtenerPrecio.getData().getPrice());
-                    solicitud.setTimeRest("");
-                    solicitud.setDirDestino(dirDestino);
-                    solicitud.setDirOrigen(dirOrigen);
-                    solicitud.setCabbie_Id(resultadoObtenerPrecio.getData().getCabbie_Id().toString());
-                    solicitud.setCabbie(resultadoObtenerPrecio.getData().getCabbie_Name().toString());
-                    solicitud.setLatCabbie(resultadoObtenerPrecio.getData().getLatCabbie());
-                    solicitud.setLongCabbie(resultadoObtenerPrecio.getData().getLongCabbie());
-                    solicitud.setGcmIdCabbie(resultadoObtenerPrecio.getData().getGcmIdCabbie());
-                    Intent intent = new Intent(Main.this, Detalles_Solicitud.class);
-                    intent.putExtra("Solicitud", solicitud);
-                    startActivity(intent);
-
+                    if (resultadoObtenerPrecio.getMessage().equals("Ok")){
+                        pDialog.dismiss();
+                        Solicitud solicitud = new Solicitud();
+                        solicitud.setLatOrigen(String.valueOf(latOrigen));
+                        solicitud.setLatDestino(String.valueOf(latDestino));
+                        solicitud.setLongOrigen(String.valueOf(longOrigen));
+                        solicitud.setLongDestino(String.valueOf(longDestino));
+                        solicitud.setPrice(resultadoObtenerPrecio.getData().getPrice());
+                        solicitud.setTimeRest("");
+                        solicitud.setDirDestino(dirDestino);
+                        solicitud.setDirOrigen(dirOrigen);
+                        solicitud.setCabbie_Id(resultadoObtenerPrecio.getData().getCabbie_Id().toString());
+                        solicitud.setCabbie(resultadoObtenerPrecio.getData().getCabbie_Name().toString());
+                        solicitud.setLatCabbie(resultadoObtenerPrecio.getData().getLatCabbie());
+                        solicitud.setLongCabbie(resultadoObtenerPrecio.getData().getLongCabbie());
+                        solicitud.setGcmIdCabbie(resultadoObtenerPrecio.getData().getGcmIdCabbie());
+                        solicitud.setBrand(resultadoObtenerPrecio.getData().getBrand());
+                        solicitud.setModel(resultadoObtenerPrecio.getData().getModel());
+                        solicitud.setPassengers(resultadoObtenerPrecio.getData().getPassengers());
+                        solicitud.setImage(resultadoObtenerPrecio.getData().getImage());
+                        solicitud.setDist(resultadoObtenerPrecio.getData().getDits());
+                        Intent intent = new Intent(Main.this, Detalles_Solicitud.class);
+                        intent.putExtra("Solicitud", solicitud);
+                        startActivity(intent);
+                    }
+                    else {
+                        pDialog.dismiss();
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(Main.this, R.style.AppCompatAlertDialogStyle);
+                        dialog.setMessage("No hay taxista disponibles en este momento.");
+                        dialog.setCancelable(true);
+                        dialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        dialog.show();
+                    }
                 }
             }
 

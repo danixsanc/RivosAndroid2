@@ -29,7 +29,6 @@ import com.YozziBeens.rivostaxi.actividades.Perfil.Nav_Perfil;
 import com.YozziBeens.rivostaxi.actividades.Proceso.Nav_Proceso;
 import com.YozziBeens.rivostaxi.app.Main;
 import com.YozziBeens.rivostaxi.controlador.ClientController;
-import com.YozziBeens.rivostaxi.controlador.Favorite_CabbieController;
 import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
 import com.YozziBeens.rivostaxi.controlador.HistorialController;
 import com.YozziBeens.rivostaxi.modelo.Client;
@@ -191,11 +190,9 @@ public class DrawerMenu extends Fragment {
                         startActivity(intent);
 
                         HistorialController historialController = new HistorialController(getActivity().getApplicationContext());
-                        Favorite_CabbieController favorite_cabbieController = new Favorite_CabbieController(getActivity().getApplicationContext());
                         Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getActivity().getApplicationContext());
 
                         historialController.eliminarTodo();
-                        favorite_cabbieController.eliminarTodo();
                         favorite_placeController.eliminarTodo();
                         LoginManager.getInstance().logOut();
                         preferencias.setSesion(true);

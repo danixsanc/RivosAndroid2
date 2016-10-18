@@ -20,57 +20,59 @@ android:layout_height="match_parent">
         <include layout="@layout/toolbar" />
 
 
+        <LinearLayout
+            android:id="@+id/layout_origen_destino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:orientation="horizontal">
+
+
 
             <LinearLayout
-                android:id="@+id/layout_origen_destino"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                android:padding="5dp"
-                android:visibility="gone"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/textColorPrimary"
+                    android:src="@drawable/ic_local_taxi_black_24dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:text="Origen"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/textColorPrimary"
+                    android:src="@drawable/ic_my_location_white_24dp"
+                    android:id="@+id/imageView4" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColorPrimary"
+                    android:text="Destino"/>
+            </LinearLayout>
 
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:tint="@color/colorWhite"
-                        android:src="@drawable/ic_local_taxi_black_24dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorWhite"
-                        android:text="Origen"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_weight="1">
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:tint="@color/colorWhite"
-                        android:src="@drawable/ic_my_location_white_24dp"/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/colorWhite"
-                        android:text="Destino"/>
-                </LinearLayout>
-
-
-
-        </LinearLayout>
+    </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -149,7 +151,7 @@ android:layout_height="match_parent">
             android:layout_margin="16dp"
             app:borderWidth="0dp"
             app:elevation="6dp"
-            app:backgroundTint="@color/colorPrimary"
+            app:backgroundTint="@color/textColorPrimary"
             android:tint="#fff"
             android:src="@drawable/ic_local_taxi_black_24dp" />
 

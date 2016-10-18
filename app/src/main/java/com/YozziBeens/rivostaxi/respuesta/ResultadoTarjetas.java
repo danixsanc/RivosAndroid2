@@ -9,9 +9,8 @@ public class ResultadoTarjetas {
 
 
     private ArrayList<Tarjeta> Data;
-    private boolean Error;
+    private boolean IsError;
     private String Message;
-    private String Success;
 
     public ArrayList<Tarjeta> getData() {
         return Data;
@@ -22,11 +21,11 @@ public class ResultadoTarjetas {
     }
 
     public boolean isError() {
-        return Error;
+        return IsError;
     }
 
     public void setError(boolean error) {
-        Error = error;
+        IsError = error;
     }
 
     public String getMessage() {
@@ -36,16 +35,6 @@ public class ResultadoTarjetas {
     public void setMessage(String message) {
         Message = message;
     }
-
-    public String getSuccess() {
-        return Success;
-    }
-
-    public void setSuccess(String success) {
-        Success = success;
-    }
-
-
 
 
 

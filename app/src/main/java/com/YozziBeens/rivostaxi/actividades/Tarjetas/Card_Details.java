@@ -66,7 +66,7 @@ public class Card_Details extends AppCompatActivity {
         //HistorialPendiente historialPendiente = historialPendienteController.obtenerHistorialPendientePorRequestId(Long.valueOf(request_id));
 
         TarjetaController tarjetaController = new TarjetaController(this);
-        Tarjeta tarjeta = tarjetaController.obtenerTarjetaPorTarjetaId(Long.valueOf(request_id));
+        Tarjeta tarjeta = tarjetaController.obtenerTarjetaPorTarjetaId(request_id);
 
 
         TarjetasBD tarjetasBD = new TarjetasBD();

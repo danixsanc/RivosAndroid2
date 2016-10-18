@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include layout="@layout/toolbar" />
-
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ffffff"
@@ -39,11 +38,19 @@
                     android:paddingRight="30dp"
                     android:textSize="16dp"
                     android:drawableLeft="@drawable/ic_phone_white_24dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:textColor="#ffffff"
+                    android:drawableTint="@color/textColorPrimary"
+                    android:background="#fff"
+                    android:textColor="@color/textColorPrimary"
                     android:text="Asistencia telefonica" />
 
             </com.balysv.materialripple.MaterialRippleLayout>
+
+            <View
+                android:layout_marginRight="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/textColorPrimary"/>
 
             <com.balysv.materialripple.MaterialRippleLayout
                 android:layout_width="match_parent"
@@ -51,7 +58,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
                 app:mrl_rippleOverlay="true"
                 app:mrl_rippleColor="#9b9b9b"
                 app:mrl_rippleAlpha="0.2"
@@ -69,28 +75,28 @@
                     android:clickable="true"
                     android:textSize="16dp"
                     android:textAllCaps="false"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/textColorPrimary"
                     android:onClick="goTopage"
                     android:drawableLeft="@drawable/ic_question_answer_white_24dp"
-                    android:background="@color/colorPrimaryDark"
+                    android:drawableTint="@color/textColorPrimary"
+                    android:background="#fff"
                     android:text="Preguntas frecuentes" />
 
             </com.balysv.materialripple.MaterialRippleLayout>
-
-
-            <ImageView
+            <View
+                android:layout_marginRight="18dp"
+                android:layout_marginLeft="18dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="20dp"
-                android:tint="@color/colorAccent"
-                android:src="@drawable/ic_linea"/>
+                android:layout_height="2dp"
+                android:background="@color/textColorPrimary"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="50dp"
                 android:layout_marginBottom="10dp"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/colorAccent"
                 android:textStyle="bold"
                 android:layout_marginLeft="20dp"
                 android:text="Contactanos"
@@ -134,7 +140,7 @@
 
 
             <com.balysv.materialripple.MaterialRippleLayout
-                android:layout_width="match_parent"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="20dp"
@@ -161,12 +167,14 @@
                     android:textColor="#ffffff"
                     android:onClick="goTopage"
                     android:drawableLeft="@drawable/ic_speaker_notes_white_24dp"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@color/textColorPrimary"
                     android:text="Enviar" />
 
             </com.balysv.materialripple.MaterialRippleLayout>
 
         </LinearLayout>
     </ScrollView>
+
+    <include layout="@layout/toolbar" />
 
 </LinearLayout>

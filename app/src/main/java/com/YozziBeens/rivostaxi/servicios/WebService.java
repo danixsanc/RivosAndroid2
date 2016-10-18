@@ -24,9 +24,19 @@ public class WebService {
     public static final String ObtenerPrecioWebService = "http://sistema.rivosservices.com/test/GetPrice";
     //public static final String SetClientHistoryWebService = "http://appm.rivosservices.com/webservices/SetClientHistory.php";
     public static final String SetClientHistoryWebService = "http://sistema.rivosservices.com/test/setRequest";
+    //public static final String DeleteCardWebService = "http://appm.rivosservices.com/webservices/DeleteCard.php";
+    public static final String DeleteCardWebService = "http://sistema.rivosservices.com/test/deleteCard";
 
 
     public static final String CancelCabbieWebService = "http://sistema.rivosservices.com/test/cancelCabbie";
+    //public static final String GetCardWebService = "http://appm.rivosservices.com/webservices/getCard.php";
+    public static final String GetCardWebService = "http://sistema.rivosservices.com/test/getCard";
+
+
+    //public static final String GetClientHistoryPendingWebService = "http://appm.rivosservices.com/webservices/GetClientHistoryPending.php";
+    public static final String GetClientHistoryPendingWebService = "http://sistema.rivosservices.com/test/getPending";
+
+
 
 
 
@@ -35,7 +45,7 @@ public class WebService {
     //public static final String GetFavoriteCabbieWebService = "http://appm.rivosservices.com/webservices/GetFavoriteCabbie.php";
     //public static final String DeleteFavoriteCabbieWebService = "http://appm.rivosservices.com/webservices/DeleteFavoriteCabbie.php";
     //public static final String GetCabbieHistoryWebService = "http://appm.rivosservices.com/webservices/GetCabbieHistory.php";
-    public static final String GetClientHistoryPendingWebService = "http://appm.rivosservices.com/webservices/GetClientHistoryPending.php";
+
     //public static final String LoginFacebookWebService = "http://appm.rivosservices.com/webservices/LoginFacebook.php";
     //public static final String RegisterFacebookWebService = "http://appm.rivosservices.com/webservices/RegisterFacebook.php";
     //public static final String RegisterGcmIdWebService = "http://appm.rivosservices.com/webservices/RegisterGcmId.php";
@@ -61,8 +71,8 @@ public class WebService {
 
     // faltan por agregar en actualizacion
     public static final String GetFavoritePlaceForIdWebService = "http://appm.rivosservices.com/webservices/GetFavoritePlaceForId.php";
-    public static final String DeleteCardWebService = "http://appm.rivosservices.com/webservices/DeleteCard.php";
-    public static final String GetCardWebService = "http://appm.rivosservices.com/webservices/GetCard.php";
+
+
 
     public static final String SetReservationWebService = "http://appm.rivosservices.com/webservices/SetReservation.php";
     public static final String GetReservationWebService = "http://appm.rivosservices.com/webservices/GetReservation.php";

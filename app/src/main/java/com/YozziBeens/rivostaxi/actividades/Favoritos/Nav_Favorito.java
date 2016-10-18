@@ -94,7 +94,7 @@ public class Nav_Favorito extends AppCompatActivity {
         for (int i = 0; i < FPlaceList.size(); i++)
         {
             String CName = FPlaceList.get(i).getName();
-            String cId = FPlaceList.get(i).getPlaceFavoriteId();
+            String cId = FPlaceList.get(i).getPlace_Favorite_Id();
             favoriteplaceArray.add(new AdaptadorLugarFavorito(cId, CName));
         }
 
@@ -182,7 +182,7 @@ public class Nav_Favorito extends AppCompatActivity {
                     Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getApplicationContext());
                     List<Favorite_Place> fplist = favorite_placeController.obtenerFavorite_Place();
                     for (int i = 0; i<fplist.size();i++){
-                        String placeid2 = fplist.get(i).getPlaceFavoriteId();
+                        String placeid2 = fplist.get(i).getPlace_Favorite_Id();
                         String placename2 = fplist.get(i).getName();
 
                         favoriteplaceArray.add(new AdaptadorLugarFavorito(placeid2, placename2));
@@ -255,7 +255,7 @@ public class Nav_Favorito extends AppCompatActivity {
 
 
                     final CharSequence[] options = {"Eliminar", "Cancelar"};
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(Nav_Favorito.this);
 
                     builder.setTitle("Elige una opcion");
                     builder.setItems(options, new DialogInterface.OnClickListener() {
@@ -313,7 +313,7 @@ public class Nav_Favorito extends AppCompatActivity {
         servicioAsyncService.setOnCompleteListener(new AsyncTaskListener() {
             @Override
             public void onTaskStart() {
-                progressdialog = new ProgressDialog(getApplicationContext());
+                progressdialog = new ProgressDialog(Nav_Favorito.this);
                 progressdialog.setMessage("Eliminando, espere");
                 progressdialog.setCancelable(true);
                 progressdialog.setCanceledOnTouchOutside(false);
@@ -347,7 +347,7 @@ public class Nav_Favorito extends AppCompatActivity {
             public void onTaskComplete(HashMap<String, Object> result) {
                 progressdialog.dismiss();
                 String messageError = resultadoEliminarLugarFavorito.getMessage();
-                AlertDialog.Builder dialog = new AlertDialog.Builder(getApplicationContext(), R.style.AppCompatAlertDialogStyle);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(Nav_Favorito.this, R.style.AppCompatAlertDialogStyle);
                 dialog.setMessage(messageError);
                 dialog.setCancelable(true);
                 dialog.setNegativeButton("OK", new DialogInterface.OnClickListener()

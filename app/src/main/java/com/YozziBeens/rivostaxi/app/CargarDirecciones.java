@@ -170,22 +170,8 @@ public class CargarDirecciones extends LocationActivity {
             }
         );
 
-        //Cargar carrito
-/*        ImageView img = (ImageView) findViewById(R.id.imgCamioncito);
-        img.setBackgroundResource(R.drawable.ic_access_time_black_24dp);
-        AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-        frameAnimation.start();*/
 
-        //activarTiempoDeExpiracion = true;
         activarMensajeDeUbicacion = true;
-
-        //activarUbicacionAlIniciar = false;
-
-/*
-        this.preferencias = new Preferencias(this);
-        ciudadController = new CiudadController(this);
-        ciudad = ciudadController.obtenerCiudad(preferencias.getCiudad());
-*/
         ciudad = new Ciudad(null, "Culiacan", 24.736807, -107.468171, 24.848774, -107.366563, 24.790192, -107.401710, 14);
 
 
@@ -363,11 +349,11 @@ public class CargarDirecciones extends LocationActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Favorite_Place oLugar = (Favorite_Place) parent.getItemAtPosition(position);
                 if (opcionSeleccionada == 0) {
-                    edtOrigen.setText(oLugar.getDesc());
+                    edtOrigen.setText(oLugar.getDescription());
                     mOrigen = new LatLng(Double.valueOf(oLugar.getLatitude()), Double.valueOf(oLugar.getLongitude()));
                     edtDestino.requestFocus();
                 } else if (opcionSeleccionada == 1) {
-                    edtDestino.setText(oLugar.getDesc());
+                    edtDestino.setText(oLugar.getDescription());
                     mDestino = new LatLng(Double.valueOf(oLugar.getLatitude()), Double.valueOf(oLugar.getLongitude()));
                     //btnConsultarRutas.requestFocus();
                 }

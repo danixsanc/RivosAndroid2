@@ -28,7 +28,7 @@
                 android:layout_height="@dimen/icon_drawer"
                 android:layout_marginLeft="16dp"
                 android:contentDescription="@string/app_name"
-                android:tint="@color/colorBorder"
+                android:tint="@color/textColorPrimary"
                 android:src="@drawable/ic_map_marker_black_18dp" />
 
             <TextView
@@ -118,7 +118,7 @@
                 android:layout_margin="16dp"
                 app:borderWidth="0dp"
                 app:elevation="6dp"
-                app:backgroundTint="@color/colorPrimary"
+                app:backgroundTint="@color/colorAccent"
                 android:tint="#fff"
                 android:src="@drawable/ic_done_white_24dp" />
         </FrameLayout>

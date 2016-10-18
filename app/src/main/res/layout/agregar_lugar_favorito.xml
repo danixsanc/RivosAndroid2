@@ -1,197 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context="com.YozziBeens.rivostaxi.app.CargarDirecciones">
 
-    <include layout="@layout/toolbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="@color/colorPrimary"
-        android:elevation="2dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tint="#fff"
-                android:src="@drawable/ic_location_on_black_24dp"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tint="#fff"
-                android:src="@drawable/ic_more_vert_black_24dp"/>
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:tint="#fff"
-                android:src="@drawable/ic_person_black_24dp"/>
-        </LinearLayout>
-
-        <LinearLayout
+            android:id="@+id/llContenido"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="@color/colorPrimary"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:paddingBottom="30dp"
+            android:paddingRight="16dp">
 
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="15dp"
-                android:layout_marginBottom="15dp"
-                android:drawablePadding="10dp"
-                android:popupBackground="#707070"
-                android:textColor="#ffffff"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginLeft="15dp"
-                android:layout_centerHorizontal="true"
-                android:textColorHint="#ffffff"
-                android:hint="Ingrese el lugar"/>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="0.7"
+                android:orientation="vertical">
 
-            <EditText
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="30dp"
-                android:id="@+id/place_name"
-                android:drawablePadding="10dp"
-                android:layout_marginTop="-5dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginBottom="10dp"
-                android:hint="Nombre del sitio"
-                android:textSize="15dp"
-                android:textColorHint="#ffffff"
-                android:textColor="#ffffff"/>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:src="@color/textColorPrimary"
+                    app:civ_border_color="@color/colorBorder"
+                    app:civ_border_width="1dp"
+                    android:id="@+id/circleImageView" />
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:layout_marginBottom="14dp"
+                    android:src="@color/textColorPrimary"
+                    app:civ_border_color="@color/colorBorder"
+                    app:civ_border_width="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignLeft="@+id/circleImageView"
+                    android:layout_alignStart="@+id/circleImageView"
+                    android:id="@+id/circleImageView2" />
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <EditText
+                            android:id="@+id/edtDireccion"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="@null"
+                            android:hint="Direccion"
+                            android:lines="1"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="30dp"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="14sp"
+                            android:textColorHint="@color/textColorPrimary" />
+
+                        <ImageButton
+                            android:id="@+id/btnCancelarOrigen"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="right|center_vertical"
+                            android:background="@null"
+                            android:scaleType="fitXY"
+                            android:src="@android:drawable/ic_menu_close_clear_cancel"
+                            android:visibility="gone" />
+
+                    </FrameLayout>
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorBorder" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp">
+
+                        <ImageButton
+                            android:id="@+id/btnCancelarDestino"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="right|center_vertical"
+                            android:background="@null"
+                            android:scaleType="fitXY"
+                            android:visibility="gone"
+                            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+                        <EditText
+                            android:id="@+id/edtNombre"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:hint="Nombre"
+                            android:lines="1"
+                            android:textSize="14sp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="30dp"
+                            android:singleLine="true"
+                            android:textColor="@color/textColorPrimary"
+                            android:textColorHint="@color/textColorPrimary" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_map_marker_black_24dp" />
+
+        </RelativeLayout>
+
+
+
     </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
-
-    <TextView
-        android:id="@+id/place_id"
-        android:visibility="gone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:autoLink="phone"/>
-
-    <TextView
-        android:id="@+id/web"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:autoLink="web"/>
-
-    <TextView
-        android:id="@+id/att"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:autoLink="web"/>
-
-    <ImageView
-        android:id="@+id/poweredBy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/att"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:visibility="gone"
-        android:src="@drawable/powered_by_google_light"/>
-
-
-
-
-
-
-
-
-
-
-<RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-
-
-
-
-
-    <fragment
-        android:id="@+id/mapa1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        class="com.google.android.gms.maps.SupportMapFragment"/>
-    <ImageView
-        android:id="@+id/img_Marker_center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:paddingBottom="25dp"
-        android:src="@drawable/ic_map_marker_grey600_36dp"/>
-
-    <Button
-        android:id="@+id/btn_save_favorite_place"
-        android:layout_width="wrap_content"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
-        android:text="Guardar"
-        android:textStyle="normal"
-        android:textAllCaps="false"
-        android:visibility="gone"
-        android:drawablePadding="7dp"
-        android:textSize="18dp"
-        android:textColor="#fff"
-        android:drawableRight="@drawable/ic_add_white_24dp"
-        android:background="@color/transparent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="1dp"/>
-
-
-
-
 
     <FrameLayout
         android:id="@+id/main_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/btn_add_favorite_place"
+            android:id="@+id/fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
@@ -199,11 +190,219 @@
             app:borderWidth="0dp"
             app:elevation="6dp"
             android:layout_marginBottom="@dimen/fab_margin"
-            app:backgroundTint="#2f3794"
+            app:backgroundTint="@color/colorAccent"
             android:layout_marginRight="@dimen/fab_margin"/>
+
     </FrameLayout>
 
+</RelativeLayout>
 
-    </RelativeLayout>
+    <!--?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</LinearLayout>
+        <include layout="@layout/toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary"
+            android:elevation="2dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/textColorPrimary"
+                    android:src="@drawable/ic_location_on_black_24dp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/textColorPrimary"
+                    android:src="@drawable/ic_more_vert_black_24dp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:tint="@color/textColorPrimary"
+                    android:src="@drawable/ic_person_black_24dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:drawablePadding="10dp"
+                    android:popupBackground="#707070"
+                    android:textColor="@color/textColorPrimary"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_centerHorizontal="true"
+                    android:textColorHint="@color/textColorPrimary"
+                    android:hint="Ingrese el lugar"/>
+
+                <EditText
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:id="@+id/place_name"
+                    android:drawablePadding="10dp"
+                    android:layout_marginTop="-5dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginBottom="10dp"
+                    android:hint="Nombre del sitio"
+                    android:textSize="15dp"
+                    android:textColorHint="@color/textColorPrimary"
+                    android:textColor="@color/textColorPrimary"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/place_id"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:autoLink="phone"/>
+
+        <TextView
+            android:id="@+id/web"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:autoLink="web"/>
+
+        <TextView
+            android:id="@+id/att"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:autoLink="web"/>
+
+        <ImageView
+            android:id="@+id/poweredBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/att"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:src="@drawable/powered_by_google_light"/>
+
+
+
+
+
+
+
+
+
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+
+
+
+
+        <fragment
+            android:id="@+id/mapa1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            class="com.google.android.gms.maps.SupportMapFragment"/>
+        <ImageView
+            android:id="@+id/img_Marker_center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingBottom="25dp"
+            android:src="@drawable/ic_map_marker_grey600_36dp"/>
+
+        <Button
+            android:id="@+id/btn_save_favorite_place"
+            android:layout_width="wrap_content"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:text="Guardar"
+            android:textStyle="normal"
+            android:textAllCaps="false"
+            android:visibility="gone"
+            android:drawablePadding="7dp"
+            android:textSize="18dp"
+            android:textColor="@color/textColorPrimary"
+            android:drawableRight="@drawable/ic_add_white_24dp"
+            android:background="@color/transparent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="1dp"/>
+
+
+
+
+
+        <FrameLayout
+            android:id="@+id/main_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btn_add_favorite_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:src="@drawable/ic_done_white_24dp"
+                app:borderWidth="0dp"
+                app:elevation="6dp"
+                android:layout_marginBottom="@dimen/fab_margin"
+                app:backgroundTint="@color/textColorPrimary"
+                android:layout_marginRight="@dimen/fab_margin"/>
+        </FrameLayout>
+
+
+        </RelativeLayout>
+
+    </LinearLayout-->

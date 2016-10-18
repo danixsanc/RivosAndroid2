@@ -43,6 +43,12 @@ public class TutorialActivity extends ActionBarActivity {
         setContentView(R.layout.activity_tutorial);
         getWindow().setBackgroundDrawable(null);
         ButterKnife.bind(this);
+        this.bg = new SmoothFrameLayout(getApplicationContext());
+        this.viewPager = new ViewPagerCustomDuration(getApplicationContext());
+        this.circleIndicator = new CirclePageIndicator(getApplicationContext());
+        this.nextBtn = new View(getApplicationContext());
+        this.skipBtn = new View(getApplicationContext());
+        this.doneBtn = new View(getApplicationContext());
         colorArray[0] = getResources().getColor(R.color.page_blue);
         colorArray[1] = getResources().getColor(R.color.page_red);
         colorArray[2] = getResources().getColor(R.color.page_green);

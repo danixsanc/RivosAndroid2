@@ -77,20 +77,12 @@ public class Generador {
 
         Entity favorite_Place = schema.addEntity("Favorite_Place");
         favorite_Place.addIdProperty().primaryKey().autoincrement();
-        favorite_Place.addStringProperty("PlaceFavoriteId");
+        favorite_Place.addStringProperty("Place_Favorite_Id");
         favorite_Place.addStringProperty("Name");
-        favorite_Place.addStringProperty("Desc");
-
+        favorite_Place.addStringProperty("Description");
         favorite_Place.addStringProperty("Latitude");
         favorite_Place.addStringProperty("Longitude");
         oPlantillaGenerador.generarController("Favorite_Place", false);
-
-        Entity favorite_Cabbie = schema.addEntity("Favorite_Cabbie");
-        favorite_Cabbie.addIdProperty().primaryKey().autoincrement();
-        favorite_Cabbie.addStringProperty("CabbieFavoriteId");
-        favorite_Cabbie.addStringProperty("Name");
-        favorite_Cabbie.addStringProperty("Company");
-        oPlantillaGenerador.generarController("Favorite_Cabbie", false);
 
         Entity tarjeta = schema.addEntity("Tarjeta");
         tarjeta.addIdProperty().primaryKey().autoincrement();

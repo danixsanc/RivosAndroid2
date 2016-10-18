@@ -1,56 +1,30 @@
 package com.YozziBeens.rivostaxi.app;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.ListView;
 
-import com.YozziBeens.rivostaxi.actividades.Proceso.Nav_Proceso;
-import com.YozziBeens.rivostaxi.adaptadores.PendingHistory;
-import com.YozziBeens.rivostaxi.controlador.ClientController;
-import com.YozziBeens.rivostaxi.controlador.HistorialPendienteController;
 import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
 import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
-import com.YozziBeens.rivostaxi.modelo.HistorialPendiente;
-import com.YozziBeens.rivostaxi.respuesta.ResultadoHistorialCliente;
-import com.YozziBeens.rivostaxi.respuesta.ResultadoHistorialPendienteCliente;
 import com.YozziBeens.rivostaxi.respuesta.ResultadoLugaresFavoritos;
-import com.YozziBeens.rivostaxi.respuesta.ResultadoRegistrarGCM;
-import com.YozziBeens.rivostaxi.respuesta.ResultadoTaxistasFavoritos;
 import com.YozziBeens.rivostaxi.servicios.WebService;
-import com.YozziBeens.rivostaxi.solicitud.SolicitudHistorialCliente;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudLugaresFavoritos;
-import com.YozziBeens.rivostaxi.solicitud.SolicitudRegistrarGCM;
-import com.YozziBeens.rivostaxi.solicitud.SolicitudTaxistasFavoritos;
 import com.facebook.FacebookSdk;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.YozziBeens.rivostaxi.R;
-import com.YozziBeens.rivostaxi.controlador.Favorite_CabbieController;
 import com.YozziBeens.rivostaxi.controlador.Favorite_PlaceController;
-import com.YozziBeens.rivostaxi.controlador.HistorialController;
 import com.YozziBeens.rivostaxi.gcm.Config;
-import com.YozziBeens.rivostaxi.modelo.Favorite_Cabbie;
-import com.YozziBeens.rivostaxi.modelo.Favorite_Place;
-import com.YozziBeens.rivostaxi.modelo.Historial;
 import com.YozziBeens.rivostaxi.modelo.RivosDB;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
-import com.YozziBeens.rivostaxi.utilerias.Servicio;
 import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 
 
 /**

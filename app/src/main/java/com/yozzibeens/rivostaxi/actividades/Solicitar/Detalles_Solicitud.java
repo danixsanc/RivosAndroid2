@@ -1,30 +1,35 @@
 package com.YozziBeens.rivostaxi.actividades.Solicitar;
 
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.controlador.TarjetaController;
 import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
 import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
+import com.YozziBeens.rivostaxi.modelo.Tarjeta;
 import com.YozziBeens.rivostaxi.modelosApp.Solicitud;
 import com.YozziBeens.rivostaxi.servicios.WebService;
 import com.YozziBeens.rivostaxi.solicitud.SolicitudCancelCabbie;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.Gson;
+import com.google.maps.android.SphericalUtil;
 import com.orhanobut.dialogplus.DialogPlus;
 import com.orhanobut.dialogplus.ViewHolder;
-
-import java.io.Serializable;
 import java.util.HashMap;
-
+import java.util.List;
 import cn.pedant.SweetAlert.SweetAlertDialog;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**
@@ -33,12 +38,17 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class Detalles_Solicitud extends AppCompatActivity {
 
 
-    private Button btnCancelarPago, btnPagar;
-    private TextView cabbie_name, price, time, txt_Inicio, txt_Destino;
+    private Button btnPagar;
+    private TextView cabbie_name, price, time, txt_Inicio, txt_Destino, passenger, model, brand;
     private boolean canRequest = false;
     private Gson gson;
     private Typeface Roboto;
     private Solicitud solicitud;
+    private CircleImageView imageCabbie;
+    private TextView timeCabbie;
+
+    double metros;
+    double kilometros;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +71,48 @@ public class Detalles_Solicitud extends AppCompatActivity {
         this.time = (TextView) findViewById(R.id.time);
         this.solicitud = new Solicitud();
         this.btnPagar = (Button) findViewById(R.id.btn_pagar);
-        this.btnCancelarPago = (Button) findViewById(R.id.btnCancelarPago);
+        this.brand = (TextView) findViewById(R.id.brand);
+        this.model = (TextView) findViewById(R.id.model);
+        this.passenger = (TextView) findViewById(R.id.passengers);
+        this.imageCabbie = (CircleImageView) findViewById(R.id.imageCabbie);
+        this.timeCabbie = (TextView) findViewById(R.id.timeCabbie);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             solicitud = (Solicitud) bundle.getSerializable("Solicitud");
-            price.setText(solicitud.getPrice().toString());
+            price.setText("$ " + solicitud.getPrice().toString() + ".00");
             cabbie_name.setText(solicitud.getCabbie().toString());
             txt_Inicio.setText(solicitud.getDirOrigen().toString());
             txt_Destino.setText(solicitud.getDirDestino().toString());
+            brand.setText(solicitud.getBrand().toString());
+            model.setText(solicitud.getModel().toString());
+            passenger.setText(solicitud.getPassengers().toString() + " Pasajeros");
+
+
+            String base = solicitud.getImage();
+
+            byte[] imageAsBytes = Base64.decode(base.getBytes(), Base64.DEFAULT);
+
+            imageCabbie.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length));
+
+            LatLng l1 = new LatLng(Double.valueOf(solicitud.getLatOrigen()), Double.valueOf(solicitud.getLongOrigen()));
+            LatLng l2 = new LatLng(Double.valueOf(solicitud.getLatCabbie()), Double.valueOf(solicitud.getLongCabbie()));
+
+            double distance = SphericalUtil.computeDistanceBetween(l1, l2);
+            formatNumber(distance);
+            if (metros > 0)
+            {
+                timeCabbie.setText("2 MIN");
+            }
+            else if (kilometros > 0)
+            {
+                double tiempo = kilometros / 35;
+                tiempo = tiempo * 60;
+                timeCabbie.setText((int)tiempo + " MIN");
+
+            }
+
+
         }
 
         new CountDownTimer(60000, 1000) {
@@ -80,7 +123,8 @@ public class Detalles_Solicitud extends AppCompatActivity {
             }
 
             public void onFinish() {
-                time.setText("Tiempo de espera agotado!");
+                time.setText("00");
+                time.setTextColor(Color.RED);
                 SolicitudCancelCabbie oData = new SolicitudCancelCabbie();
                 oData.setCabbie_Id(solicitud.getCabbie_Id());
                 CancelCabbieWebService(gson.toJson(oData));
@@ -105,11 +149,23 @@ public class Detalles_Solicitud extends AppCompatActivity {
                     btnPagarConTarjeta.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent = new Intent(Detalles_Solicitud.this, Form.class);
-                            intent.putExtra("tipo", "T");
-                            solicitud.setTimeRest(time.getText().toString());
-                            intent.putExtra("Solicitud",  solicitud);
-                            startActivity(intent);
+
+                            TarjetaController tarjetaController = new TarjetaController(getApplicationContext());
+                            List<Tarjeta> list = tarjetaController.obtenerTarjeta();
+                            if (list.size() > 0){
+                                Intent intent = new Intent(Detalles_Solicitud.this, Form.class);
+                                intent.putExtra("tipo", "T");
+                                solicitud.setTimeRest(time.getText().toString());
+                                intent.putExtra("Solicitud",  solicitud);
+                                startActivity(intent);
+                            }else {
+                                new SweetAlertDialog(Detalles_Solicitud.this, SweetAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Oops...")
+                                        .setContentText("No titenes tarjetas registradas, ve a la seccion de pagos" +
+                                                "para registrar tus tarjetas.")
+                                        .setConfirmText("Entendido")
+                                        .show();
+                            }
                         }
                     });
                     btnPagarAlTaxista.setOnClickListener(new View.OnClickListener() {
@@ -136,16 +192,24 @@ public class Detalles_Solicitud extends AppCompatActivity {
         });
 
 
-        btnCancelarPago.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
 
+    }
 
-
+    private String formatNumber(double distance) {
+        String unit = "M";
+        metros = distance;
+        kilometros = 0;
+        if (distance < 1) {
+            distance *= 1000;
+            unit = "MM";
+        } else if (distance > 1000) {
+            distance /= 1000;
+            unit = "KM";
+            metros = 0;
+            kilometros = distance;
+        }
+        return String.format("%4.0f%s", distance, unit);
     }
 
     @Override

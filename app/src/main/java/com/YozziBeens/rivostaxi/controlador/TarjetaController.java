@@ -136,7 +136,7 @@ public class TarjetaController {
         }
     }
 
-    public Tarjeta obtenerTarjetaPorTarjetaId(Long prKey){
+    public Tarjeta obtenerTarjetaPorTarjetaId(String prKey){
         try {
             DaoSession oRivosDB = RivosDB.getInstance().openDatabase(context);
             TarjetaDao oTarjetaDao = oRivosDB.getTarjetaDao();

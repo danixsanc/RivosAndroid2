@@ -166,6 +166,7 @@ public class Compra_Final extends AppCompatActivity {
             double tiempo = kilometros / 35;
             tiempo = tiempo * 60;
             Tiempo.setText((int)tiempo + " MIN");
+
         }
 
 

@@ -8,6 +8,6 @@
     <dimen name="tutorial_bottom_min_width">42dp</dimen>
 
 
-    <dimen name="icon_drawer">24dp</dimen>
-    <dimen name="text_item_drawer">13sp</dimen>
+    <dimen name="icon_drawer">20dp</dimen>
+    <dimen name="text_item_drawer">14sp</dimen>
 </resources>

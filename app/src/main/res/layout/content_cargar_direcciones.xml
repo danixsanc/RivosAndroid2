@@ -40,7 +40,7 @@
                 <ImageView
                     android:layout_width="@dimen/icon_drawer"
                     android:layout_height="@dimen/icon_drawer"
-                    android:tint="@color/colorPrimary"
+                    android:tint="@color/textColorPrimary"
                     android:src="@drawable/ic_map_marker_grey600_24dp" />
 
                 <TextView
@@ -141,7 +141,7 @@
                 <ImageView
                     android:layout_width="@dimen/icon_drawer"
                     android:layout_height="@dimen/icon_drawer"
-                    android:tint="@color/colorPrimary"
+                    android:tint="@color/textColorPrimary"
                     android:src="@drawable/ic_map_black_24dp"
                     android:id="@+id/imageView" />
 
@@ -179,7 +179,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="16dp"
                     android:text="Mis Lugares Favoritos"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="14sp" />
 
                 <ListView

@@ -24,9 +24,9 @@ public class Favorite_PlaceDao extends AbstractDao<Favorite_Place, Long> {
     */
     public static class Properties {
         public final static Property Id = new Property(0, Long.class, "id", true, "_id");
-        public final static Property PlaceFavoriteId = new Property(1, String.class, "PlaceFavoriteId", false, "PLACE_FAVORITE_ID");
+        public final static Property Place_Favorite_Id = new Property(1, String.class, "Place_Favorite_Id", false, "PLACE__FAVORITE__ID");
         public final static Property Name = new Property(2, String.class, "Name", false, "NAME");
-        public final static Property Desc = new Property(3, String.class, "Desc", false, "DESC");
+        public final static Property Description = new Property(3, String.class, "Description", false, "DESCRIPTION");
         public final static Property Latitude = new Property(4, String.class, "Latitude", false, "LATITUDE");
         public final static Property Longitude = new Property(5, String.class, "Longitude", false, "LONGITUDE");
     };
@@ -45,9 +45,9 @@ public class Favorite_PlaceDao extends AbstractDao<Favorite_Place, Long> {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "'FAVORITE__PLACE' (" + //
                 "'_id' INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
-                "'PLACE_FAVORITE_ID' TEXT," + // 1: PlaceFavoriteId
+                "'PLACE__FAVORITE__ID' TEXT," + // 1: Place_Favorite_Id
                 "'NAME' TEXT," + // 2: Name
-                "'DESC' TEXT," + // 3: Desc
+                "'DESCRIPTION' TEXT," + // 3: Description
                 "'LATITUDE' TEXT," + // 4: Latitude
                 "'LONGITUDE' TEXT);"); // 5: Longitude
     }
@@ -68,9 +68,9 @@ public class Favorite_PlaceDao extends AbstractDao<Favorite_Place, Long> {
             stmt.bindLong(1, id);
         }
  
-        String PlaceFavoriteId = entity.getPlaceFavoriteId();
-        if (PlaceFavoriteId != null) {
-            stmt.bindString(2, PlaceFavoriteId);
+        String Place_Favorite_Id = entity.getPlace_Favorite_Id();
+        if (Place_Favorite_Id != null) {
+            stmt.bindString(2, Place_Favorite_Id);
         }
  
         String Name = entity.getName();
@@ -78,9 +78,9 @@ public class Favorite_PlaceDao extends AbstractDao<Favorite_Place, Long> {
             stmt.bindString(3, Name);
         }
  
-        String Desc = entity.getDesc();
-        if (Desc != null) {
-            stmt.bindString(4, Desc);
+        String Description = entity.getDescription();
+        if (Description != null) {
+            stmt.bindString(4, Description);
         }
  
         String Latitude = entity.getLatitude();
@@ -105,9 +105,9 @@ public class Favorite_PlaceDao extends AbstractDao<Favorite_Place, Long> {
     public Favorite_Place readEntity(Cursor cursor, int offset) {
         Favorite_Place entity = new Favorite_Place( //
             cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // PlaceFavoriteId
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // Place_Favorite_Id
             cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // Name
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // Desc
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // Description
             cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // Latitude
             cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5) // Longitude
         );
@@ -118,9 +118,9 @@ public class Favorite_PlaceDao extends AbstractDao<Favorite_Place, Long> {
     @Override
     public void readEntity(Cursor cursor, Favorite_Place entity, int offset) {
         entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
-        entity.setPlaceFavoriteId(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setPlace_Favorite_Id(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
         entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setDesc(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setDescription(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
         entity.setLatitude(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
         entity.setLongitude(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
      }

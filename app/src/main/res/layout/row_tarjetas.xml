@@ -16,8 +16,8 @@
 
             <ImageView
                 android:id="@+id/list_row_image"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="@dimen/icon_drawer"
+                android:layout_height="@dimen/icon_drawer"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
@@ -35,7 +35,7 @@
                 android:textSize="14sp"
                 android:gravity="center_vertical"
                 android:text="User Name\nasd"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/textColorPrimary"
                 android:layout_weight=".1"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 

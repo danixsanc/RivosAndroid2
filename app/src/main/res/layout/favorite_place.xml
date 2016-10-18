@@ -22,14 +22,11 @@
 
         <ListView
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_height="445dp"
             android:id="@+id/list_favorite_place"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true" />
-
-
-
 
 
     <FrameLayout

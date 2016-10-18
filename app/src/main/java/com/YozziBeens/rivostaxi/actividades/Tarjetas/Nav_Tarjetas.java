@@ -62,7 +62,7 @@ public class Nav_Tarjetas extends AppCompatActivity {
     ListView tarjetasList;
     TarjetasCustomAdapter tarjetasAdapter;
     ArrayList<AdaptadorTarjetas> tarjetasArray = new ArrayList<AdaptadorTarjetas>();
-    int request_id[] = new int[0];
+    String request_id[] = new String[0];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +74,7 @@ public class Nav_Tarjetas extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         this.gson = new Gson();
+        this.resultadoTarjetas = new ResultadoTarjetas();
 
         fab_add_card = (ImageButton) findViewById(R.id.fab_add_card);
         fab_add_card.setOnClickListener(new View.OnClickListener() {
@@ -110,33 +111,10 @@ public class Nav_Tarjetas extends AppCompatActivity {
             case 1003:
                 if (resultCode == Activity.RESULT_OK) {
                     tarjetasArray.clear();
-                    TarjetaController tarjetaController = new TarjetaController(this);
-                    List<Tarjeta> tarjetaslista2 = tarjetaController.obtenerTarjeta();
 
-
-                    for (int i=0; i < tarjetaslista2.size(); i++)
-                    {
-                        String id = String.valueOf(tarjetaslista2.get(i).getCard_Id());
-                        String tarjeta = tarjetaslista2.get(i).getLast4();
-
-                        /*int cont = tarjeta.length();
-                        int num = cont - 4;
-                        String tarjetaSeg = tarjeta.substring(num, tarjeta.length());
-                        String tarjF;
-                        if (tarjeta.length() == 16)
-                        {
-                            tarjF = "**** **** **** " + tarjetaSeg;
-                        }
-                        else
-                        {
-                            tarjF = "**** **** " + tarjetaSeg;
-                        }*/
-
-                        tarjetasArray.add(new AdaptadorTarjetas("**** **** **** " + tarjeta, id));
-                        //request_id[i] = Integer.valueOf(String.valueOf(tarjetaslista2.get(i).getCard_Id()));
-                    }
-
-                    tarjetasAdapter.notifyDataSetChanged();
+                    SolicitudTarjetas oData = new SolicitudTarjetas();
+                    oData.setClient_Id(Client_Id);
+                    ObtenerTarjetasWebService(gson.toJson(oData));
                 }
                 break;
         }
@@ -193,37 +171,41 @@ public class Nav_Tarjetas extends AppCompatActivity {
 
             @Override
             public void onTaskComplete(HashMap<String, Object> result) {
-
-
-
-                //HistorialPendienteController historialPendienteController = new HistorialPendienteController(getApplicationContext());
-                //List<HistorialPendiente> historialList = historialPendienteController.obtenerHistorialPendiente();
-
-                TarjetaController tarjetaController = new TarjetaController(getApplicationContext());
-                tarjetaController.eliminarTodo();
-                tarjetaController.guardarOActualizarTarjeta(resultadoTarjetas.getData());
-
-                List<Tarjeta> tarjetasLista = tarjetaController.obtenerTarjeta();
-
-                request_id = new int[tarjetasLista.size()];
-                for (int i=0; i < tarjetasLista.size(); i++)
+                progressdialog.dismiss();
+                if (resultadoTarjetas.getMessage().equals("OK"))
                 {
-                    String id = String.valueOf(tarjetasLista.get(i).getCard_Id());
-                    String tarjeta = tarjetasLista.get(i).getLast4();
+                    //HistorialPendienteController historialPendienteController = new HistorialPendienteController(getApplicationContext());
+                    //List<HistorialPendiente> historialList = historialPendienteController.obtenerHistorialPendiente();
 
-                    TarjetasBD tarjetasBD = new TarjetasBD();
-                    String tarjF = tarjetasBD.ocultarTarjeta(tarjetasLista.get(i).getLast4());
-                    tarjetasArray.add(new AdaptadorTarjetas(tarjF, id));
-                    request_id[i] = Integer.valueOf(String.valueOf(tarjetasLista.get(i).getCard_Id()));
+                    TarjetaController tarjetaController = new TarjetaController(getApplicationContext());
+                    tarjetaController.eliminarTodo();
+                    tarjetaController.guardarOActualizarTarjeta(resultadoTarjetas.getData());
+
+                    List<Tarjeta> tarjetasLista = tarjetaController.obtenerTarjeta();
+
+                    request_id = new String[tarjetasLista.size()];
+                    for (int i=0; i < tarjetasLista.size(); i++)
+                    {
+                        String id = String.valueOf(tarjetasLista.get(i).getCard_Id());
+                        String tarjeta = tarjetasLista.get(i).getLast4();
+
+                        TarjetasBD tarjetasBD = new TarjetasBD();
+                        String tarjF = tarjetasBD.ocultarTarjeta(tarjetasLista.get(i).getLast4());
+                        tarjetasArray.add(new AdaptadorTarjetas(tarjF, id));
+                        request_id[i] = String.valueOf(tarjetasLista.get(i).getCard_Id());
+                    }
+
+
+
+                    tarjetasList = (ListView) findViewById(R.id.list_pending_history);
+                    tarjetasAdapter = new TarjetasCustomAdapter(getApplicationContext(), R.layout.row_tarjetas, tarjetasArray);
+                    tarjetasList.setItemsCanFocus(false);
+                    tarjetasList.setAdapter(tarjetasAdapter);
+                    progressdialog.dismiss();
                 }
 
 
 
-                tarjetasList = (ListView) findViewById(R.id.list_pending_history);
-                tarjetasAdapter = new TarjetasCustomAdapter(getApplicationContext(), R.layout.row_tarjetas, tarjetasArray);
-                tarjetasList.setItemsCanFocus(false);
-                tarjetasList.setAdapter(tarjetasAdapter);
-                progressdialog.dismiss();
 
 
             }
@@ -310,7 +292,7 @@ public class Nav_Tarjetas extends AppCompatActivity {
                                 DeleteCardWebService(gson.toJson(oData));
 
                                 TarjetaController tarjetaController = new TarjetaController(getApplicationContext());
-                                Tarjeta tarjeta = tarjetaController.obtenerTarjetaPorTarjetaId(Long.valueOf(request));
+                                Tarjeta tarjeta = tarjetaController.obtenerTarjetaPorTarjetaId(request);
 
                                 tarjetaController.eliminarTarjeta(tarjeta);
 

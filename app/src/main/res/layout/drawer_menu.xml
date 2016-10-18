@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:padding="30dp"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:gravity="center"
         android:elevation="2dp"
         android:orientation="vertical">
@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="13dp"
                 android:textStyle="bold"
                 android:text="Nombre de usuario"/>
@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="@color/textColorPrimary"
                 android:layout_marginBottom="5dp"
                 android:textSize="12dp"
                 android:text="Correo" />
@@ -70,11 +70,10 @@
     </LinearLayout>
 
 
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark">
+        android:background="@color/colorPrimary">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -94,7 +93,7 @@
                 android:layout_width="@dimen/icon_drawer"
                 android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_local_taxi_black_24dp"
-                android:tint="#909090"
+                android:tint="@color/textColorPrimary"
                 android:layout_marginLeft="16dp"/>
 
             <TextView
@@ -103,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="Solicitar"
-                android:textColor="#909090"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="@dimen/text_item_drawer"/>
 
         </LinearLayout>
@@ -127,7 +126,7 @@
                 android:layout_width="@dimen/icon_drawer"
                 android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_traffic_black_24dp"
-                android:tint="#909090"
+                android:tint="@color/textColorPrimary"
                 android:layout_marginLeft="16dp"/>
 
             <TextView
@@ -135,7 +134,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="En Proceso"
-                android:textColor="#909090"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_proceso" />
 
@@ -160,15 +159,16 @@
                 android:layout_width="@dimen/icon_drawer"
                 android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_credit_card_black_24dp"
-                android:tint="#909090"
-                android:layout_marginLeft="16dp"/>
+                android:tint="@color/textColorPrimary"
+                android:layout_marginLeft="16dp"
+                android:id="@+id/imageView2" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="Pagos"
-                android:textColor="#909090"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_tarjetas" />
 
@@ -193,7 +193,7 @@
                 android:layout_width="@dimen/icon_drawer"
                 android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_star_black_24dp"
-                android:tint="#909090"
+                android:tint="@color/textColorPrimary"
                 android:layout_marginLeft="16dp"/>
 
             <TextView
@@ -201,7 +201,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="Favoritos"
-                android:textColor="#909090"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_favoritos" />
 
@@ -226,7 +226,7 @@
                 android:layout_width="@dimen/icon_drawer"
                 android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_history_black_24dp"
-                android:tint="#909090"
+                android:tint="@color/textColorPrimary"
                 android:layout_marginLeft="16dp"/>
 
             <TextView
@@ -234,7 +234,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="Historial"
-                android:textColor="#909090"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_historial" />
 
@@ -259,7 +259,7 @@
                 android:layout_width="@dimen/icon_drawer"
                 android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_person_black_24dp"
-                android:tint="#909090"
+                android:tint="@color/textColorPrimary"
                 android:layout_marginLeft="16dp"/>
 
             <TextView
@@ -267,7 +267,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="Perfil"
-                android:textColor="#909090"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_perfil" />
 
@@ -292,7 +292,7 @@
                 android:layout_width="@dimen/icon_drawer"
                 android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_live_help_black_24dp"
-                android:tint="#909090"
+                android:tint="@color/textColorPrimary"
                 android:layout_marginLeft="16dp"/>
 
             <TextView
@@ -300,7 +300,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30dp"
                 android:text="Ayuda"
-                android:textColor="#909090"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_ayuda" />
 
@@ -325,7 +325,7 @@
                 android:layout_width="@dimen/icon_drawer"
                 android:layout_height="@dimen/icon_drawer"
                 android:src="@drawable/ic_power_settings_new_black_24dp"
-                android:tint="#909090"
+                android:tint="@color/textColorPrimary"
                 android:layout_marginLeft="16dp"/>
 
             <TextView
@@ -333,7 +333,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:text="Cerrar Sesion"
-                android:textColor="#909090"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="@dimen/text_item_drawer"
                 android:id="@+id/txt_CerrarSesion" />
 
