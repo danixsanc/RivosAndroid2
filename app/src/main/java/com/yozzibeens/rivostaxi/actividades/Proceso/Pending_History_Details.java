@@ -53,20 +53,18 @@ public class Pending_History_Details extends AppCompatActivity {
     public final static int WIDTH = 500;
     String ref;
 
-    ImageButton back_button;
-    //ImageView statusImg;
-    private static String KEY_SUCCESS = "Success";
+    private TextView nameWindows;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pending_history_details);
 
-
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        this.nameWindows = (TextView) findViewById(R.id.nameWindows);
+        this.nameWindows.setText("En proceso");
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){

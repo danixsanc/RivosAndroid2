@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -34,6 +35,8 @@ import com.YozziBeens.rivostaxi.controlador.HistorialController;
 import com.YozziBeens.rivostaxi.modelo.Client;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
 import com.google.android.gms.maps.model.LatLng;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class DrawerMenu extends Fragment {
 
@@ -176,8 +179,41 @@ public class DrawerMenu extends Fragment {
             public void onClick(View view) {
 
 
-                AlertDialog.Builder dialog1 = new AlertDialog.Builder(getActivity(), R.style.AppCompatAlertDialogStyle);
-                dialog1.setMessage("¿Cerrar Sesion?");
+                new SweetAlertDialog(getActivity(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Cerrar Sesión")
+                        .setContentText("¿Seguro que desea cerrar sesión?")
+                        .setConfirmText("Si, salir")
+                        .setCancelText("Cancelar")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                ClientController clientController = new ClientController(getActivity().getApplicationContext());
+                                clientController.eliminarTodo();
+                                Intent intent = new Intent(getActivity(), Main.class);
+                                startActivity(intent);
+
+                                HistorialController historialController = new HistorialController(getActivity().getApplicationContext());
+                                Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getActivity().getApplicationContext());
+
+                                historialController.eliminarTodo();
+                                favorite_placeController.eliminarTodo();
+                                LoginManager.getInstance().logOut();
+                                preferencias.setSesion(true);
+                                preferencias.setClient_Id(null);
+                                getActivity().finish();
+                            }
+                        })
+                        .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+                                sDialog.dismissWithAnimation();
+                            }
+                        })
+                        .show();
+
+
+                /*AlertDialog.Builder dialog1 = new AlertDialog.Builder(getActivity(), R.style.AppCompatAlertDialogStyle);
+                dialog1.setMessage("¿Seguro que desea cerrar sesión?");
                 dialog1.setCancelable(false);
                 dialog1.setPositiveButton("Si", new DialogInterface.OnClickListener() {
 
@@ -207,7 +243,7 @@ public class DrawerMenu extends Fragment {
                         dialog.cancel();
                     }
                 });
-                dialog1.show();
+                dialog1.show();*/
 
 
 

@@ -17,7 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.controlador.ClientController;
@@ -54,13 +56,14 @@ public class Add_Card  extends AppCompatActivity{
 
     private Button btnGuardar;
     private MaterialEditText numberText;
-    private MaterialEditText vigenciaYear;
-    private MaterialEditText vigenciaMonth;
+    //private MaterialEditText vigenciaYear;
+    //private MaterialEditText vigenciaMonth;
     private MaterialEditText cvcText;
     private MaterialEditText nameText;
     private Activity activity = this;
 
     private Preferencias preferencias;
+    private Spinner spn_month, spn_year;
 
 
 
@@ -89,62 +92,20 @@ public class Add_Card  extends AppCompatActivity{
         numberText = (MaterialEditText) findViewById(R.id.numberText);
         nameText = (MaterialEditText) findViewById(R.id.nameText);
         cvcText = (MaterialEditText) findViewById(R.id.cvcText);
-        vigenciaMonth = (MaterialEditText) findViewById(R.id.vigenciaMonth);
-        vigenciaYear = (MaterialEditText) findViewById(R.id.vigenciaYear);
+        //vigenciaMonth = (MaterialEditText) findViewById(R.id.vigenciaMonth);
+        //vigenciaYear = (MaterialEditText) findViewById(R.id.vigenciaYear);
 
-        numberText.addTextChangedListener(new TextWatcher() {
+        this.spn_month = (Spinner)findViewById(R.id.spinner_month);
+        String[] items = new String[]{"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        spn_month.setAdapter(adapter);
 
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.length() == 16) {
-                    numberText.clearFocus();
-                    vigenciaMonth.requestFocus();
-                }
-            }
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
+        this.spn_year = (Spinner)findViewById(R.id.spinner_year);
+        String[] items2 = new String[]{"16", "17", "18", "19", "20", "21", "22", "23", "24"};
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items2);
+        spn_year.setAdapter(adapter2);
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
 
-        });
-        vigenciaMonth.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.length() == 2){
-                    vigenciaMonth.clearFocus();
-                    vigenciaYear.requestFocus();
-                }
-            }
-        });
-        vigenciaYear.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.length() == 4){
-                    vigenciaYear.clearFocus();
-                    cvcText.requestFocus();
-                }
-            }
-        });
         cvcText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -174,8 +135,8 @@ public class Add_Card  extends AppCompatActivity{
                 Conekta.collectDevice(activity);
 
                 Card card = new Card(nameText.getText().toString(), numberText.getText().toString(),
-                        cvcText.getText().toString(), vigenciaMonth.getText().toString(),
-                        vigenciaYear.getText().toString());
+                        cvcText.getText().toString(), spn_month.getSelectedItem().toString(),
+                        spn_year.getSelectedItem().toString());
                 Token token = new Token(activity);
                 token.onCreateTokenListener(new Token.CreateToken() {
 
@@ -298,8 +259,8 @@ public class Add_Card  extends AppCompatActivity{
 
                     TarjetaController tarjetaController  = new TarjetaController(getApplicationContext());
                     Tarjeta tarjeta = new Tarjeta(null, tarjetaId, nameText.getText().toString(),
-                            numberText.getText().toString(), vigenciaMonth.getText().toString(),
-                            vigenciaYear.getText().toString(), "Visa");
+                            numberText.getText().toString(), spn_month.getSelectedItem().toString(),
+                            spn_year.getSelectedItem().toString(), "Visa");
                     /*Tarjeta tarjeta = new Tarjeta(null, tarjetaId, numberText.getText().toString(),
                             vigenciaMonth.getText().toString(), vigenciaYear.getText().toString(), nameText.getText().toString());
 */

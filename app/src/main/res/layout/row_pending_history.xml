@@ -24,6 +24,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:tint="@color/graySelected"
                 android:src="@drawable/ic_traffic_black_24dp"/>
 
             <TextView

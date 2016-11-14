@@ -21,6 +21,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.YozziBeens.rivostaxi.R;
+import com.YozziBeens.rivostaxi.actividades.Solicitar.Form;
 import com.YozziBeens.rivostaxi.app.PreguntasFrecuentes;
 import com.YozziBeens.rivostaxi.listener.AsyncTaskListener;
 import com.YozziBeens.rivostaxi.listener.ServicioAsyncService;
@@ -32,6 +33,7 @@ import com.google.gson.Gson;
 
 import java.util.HashMap;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class Nav_Ayuda extends AppCompatActivity {
@@ -44,7 +46,7 @@ public class Nav_Ayuda extends AppCompatActivity {
     TextView Txt_Contact_Us;
     private ProgressDialog progressdialog;
     private ResultadoMensajeAyuda resultadoMensajeAyuda;
-
+    private TextView nameWindows;
     private Gson gson;
 
     @Override
@@ -57,7 +59,10 @@ public class Nav_Ayuda extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
+        this.nameWindows = (TextView) findViewById(R.id.nameWindows);
+        this.nameWindows.setText("Ayuda");
+
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
 
         btnAsistenciaTelefonica = (Button) findViewById(R.id.btnAsistenciaTelefonica);
         btnAsistenciaTelefonica.setTypeface(RobotoCondensed_Regular);
@@ -220,15 +225,11 @@ public class Nav_Ayuda extends AppCompatActivity {
                 cont++;
             }
             if (cont > 0){
-                AlertDialog.Builder dialog = new AlertDialog.Builder(Nav_Ayuda.this, R.style.AppCompatAlertDialogStyle);
-                dialog.setMessage("Hay campos mal escritos.");
-                dialog.setCancelable(true);
-                dialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                dialog.show();
+                new SweetAlertDialog(Nav_Ayuda.this, SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Oops...")
+                        .setContentText("Hay campos mal escritos.")
+                        .setConfirmText("Entendido")
+                        .show();
                 return false;
             }
             else {
@@ -236,16 +237,11 @@ public class Nav_Ayuda extends AppCompatActivity {
             }
         }
         else{
-            AlertDialog.Builder dialog = new AlertDialog.Builder(Nav_Ayuda.this, R.style.AppCompatAlertDialogStyle);
-            dialog.setMessage("Hay campos vacios.");
-            dialog.setCancelable(true);
-            dialog.setNegativeButton("OK", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                }
-            });
-            dialog.show();
-
+            new SweetAlertDialog(Nav_Ayuda.this, SweetAlertDialog.WARNING_TYPE)
+                    .setTitleText("Oops...")
+                    .setContentText("Hay campos vacios.")
+                    .setConfirmText("Entendido")
+                    .show();
             return false;
         }
 

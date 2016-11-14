@@ -18,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -41,6 +42,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 /**
  * Created by danixsanc on 16/01/2016.
  */
@@ -50,7 +53,7 @@ public class Nav_Favorito extends AppCompatActivity {
     ListView favoriteplaceList;
     FavoritePlaceCustomAdapter favoriteplaceAdapter;
     ArrayList<AdaptadorLugarFavorito> favoriteplaceArray = new ArrayList<AdaptadorLugarFavorito>();
-    TextView txt_no_data_detected;
+    private TextView txt_no_data_detected;
 
     private Gson gson;
     private ProgressDialog progressdialog;
@@ -58,6 +61,8 @@ public class Nav_Favorito extends AppCompatActivity {
     private ResultadoLugaresFavoritos resultadoLugaresFavoritos;
     private Favorite_PlaceController favorite_placeController;
     private Preferencias preferencias;
+    private TextView nameWindows;
+    private LinearLayout lnl_no_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,11 @@ public class Nav_Favorito extends AppCompatActivity {
         this.resultadoLugaresFavoritos = new ResultadoLugaresFavoritos();
         this.favorite_placeController = new Favorite_PlaceController(this);
         this.preferencias = new Preferencias(getApplicationContext());
+        this.lnl_no_data = (LinearLayout) findViewById(R.id.lnl_no_data);
+
+        this.nameWindows = (TextView) findViewById(R.id.nameWindows);
+        this.nameWindows.setText("Favoritos");
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -77,10 +87,10 @@ public class Nav_Favorito extends AppCompatActivity {
         oData.setClient_Id(preferencias.getClient_Id());
         LugaresFavoritosWebService(gson.toJson(oData));
 
-        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
+        Typeface Roboto = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
 
         txt_no_data_detected = (TextView) findViewById(R.id.txt_no_data_detected);
-        txt_no_data_detected.setTypeface(RobotoCondensed_Regular);
+        txt_no_data_detected.setTypeface(Roboto);
 
 
         favoriteplaceList = (ListView) findViewById(R.id.list_favorite_place);
@@ -99,10 +109,10 @@ public class Nav_Favorito extends AppCompatActivity {
         }
 
         if (favoriteplaceArray.size() == 0) {
-            txt_no_data_detected.setVisibility(View.VISIBLE);
+            lnl_no_data.setVisibility(View.VISIBLE);
             favoriteplaceList.setVisibility(View.GONE);
         } else {
-            txt_no_data_detected.setVisibility(View.GONE);
+            lnl_no_data.setVisibility(View.GONE);
             favoriteplaceList.setVisibility(View.VISIBLE);
         }
 
@@ -147,7 +157,7 @@ public class Nav_Favorito extends AppCompatActivity {
 
             @Override
             public void onTaskComplete(HashMap<String, Object> result) {
-                if ((!resultadoLugaresFavoritos.isError()) && resultadoLugaresFavoritos.getData() != null) {
+                if (!resultadoLugaresFavoritos.isError()) {
                     favorite_placeController.eliminarTodo();
                     favorite_placeController.guardarOActualizarFavorite_Place(resultadoLugaresFavoritos.getData());
                 }
@@ -187,7 +197,8 @@ public class Nav_Favorito extends AppCompatActivity {
 
                         favoriteplaceArray.add(new AdaptadorLugarFavorito(placeid2, placename2));
                     }
-
+                    lnl_no_data.setVisibility(View.GONE);
+                    favoriteplaceList.setVisibility(View.VISIBLE);
                     favoriteplaceAdapter.notifyDataSetChanged();
 
                 }
@@ -263,29 +274,46 @@ public class Nav_Favorito extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int seleccion) {
                              if (options[seleccion] == "Eliminar") {
 
-                                String placeid = finalHolder1.txtIdPlace.getText().toString();
-                                Preferencias preferencias = new Preferencias(getApplicationContext());
-                                String clienteid = preferencias.getClient_Id();
+                                 new SweetAlertDialog(Nav_Favorito.this, SweetAlertDialog.WARNING_TYPE)
+                                         .setTitleText("¿Seguro que desea eliminar?")
+                                         .setContentText("Ya no se podran recuperar los datos.")
+                                         .setConfirmText("Si, Eliminar")
+                                         .setCancelText("No, Cancelar")
+                                         .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                             @Override
+                                             public void onClick(SweetAlertDialog sDialog) {
+                                                 String placeid = finalHolder1.txtIdPlace.getText().toString();
+                                                 Preferencias preferencias = new Preferencias(getApplicationContext());
+                                                 String clienteid = preferencias.getClient_Id();
 
-                                 SolicitudEliminarLugarFavorito oData = new SolicitudEliminarLugarFavorito();
-                                 oData.setClient_Id(clienteid);
-                                 oData.setPlace_Id(placeid);
-                                 DeleteLugarFavoritoWebService(gson.toJson(oData));
+                                                 SolicitudEliminarLugarFavorito oData = new SolicitudEliminarLugarFavorito();
+                                                 oData.setClient_Id(clienteid);
+                                                 oData.setPlace_Id(placeid);
+                                                 DeleteLugarFavoritoWebService(gson.toJson(oData));
 
-                                Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getApplicationContext());
-                                Favorite_Place favorite_place;
-                                favorite_place = favorite_placeController.obtenerFavorite_PlacePorPlaceId(placeid);
-                                favorite_placeController.eliminarFavorite_Place(favorite_place);
-                                favoriteplaceArray.remove(position);
-                                favoriteplaceAdapter.notifyDataSetChanged();
-                                if (favoriteplaceArray.size() == 0) {
-                                    txt_no_data_detected.setVisibility(View.VISIBLE);
-                                    favoriteplaceList.setVisibility(View.GONE);
-                                } else {
-                                    txt_no_data_detected.setVisibility(View.GONE);
-                                    favoriteplaceList.setVisibility(View.VISIBLE);
-                                }
-
+                                                 Favorite_PlaceController favorite_placeController = new Favorite_PlaceController(getApplicationContext());
+                                                 Favorite_Place favorite_place;
+                                                 favorite_place = favorite_placeController.obtenerFavorite_PlacePorPlaceId(placeid);
+                                                 favorite_placeController.eliminarFavorite_Place(favorite_place);
+                                                 favoriteplaceArray.remove(position);
+                                                 favoriteplaceAdapter.notifyDataSetChanged();
+                                                 if (favoriteplaceArray.size() == 0) {
+                                                     lnl_no_data.setVisibility(View.VISIBLE);
+                                                     favoriteplaceList.setVisibility(View.GONE);
+                                                 } else {
+                                                     lnl_no_data.setVisibility(View.GONE);
+                                                     favoriteplaceList.setVisibility(View.VISIBLE);
+                                                 }
+                                                 sDialog.dismiss();
+                                             }
+                                         })
+                                         .setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                             @Override
+                                             public void onClick(SweetAlertDialog sDialog) {
+                                                 sDialog.dismiss();
+                                             }
+                                         })
+                                         .show();
 
                             } else if (options[seleccion] == "Cancelar") {
                                 dialog.dismiss();
@@ -347,17 +375,14 @@ public class Nav_Favorito extends AppCompatActivity {
             public void onTaskComplete(HashMap<String, Object> result) {
                 progressdialog.dismiss();
                 String messageError = resultadoEliminarLugarFavorito.getMessage();
-                AlertDialog.Builder dialog = new AlertDialog.Builder(Nav_Favorito.this, R.style.AppCompatAlertDialogStyle);
-                dialog.setMessage(messageError);
-                dialog.setCancelable(true);
-                dialog.setNegativeButton("OK", new DialogInterface.OnClickListener()
+                if (messageError.equals("OK"))
                 {
-                    public void onClick(DialogInterface dialog, int which)
-                    {
-                        dialog.cancel();
-                    }
-                });
-                dialog.show();
+                    new SweetAlertDialog(Nav_Favorito.this, SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("Lugar Favorito Eliminado")
+                            .setContentText("Ha sido eliminado con exito!")
+                            .show();
+                }
+
             }
 
             @Override

@@ -16,25 +16,25 @@ import com.YozziBeens.rivostaxi.tutorial.view.ViewPagerCustomDuration;
 import com.YozziBeens.rivostaxi.utilerias.Preferencias;
 import com.viewpagerindicator.CirclePageIndicator;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.InjectView;
 import butterknife.OnClick;
 
 
 public class TutorialActivity extends ActionBarActivity {
 
     private static final int colorArray[] = new int[3];
-    @BindView(R.id.pager)
+    @InjectView(R.id.pager)
     ViewPagerCustomDuration viewPager;
-    @BindView(R.id.indicator)
+    @InjectView(R.id.indicator)
     CirclePageIndicator circleIndicator;
-    @BindView(R.id.next_btn)
+    @InjectView(R.id.next_btn)
     View nextBtn;
-    @BindView(R.id.skip_btn)
+    @InjectView(R.id.skip_btn)
     View skipBtn;
-    @BindView(R.id.done_btn)
+    @InjectView(R.id.done_btn)
     View doneBtn;
-    @BindView(R.id.bg)
+    @InjectView(R.id.bg)
     SmoothFrameLayout bg;
 
     @Override
@@ -42,13 +42,7 @@ public class TutorialActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
         getWindow().setBackgroundDrawable(null);
-        ButterKnife.bind(this);
-        this.bg = new SmoothFrameLayout(getApplicationContext());
-        this.viewPager = new ViewPagerCustomDuration(getApplicationContext());
-        this.circleIndicator = new CirclePageIndicator(getApplicationContext());
-        this.nextBtn = new View(getApplicationContext());
-        this.skipBtn = new View(getApplicationContext());
-        this.doneBtn = new View(getApplicationContext());
+        ButterKnife.inject(this);
         colorArray[0] = getResources().getColor(R.color.page_blue);
         colorArray[1] = getResources().getColor(R.color.page_red);
         colorArray[2] = getResources().getColor(R.color.page_green);
@@ -95,7 +89,7 @@ public class TutorialActivity extends ActionBarActivity {
             public void transformPage(View view, float position) {
                 if (position > -1 && position < 1) {
                     view.findViewById(R.id.image_icon).setTranslationX(position * ratioIcon);
-                    //view.findViewById(R.id.image_large).setTranslationX(position * ratioIconLarge);
+                    view.findViewById(R.id.image_large).setTranslationX(position * ratioIconLarge);
                 }
             }
         });

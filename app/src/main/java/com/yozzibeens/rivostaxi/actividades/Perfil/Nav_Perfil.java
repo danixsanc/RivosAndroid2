@@ -43,7 +43,7 @@ public class Nav_Perfil extends AppCompatActivity {
     TextView txt_email_user;
     TextView txt_nombre_user;
     TextView txt_datos_personales, txt_nombre, txt_email, txt_phone; //********
-
+    private TextView nameWindows;
     Fotografia oFotofrafia;
     ImageView imgPerfil;
 
@@ -59,7 +59,10 @@ public class Nav_Perfil extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
+        this.nameWindows = (TextView) findViewById(R.id.nameWindows);
+        this.nameWindows.setText("Perfil");
+
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
 
         imgPerfil = (ImageView) findViewById(R.id.imgPerfil);
         imgPerfil.setOnClickListener(new View.OnClickListener() {

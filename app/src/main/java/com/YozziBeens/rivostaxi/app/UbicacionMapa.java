@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.YozziBeens.rivostaxi.R;
 import com.YozziBeens.rivostaxi.controlador.CiudadController;
@@ -39,6 +40,7 @@ public class UbicacionMapa extends AppCompatActivity implements OnMapReadyCallba
     private AddresLocationAsyncTask addresLocationAsyncTask;
     private String direccion;
     private int seleccion;
+    private TextView nameWindows;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,10 @@ public class UbicacionMapa extends AppCompatActivity implements OnMapReadyCallba
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("");
+
+
+        this.nameWindows = (TextView) findViewById(R.id.nameWindows);
+
 
         this.preferencias = new Preferencias(this);
         this.ciudarController = new CiudadController(this);
@@ -66,9 +71,9 @@ public class UbicacionMapa extends AppCompatActivity implements OnMapReadyCallba
         if (parametros != null) {
             seleccion = parametros.getInt("opcionSeleccionada");
             if(seleccion == 0)
-                getSupportActionBar().setTitle("Origen");
+                this.nameWindows.setText("Origen");
             else
-                getSupportActionBar().setTitle("Destino");
+                this.nameWindows.setText("Destino");
         }
 
         /*((Button) findViewById(R.id.btnCancelar)).setOnClickListener(new View.OnClickListener() {

@@ -31,6 +31,7 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+
     <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:textColorPrimary">#464646</item>
         <item name="android:background">#ececec</item>

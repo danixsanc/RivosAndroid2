@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -48,12 +49,14 @@ public class Nav_Proceso extends AppCompatActivity {
     int val;
     String Client_Id;
     private ProgressDialog progressdialog;
+    private TextView nameWindows;
 
 
     ListView pendinghistoryList;
     PendingHistoryCustomAdapter pendinghistoryAdapter;
     ArrayList<PendingHistory> pendinghistoryArray = new ArrayList<PendingHistory>();
     int request_id[] = new int[0];
+    private LinearLayout lnl_no_data;
 
 
     @Override
@@ -64,6 +67,11 @@ public class Nav_Proceso extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        this.nameWindows = (TextView) findViewById(R.id.nameWindows);
+        this.nameWindows.setText("En proceso");
+
+        this.lnl_no_data = (LinearLayout) findViewById(R.id.lnl_no_data);
 
         this.gson = new Gson();
 
@@ -76,7 +84,7 @@ public class Nav_Proceso extends AppCompatActivity {
 
         historialPendienteController = new HistorialPendienteController(this);
 
-        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
+        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
 
         txt_no_data_detected = (TextView) findViewById(R.id.txt_no_data_detected);
         txt_no_data_detected.setTypeface(RobotoCondensed_Regular);
@@ -121,10 +129,6 @@ public class Nav_Proceso extends AppCompatActivity {
                     int statusCode = Integer.parseInt(result.get("StatusCode").toString());
                     if (statusCode == 0) {
                         resultadoHistorialPendienteCliente = gson.fromJson(result.get("Resultado").toString(), ResultadoHistorialPendienteCliente.class);
-                        if ((!resultadoHistorialPendienteCliente.isError()) && resultadoHistorialPendienteCliente.getData() != null) {
-                            historialPendienteController.eliminarTodo();
-                            historialPendienteController.guardarOActualizarHistorialPendiente(resultadoHistorialPendienteCliente.getData());
-                        }
                     }
                 }
                 catch (Exception error) {
@@ -136,28 +140,39 @@ public class Nav_Proceso extends AppCompatActivity {
 
             @Override
             public void onTaskComplete(HashMap<String, Object> result) {
+                if ((!resultadoHistorialPendienteCliente.isError()) && resultadoHistorialPendienteCliente.getData() != null) {
 
+                    lnl_no_data.setVisibility(View.GONE);
 
+                    historialPendienteController.eliminarTodo();
+                    historialPendienteController.guardarOActualizarHistorialPendiente(resultadoHistorialPendienteCliente.getData());
 
-                HistorialPendienteController historialPendienteController = new HistorialPendienteController(getApplicationContext());
-                List<HistorialPendiente> historialList = historialPendienteController.obtenerHistorialPendiente();
+                    HistorialPendienteController historialPendienteController = new HistorialPendienteController(getApplicationContext());
+                    List<HistorialPendiente> historialList = historialPendienteController.obtenerHistorialPendiente();
 
-                request_id = new int[historialList.size()];
-                for (int i=0; i < historialList.size(); i++)
-                {
-                    String id = historialList.get(i).getRequest_Id();
-                    String fecha = historialList.get(i).getDate();
-                    pendinghistoryArray.add(new PendingHistory(id, fecha));
-                    request_id[i] = Integer.valueOf(historialList.get(i).getRequest_Id());
+                    request_id = new int[historialList.size()];
+                    for (int i=0; i < historialList.size(); i++)
+                    {
+                        String id = historialList.get(i).getRequest_Id();
+                        String fecha = historialList.get(i).getDate();
+                        pendinghistoryArray.add(new PendingHistory(id, fecha));
+                        request_id[i] = Integer.valueOf(historialList.get(i).getRequest_Id());
+                    }
+
+                    pendinghistoryList = (ListView) findViewById(R.id.list_pending_history);
+                    pendinghistoryAdapter = new PendingHistoryCustomAdapter(getApplicationContext(), R.layout.row_pending_history, pendinghistoryArray);
+                    pendinghistoryList.setItemsCanFocus(false);
+                    pendinghistoryList.setAdapter(pendinghistoryAdapter);
+                    progressdialog.dismiss();
+                }
+                else {
+                    lnl_no_data.setVisibility(View.VISIBLE);
+                    progressdialog.dismiss();
                 }
 
 
 
-                pendinghistoryList = (ListView) findViewById(R.id.list_pending_history);
-                pendinghistoryAdapter = new PendingHistoryCustomAdapter(getApplicationContext(), R.layout.row_pending_history, pendinghistoryArray);
-                pendinghistoryList.setItemsCanFocus(false);
-                pendinghistoryList.setAdapter(pendinghistoryAdapter);
-                progressdialog.dismiss();
+
 
 
             }

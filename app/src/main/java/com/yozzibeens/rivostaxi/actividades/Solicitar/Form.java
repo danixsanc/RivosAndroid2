@@ -126,6 +126,7 @@ public class Form extends AppCompatActivity {
     private static ListView listCards;
 
     private String finalCardId;
+    private TextView nameWindows;
 
 
     Form.TarjetasCustomAdapter tarjetasAdapter;
@@ -141,6 +142,9 @@ public class Form extends AppCompatActivity {
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
+
+        this.nameWindows = (TextView) findViewById(R.id.nameWindows);
+        this.nameWindows.setText("Forma de pago");
 
         this.gson = new Gson();
         this.preferencias = new Preferencias(getApplicationContext());
@@ -217,10 +221,21 @@ public class Form extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (canRequest){
+                            if (mSelectedPosition == -1){
+                                new SweetAlertDialog(Form.this, SweetAlertDialog.WARNING_TYPE)
+                                        .setTitleText("Oops...")
+                                        .setContentText("Primero debes selecciona una tarjeta!")
+                                        .setConfirmText("Entendido")
+                                        .show();
+                            }
+                            else {
                                 RealizarPago();
+                            }
+
                         }
                         else
                         {
+
                             new SweetAlertDialog(Form.this, SweetAlertDialog.WARNING_TYPE)
                                     .setTitleText("Oops...")
                                     .setContentText("El tiempo se ha agotado, regresa a la seccion anterior!")

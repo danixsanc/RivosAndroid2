@@ -50,6 +50,7 @@ import com.YozziBeens.rivostaxi.utilerias.Utilerias;
 import com.google.android.gms.analytics.HitBuilders;
 import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.maps.model.LatLng;
+import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,13 +67,11 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class CargarDirecciones extends LocationActivity {
 
-    private final static String TAG = "MAIN";
-    //private Tracker mTracker;
-
     private FloatingActionButton btnConsultarRutas;
     private RelativeLayout rlCargando;
     private ListView lsvLugares, lsvDirecciones;
-    private ImageButton btnCancelarOrigen, btnCancelarDestino;
+    //private ImageButton btnCancelarOrigen;
+    //private ImageButton        btnCancelarDestino;
     private CardView crdDireccicones;
     private LugarController lugarController;
     private Favorite_PlaceController favorite_placeController;
@@ -81,11 +80,11 @@ public class CargarDirecciones extends LocationActivity {
     private Location userLocation;
     private LatLng mOrigen, mDestino;
     private int opcionSeleccionada = 0;
-    private EditText edtOrigen, edtDestino;
+    private MaterialEditText edtOrigen;
+    private EditText edtDestino;
     private Preferencias preferencias;
     private TextView txtMensaje;
-
-    private String solicitud;
+    private TextView nameWindows;
     private SearchAddressAsyncTask searchAddressAsyncTask;
 
     @Override
@@ -93,19 +92,18 @@ public class CargarDirecciones extends LocationActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cargar_direcciones);
 
-        //Google Analytics
-        /*AnalyticsEnrutate application = (AnalyticsEnrutate) getApplication();
-        mTracker = application.getDefaultTracker();*/
+        this.nameWindows = (TextView) findViewById(R.id.nameWindows);
+        this.nameWindows.setText("Cargar Direcciones");
 
         Typeface Roboto = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
 
-        this.edtOrigen = (EditText) findViewById(R.id.edtOrigen);
+        this.edtOrigen = (MaterialEditText) findViewById(R.id.edtOrigen);
         this.edtDestino = (EditText) findViewById(R.id.edtDestino);
         this.lsvLugares = (ListView) findViewById(R.id.lsvLugares);
         this.lsvDirecciones = (ListView) findViewById(R.id.lsvDirecciones);
         this.crdDireccicones = (CardView) findViewById(R.id.crdDireccicones);
-        this.btnCancelarOrigen = (ImageButton) findViewById(R.id.btnCancelarOrigen);
-        this.btnCancelarDestino = (ImageButton) findViewById(R.id.btnCancelarDestino);
+        //this.btnCancelarOrigen = (ImageButton) findViewById(R.id.btnCancelarOrigen);
+        //this.btnCancelarDestino = (ImageButton) findViewById(R.id.btnCancelarDestino);
         this.rlCargando = (RelativeLayout) findViewById(R.id.rlCargando);
         this.txtMensaje = (TextView) findViewById(R.id.txtMensaje);
         this.lugarController = new LugarController(this);
@@ -183,14 +181,14 @@ public class CargarDirecciones extends LocationActivity {
                 if (isLocationEnabled()) {
                     if (userLocation != null) {
                         if (opcionSeleccionada == 0) {
-                            edtOrigen.setEnabled(false);
-                            btnCancelarOrigen.setVisibility(View.VISIBLE);
+                            //edtOrigen.setEnabled(false);
+                           // btnCancelarOrigen.setVisibility(View.VISIBLE);
                             edtOrigen.setText(getString(R.string.strMiUbicacion));
                             mOrigen = new LatLng(userLocation.getLatitude(), userLocation.getLongitude());
                             edtDestino.requestFocus();
                         } else if (opcionSeleccionada == 1) {
-                            edtDestino.setEnabled(false);
-                            btnCancelarDestino.setVisibility(View.VISIBLE);
+                            //edtDestino.setEnabled(false);
+                            //btnCancelarDestino.setVisibility(View.VISIBLE);
                             edtDestino.setText(getString(R.string.strMiUbicacion));
                             mDestino = new LatLng(userLocation.getLatitude(), userLocation.getLongitude());
                         }
@@ -215,9 +213,9 @@ public class CargarDirecciones extends LocationActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    btnCancelarOrigen.setVisibility(View.VISIBLE);
+                    //btnCancelarOrigen.setVisibility(View.VISIBLE);
                     if(!edtDestino.getText().toString().equals(getString(R.string.strMiUbicacion)))
-                        btnCancelarDestino.setVisibility(View.GONE);
+                        //btnCancelarDestino.setVisibility(View.GONE);
                     opcionSeleccionada = 0;
                 }
             }
@@ -226,9 +224,9 @@ public class CargarDirecciones extends LocationActivity {
         this.edtOrigen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btnCancelarOrigen.setVisibility(View.VISIBLE);
+                //btnCancelarOrigen.setVisibility(View.VISIBLE);
                 if(!edtDestino.getText().toString().equals(getString(R.string.strMiUbicacion)))
-                    btnCancelarDestino.setVisibility(View.GONE);
+                    //btnCancelarDestino.setVisibility(View.GONE);
                 opcionSeleccionada = 0;
             }
         });
@@ -237,8 +235,8 @@ public class CargarDirecciones extends LocationActivity {
             @Override
             public void onClick(View v) {
                 if(!edtOrigen.getText().toString().equals(getString(R.string.strMiUbicacion)))
-                    btnCancelarOrigen.setVisibility(View.GONE);
-                btnCancelarDestino.setVisibility(View.VISIBLE);
+                    //btnCancelarOrigen.setVisibility(View.GONE);
+                //btnCancelarDestino.setVisibility(View.VISIBLE);
                 opcionSeleccionada = 1;
             }
         });
@@ -248,8 +246,8 @@ public class CargarDirecciones extends LocationActivity {
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
                     if(!edtOrigen.getText().toString().equals(getString(R.string.strMiUbicacion)))
-                        btnCancelarOrigen.setVisibility(View.GONE);
-                    btnCancelarDestino.setVisibility(View.VISIBLE);
+                        //btnCancelarOrigen.setVisibility(View.GONE);
+                    //btnCancelarDestino.setVisibility(View.VISIBLE);
                     opcionSeleccionada = 1;
                 }
             }
@@ -360,10 +358,10 @@ public class CargarDirecciones extends LocationActivity {
             }
         });
 
-        this.btnCancelarOrigen.setOnClickListener(new View.OnClickListener() {
+        /*this.btnCancelarOrigen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                edtOrigen.setEnabled(true);
+                //edtOrigen.setEnabled(true);
                 edtOrigen.setText("");
                 mOrigen = null;
                 edtOrigen.requestFocus();
@@ -378,7 +376,7 @@ public class CargarDirecciones extends LocationActivity {
                 mDestino = null;
                 edtDestino.requestFocus();
             }
-        });
+        });*/
 
         ((LinearLayout) findViewById(R.id.btnUbicacionMapa)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -423,7 +421,7 @@ public class CargarDirecciones extends LocationActivity {
             Double longitudOrigen = parametros.getDouble("longitudOrigen");
             if (latitudOrigen != 0 && longitudOrigen != 0) {
                 edtOrigen.setEnabled(false);
-                btnCancelarOrigen.setVisibility(View.VISIBLE);
+                //btnCancelarOrigen.setVisibility(View.VISIBLE);
                 mOrigen = new LatLng(latitudOrigen, longitudOrigen);
                 edtOrigen.setText(R.string.strMiUbicacion);
                 edtOrigen.clearFocus();
@@ -434,7 +432,7 @@ public class CargarDirecciones extends LocationActivity {
             String nombreLugar = parametros.getString("nombreLugar");
             if (latitudDestino != 0 && longitudDestino != 0) {
                 edtDestino.setEnabled(false);
-                btnCancelarDestino.setVisibility(View.VISIBLE);
+                //btnCancelarDestino.setVisibility(View.VISIBLE);
                 mDestino = new LatLng(latitudDestino, longitudDestino);
                 edtDestino.setText(nombreLugar);
             }
@@ -581,12 +579,12 @@ public class CargarDirecciones extends LocationActivity {
                     Toast.makeText(CargarDirecciones.this, "Ubicacion no disponible", Toast.LENGTH_LONG).show();
                 else {
                     if (opcionSeleccionada == 0) {
-                        btnCancelarOrigen.setVisibility(View.VISIBLE);
+                        //btnCancelarOrigen.setVisibility(View.VISIBLE);
                         edtOrigen.setEnabled(false);
                         edtOrigen.setText(getString(R.string.strMiUbicacion));
                         mOrigen = new LatLng(result.getLatitude(), result.getLongitude());
                     } else if (opcionSeleccionada == 1) {
-                        btnCancelarDestino.setVisibility(View.VISIBLE);
+                        //btnCancelarDestino.setVisibility(View.VISIBLE);
                         edtOrigen.setEnabled(false);
                         edtDestino.setText(getString(R.string.strMiUbicacion));
                         mDestino = new LatLng(result.getLatitude(), result.getLongitude());

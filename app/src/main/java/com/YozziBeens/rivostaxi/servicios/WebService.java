@@ -36,6 +36,8 @@ public class WebService {
     //public static final String GetClientHistoryPendingWebService = "http://appm.rivosservices.com/webservices/GetClientHistoryPending.php";
     public static final String GetClientHistoryPendingWebService = "http://sistema.rivosservices.com/test/getPending";
 
+    public static final String ObtenerTaxistasCernanos = "http://sistema.rivosservices.com/test/getClosesCabbies";
+
 
 
 

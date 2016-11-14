@@ -23,14 +23,14 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:background="#2f3794"
+            android:background="@color/textColorPrimary"
             android:id="@+id/nameText"
             android:inputType="text"
             app:met_clearButton="true"
             app:met_floatingLabel="highlight"
-            app:met_textColorHint="#8C96FF"
-            app:met_baseColor="#2f3794"
-            app:met_primaryColor="#8C96FF"
+            app:met_textColorHint="@color/graySelected"
+            app:met_baseColor="@color/textColorPrimary"
+            app:met_primaryColor="@color/graySelected"
             app:met_errorColor="#ffffff"/>
 
         <com.rengwuxian.materialedittext.MaterialEditText
@@ -41,15 +41,15 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="30dp"
-            android:background="#2f3794"
+            android:background="@color/textColorPrimary"
             android:id="@+id/numberText"
             android:inputType="number"
             android:maxLength="16"
             app:met_clearButton="true"
             app:met_floatingLabel="highlight"
-            app:met_textColorHint="#8C96FF"
-            app:met_baseColor="#2f3794"
-            app:met_primaryColor="#8C96FF"
+            app:met_textColorHint="@color/graySelected"
+            app:met_baseColor="@color/textColorPrimary"
+            app:met_primaryColor="@color/graySelected"
             app:met_errorColor="#ffffff"/>
 
         <LinearLayout
@@ -62,7 +62,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal">
-                <com.rengwuxian.materialedittext.MaterialEditText
+                <!--com.rengwuxian.materialedittext.MaterialEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="MM"
@@ -81,7 +81,15 @@
                     app:met_textColorHint="#8C96FF"
                     app:met_baseColor="#2f3794"
                     app:met_primaryColor="#8C96FF"
-                    app:met_errorColor="#ffffff"/>
+                    app:met_errorColor="#ffffff"/-->
+
+                <Spinner
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/spinner_month"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -89,7 +97,7 @@
                     android:layout_marginTop="35dp"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:text="/"
-                    android:textColor="#2f3794"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="28dp"
                     android:layout_weight="0"
                     android:id="@+id/textView6" />
@@ -101,7 +109,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
-                <com.rengwuxian.materialedittext.MaterialEditText
+
+                <Spinner
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="30dp"
+                    android:id="@+id/spinner_year"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:spinnerMode="dropdown" />
+
+                <!--com.rengwuxian.materialedittext.MaterialEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="YYYY"
@@ -110,16 +127,16 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="30dp"
-                    android:background="#2f3794"
+                    android:background="@color/textColorPrimary"
                     android:id="@+id/vigenciaYear"
                     android:inputType="number"
                     android:maxLength="4"
                     app:met_clearButton="true"
                     app:met_floatingLabel="highlight"
-                    app:met_textColorHint="#8C96FF"
-                    app:met_baseColor="#2f3794"
-                    app:met_primaryColor="#8C96FF"
-                    app:met_errorColor="#ffffff"/>
+                    app:met_textColorHint="@color/graySelected"
+                    app:met_baseColor="@color/textColorPrimary"
+                    app:met_primaryColor="@color/graySelected"
+                    app:met_errorColor="#ffffff"/-->
             </LinearLayout>
 
 
@@ -136,15 +153,15 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="30dp"
-                    android:background="#2f3794"
+                    android:background="@color/textColorPrimary"
                     android:id="@+id/cvcText"
                     android:inputType="number"
                     android:maxLength="3"
                     app:met_clearButton="true"
                     app:met_floatingLabel="highlight"
-                    app:met_textColorHint="#8C96FF"
-                    app:met_baseColor="#2f3794"
-                    app:met_primaryColor="#8C96FF"
+                    app:met_textColorHint="@color/graySelected"
+                    app:met_baseColor="@color/textColorPrimary"
+                    app:met_primaryColor="@color/graySelected"
                     app:met_errorColor="#ffffff"/>
             </LinearLayout>
         </LinearLayout>
@@ -172,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:textSize="16dp"
-                android:background="@drawable/rb_iniciar_sesion"
+                android:background="@color/colorAccent"
                 android:textColor="#ffffff"
                 android:textAllCaps="false"
                 android:text="Guardar" />

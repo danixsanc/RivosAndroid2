@@ -5,17 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.YozziBeens.rivostaxi.tutorial.view.ViewPagerCustomDuration
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/tutorial_bottom_height" />
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/tutorial_bottom_height"
         android:layout_gravity="bottom"
-        android:background="@color/black_semitransparent_10">
+        android:background="@color/textColorPrimary">
 
         <com.viewpagerindicator.CirclePageIndicator
             android:id="@+id/indicator"
@@ -58,4 +52,10 @@
             android:scaleType="center"
             android:src="@drawable/ic_navigate_next_white_24dp" />
     </FrameLayout>
+
+    <com.YozziBeens.rivostaxi.tutorial.view.ViewPagerCustomDuration
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/tutorial_bottom_height" />
 </com.YozziBeens.rivostaxi.tutorial.view.SmoothFrameLayout>

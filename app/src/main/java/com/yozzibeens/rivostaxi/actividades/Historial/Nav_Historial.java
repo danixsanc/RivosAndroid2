@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -48,7 +49,6 @@ import java.util.List;
  */
 public class Nav_Historial extends AppCompatActivity {
 
-    TextView txt_no_data_detected;
 
     ListView historyList;
     HistoryCustomAdapter historyAdapter;
@@ -61,6 +61,10 @@ public class Nav_Historial extends AppCompatActivity {
     private ResultadoHistorialCliente resultadoHistorialCliente;
     private HistorialController historialController;
     private Preferencias preferencias;
+    private TextView nameWindows;
+    private TextView txt_no_data_detected;
+
+    private LinearLayout lnl_no_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,19 +75,22 @@ public class Nav_Historial extends AppCompatActivity {
         this.resultadoHistorialCliente = new ResultadoHistorialCliente();
         this.historialController = new HistorialController(this);
         this.preferencias = new Preferencias(getApplicationContext());
+        this.lnl_no_data = (LinearLayout) findViewById(R.id.lnl_no_data);
+        this.txt_no_data_detected = (TextView) findViewById(R.id.txt_no_data_detected);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        this.nameWindows = (TextView) findViewById(R.id.nameWindows);
+        this.nameWindows.setText("Historial");
+
         SolicitudHistorialCliente oData = new SolicitudHistorialCliente();
         oData.setClient_Id(preferencias.getClient_Id());
         HistorialClienteWebService(gson.toJson(oData));
 
-        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
-
-        txt_no_data_detected = (TextView) findViewById(R.id.txt_no_data_detected2);
-        txt_no_data_detected.setTypeface(RobotoCondensed_Regular);
+        Typeface Roboto = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
+        txt_no_data_detected.setTypeface(Roboto);
 
 
         HistorialController historialController = new HistorialController(getApplicationContext());
@@ -109,12 +116,12 @@ public class Nav_Historial extends AppCompatActivity {
 
 
         if (historyArray.size() == 0 ){
-            txt_no_data_detected.setVisibility(View.VISIBLE);
+            lnl_no_data.setVisibility(View.VISIBLE);
             historyList.setVisibility(View.GONE);
         }
         else
         {
-            txt_no_data_detected.setVisibility(View.GONE);
+            lnl_no_data.setVisibility(View.GONE);
             historyList.setVisibility(View.VISIBLE);
         }
 
@@ -146,7 +153,7 @@ public class Nav_Historial extends AppCompatActivity {
 
             @Override
             public void onTaskComplete(HashMap<String, Object> result) {
-                if ((!resultadoHistorialCliente.isError()) && resultadoHistorialCliente.getData() != null) {
+                if (!resultadoHistorialCliente.isError()) {
                     historialController.eliminarTodo();
                     historialController.guardarOActualizarHistorial(resultadoHistorialCliente.getData());
                 }
@@ -258,7 +265,7 @@ public class Nav_Historial extends AppCompatActivity {
                                 historyAdapter.notifyDataSetChanged();
 
                                 if (historyArray.size() == 0) {
-                                    txt_no_data_detected.setVisibility(View.VISIBLE);
+                                    lnl_no_data.setVisibility(View.VISIBLE);
                                     historyList.setVisibility(View.GONE);
                                 }
 

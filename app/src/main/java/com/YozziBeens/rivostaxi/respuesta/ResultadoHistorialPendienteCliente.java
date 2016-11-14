@@ -10,7 +10,6 @@ public class ResultadoHistorialPendienteCliente {
     private ArrayList<HistorialPendiente> Data;
     private boolean Error;
     private String Message;
-    private String Success;
 
     public ArrayList<HistorialPendiente> getData() {
         return Data;
@@ -35,18 +34,5 @@ public class ResultadoHistorialPendienteCliente {
     public void setMessage(String message) {
         Message = message;
     }
-
-    public String getSuccess() {
-        return Success;
-    }
-
-    public void setSuccess(String success) {
-        Success = success;
-    }
-
-
-
-
-
 
 }

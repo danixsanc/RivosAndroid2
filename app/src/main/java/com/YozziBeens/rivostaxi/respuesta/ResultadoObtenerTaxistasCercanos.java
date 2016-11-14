@@ -1,18 +1,17 @@
 package com.YozziBeens.rivostaxi.respuesta;
 
 
+import com.YozziBeens.rivostaxi.modelo.closeCabbie;
+
+import java.util.List;
+
 public class ResultadoObtenerTaxistasCercanos {
 
-    private String Data;
-    private boolean Error;
-    private String Message;
-    private String Success;
-
-    public String getData() {
+    public List<closeCabbie> getData() {
         return Data;
     }
 
-    public void setData(String data) {
+    public void setData(List<closeCabbie> data) {
         Data = data;
     }
 
@@ -32,15 +31,9 @@ public class ResultadoObtenerTaxistasCercanos {
         Message = message;
     }
 
-    public String getSuccess() {
-        return Success;
-    }
-
-    public void setSuccess(String success) {
-        Success = success;
-    }
-
-
+    private List<closeCabbie> Data;
+    private boolean Error;
+    private String Message;
 
 
 

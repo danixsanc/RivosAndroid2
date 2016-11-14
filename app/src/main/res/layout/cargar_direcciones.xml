@@ -77,18 +77,21 @@
             <LinearLayout
                 android:id="@+id/llContenido"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="115dp"
+                android:padding="5dp"
                 android:background="@color/colorPrimary"
                 android:baselineAligned="false"
                 android:orientation="horizontal"
                 android:paddingBottom="30dp"
                 android:paddingRight="16dp">
 
+
                 <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_weight="0.7"
                     android:orientation="vertical">
+
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="12dp"
@@ -99,6 +102,7 @@
                         android:src="@color/colorOrigen"
                         app:civ_border_color="@color/colorBorder"
                         app:civ_border_width="1dp"/>
+
 
                     <LinearLayout
                         android:layout_width="1dp"
@@ -141,15 +145,29 @@
                             android:layout_width="match_parent"
                             android:layout_height="50dp">
 
-                            <ImageButton
+                            <com.rengwuxian.materialedittext.MaterialEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Origen"
+                                android:textSize="13dp"
+                                android:background="@color/textColorPrimary"
+                                android:id="@+id/edtOrigen"
+                                android:inputType="textEmailAddress"
+                                app:met_clearButton="true"
+                                app:met_floatingLabel="highlight"
+                                app:met_textColorHint="@color/textColorPrimary"
+                                app:met_baseColor="@color/textColorPrimary"
+                                app:met_primaryColor="@color/textColorPrimary"
+                                app:met_errorColor="@color/textColorPrimary"/>
+
+                            <!--ImageButton
                                 android:id="@+id/btnCancelarOrigen"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_gravity="right|center_vertical"
                                 android:background="@null"
                                 android:scaleType="fitXY"
-                                android:src="@android:drawable/ic_menu_close_clear_cancel"
-                                android:visibility="gone" />
+                                android:src="@android:drawable/ic_menu_close_clear_cancel" />
 
                             <EditText
                                 android:id="@+id/edtOrigen"
@@ -163,18 +181,13 @@
                                 android:singleLine="true"
                                 android:textColor="@color/textColorPrimary"
                                 android:textSize="14sp"
-                                android:textColorHint="@color/textColorPrimary" />
+                                android:textColorHint="@color/textColorPrimary" /-->
 
                         </FrameLayout>
 
 
                     </LinearLayout>
 
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/colorBorder" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -185,14 +198,28 @@
                             android:layout_width="match_parent"
                             android:layout_height="50dp">
 
-                            <ImageButton
+                            <com.rengwuxian.materialedittext.MaterialEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Destino"
+                                android:textSize="13dp"
+                                android:background="@color/textColorPrimary"
+                                android:id="@+id/edtDestino"
+                                android:inputType="textEmailAddress"
+                                app:met_clearButton="true"
+                                app:met_floatingLabel="highlight"
+                                app:met_textColorHint="@color/textColorPrimary"
+                                app:met_baseColor="@color/textColorPrimary"
+                                app:met_primaryColor="@color/textColorPrimary"
+                                app:met_errorColor="@color/textColorPrimary"/>
+
+                            <!--ImageButton
                                 android:id="@+id/btnCancelarDestino"
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_gravity="right|center_vertical"
                                 android:background="@null"
                                 android:scaleType="fitXY"
-                                android:visibility="gone"
                                 android:src="@android:drawable/ic_menu_close_clear_cancel" />
 
                             <EditText
@@ -207,7 +234,7 @@
                                 android:paddingRight="30dp"
                                 android:singleLine="true"
                                 android:textColor="@color/textColorPrimary"
-                                android:textColorHint="@color/textColorPrimary" />
+                                android:textColorHint="@color/textColorPrimary" /-->
 
                         </FrameLayout>
 

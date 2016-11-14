@@ -49,6 +49,7 @@ public class Detalles_Solicitud extends AppCompatActivity {
 
     double metros;
     double kilometros;
+    private TextView nameWindows;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +60,11 @@ public class Detalles_Solicitud extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        this.nameWindows = (TextView) findViewById(R.id.nameWindows);
+        this.nameWindows.setText("Detalle de la solicitud");
+
         this.gson = new Gson();
-        this.Roboto = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
+        this.Roboto = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
         this.cabbie_name = (TextView) findViewById(R.id.cabbie_name);
         this.cabbie_name.setTypeface(Roboto);
         this.txt_Inicio = (TextView) findViewById(R.id.txtInicio);
@@ -90,9 +94,7 @@ public class Detalles_Solicitud extends AppCompatActivity {
 
 
             String base = solicitud.getImage();
-
             byte[] imageAsBytes = Base64.decode(base.getBytes(), Base64.DEFAULT);
-
             imageCabbie.setImageBitmap(BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length));
 
             LatLng l1 = new LatLng(Double.valueOf(solicitud.getLatOrigen()), Double.valueOf(solicitud.getLongOrigen()));

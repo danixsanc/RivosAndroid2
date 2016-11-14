@@ -8,21 +8,37 @@
 
     <include layout="@layout/toolbar" />
 
-    <TextView
-        android:id="@+id/txt_no_data_detected"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#87000000"
-        android:visibility="gone"
-        android:textSize="20dp"
-        android:layout_marginTop="150dp"
-        android:gravity="center"
-        android:text="No hay lugares registrados"/>
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/lnl_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txt_no_data_detected"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#87000000"
+            android:textSize="16dp"
+            android:layout_marginTop="150dp"
+            android:gravity="center"
+            android:text="No hay lugares registrados"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:tint="#bfbfbf"
+            android:src="@drawable/ic_sentiment_dissatisfied_black_48dp"
+            />
+    </LinearLayout>
 
 
         <ListView
             android:layout_width="fill_parent"
             android:layout_height="445dp"
+            android:visibility="gone"
             android:id="@+id/list_favorite_place"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
@@ -43,9 +59,10 @@
             app:borderWidth="0dp"
             app:elevation="6dp"
             android:layout_marginBottom="@dimen/fab_margin"
-            app:backgroundTint="#2f3794"
+            app:backgroundTint="@color/textColorPrimary"
             android:layout_marginRight="@dimen/fab_margin"/>
 
     </FrameLayout>
+    </RelativeLayout>
 
 </LinearLayout>

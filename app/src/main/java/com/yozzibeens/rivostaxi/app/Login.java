@@ -77,6 +77,8 @@ public class Login extends AppCompatActivity {
     private ResultadoLugaresFavoritos resultadoLugaresFavoritos;
     private Preferencias preferencias;
     public static final int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 0;
+    public static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 0;
+    public static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 0;
 
 
 
@@ -112,18 +114,27 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        if (ContextCompat.checkSelfPermission(Login.this,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(Login.this,
-                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+        if (ContextCompat.checkSelfPermission(Login.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Login.this, Manifest.permission.ACCESS_FINE_LOCATION)) {
             } else {
-                ActivityCompat.requestPermissions(Login.this,
-                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                        MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-
+                ActivityCompat.requestPermissions(Login.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
             }
         }
+
+        if (ContextCompat.checkSelfPermission(Login.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Login.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            } else {
+                ActivityCompat.requestPermissions(Login.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+            }
+        }
+
+        if (ContextCompat.checkSelfPermission(Login.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Login.this, Manifest.permission.CALL_PHONE)) {
+            } else {
+                ActivityCompat.requestPermissions(Login.this, new String[]{Manifest.permission.CALL_PHONE}, MY_PERMISSIONS_REQUEST_CALL_PHONE);
+            }
+        }
+
 
         thisContext = this;
         callbackManager = CallbackManager.Factory.create();

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -49,12 +50,13 @@ public class Nav_Tarjetas extends AppCompatActivity {
     private ResultadoTarjetas resultadoTarjetas;
     private HistorialPendienteController historialPendienteController;
 
-    TextView txt_no_data_detected;
-    int val;
+    private TextView txt_no_data_detected;
     String Client_Id;
     private ProgressDialog progressdialog;
 
     ImageButton fab_add_card;
+    private TextView nameWindows;
+    private LinearLayout lnl_no_data;
 
     ResultadoEliminarTarjeta resultadoEliminarTarjeta;
 
@@ -72,6 +74,10 @@ public class Nav_Tarjetas extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        this.nameWindows = (TextView) findViewById(R.id.nameWindows);
+        this.nameWindows.setText("Pagos");
+        this.lnl_no_data = (LinearLayout) findViewById(R.id.lnl_no_data);
 
         this.gson = new Gson();
         this.resultadoTarjetas = new ResultadoTarjetas();
@@ -96,10 +102,10 @@ public class Nav_Tarjetas extends AppCompatActivity {
         historialPendienteController = new HistorialPendienteController(this);
 
 
-        Typeface RobotoCondensed_Regular = Typeface.createFromAsset(getAssets(), "RobotoCondensed-Regular.ttf");
+        Typeface Roboto = Typeface.createFromAsset(getAssets(), "Roboto-Light.ttf");
 
         txt_no_data_detected = (TextView) findViewById(R.id.txt_no_data_detected);
-        txt_no_data_detected.setTypeface(RobotoCondensed_Regular);
+        txt_no_data_detected.setTypeface(Roboto);
 
     }
 
@@ -202,6 +208,17 @@ public class Nav_Tarjetas extends AppCompatActivity {
                     tarjetasList.setItemsCanFocus(false);
                     tarjetasList.setAdapter(tarjetasAdapter);
                     progressdialog.dismiss();
+
+                    if (tarjetasArray.size() == 0) {
+                        lnl_no_data.setVisibility(View.VISIBLE);
+                        tarjetasList.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        lnl_no_data.setVisibility(View.GONE);
+                        tarjetasList.setVisibility(View.VISIBLE);
+                    }
+
                 }
 
 
@@ -300,8 +317,13 @@ public class Nav_Tarjetas extends AppCompatActivity {
                                 tarjetasAdapter.notifyDataSetChanged();
 
                                 if (tarjetasArray.size() == 0) {
-                                    txt_no_data_detected.setVisibility(View.VISIBLE);
+                                    lnl_no_data.setVisibility(View.VISIBLE);
                                     tarjetasList.setVisibility(View.GONE);
+                                }
+                                else
+                                {
+                                    lnl_no_data.setVisibility(View.GONE);
+                                    tarjetasList.setVisibility(View.VISIBLE);
                                 }
 
                             } else if (options[seleccion] == "Cancelar") {

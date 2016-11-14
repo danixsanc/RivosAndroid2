@@ -2,21 +2,15 @@
 <android.support.v7.widget.Toolbar
 xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:local="http://schemas.android.com/apk/res-auto"
-android:id="@+id/toolbar"
+android:id="@+id/toolbar2"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-android:background="@android:color/transparent"
+android:background="@color/colorWhiteSemi"
 android:minHeight="?attr/actionBarSize"
 local:popupTheme="@style/ThemeOverlay.AppCompat.Light"
 local:theme="@style/ThemeOverlay.AppCompat.ActionBar"
 local:titleTextAppearance="@style/ToolbarTitle">
 
-    <TextView
-        android:id="@+id/nameWindows"
-        android:text="Prueba"
-        android:textSize="17dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
 
 
 </android.support.v7.widget.Toolbar>
